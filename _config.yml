@@ -217,6 +217,12 @@ keep_files:
 
 # Plug-ins
 plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+  - jekyll-include-cache
   - jekyll-archives
   - jekyll-diagrams
   - jekyll-email-protect
