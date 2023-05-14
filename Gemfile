@@ -1,3 +1,5 @@
+=begin
+
 source 'https://rubygems.org'
 group :jekyll_plugins do
     gem 'classifier-reborn'
@@ -23,3 +25,8 @@ group :other_plugins do
     gem 'feedjira'
     gem 'httparty'
 end
+
+=end
+source "https://rubygems.org"
+
+gem "github-pages", "~> 227", group: :jekyll_plugins
