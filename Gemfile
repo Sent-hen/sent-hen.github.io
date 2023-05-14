@@ -1,4 +1,3 @@
-=begin
 
 source 'https://rubygems.org'
 group :jekyll_plugins do
@@ -26,7 +25,8 @@ group :other_plugins do
     gem 'httparty'
 end
 
-=end
+=begin
 source "https://rubygems.org"
 
 gem "github-pages", "~> 227", group: :jekyll_plugins
+=end
