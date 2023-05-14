@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://sent-hen.github.io/sitemap.xml
