@@ -1,4 +1,3 @@
-
 source 'https://rubygems.org'
 group :jekyll_plugins do
     gem 'classifier-reborn'
@@ -16,7 +15,7 @@ group :jekyll_plugins do
     gem 'jekyll-toc'
     gem 'jekyll-twitter-plugin'
     gem 'jemoji'
-    #gem 'mini_racer'
+    gem 'mini_racer'
     gem 'unicode_utils'
     gem 'webrick'
 end
@@ -24,9 +23,3 @@ group :other_plugins do
     gem 'feedjira'
     gem 'httparty'
 end
-
-=begin
-source "https://rubygems.org"
-
-gem "github-pages", "~> 227", group: :jekyll_plugins
-=end
