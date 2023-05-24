@@ -10,6 +10,10 @@ profile:
   image_circular: false # crops the image to make it circular
   address: >
     <p>(832) 402-0839</p>
+    <details>
+    <summary>Details</summary>
+    Plz don't dox me.
+    </details>
     <p>103 Lindy Lee Ln</p>
     <p>Mabank, TX 75156</p>
 
