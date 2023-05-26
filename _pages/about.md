@@ -9,11 +9,9 @@ profile:
   image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
   address: >
-    <p>(832) 402-0839</p>
     <details>
-    <summary>Address</summary>
-    <p>103 Lindy Lee Ln</p>
-    <p>Mabank, TX 75156</p>
+    <summary>Details</summary>
+    :3
     </details>
 
 
