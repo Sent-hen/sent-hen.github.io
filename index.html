@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tracker</title>
+  <title>Log</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
   <style>
     :root {
       --bg: #121212;
@@ -13,7 +15,6 @@
       --card-bg: #1e1e1e;
       --border: #333;
     }
-
     body {
       background-color: var(--bg);
       color: var(--text);
@@ -21,28 +22,28 @@
       padding: 1rem;
       margin: 0;
     }
-
     h1 {
       text-align: center;
       color: var(--accent);
     }
-
+    .table-wrapper {
+      overflow-x: auto;
+    }
     table {
       width: 100%;
+      min-width: max-content;
       border-collapse: collapse;
       margin-top: 2rem;
     }
-
     th, td {
       border: 1px solid var(--border);
       padding: 0.5rem;
       text-align: center;
+      white-space: nowrap;
     }
-
     th {
       background-color: var(--card-bg);
     }
-
     button {
       background-color: var(--accent);
       color: white;
@@ -51,27 +52,14 @@
       padding: 0.3rem 0.6rem;
       cursor: pointer;
     }
-
     .exercise-name {
       cursor: pointer;
       text-align: left;
       white-space: nowrap;
     }
-
-    .group-level-1 {
-      font-weight: bold;
-      padding-left: 0.5rem;
-    }
-
-    .group-level-2 {
-      font-style: italic;
-      padding-left: 1.5rem;
-    }
-
-    .group-level-3 {
-      padding-left: 3rem;
-    }
-
+    .group-level-1 { font-weight: bold; padding-left: 0.5rem; }
+    .group-level-2 { font-style: italic; padding-left: 1.5rem; }
+    .group-level-3 { padding-left: 3rem; }
     #chartModal {
       display: none;
       position: fixed;
@@ -81,7 +69,6 @@
       justify-content: center;
       align-items: center;
     }
-
     #chartBox {
       background: var(--card-bg);
       padding: 1rem;
@@ -89,29 +76,71 @@
       width: 90%;
       max-width: 600px;
     }
-
     @media (max-width: 768px) {
-      table, th, td {
+      .group-level-3 input {
+        width: 4rem;
+      }
+      th, td {
         font-size: 0.75rem;
+        white-space: nowrap;
+        text-align: center;
+        padding: 0.4rem;
+      }
+      .exercise-name {
+        min-width: 150px;
+        display: inline-block;
+      }
+      td input {
+        width: 3.5rem;
       }
     }
   </style>
 </head>
 <body>
-  <h1>Tracker</h1>
-
-  <div id="tableContainer"></div>
-
-  <div id="chartModal" onclick="closeChart()">
-    <div id="chartBox">
-      <canvas id="exerciseChart"></canvas>
-    </div>
-  </div>
-
   <script>
+    if (prompt("Enter access code:") !== "8008") {
+      document.body.innerHTML = "<h1 style='color:red;text-align:center'>Access Denied</h1>";
+      throw new Error("Access Denied");
+    }
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCLxAt4SkpTVsL1sWa3Ed-Z6e7XpMznMmA",
+      authDomain: "tracker-d4c4b.firebaseapp.com",
+      projectId: "tracker-d4c4b",
+      storageBucket: "tracker-d4c4b.firebasestorage.app",
+      messagingSenderId: "907184545564",
+      appId: "1:907184545564:web:5bf3998dfe986aa1a264d9"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    const userId = "log_user_8008";
+    let weeks = 1;
+    let logs = {};
+
+    async function loadLogs() {
+      try {
+        const doc = await db.collection("logs").doc(userId).get();
+        if (doc.exists) {
+          logs = doc.data();
+          console.log("Loaded logs:", logs);
+        } else {
+          console.log("No logs found. Creating blank table.");
+        }
+      } catch (error) {
+        console.error("Error connecting to Firestore:", error);
+        alert("Firestore failed. Table will still load blank.");
+      }
+      createTable();
+    }
+
+    function saveLogs() {
+      db.collection("logs").doc(userId).set(logs);
+    }
+
     const structure = {
       Push: {
-        Chest: ["Dips", "Bench Press", "Incline Press"],
+        Chest: ["Dips (Optional)", "Bench Press", "Incline Press"],
         Shoulder: ["Overhead Press (Machine)", "Lateral Raises (Cable)"],
         Triceps: ["Overhead Cable Triceps Extension (Bar)", "Skull Crushers"]
       },
@@ -127,16 +156,13 @@
       }
     };
 
-    let weeks = 1;
-    let logs = JSON.parse(localStorage.getItem('ppl_logs')) || {};
-
-    function saveLogs() {
-      localStorage.setItem('ppl_logs', JSON.stringify(logs));
-    }
-
     function createTable() {
       const container = document.getElementById('tableContainer');
+      if (!container) return;
+
       container.innerHTML = '';
+      const wrapper = document.createElement('div');
+      wrapper.className = 'table-wrapper';
 
       const table = document.createElement('table');
       let headerRow = '<tr><th>Exercise</th>';
@@ -164,15 +190,15 @@
                 <td><input type='number' value='${data1.weight}' onchange="updateLog('${key1}', 'weight', this.value)"></td>
                 <td><input type='number' value='${data2.sets}' onchange="updateLog('${key2}', 'sets', this.value)"></td>
                 <td><input type='number' value='${data2.reps}' onchange="updateLog('${key2}', 'reps', this.value)"></td>
-                <td><input type='number' value='${data2.weight}' onchange="updateLog('${key2}', 'weight', this.value)"></td>
-              `;
+                <td><input type='number' value='${data2.weight}' onchange="updateLog('${key2}', 'weight', this.value)"></td>`;
             }
             row += '<td></td></tr>';
             table.innerHTML += row;
           }
         }
       }
-      container.appendChild(table);
+      wrapper.appendChild(table);
+      container.appendChild(wrapper);
     }
 
     function updateLog(key, field, value) {
@@ -198,7 +224,6 @@
           dataPoints.push({ x: (w - 1) * 2 + 2, y: parseFloat(entry2.weight) });
         }
       }
-
       const ctx = document.getElementById('exerciseChart').getContext('2d');
       if (ctx.chart) ctx.chart.destroy();
       ctx.chart = new Chart(ctx, {
@@ -227,7 +252,15 @@
       document.getElementById('chartModal').style.display = 'none';
     }
 
-    createTable();
+    window.onload = () => loadLogs();
   </script>
+
+  <h1>Log</h1>
+  <div id="tableContainer"></div>
+  <div id="chartModal" onclick="closeChart()">
+    <div id="chartBox">
+      <canvas id="exerciseChart"></canvas>
+    </div>
+  </div>
 </body>
 </html>
