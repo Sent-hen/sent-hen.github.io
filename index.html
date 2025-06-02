@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Log</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>Logbook</title>
   <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
   <style>
@@ -18,7 +17,7 @@
     body {
       background-color: var(--bg);
       color: var(--text);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       padding: 1rem;
       margin: 0;
     }
@@ -26,73 +25,56 @@
       text-align: center;
       color: var(--accent);
     }
-    .table-wrapper {
-      overflow-x: auto;
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
     }
-    table {
-      width: 100%;
-      min-width: max-content;
-      border-collapse: collapse;
-      margin-top: 2rem;
-    }
-    th, td {
-      border: 1px solid var(--border);
-      padding: 0.5rem;
-      text-align: center;
-      white-space: nowrap;
-    }
-    th {
+    .tab-button {
+      margin: 0.3rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
       background-color: var(--card-bg);
+      color: var(--text);
+      cursor: pointer;
     }
-    button {
+    .tab-button.active {
       background-color: var(--accent);
       color: white;
-      border: none;
+    }
+    .exercise-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      margin: 0.5rem 0;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+    }
+    .group-level-1 {
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-top: 1rem;
+    }
+    .group-level-2 {
+      font-style: italic;
+      margin-left: 1rem;
+    }
+    .group-level-3 {
+      margin-left: 2rem;
+    }
+    .input-row {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    .input-row input {
+      background: #2a2a2a;
+      color: white;
+      border: 1px solid var(--border);
       border-radius: 4px;
-      padding: 0.3rem 0.6rem;
-      cursor: pointer;
-    }
-    .exercise-name {
-      cursor: pointer;
-      text-align: left;
-      white-space: nowrap;
-    }
-    .group-level-1 { font-weight: bold; padding-left: 0.5rem; }
-    .group-level-2 { font-style: italic; padding-left: 1.5rem; }
-    .group-level-3 { padding-left: 3rem; }
-    #chartModal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.8);
-      justify-content: center;
-      align-items: center;
-    }
-    #chartBox {
-      background: var(--card-bg);
-      padding: 1rem;
-      border-radius: 8px;
-      width: 90%;
-      max-width: 600px;
-    }
-    @media (max-width: 768px) {
-      .group-level-3 input {
-        width: 4rem;
-      }
-      th, td {
-        font-size: 0.75rem;
-        white-space: nowrap;
-        text-align: center;
-        padding: 0.4rem;
-      }
-      .exercise-name {
-        min-width: 150px;
-        display: inline-block;
-      }
-      td input {
-        width: 3.5rem;
-      }
+      padding: 0.3rem 0.5rem;
+      width: 4rem;
     }
   </style>
 </head>
@@ -115,152 +97,90 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
     const userId = "log_user_8008";
-    let weeks = 1;
     let logs = {};
+    let currentTab = 'Push';
+
+    const structure = {
+      Push: {
+        Chest: ["Dips (Optional) - [3x6-10]", "Bench Press - [4x5-8]", "Incline Press - [3x6-10]"],
+        Shoulder: ["Overhead Press (Machine) - [3x6-10]", "Lateral Raises (Cable) - [3x10-15]"],
+        Triceps: ["Triceps Pushdown - [3x10-12]", "Overhead Cable Triceps Extension (Bar) [1] - [3x10-12]", "Skull Crushers [2] - [3x8-10]"]
+      },
+      Pull: {
+        Back: ["Pullups (Optional) - [3x6-10]", "Deadlift - [4x5]", "Lat Pulldowns (Neutral Grip) - [3x8-12]", "Chest Supported Row [1] - [3x6-10]", "Cable Row [2] - [3x8-12]", "Face Pull - [3x12-15]"],
+        Biceps: ["Face Away Bayesian Curl (Optionial) - [3x10-12]", "Preacher Dumbbell Curl - [3x8-10]", "Preacher Hammer Curl - [3x8-10]"]
+      },
+      Legs: {
+        Quads: ["Barbell Back Squat - [4x5-8]", "Bulgarian Split Squat - [2x8-10]"],
+        Hamstrings: ["Romanian Deadlifts - [3-4x6-10]"],
+        Glutes: ["Walking Lunges - [3x8-12]", "Hip Abduction - [3x12-15]"],
+        Calves: ["Standing Calf Raise - [4x10-15]"]
+      }
+    };
 
     async function loadLogs() {
-      try {
-        const doc = await db.collection("logs").doc(userId).get();
-        if (doc.exists) {
-          logs = doc.data();
-          console.log("Loaded logs:", logs);
-        } else {
-          console.log("No logs found. Creating blank table.");
-        }
-      } catch (error) {
-        console.error("Error connecting to Firestore:", error);
-        alert("Firestore failed. Table will still load blank.");
-      }
-      createTable();
+      const doc = await db.collection("logs").doc(userId).get();
+      if (doc.exists) logs = doc.data();
+      renderTab();
     }
 
     function saveLogs() {
       db.collection("logs").doc(userId).set(logs);
     }
 
-    const structure = {
-      Push: {
-        Chest: ["Dips (Optional)", "Bench Press", "Incline Press"],
-        Shoulder: ["Overhead Press (Machine)", "Lateral Raises (Cable)"],
-        Triceps: ["Overhead Cable Triceps Extension (Bar)", "Skull Crushers"]
-      },
-      Pull: {
-        Back: ["Deadlift", "Neutral Grip Lat Pulldowns", "Chest Supported Row", "Cable Row"],
-        Biceps: ["Preacher Dumbbell Curl", "Preacher Hammer Curl"]
-      },
-      Legs: {
-        Quads: ["Barbell Back Squat", "Bulgarian Split Squat"],
-        Hamstrings: ["Romanian Deadlifts"],
-        Glutes: ["Walking Lunges", "Hip Abduction"],
-        Calves: ["Standing Calf Raise"]
-      }
-    };
-
-    function createTable() {
+    function renderTab() {
       const container = document.getElementById('tableContainer');
-      if (!container) return;
-
       container.innerHTML = '';
-      const wrapper = document.createElement('div');
-      wrapper.className = 'table-wrapper';
-
-      const table = document.createElement('table');
-      let headerRow = '<tr><th>Exercise</th>';
-      for (let w = 1; w <= weeks; w++) {
-        headerRow += `<th colspan="6">Week ${w}</th>`;
-      }
-      headerRow += '<th><button onclick="addWeek()">+</button></th></tr>';
-      headerRow += '<tr><th></th>' + '<th>Sets</th><th>Reps</th><th>Weight</th><th>Sets</th><th>Reps</th><th>Weight</th>'.repeat(weeks) + '<th></th></tr>';
-      table.innerHTML = headerRow;
-
-      for (const [group, subgroups] of Object.entries(structure)) {
-        table.innerHTML += `<tr><td class="exercise-name group-level-1">${group}</td><td colspan="${weeks * 6 + 1}"></td></tr>`;
-        for (const [subgroup, exercises] of Object.entries(subgroups)) {
-          table.innerHTML += `<tr><td class="exercise-name group-level-2">${subgroup}</td><td colspan="${weeks * 6 + 1}"></td></tr>`;
-          for (const ex of exercises) {
-            let row = `<tr><td class="exercise-name group-level-3" onclick="showChart('${ex}')">${ex}</td>`;
-            for (let w = 1; w <= weeks; w++) {
-              const key1 = `${ex}-week${w}-1`;
-              const key2 = `${ex}-week${w}-2`;
-              const data1 = logs[key1] || { sets: '', reps: '', weight: '' };
-              const data2 = logs[key2] || { sets: '', reps: '', weight: '' };
-              row += `
-                <td><input type='number' value='${data1.sets}' onchange="updateLog('${key1}', 'sets', this.value)"></td>
-                <td><input type='number' value='${data1.reps}' onchange="updateLog('${key1}', 'reps', this.value)"></td>
-                <td><input type='number' value='${data1.weight}' onchange="updateLog('${key1}', 'weight', this.value)"></td>
-                <td><input type='number' value='${data2.sets}' onchange="updateLog('${key2}', 'sets', this.value)"></td>
-                <td><input type='number' value='${data2.reps}' onchange="updateLog('${key2}', 'reps', this.value)"></td>
-                <td><input type='number' value='${data2.weight}' onchange="updateLog('${key2}', 'weight', this.value)"></td>`;
-            }
-            row += '<td></td></tr>';
-            table.innerHTML += row;
-          }
+      for (const [subgroup, exercises] of Object.entries(structure[currentTab])) {
+        const header1 = document.createElement('div');
+        header1.className = 'group-level-2';
+        header1.textContent = subgroup;
+        container.appendChild(header1);
+        for (const ex of exercises) {
+          const card = document.createElement('div');
+          card.className = 'exercise-card group-level-3';
+          const label = document.createElement('div');
+          label.textContent = ex;
+          const reps = document.createElement('input');
+          reps.type = 'number';
+          reps.placeholder = 'Reps';
+          reps.value = logs[`${ex}-reps`] || '';
+          reps.onchange = () => updateLog(`${ex}-reps`, reps.value);
+          const weight = document.createElement('input');
+          weight.type = 'number';
+          weight.placeholder = 'Weight';
+          weight.value = logs[`${ex}-weight`] || '';
+          weight.onchange = () => updateLog(`${ex}-weight`, weight.value);
+          const inputRow = document.createElement('div');
+          inputRow.className = 'input-row';
+          inputRow.append(reps, weight);
+          card.append(label, inputRow);
+          container.appendChild(card);
         }
       }
-      wrapper.appendChild(table);
-      container.appendChild(wrapper);
     }
 
-    function updateLog(key, field, value) {
-      if (!logs[key]) logs[key] = {};
-      logs[key][field] = value;
+    function updateLog(key, value) {
+      logs[key] = value;
       saveLogs();
     }
 
-    function addWeek() {
-      weeks++;
-      createTable();
-    }
-
-    function showChart(exercise) {
-      const dataPoints = [];
-      for (let w = 1; w <= weeks; w++) {
-        const entry1 = logs[`${exercise}-week${w}-1`];
-        const entry2 = logs[`${exercise}-week${w}-2`];
-        if (entry1 && entry1.weight) {
-          dataPoints.push({ x: (w - 1) * 2 + 1, y: parseFloat(entry1.weight) });
-        }
-        if (entry2 && entry2.weight) {
-          dataPoints.push({ x: (w - 1) * 2 + 2, y: parseFloat(entry2.weight) });
-        }
-      }
-      const ctx = document.getElementById('exerciseChart').getContext('2d');
-      if (ctx.chart) ctx.chart.destroy();
-      ctx.chart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          datasets: [{
-            label: `${exercise} - Weight Progression`,
-            data: dataPoints,
-            borderColor: '#4a90e2',
-            backgroundColor: 'rgba(74, 144, 226, 0.1)',
-            borderWidth: 2,
-            tension: 0.3
-          }]
-        },
-        options: {
-          scales: {
-            x: { title: { display: true, text: 'Session #' }, ticks: { stepSize: 1 } },
-            y: { title: { display: true, text: 'Weight (lbs)' }, beginAtZero: true }
-          }
-        }
-      });
-      document.getElementById('chartModal').style.display = 'flex';
-    }
-
-    function closeChart() {
-      document.getElementById('chartModal').style.display = 'none';
+    function switchTab(tab) {
+      currentTab = tab;
+      document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(`tab-${tab}`).classList.add('active');
+      renderTab();
     }
 
     window.onload = () => loadLogs();
   </script>
 
-  <h1>Log</h1>
-  <div id="tableContainer"></div>
-  <div id="chartModal" onclick="closeChart()">
-    <div id="chartBox">
-      <canvas id="exerciseChart"></canvas>
-    </div>
+  <h1>Workout Log</h1>
+  <div class="tabs">
+    <button class="tab-button active" id="tab-Push" onclick="switchTab('Push')">Push</button>
+    <button class="tab-button" id="tab-Pull" onclick="switchTab('Pull')">Pull</button>
+    <button class="tab-button" id="tab-Legs" onclick="switchTab('Legs')">Legs</button>
   </div>
+  <div id="tableContainer"></div>
 </body>
 </html>
