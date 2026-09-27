@@ -1,0 +1,32 @@
+title: Senthen Velmurugan
+description: "Notes on computing systems, and things I'm building."
+author: Senthen Velmurugan
+url: "https://sent-hen.github.io"   # update to your GitHub Pages URL
+baseurl: ""                          # e.g. "/your-repo-name" if not a user/org page
+
+markdown: kramdown
+
+plugins:
+  - jekyll-feed
+
+collections:
+  notes:
+    output: true
+    permalink: /notes/:path/
+
+defaults:
+  - scope:
+      path: ""
+      type: "notes"
+    values:
+      layout: "note"
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor

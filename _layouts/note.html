@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include head.html %}
+<body>
+  <div class="wrap">
+    {% include nav.html %}
+    <main>
+      <article class="note">
+        <p class="note-date">{{ page.date | date: '%B %-d, %Y' }}</p>
+        <h1>{{ page.title }}</h1>
+        {{ content }}
+        <p class="back-link"><a href="{{ '/notes/' | relative_url }}">&larr; all notes</a></p>
+      </article>
+    </main>
+    {% include footer.html %}
+  </div>
+</body>
+</html>
