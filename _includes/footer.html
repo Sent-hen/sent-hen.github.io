@@ -1,11 +1,30 @@
-<footer class="site-footer">
+<footer class="site-footer wrap">
   <hr>
   <p>
-    &copy; {{ site.time | date: '%Y' }} {{ site.author }}.
     <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
-    ·
-    <a href="https://github.com/">GitHub</a>
-    ·
+    &nbsp;·&nbsp;
+    <a href="https://github.com/Sent-hen">GitHub</a>
+    &nbsp;·&nbsp;
     <a href="https://www.linkedin.com/">LinkedIn</a>
   </p>
 </footer>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    function isDark() {
+      var t = root.getAttribute('data-theme');
+      return t ? t === 'dark' : mq.matches;
+    }
+    function sync() { btn.setAttribute('aria-checked', isDark() ? 'true' : 'false'); }
+    btn.addEventListener('click', function () {
+      var next = isDark() ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      sync();
+    });
+    mq.addEventListener && mq.addEventListener('change', sync);
+    sync();
+  })();
+</script>
