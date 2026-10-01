@@ -1,32 +1,45 @@
 ---
 title: Home
-description: "Senthen Velmurugan — computer scientist, OMSCS student."
+description: "Senthen Velmurugan — student of computer science and systems thinking."
 ---
 
-<div class="intro">
+<p class="status">Currently a student · M.S. Computer Science, Georgia Tech</p>
 
-Senthen Velmurugan
+I'm Senthen. I study how systems behave as wholes: how feedback, structure, and delay produce the behavior we see, whether the system is a distributed program, an organization, or an ecosystem.
 
-<p class="role">B.S. Computer Science, UTD &nbsp;·&nbsp; M.S. Computer Science (OMSCS), Georgia Tech — Computing Systems</p>
+I'm working toward an M.S. in Computer Science at Georgia Tech (OMSCS), after a B.S. in Computer Science from UT Dallas. This site is where I keep what I'm building and learning.
 
-I'm a computer scientist based in Texas. I finished my B.S. in Computer Science at UT Dallas, and I'm currently working through Georgia Tech's OMSCS program, specializing in computing systems.
+{% assign sorted_notes = site.notes | sort: 'date' | reverse %}
+{% assign latest = sorted_notes | first %}
+{% if latest %}
+<hr>
 
-This site is where I keep a record of what I'm building and learning — replace this paragraph with a couple sentences about what you actually care about (systems, distributed computing, a specific stack, etc.).
+<p class="label"><a href="{{ latest.url | relative_url }}">Latest</a></p>
 
+<div class="latest">
+  <a href="{{ latest.url | relative_url }}" class="plain">
+    <h2>{{ latest.title }}</h2>
+    <div class="meta muted small"><time datetime="{{ latest.date | date_to_xmlschema }}">{{ latest.date | date: '%B %-d, %Y' }}</time></div>
+    <div class="muted small">{{ latest.content | strip_html | truncatewords: 24 }} Keep&nbsp;reading&nbsp;&rarr;</div>
+  </a>
+</div>
+{% endif %}
+
+<hr>
+
+<p class="label"><a href="{{ '/about/' | relative_url }}">Interests</a></p>
+
+<div class="topics">
+{% assign topics = "systems thinking,cybernetics,feedback loops,control theory,system dynamics,complexity,emergence,resilience,distributed systems,operating systems" | split: "," %}
+{% for t in topics %}<span>{{ t }}</span>{% unless forloop.last %}<span class="sep">, </span>{% endunless %}{% endfor %}
 </div>
 
 <hr>
 
-<p class="section-label">RECENT NOTES</p>
+<p class="label"><a href="{{ '/notes/' | relative_url }}">Notes</a></p>
 
-<ul class="entry-list notes-list">
-{% assign sorted_notes = site.notes | sort: 'date' | reverse %}
-{% for note in sorted_notes limit:3 %}
-  <li class="entry">
-    <div class="entry-title"><a href="{{ note.url | relative_url }}">{{ note.title }}</a></div>
-    <div class="entry-meta">{{ note.date | date: '%b %Y' }}</div>
-  </li>
+<ul class="rows">
+{% for note in sorted_notes %}
+  <li><a href="{{ note.url | relative_url }}" class="plain"><span class="row"><span class="date">{{ note.date | date: '%Y · %m' }}</span><u>{{ note.title }}</u></span></a></li>
 {% endfor %}
 </ul>
-
-<p><a href="{{ '/notes/' | relative_url }}">All notes &rarr;</a></p>

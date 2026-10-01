@@ -1,7 +1,7 @@
 # senthen-site
 
 Personal site for Senthen Velmurugan, built with Jekyll for GitHub Pages.
-Design: single narrow column, serif body text, monospace nav/labels, bracket-style nav (`[ Home ]`), light/dark via `prefers-color-scheme`.
+Design: modeled on stephango.com — Flexoki palette, single narrow sans-serif column, muted nav, light/dark toggle (defaults to `prefers-color-scheme`, remembered in localStorage).
 
 ## Structure
 
