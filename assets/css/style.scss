@@ -191,6 +191,17 @@ hr {
 .label a:hover { color: var(--tx); }
 
 /* home */
+.intro { display: flow-root; }
+.intro-gif {
+  float: left;
+  width: 160px;
+  height: 160px;
+  margin: 4px 20px 8px 0;
+  border-radius: 6px;
+}
+@media (max-width: 560px) {
+  .intro-gif { width: 112px; height: 112px; margin-right: 14px; }
+}
 .latest h2 { margin: 0 0 0.3em; }
 .latest .meta { padding-bottom: 0.6em; }
 
