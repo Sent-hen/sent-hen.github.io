@@ -1,0 +1,113 @@
+---
+title: Projects
+permalink: /projects/
+description: "Projects by Senthen Velmurugan: backend and infrastructure, security, and AI/ML."
+---
+
+<h1>Projects</h1>
+
+<p class="muted">Things I've built.</p>
+
+<!-- Entries live in _data/projects.yml. Writeups for completed projects live in _projects/. -->
+
+{% assign projects = site.data.projects %}
+
+{% comment %} Rank tech tags: most projects first, ties broken by _data/tag_popularity.yml. {% endcomment %}
+{% assign all_tags = "" | split: "" %}
+{% for p in projects %}{% assign all_tags = all_tags | concat: p.tags %}{% endfor %}
+{% assign uniq_tags = all_tags | uniq %}
+{% assign keyed = "" | split: "" %}
+{% for t in uniq_tags %}
+  {% assign n = 0 %}
+  {% for x in all_tags %}{% if x == t %}{% assign n = n | plus: 1 %}{% endif %}{% endfor %}
+  {% assign pop = 999 %}
+  {% for q in site.data.tag_popularity %}{% if q == t %}{% assign pop = forloop.index %}{% break %}{% endif %}{% endfor %}
+  {% assign k1 = 999 | minus: n | prepend: "000" | slice: -3, 3 %}
+  {% assign k2 = pop | prepend: "000" | slice: -3, 3 %}
+  {% assign key = k1 | append: "|" | append: k2 | append: "|" | append: n | append: "|" | append: t %}
+  {% assign keyed = keyed | push: key %}
+{% endfor %}
+{% assign keyed = keyed | sort %}
+
+{% assign all_domains = "" | split: "" %}
+{% for p in projects %}{% assign all_domains = all_domains | concat: p.domains %}{% endfor %}
+
+<div class="filters" id="filters" hidden>
+  <div class="filter-row">
+    <span class="filter-label">Domain</span>
+    {% assign domain_order = "Backend/infra,Security,AI/ML" | split: "," %}
+    {% for d in domain_order %}
+      {% assign n = 0 %}{% for x in all_domains %}{% if x == d %}{% assign n = n | plus: 1 %}{% endif %}{% endfor %}
+      <button type="button" class="chip" data-filter="{{ d }}" aria-pressed="false">{{ d }} <span class="count">{{ n }}</span></button>
+    {% endfor %}
+  </div>
+  <div class="filter-row">
+    <span class="filter-label">Tech</span>
+    {% for key in keyed %}{% assign parts = key | split: "|" %}
+      <button type="button" class="chip{% if forloop.index > 10 %} extra{% endif %}" data-filter="{{ parts[3] }}" aria-pressed="false">{{ parts[3] }} <span class="count">{{ parts[2] }}</span></button>
+    {% endfor %}
+    {% if keyed.size > 10 %}<button type="button" class="chip-more" id="chip-more">+{{ keyed.size | minus: 10 }} more</button>{% endif %}
+  </div>
+</div>
+
+<ul class="entries" id="project-list">
+{% for p in projects %}
+  <li class="entry" id="{{ p.slug }}" data-tags="{{ p.domains | join: ';' }};{{ p.tags | join: ';' }}">
+    <div class="entry-head">
+      <span class="entry-title">
+        {% if p.writeup %}<a href="{{ '/projects/' | append: p.slug | append: '/' | relative_url }}">{{ p.title }}</a>
+        {% elsif p.repo != "" %}<a href="{{ p.repo }}">{{ p.title }}</a>
+        {% else %}{{ p.title }}{% endif %}
+      </span>
+      <span class="entry-when">{{ p.when }}</span>
+    </div>
+    <div class="entry-sub">{{ p.domains | join: " · " }}{% if p.status != "complete" %} · <span class="badge">{{ p.status }}</span>{% endif %}</div>
+    <div class="entry-desc">
+      <p>{{ p.summary }}</p>
+      <ul class="bullets">
+        {% for b in p.bullets %}<li>{{ b }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% for t in p.tags %}<span class="tag">{{ t }}</span>{% endfor %}
+    <div class="entry-links small">
+      {% if p.writeup %}<a href="{{ '/projects/' | append: p.slug | append: '/' | relative_url }}">Writeup &rarr;</a>{% endif %}
+      {% if p.repo != "" %}<a href="{{ p.repo }}">Code</a>{% else %}<span class="muted">Private repo</span>{% endif %}
+    </div>
+  </li>
+{% endfor %}
+</ul>
+
+<p class="muted small" id="filter-empty" hidden>No projects match that filter.</p>
+
+<script>
+  (function () {
+    var bar = document.getElementById('filters');
+    var items = document.querySelectorAll('#project-list > .entry');
+    var chips = bar.querySelectorAll('.chip');
+    var empty = document.getElementById('filter-empty');
+    bar.hidden = false;
+    var more = document.getElementById('chip-more');
+    if (more) more.addEventListener('click', function () {
+      bar.classList.add('show-all');
+      more.hidden = true;
+    });
+    function apply(value) {
+      var shown = 0;
+      items.forEach(function (li) {
+        var match = !value || li.getAttribute('data-tags').split(';').indexOf(value) !== -1;
+        li.hidden = !match;
+        if (match) shown++;
+      });
+      chips.forEach(function (c) {
+        c.setAttribute('aria-pressed', c.getAttribute('data-filter') === value ? 'true' : 'false');
+      });
+      empty.hidden = shown > 0;
+    }
+    chips.forEach(function (c) {
+      c.addEventListener('click', function () {
+        apply(c.getAttribute('aria-pressed') === 'true' ? null : c.getAttribute('data-filter'));
+      });
+    });
+  })();
+</script>

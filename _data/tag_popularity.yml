@@ -1,0 +1,38 @@
+# Tie-breaker for ranking tags on /projects/: when two tags are used by the same
+# number of projects, the one listed earlier here (more widely used in industry,
+# roughly following the Stack Overflow developer survey) is shown first.
+- Python
+- JavaScript
+- SQL
+- HTML
+- Bash
+- Docker
+- Linux
+- Go
+- AWS
+- Kubernetes
+- Node.js
+- NumPy
+- pandas
+- Terraform
+- FastAPI
+- PyTorch
+- OpenCV
+- GitHub Actions
+- Prometheus
+- Jenkins
+- SQLite
+- Matplotlib
+- SciPy
+- pytest
+- OpenAI API
+- Gemini API
+- XML
+- SVG
+- NetworkX
+- LaTeX
+- Vagrant
+- WireGuard
+- nftables
+- Cowrie
+- Vector

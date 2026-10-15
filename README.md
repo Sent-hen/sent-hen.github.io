@@ -5,7 +5,9 @@ Design: modeled on stephango.com — Flexoki palette, single narrow sans-serif c
 
 ## Structure
 
-- `index.md`, `about.md`, `projects.md`, `experience.md`, `notes.md` — the five pages in the nav
+- `index.md`, `about.md`, `projects.html`, `experience.md`, `notes.md` — the five pages in the nav
+- `_data/projects.yml` — every project on the Projects page (summary, six STAR/XYZ bullets, tags); `_data/tag_popularity.yml` breaks ties when ranking tags
+- `_projects/` — writeup pages for completed projects, one file per project (`project:` must match a slug in `_data/projects.yml`)
 - `_notes/` — collection backing the Notes page; each file is one short note (add more the same way)
 - `_layouts/`, `_includes/` — page shell, nav, footer
 - `assets/css/style.scss` — all styling, theme colors in `:root` at the top
@@ -28,11 +30,15 @@ Visit `http://localhost:4000`.
 4. Update `url:` in `_config.yml` to your actual GitHub Pages URL.
 5. Push — GitHub Pages builds Jekyll sites automatically, no Actions config needed.
 
-## Things to fill in before publishing
+## Adding a project
 
-- `about.md` — real bio, interests
-- `projects.md` — swap the two placeholder entries for your actual projects
-- `experience.md` — add real work entries (or drop the Work section)
+1. Add an entry at the top of `_data/projects.yml`.
+2. If it's complete, set `writeup: true` and add `_projects/<slug>.md` with `project: <slug>` in the front matter.
+
+`_site/` is build output and is git-ignored; GitHub Pages builds the site itself.
+
+## Still to fill in
+
+- LinkedIn URL in `_includes/footer.html` and `about.md`
+- The placeholder line in `about.md` about what pulled you toward systems thinking
 - `_notes/*.md` — replace the two sample notes with your own, or delete them
-- Footer/about links in `_includes/footer.html` and `about.md` — point at your real GitHub/LinkedIn/email
-- `_config.yml` — `url` and `baseurl`

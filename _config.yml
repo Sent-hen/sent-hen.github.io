@@ -13,6 +13,9 @@ collections:
   notes:
     output: true
     permalink: /notes/:path/
+  projects:          # writeups for completed projects; entries live in _data/projects.yml
+    output: true
+    permalink: /projects/:path/
 
 defaults:
   - scope:
@@ -20,6 +23,11 @@ defaults:
       type: "notes"
     values:
       layout: "note"
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project"
   - scope:
       path: ""
     values:

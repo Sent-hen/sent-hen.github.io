@@ -3,7 +3,7 @@ title: Home
 description: "Senthen Velmurugan — student of computer science and systems thinking."
 ---
 
-<p class="status">Currently a student · M.S. Computer Science, Georgia Tech</p>
+<p class="status">Currently a student · M.S. Computer Science, Georgia Tech · open to backend/infra, security, and AI/ML roles</p>
 
 I'm Senthen. I study how systems behave as wholes: how feedback, structure, and delay produce the behavior we see, whether the system is a distributed program, an organization, or an ecosystem.
 
@@ -30,7 +30,7 @@ I'm working toward an M.S. in Computer Science at Georgia Tech (OMSCS), after a 
 <p class="label"><a href="{{ '/about/' | relative_url }}">Interests</a></p>
 
 <div class="topics">
-{% assign topics = "systems thinking,cybernetics,feedback loops,control theory,system dynamics,complexity,emergence,resilience,distributed systems,operating systems" | split: "," %}
+{% assign topics = "systems thinking,distributed systems,operating systems,databases,software delivery" | split: "," %}
 {% for t in topics %}<span>{{ t }}</span>{% unless forloop.last %}<span class="sep">, </span>{% endunless %}{% endfor %}
 </div>
 
