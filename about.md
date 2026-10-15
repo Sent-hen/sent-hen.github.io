@@ -31,9 +31,3 @@ I'm looking for **SWE/SDE, FDE, SRE, MLE, DevOps, and MLOps** roles across three
 - **AI/ML engineering.** The system around the model: reproducible training, constrained decoding, retrieval, and serving under load. See [Word2Eq](/projects/word2eq/) and [P&ID Digitizer](/projects/pid-digitizer/).
 
 If you're working on a problem shaped by feedback, scale, or interacting parts, I'd like to hear about it.
-
-## Elsewhere
-
-- [GitHub](https://github.com/Sent-hen)
-- [LinkedIn](https://www.linkedin.com/)
-- [Email](mailto:senthenvelmurugan@gmail.com)
