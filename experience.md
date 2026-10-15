@@ -6,7 +6,7 @@ description: "Experience — Senthen Velmurugan."
 
 # Experience
 
-<p class="status">Currently a student · open to backend/infra, security, and AI/ML roles</p>
+<p class="status">Currently a student · open to SWE/SDE, FDE, SRE, MLE, DevOps, and MLOps roles</p>
 
 <!-- Keep entries newest first. -->
 
@@ -26,7 +26,7 @@ description: "Experience — Senthen Velmurugan."
         <li>Reduced query response time from 2.5 s to 800 ms by optimizing search and fine-tuning vector embeddings, while holding 95% relevance.</li>
       </ul>
     </div>
-    <span class="tag">AI/ML</span><span class="tag">Backend</span><span class="tag">Python</span><span class="tag">LangChain</span><span class="tag">Pinecone</span><span class="tag">OpenAI API</span>
+    <div class="tags"><span class="tag">AI/ML</span><span class="tag">Backend</span><span class="tag">Python</span><span class="tag">LangChain</span><span class="tag">Pinecone</span><span class="tag">OpenAI API</span></div>
   </li>
   <li class="entry">
     <div class="entry-head">
@@ -41,7 +41,7 @@ description: "Experience — Senthen Velmurugan."
         <li>Found and patched critical risks by running Nessus vulnerability assessments and validating findings with OpenVAS and manual audits.</li>
       </ul>
     </div>
-    <span class="tag">Security</span><span class="tag">Infra</span><span class="tag">pfSense</span><span class="tag">Wireshark</span><span class="tag">Nessus</span><span class="tag">Snort</span>
+    <div class="tags"><span class="tag">Security</span><span class="tag">Infra</span><span class="tag">pfSense</span><span class="tag">Wireshark</span><span class="tag">Nessus</span><span class="tag">Snort</span></div>
   </li>
 </ul>
 

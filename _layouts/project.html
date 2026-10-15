@@ -6,7 +6,7 @@ layout: default
   <h1>{{ p.title }}</h1>
   <div class="meta muted small">{{ p.when }} · {{ p.domains | join: " · " }}</div>
   <p class="lede">{{ p.summary }}</p>
-  <div class="project-tags">{% for t in p.tags %}<span class="tag">{{ t }}</span>{% endfor %}</div>
+  <div class="tags project-tags">{% for t in p.tags %}<span class="tag">{{ t }}</span>{% endfor %}</div>
   <p class="small">{% if p.repo != "" %}<a href="{{ p.repo }}">Source code</a>{% else %}<span class="muted">Source is in a private repository.</span>{% endif %}</p>
 
   {{ content }}

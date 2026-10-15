@@ -24,7 +24,7 @@ What connects my interests is **systems thinking**: looking at the relationships
 
 ## What I'm looking for
 
-I'm looking for roles in three areas, and most of my projects sit where they overlap:
+I'm looking for **SWE/SDE, FDE, SRE, MLE, DevOps, and MLOps** roles across three areas, and most of my projects sit where they overlap.
 
 - **Backend and infrastructure.** Services, clusters, and the pipelines that ship them: Kubernetes, CI/CD, observability, SLOs. See [Metal-to-Pod](/projects/metal-to-pod/).
 - **Information security.** Defending real systems: network hardening, intrusion detection, threat modeling, and watching how attackers actually behave. See the [honeypot](/projects/#honeypot-attack-map) and [personal VPN](/projects/#personal-vpn).
