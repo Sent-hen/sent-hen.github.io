@@ -3,7 +3,7 @@ title: Home
 description: "Senthen Velmurugan — student of computer science and systems thinking."
 ---
 
-<p class="status">Currently a student · M.S. Computer Science, Georgia Tech</p>
+<p class="status">Currently a student · M.S. Computer Science, Georgia Tech · open to backend/infra, security, and AI/ML roles</p>
 
 I'm Senthen. I study how systems behave as wholes: how feedback, structure, and delay produce the behavior we see, whether the system is a distributed program, an organization, or an ecosystem.
 

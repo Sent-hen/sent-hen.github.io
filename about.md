@@ -25,10 +25,16 @@ What connects my interests is **systems thinking**: looking at the relationships
 
 ## What I'm looking for
 
-I'm open to work where understanding the whole system matters: engineering, research, operations, or strategy. If you're working on a problem shaped by feedback, scale, or interacting parts, I'd like to hear about it.
+I'm looking for roles in three areas, and most of my projects sit where they overlap:
+
+- **Backend and infrastructure.** Services, clusters, and the pipelines that ship them: Kubernetes, CI/CD, observability, SLOs. See [Metal-to-Pod](/projects/metal-to-pod/).
+- **Information security.** Defending real systems: network hardening, intrusion detection, threat modeling, and watching how attackers actually behave. See the [honeypot](/projects/#honeypot-attack-map) and [personal VPN](/projects/#personal-vpn).
+- **AI/ML engineering.** The system around the model: reproducible training, constrained decoding, retrieval, and serving under load. See [Word2Eq](/projects/word2eq/) and [P&ID Digitizer](/projects/pid-digitizer/).
+
+If you're working on a problem shaped by feedback, scale, or interacting parts, I'd like to hear about it.
 
 ## Elsewhere
 
 - [GitHub](https://github.com/Sent-hen)
 - [LinkedIn](https://www.linkedin.com/)
-- [Email](mailto:you@example.com)
+- [Email](mailto:senthenvelmurugan@gmail.com)

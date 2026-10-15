@@ -258,3 +258,100 @@ hr {
   .nav-links { order: 3; justify-content: flex-start; flex-basis: 100%; }
   .entry-head { flex-direction: column; gap: 0; }
 }
+
+/* projects */
+.entry-desc .bullets { margin: 0.4em 0 0; font-size: 0.94em; }
+.entry-desc .bullets li { margin-bottom: 0.3em; }
+.entry-links { display: flex; gap: 16px; margin-top: 8px; }
+.badge {
+  color: var(--action);
+  white-space: nowrap;
+}
+code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: var(--bg-2);
+  border: 1px solid var(--ui);
+  border-radius: 3px;
+  padding: 0 3px;
+}
+
+.filters { margin: 0 0 2em; }
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.filter-label {
+  width: 4.6em;
+  flex-shrink: 0;
+  font-size: 0.875em;
+  color: var(--tx-2);
+}
+.chip {
+  font: inherit;
+  font-size: 0.8em;
+  color: var(--tx-2);
+  background: var(--bg-2);
+  border: 1px solid var(--ui);
+  border-radius: 4px;
+  padding: 1px 7px;
+  cursor: pointer;
+}
+.chip:hover { border-color: var(--ui-3); color: var(--tx); }
+.chip[aria-pressed="true"] {
+  color: var(--bg);
+  background: var(--tx);
+  border-color: var(--tx);
+}
+.chip .count { opacity: 0.6; font-variant-numeric: tabular-nums; }
+
+.project .lede { font-size: 1.05em; }
+.project-tags { margin: -0.4em 0 1em; }
+
+@media (max-width: 560px) {
+  .filter-label { width: 100%; }
+}
+.filters:not(.show-all) .chip.extra:not([aria-pressed="true"]) { display: none; }
+.chip-more {
+  font: inherit;
+  font-size: 0.8em;
+  color: var(--tx-2);
+  background: none;
+  border: none;
+  padding: 1px 4px;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: var(--ui-3);
+}
+.chip-more:hover { color: var(--tx); }
+
+/* writeups: code blocks and tables */
+pre {
+  font-family: var(--font-mono);
+  font-size: 0.78em;
+  line-height: 1.45;
+  background: var(--bg-2);
+  border: 1px solid var(--ui);
+  border-radius: 4px;
+  padding: 12px 14px;
+  overflow-x: auto;
+  margin: 0 0 1em;
+}
+pre code { background: none; border: none; padding: 0; font-size: inherit; }
+table {
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.875em;
+  margin: 0 0 1em;
+}
+th, td {
+  text-align: left;
+  padding: 4px 12px 4px 0;
+  border-bottom: 1px solid var(--ui);
+  vertical-align: top;
+}
+th { font-weight: 500; color: var(--tx-2); }

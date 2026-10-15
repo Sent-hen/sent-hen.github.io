@@ -1,0 +1,21 @@
+---
+layout: default
+---
+{% assign p = site.data.projects | where: "slug", page.project | first %}
+<article class="note project">
+  <h1>{{ p.title }}</h1>
+  <div class="meta muted small">{{ p.when }} · {{ p.domains | join: " · " }}</div>
+  <p class="lede">{{ p.summary }}</p>
+  <div class="project-tags">{% for t in p.tags %}<span class="tag">{{ t }}</span>{% endfor %}</div>
+  <p class="small">{% if p.repo != "" %}<a href="{{ p.repo }}">Source code</a>{% else %}<span class="muted">Source is in a private repository.</span>{% endif %}</p>
+
+  {{ content }}
+
+  <h2>Highlights</h2>
+  <ul class="bullets">
+    {% for b in p.bullets %}<li>{{ b }}</li>
+    {% endfor %}
+  </ul>
+
+  <p class="back-link small"><a href="{{ '/projects/' | relative_url }}#{{ p.slug }}" class="muted">&larr; All projects</a></p>
+</article>
