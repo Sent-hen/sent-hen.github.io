@@ -35,18 +35,22 @@ description: "Projects by Senthen Velmurugan: backend and infrastructure, securi
 <div class="filters" id="filters" hidden>
   <div class="filter-row">
     <span class="filter-label">Domain</span>
+    <span class="filter-chips">
     {% assign domain_order = "Backend/infra,Security,AI/ML" | split: "," %}
     {% for d in domain_order %}
       {% assign n = 0 %}{% for x in all_domains %}{% if x == d %}{% assign n = n | plus: 1 %}{% endif %}{% endfor %}
       <button type="button" class="chip" data-filter="{{ d }}" aria-pressed="false">{{ d }} <span class="count">{{ n }}</span></button>
     {% endfor %}
+    </span>
   </div>
   <div class="filter-row">
     <span class="filter-label">Tech</span>
+    <span class="filter-chips">
     {% for key in keyed %}{% assign parts = key | split: "|" %}
       <button type="button" class="chip{% if forloop.index > 10 %} extra{% endif %}" data-filter="{{ parts[3] }}" aria-pressed="false">{{ parts[3] }} <span class="count">{{ parts[2] }}</span></button>
     {% endfor %}
     {% if keyed.size > 10 %}<button type="button" class="chip-more" id="chip-more">+{{ keyed.size | minus: 10 }} more</button>{% endif %}
+    </span>
   </div>
 </div>
 
@@ -69,7 +73,7 @@ description: "Projects by Senthen Velmurugan: backend and infrastructure, securi
         {% endfor %}
       </ul>
     </div>
-    {% for t in p.tags %}<span class="tag">{{ t }}</span>{% endfor %}
+    <div class="tags">{% for t in p.tags %}<span class="tag">{{ t }}</span>{% endfor %}</div>
     <div class="entry-links small">
       {% if p.writeup %}<a href="{{ '/projects/' | append: p.slug | append: '/' | relative_url }}">Writeup &rarr;</a>{% endif %}
       {% if p.repo != "" %}<a href="{{ p.repo }}">Code</a>{% else %}<span class="muted">Private repo</span>{% endif %}

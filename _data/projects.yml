@@ -65,7 +65,7 @@
   domains: [Backend/infra]
   summary: A commit-to-pod delivery path from VMware VMs to Kubernetes with no cloud services, run with SLOs, rollback, and failure drills.
   tags: [Kubernetes, Bash, Go, Docker, Jenkins, Prometheus, Vagrant]
-  repo: ""
+  repo: https://github.com/Sent-hen/metal-to-pod
   writeup: true
   bullets:
     - "Built a commit-to-pod delivery path with no cloud services across 4 VMware VMs (9 GB total, sized for a 16 GB laptop), provisioned from a single env file with Vagrant and shell."
@@ -150,7 +150,7 @@
   domains: [Learning tools]
   summary: A 100-chapter Arabian Nights comic epic that teaches the 1,000 most-used SAT words, generated from one script.
   tags: [Python, HTML, SVG]
-  repo: ""
+  repo: https://github.com/Sent-hen/1001-SAT-words
   writeup: true
   bullets:
     - "Wrote a 100-chapter comic epic for readers aged 14 to 16 that teaches the 1,000 most-used SAT words, ten words per chapter."

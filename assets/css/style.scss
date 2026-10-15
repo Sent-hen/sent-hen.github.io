@@ -210,15 +210,15 @@ hr {
 .entry-desc { margin: 0; }
 .entry-desc p:last-child { margin: 0; }
 
-.tag {
-  display: inline-block;
-  font-size: 0.8em;
+.tags {
+  margin-top: 6px;
+  font-size: 0.875em;
   color: var(--tx-2);
-  background: var(--bg-2);
-  border: 1px solid var(--ui);
-  border-radius: 4px;
-  padding: 0 6px;
-  margin: 8px 6px 0 0;
+}
+.tag + .tag::before {
+  content: "·";
+  margin: 0 0.45em;
+  color: var(--tx-3);
 }
 
 .status {
@@ -276,57 +276,52 @@ code {
   padding: 0 3px;
 }
 
-.filters { margin: 0 0 2em; }
+.filters { margin: 0 0 2.4em; font-size: 0.875em; }
 .filter-row {
   display: flex;
-  flex-wrap: wrap;
   align-items: baseline;
-  gap: 6px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 .filter-label {
-  width: 4.6em;
+  width: 5.2em;
   flex-shrink: 0;
-  font-size: 0.875em;
   color: var(--tx-2);
 }
-.chip {
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 14px;
+}
+.chip, .chip-more {
+  -webkit-appearance: none;
+  appearance: none;
   font: inherit;
-  font-size: 0.8em;
-  color: var(--tx-2);
-  background: var(--bg-2);
-  border: 1px solid var(--ui);
-  border-radius: 4px;
-  padding: 1px 7px;
+  color: var(--tx);
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
   cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: var(--ui-3);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 1.5px;
 }
-.chip:hover { border-color: var(--ui-3); color: var(--tx); }
+.chip:hover, .chip-more:hover { text-decoration-color: var(--tx); }
 .chip[aria-pressed="true"] {
-  color: var(--bg);
-  background: var(--tx);
-  border-color: var(--tx);
+  color: var(--action);
+  text-decoration-color: var(--action);
 }
-.chip .count { opacity: 0.6; font-variant-numeric: tabular-nums; }
+.chip .count { color: var(--tx-2); font-variant-numeric: tabular-nums; }
+.chip-more { color: var(--tx-2); }
+.filters:not(.show-all) .chip.extra:not([aria-pressed="true"]) { display: none; }
 
 .project .lede { font-size: 1.05em; }
 .project-tags { margin: -0.4em 0 1em; }
 
 @media (max-width: 560px) {
-  .filter-label { width: 100%; }
+  .filter-row { flex-direction: column; gap: 2px; margin-bottom: 10px; }
 }
-.filters:not(.show-all) .chip.extra:not([aria-pressed="true"]) { display: none; }
-.chip-more {
-  font: inherit;
-  font-size: 0.8em;
-  color: var(--tx-2);
-  background: none;
-  border: none;
-  padding: 1px 4px;
-  cursor: pointer;
-  text-decoration: underline;
-  text-decoration-color: var(--ui-3);
-}
-.chip-more:hover { color: var(--tx); }
 
 /* writeups: code blocks and tables */
 pre {
