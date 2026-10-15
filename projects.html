@@ -39,7 +39,7 @@ description: "Projects by Senthen Velmurugan: backend and infrastructure, securi
     {% assign domain_order = "Backend/infra,Security,AI/ML" | split: "," %}
     {% for d in domain_order %}
       {% assign n = 0 %}{% for x in all_domains %}{% if x == d %}{% assign n = n | plus: 1 %}{% endif %}{% endfor %}
-      <button type="button" class="chip" data-filter="{{ d }}" aria-pressed="false">{{ d }} <span class="count">{{ n }}</span></button>
+      {% assign dc = d | downcase | replace: "/", "-" | replace: " ", "-" %}<button type="button" class="chip dom dom-{{ dc }}" data-filter="{{ d }}" aria-pressed="false">{{ d }} <span class="count">{{ n }}</span></button>
     {% endfor %}
     </span>
   </div>
@@ -65,7 +65,7 @@ description: "Projects by Senthen Velmurugan: backend and infrastructure, securi
       </span>
       <span class="entry-when">{{ p.when }}</span>
     </div>
-    <div class="entry-sub">{{ p.domains | join: " · " }}{% if p.status != "complete" %} · <span class="badge">{{ p.status }}</span>{% endif %}</div>
+    <div class="entry-sub">{% for d in p.domains %}{% assign dc = d | downcase | replace: "/", "-" | replace: " ", "-" %}<span class="dom dom-{{ dc }}">{{ d }}</span>{% unless forloop.last %} · {% endunless %}{% endfor %}{% if p.status != "complete" %} · <span class="badge">{{ p.status }}</span>{% endif %}</div>
     <div class="entry-desc">
       <p>{{ p.summary }}</p>
       <ul class="bullets">

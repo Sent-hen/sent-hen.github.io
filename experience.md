@@ -26,7 +26,7 @@ description: "Experience — Senthen Velmurugan."
         <li>Reduced query response time from 2.5 s to 800 ms by optimizing search and fine-tuning vector embeddings, while holding 95% relevance.</li>
       </ul>
     </div>
-    <div class="tags"><span class="tag">AI/ML</span><span class="tag">Backend</span><span class="tag">Python</span><span class="tag">LangChain</span><span class="tag">Pinecone</span><span class="tag">OpenAI API</span></div>
+    <div class="tags"><span class="tag dom dom-ai-ml">AI/ML</span><span class="tag dom dom-backend">Backend</span><span class="tag">Python</span><span class="tag">LangChain</span><span class="tag">Pinecone</span><span class="tag">OpenAI API</span></div>
   </li>
   <li class="entry">
     <div class="entry-head">
@@ -41,7 +41,7 @@ description: "Experience — Senthen Velmurugan."
         <li>Found and patched critical risks by running Nessus vulnerability assessments and validating findings with OpenVAS and manual audits.</li>
       </ul>
     </div>
-    <div class="tags"><span class="tag">Security</span><span class="tag">Infra</span><span class="tag">pfSense</span><span class="tag">Wireshark</span><span class="tag">Nessus</span><span class="tag">Snort</span></div>
+    <div class="tags"><span class="tag dom dom-security">Security</span><span class="tag dom dom-infra">Infra</span><span class="tag">pfSense</span><span class="tag">Wireshark</span><span class="tag">Nessus</span><span class="tag">Snort</span></div>
   </li>
 </ul>
 

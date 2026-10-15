@@ -4,7 +4,7 @@ layout: default
 {% assign p = site.data.projects | where: "slug", page.project | first %}
 <article class="note project">
   <h1>{{ p.title }}</h1>
-  <div class="meta muted small">{{ p.when }} · {{ p.domains | join: " · " }}</div>
+  <div class="meta muted small">{{ p.when }}{% for d in p.domains %} · {% assign dc = d | downcase | replace: "/", "-" | replace: " ", "-" %}<span class="dom dom-{{ dc }}">{{ d }}</span>{% endfor %}</div>
   <p class="lede">{{ p.summary }}</p>
   <div class="tags project-tags">{% for t in p.tags %}<span class="tag">{{ t }}</span>{% endfor %}</div>
   <p class="small">{% if p.repo != "" %}<a href="{{ p.repo }}">Source code</a>{% else %}<span class="muted">Source is in a private repository.</span>{% endif %}</p>

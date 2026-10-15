@@ -20,6 +20,13 @@
   --flexoki-cyan-400: #3AA99F;
   --flexoki-cyan-600: #24837B;
   --flexoki-cyan-950: #101F1D;
+  --flexoki-red-400: #D14D41;     --flexoki-red-600: #AF3029;
+  --flexoki-orange-400: #DA702C;  --flexoki-orange-600: #BC5215;
+  --flexoki-yellow-400: #D0A215;  --flexoki-yellow-600: #AD8301;
+  --flexoki-green-400: #879A39;   --flexoki-green-600: #66800B;
+  --flexoki-blue-400: #4385BE;    --flexoki-blue-600: #205EA6;
+  --flexoki-purple-400: #8B7EC8;  --flexoki-purple-600: #5E409D;
+  --flexoki-magenta-400: #CE5D97; --flexoki-magenta-600: #A02F6F;
 
   --font-ui: -apple-system, BlinkMacSystemFont, "Inter", "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "Cascadia Code", "IBM Plex Mono", Menlo, Consolas, monospace;
@@ -37,6 +44,13 @@
   --ui-2: var(--flexoki-150);
   --ui-3: var(--flexoki-200);
   --action: var(--flexoki-cyan-600);
+  --red: var(--flexoki-red-600);
+  --orange: var(--flexoki-orange-600);
+  --yellow: var(--flexoki-yellow-600);
+  --green: var(--flexoki-green-600);
+  --blue: var(--flexoki-blue-600);
+  --purple: var(--flexoki-purple-600);
+  --magenta: var(--flexoki-magenta-600);
   --selection: rgba(187, 220, 206, 0.3);
 }
 
@@ -51,6 +65,13 @@
   --ui-2: var(--flexoki-850);
   --ui-3: var(--flexoki-800);
   --action: var(--flexoki-cyan-400);
+  --red: var(--flexoki-red-400);
+  --orange: var(--flexoki-orange-400);
+  --yellow: var(--flexoki-yellow-400);
+  --green: var(--flexoki-green-400);
+  --blue: var(--flexoki-blue-400);
+  --purple: var(--flexoki-purple-400);
+  --magenta: var(--flexoki-magenta-400);
   --selection: rgba(30, 95, 91, 0.3);
 }
 @media (prefers-color-scheme: dark) {
@@ -265,7 +286,7 @@ hr {
 .entry-desc .bullets li { margin-bottom: 0.3em; }
 .entry-links { display: flex; gap: 16px; margin-top: 8px; }
 .badge {
-  color: var(--action);
+  color: var(--orange);
   white-space: nowrap;
 }
 code {
@@ -312,9 +333,10 @@ code {
 .chip:hover { border-color: var(--ui-3); color: var(--tx); }
 .chip[aria-pressed="true"] {
   color: var(--bg);
-  background: var(--tx);
-  border-color: var(--tx);
+  background: var(--action);
+  border-color: var(--action);
 }
+.chip[aria-pressed="true"] .count { opacity: 0.8; }
 .chip .count { opacity: 0.6; font-variant-numeric: tabular-nums; }
 .chip-more {
   color: var(--tx-2);
@@ -361,3 +383,32 @@ th, td {
   vertical-align: top;
 }
 th { font-weight: 500; color: var(--tx-2); }
+
+/* domain accents: one Flexoki color per domain */
+.dom { --accent: var(--tx-2); }
+.dom-backend-infra, .dom-backend, .dom-infra { --accent: var(--blue); }
+.dom-security { --accent: var(--red); }
+.dom-ai-ml { --accent: var(--purple); }
+.dom-tooling { --accent: var(--yellow); }
+.dom-data-analysis { --accent: var(--green); }
+.dom-research { --accent: var(--magenta); }
+.dom-learning-tools { --accent: var(--action); }
+
+span.dom, strong.dom { color: var(--accent); }
+.tag.dom, .chip.dom { color: var(--accent); }
+.tag.dom::before, .chip.dom::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-right: 5px;
+  vertical-align: 0.1em;
+}
+.chip.dom[aria-pressed="true"] {
+  color: var(--bg);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.chip.dom[aria-pressed="true"]::before { background: var(--bg); }
