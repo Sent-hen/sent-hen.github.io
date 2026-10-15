@@ -16,12 +16,11 @@ What connects my interests is **systems thinking**: looking at the relationships
 
 ## Interests
 
-- **Cybernetics.** Feedback, regulation, and control, from Wiener and Ashby's first-order cybernetics to second-order cybernetics, where the observer is part of the system.
-- **Control theory.** Stability, feedback, and how systems hold a target despite disturbances.
-- **System dynamics.** Stocks, flows, and delays; modeling why systems oscillate, overshoot, or collapse.
-- **Complexity and emergence.** How simple local rules produce global behavior nobody designed.
-- **Resilience.** How systems absorb shocks, and the trade-off between efficiency and slack.
-- **Computing systems.** Distributed systems and operating systems, where all of the above becomes concrete.
+- **Systems thinking.** Feedback, delay, and structure as the causes of behavior, drawing on cybernetics, control theory, and system dynamics. This is the lens I bring to everything below.
+- **Distributed systems.** Concurrency, networking, and what happens when parts fail independently: consistency, partial failure, and resilience.
+- **Operating systems.** Processes, memory, scheduling, and the boundary between a program and the machine it runs on.
+- **Databases.** Storage, indexing, transactions, and the trade-offs behind keeping data correct and fast.
+- **Software delivery.** The SDLC as a system: testing, CI/CD, and the feedback loops that let teams ship safely.
 
 ## What I'm looking for
 

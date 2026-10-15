@@ -30,7 +30,7 @@ I'm working toward an M.S. in Computer Science at Georgia Tech (OMSCS), after a 
 <p class="label"><a href="{{ '/about/' | relative_url }}">Interests</a></p>
 
 <div class="topics">
-{% assign topics = "systems thinking,cybernetics,feedback loops,control theory,system dynamics,complexity,emergence,resilience,distributed systems,operating systems" | split: "," %}
+{% assign topics = "systems thinking,distributed systems,operating systems,databases,software delivery" | split: "," %}
 {% for t in topics %}<span>{{ t }}</span>{% unless forloop.last %}<span class="sep">, </span>{% endunless %}{% endfor %}
 </div>
 

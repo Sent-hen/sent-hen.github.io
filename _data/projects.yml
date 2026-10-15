@@ -143,23 +143,6 @@
     - "Grounded the design in bounded rationality, level-k and cognitive-hierarchy models, and resource-rational analysis, citing the prior work each hypothesis builds on."
     - "Status: pitch milestone for CS 6795 (Cognitive Science) at Georgia Tech, fall 2026. Model fitting and results are still to come."
 
-- slug: loci-walk
-  title: Loci Walk
-  when: "2025 – 2026"
-  status: complete
-  domains: [Learning tools]
-  summary: A text-based memory palace for learning the first 18 elements, with spaced-repetition review.
-  tags: [JavaScript, Python, Node.js, OpenAI API, Gemini API]
-  repo: ""
-  writeup: true
-  bullets:
-    - "Built a memory palace for the first 18 elements: an 18-stop walk around a home where each stop places one absurd image that encodes an element."
-    - "Shipped it as a static ES-module web app with no build step and no dependencies that works offline once loaded."
-    - "Turned passive reading into active recall with backward, jump, and reverse drills, a hint ladder, self-rating, and Leitner-box scheduling with progress export and import."
-    - "Generated stories with Gemini and images with DALL·E, then cut image weight by converting to 768 px WebP with an offline Python pipeline."
-    - "Prevented broken content by validating that every element has exactly one stop and every referenced file exists, and unit-tested the pure grading, scheduling, and markup modules with <code>node --test</code>."
-    - "Kept it extensible: the element count lives only in the JSON content files, so adding elements needs no code changes, and stops can be renamed to places in your own home."
-
 - slug: thousand-and-one-words
   title: The Thousand and One Words
   when: "2026"
