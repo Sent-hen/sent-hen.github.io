@@ -191,16 +191,29 @@ hr {
 .label a:hover { color: var(--tx); }
 
 /* home */
-.intro { display: flow-root; }
+.intro {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
 .intro-gif {
-  float: left;
+  flex-shrink: 0;
   width: 160px;
   height: 160px;
-  margin: 4px 20px 8px 0;
+  margin-top: 4px;
   border-radius: 6px;
 }
+.intro-text {
+  min-width: 0;
+  align-self: stretch;
+  padding-left: 20px;
+  border-left: 1px solid var(--ui-3);
+}
+.intro-text p:last-child { margin-bottom: 0; }
 @media (max-width: 560px) {
-  .intro-gif { width: 112px; height: 112px; margin-right: 14px; }
+  .intro { gap: 14px; }
+  .intro-gif { width: 96px; height: 96px; }
+  .intro-text { padding-left: 14px; }
 }
 .latest h2 { margin: 0 0 0.3em; }
 .latest .meta { padding-bottom: 0.6em; }
