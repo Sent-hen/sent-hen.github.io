@@ -3,13 +3,13 @@ title: Home
 description: "Senthen Velmurugan — student of computer science and systems thinking."
 ---
 
-<p class="status">Currently a student · M.S. Computer Science, Georgia Tech · open to SWE/SDE, FDE, SRE, MLE, DevOps, and MLOps roles</p>
+<p class="status">M.S. Computer Science student at Georgia Tech · open to SWE/SDE, FDE, SRE, MLE, DevOps, and MLOps roles</p>
 
 <div class="intro">
   <img class="intro-gif" src="{{ '/assets/img/cake.gif' | relative_url }}" width="160" height="160" alt="Animated ASCII-art cake">
   <div class="intro-text">
-  <p>I'm Senthen: a lifelong learner, and an aspiring scientist and inventor. You could argue I'm both. I'd rather be a jack of all trades than a master of none, so I keep my fingers in a lot of pies: backend and infrastructure, security, AI/ML, and the systems that tie them together.</p>
-  <p>I'm based in Dallas, working toward an M.S. in Computer Science at Georgia Tech after a B.S. from UT Dallas. This site is where I keep what I'm building and learning. And yes, <a href="{{ '/notes/the-cake-is-a-lie/' | relative_url }}">the cake is a lie</a>.</p>
+  <p>I'm Senthen, a lifelong learner who'd like to be both a scientist and an inventor, and I'm not convinced I have to pick one. My work spans backend and infrastructure, security, and AI/ML, but what interests me most are the systems that tie them together.</p>
+  <p>I'm based in Dallas, working on an M.S. in Computer Science at Georgia Tech after finishing my B.S. at UT Dallas. This site is where I keep what I'm building and what I'm learning along the way. And yes, <a href="{{ '/notes/the-cake-is-a-lie/' | relative_url }}">the cake is a lie</a>.</p>
   </div>
 </div>
 

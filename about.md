@@ -8,23 +8,21 @@ description: "About Senthen Velmurugan."
 
 <p class="status">Based in Dallas · open to relocation</p>
 
-I'm Senthen: a lifelong learner, and an aspiring scientist and inventor. You could argue I'm both. I finished a B.S. in Computer Science at the University of Texas at Dallas, and I'm working toward an M.S. through Georgia Tech's OMSCS program, which is a fun way to keep improving my knowledge while I look for the right role.
+I'm Senthen, a lifelong learner who'd like to be both a scientist and an inventor. I finished my B.S. in Computer Science at the University of Texas at Dallas, and I'm now working on an M.S. through Georgia Tech's OMSCS program. It's a fun way to keep learning while I look for the right role.
 
 ## Why technology
 
-When I was young I thought, and I still believe, that technology is where true creation happens. In most fields, "innovation" is usually a strategy or technique that got forgotten and rediscovered, or a chimera of several innovations that, instead of adding up to more, adds up to less. Technology, in the modern sense, lets us do more with less.
+As a kid I believed, and I still do, that technology is where real creation happens. In a lot of fields, what gets called innovation is really an old technique that was forgotten and rediscovered, or a mashup of several ideas that somehow adds up to less than its parts. Technology, in the modern sense, is different: it lets us do more with less.
 
 ## Why systems
 
-Systems thinking is a more recent spark. I started asking what will be left once manual coding is automated. Tools like Claude and GPT are amazing mimicry artists, but they can build something without understanding the trade-offs of the decisions they made. So the bottleneck isn't writing code anymore. It's how good the decisions are, and how clearly the whole architecture is thought through, drawbacks included. That question sent me down the rabbit hole of systems. I wrote more about it in [What's left when the typing is automated]({{ '/notes/when-typing-is-automated/' | relative_url }}).
+Systems thinking came later, and it started with a question: what's left once writing code by hand is automated? Tools like Claude and GPT are amazing mimics, but they can build something without understanding the trade-offs behind the choices they made. So the bottleneck is shifting away from writing code and toward making good decisions, and toward thinking the whole architecture through, drawbacks included. That question sent me down the rabbit hole of systems. I wrote more about it in [What's left when the typing is automated]({{ '/notes/when-typing-is-automated/' | relative_url }}).
 
 ## How I work
 
-- **First-principles thinking.** Work out why something is true before deciding what to build on top of it.
-- **High-fidelity feedback loops.** Find out quickly and accurately whether something works.
-- **Parsimony.** The simplest thing that does the job.
+I try to work from first principles, figuring out why something is true before deciding what to build on top of it. I like fast, honest feedback loops, so I find out quickly whether something actually works. And I lean toward parsimony: the simplest thing that does the job.
 
-I'm drawn to any problem that takes a fair bit of thought. I'm better at recognizing a pattern or an answer than recalling one cold, so a good prompt goes a long way with me. I can take a while to warm up on a project, but once I do I get a little possessed: obsessed until I either finish it or see god (burn out, get tired).
+I'm drawn to problems that take real thought. I'm better at recognizing a pattern or an answer than recalling one cold. I can be slow to warm up on a project, but once I do, I get a little obessed.
 
 A jack of all trades is a master of none, but oftentimes better than a master of one. That's the kind of engineer I want to be.
 
@@ -38,7 +36,7 @@ A jack of all trades is a master of none, but oftentimes better than a master of
 
 ## Outside work
 
-Literature, games, cinema, music, and driving. Portal 2 was the first game I really paid attention to, rather than just getting immersed in it, which is why there's a cake on my home page ([here's the story]({{ '/notes/the-cake-is-a-lie/' | relative_url }})). I also go to the occasional Mensa social gathering as a way to meet people.
+When I'm not at a keyboard, I'm usually reading, playing games, watching films, listening to music, or just driving. Portal 2 was the first game I really paid attention to instead of just getting lost in, which is why there's a cake on my home page ([here's the story]({{ '/notes/the-cake-is-a-lie/' | relative_url }})). I also show up to the occasional Mensa social, mostly as a way to meet new people.
 
 ## What I'm looking for
 

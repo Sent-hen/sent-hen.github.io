@@ -6,7 +6,7 @@ description: "Notes by Senthen Velmurugan."
 
 # Notes
 
-<p class="muted">Short write-ups on systems, feedback, and things I'm learning. Newest first.</p>
+<p class="muted">Short write-ups on systems, feedback, and whatever I'm learning at the moment. Newest first.</p>
 
 <ul class="rows">
 {% assign sorted_notes = site.notes | sort: 'date' | reverse %}
