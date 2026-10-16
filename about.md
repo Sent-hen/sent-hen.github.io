@@ -8,7 +8,7 @@ description: "About Senthen Velmurugan."
 
 <p class="status">Based in Dallas · open to relocation</p>
 
-I'm Senthen, a lifelong learner who'd like to be a scientist, an inventor, and an engineer. I finished my B.S. in Computer Science at the University of Texas at Dallas, and I'm now working on an M.S. through Georgia Tech's OMSCS program. It's a fun way to keep learning while I look for the right role.
+I'm Senthen: a lifelong learner and an aspiring scientist, inventor, and engineer. You could argue I'm already all three. I finished my B.S. in Computer Science at the University of Texas at Dallas, and I'm now working on an M.S. through Georgia Tech's OMSCS program. It's a fun way to keep learning while I look for the right role.
 
 ## Why technology
 
@@ -16,7 +16,7 @@ As a kid I believed, and I still do, that technology is where real creation happ
 
 ## Why systems
 
-Systems thinking came later, and it started with a question: what's left once writing code by hand is automated? Tools like Claude and GPT are amazing mimics, but they can build something without understanding the trade-offs behind the choices they made. So the bottleneck is shifting away from writing code and toward making good decisions, and toward thinking the whole architecture through, drawbacks included. Chasing that question is what sent me down the rabbit hole of systems. I wrote more about it in [What's left when the typing is automated]({{ '/notes/when-typing-is-automated/' | relative_url }}).
+Systems thinking came later, from one question: what's left once writing code by hand is automated? I wrote about where that led in [What's left when the typing is automated]({{ '/notes/when-typing-is-automated/' | relative_url }}).
 
 ## How I work
 

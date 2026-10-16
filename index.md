@@ -8,7 +8,7 @@ description: "Senthen Velmurugan — student of computer science and systems thi
 <div class="intro">
   <img class="intro-gif" src="{{ '/assets/img/cake.gif' | relative_url }}" width="160" height="160" alt="Animated ASCII-art cake">
   <div class="intro-text">
-  <p>I'm Senthen, a lifelong learner who'd like to be a scientist, an inventor, and an engineer, and I'm not convinced I have to pick one. My work spans backend and infrastructure, security, and AI/ML, but what interests me most are the systems that tie them together.</p>
+  <p>I'm Senthen: a lifelong learner and an aspiring scientist, inventor, and engineer. You could argue I'm already all three. My work spans backend and infrastructure, security, and AI/ML, but what interests me most are the systems that tie them together.</p>
   <p>I'm based in Dallas, working on an M.S. in Computer Science at Georgia Tech after finishing my B.S. at UT Dallas. This site is where I keep what I'm building and what I'm learning along the way. And yes, <a href="{{ '/notes/the-cake-is-a-lie/' | relative_url }}">the cake is a lie</a>.</p>
   </div>
 </div>
