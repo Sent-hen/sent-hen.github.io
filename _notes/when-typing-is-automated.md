@@ -9,7 +9,7 @@ I made a few assumptions back then, and they're coming true. Tools like Claude a
 
 But these tools can build something without understanding the pros and cons of the decisions they made. They copy like a parrot, or blend in like a chameleon.
 
-So the bottleneck isn't writing code anymore. It's how good the decisions are, and how clearly the whole architecture is thought through, drawbacks included.
+So the bottleneck is shifting away from writing code and toward how good the decisions are, and how clearly the whole architecture is thought through, drawbacks included.
 
 That question sent me down the rabbit hole of systems. Reading *Thinking in Systems*, I started to see a revolution inside the AI revolution: the sciences are running into the limits of reductionism, and that's pulling holism and systems thinking back into the light. None of this is new to the scientific community. It all feels very Hegelian, with thesis, antithesis, and synthesis, and pairs like order and chaos, or creation and destruction, playing out over and over.
 
