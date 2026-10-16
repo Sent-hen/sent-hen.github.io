@@ -16,7 +16,7 @@ As a kid I believed, and I still do, that technology is where real creation happ
 
 ## Why systems
 
-Systems thinking came later, from one question: what's left once writing code by hand is automated? I wrote about where that led in [What's left when the typing is automated]({{ '/notes/when-typing-is-automated/' | relative_url }}).
+Systems thinking came later, from one question: what's left once writing code by hand is automated? My answer, borrowed from Peter Naur, is the theory: the understanding of what a system does and why, which code only partly captures and generated code doesn't come with. I wrote more about it in [What's left when the typing is automated]({{ '/notes/when-typing-is-automated/' | relative_url }}).
 
 ## How I work
 
