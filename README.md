@@ -20,7 +20,7 @@ The site has three sections, plus a home page:
 Content lives in data files, so most edits never touch HTML:
 
 - `_data/projects.yml`: every project (summary, six bullets, domains, tags, repo link, `writeup: true` if it has a page). `_data/tag_popularity.yml` breaks ties when ranking tags in the filter bar.
-- `_data/interests.yml`: one block per category (`music`, `cinema`, `books`, `products`, `excerpts`). Each item has `title`, `creator`, `year`, `form`, `source`, `rating` (1–7), and `note`. Products also have `rotation` (`in` or `out`). `TODO` shows as a placeholder on the page.
+- `_data/interests.yml`: one block per category (`music`, `cinema`, `books`, `products`, `people`, `excerpts`). Each item has `title`, `creator`, `year`, `form`, `source`, `rating` (1–7), and `note`. Products also have `rotation` (`in` or `out`). `year_label` (such as `born` or `founded`) is printed before the year when set. `TODO` shows as a placeholder on the page.
 
 Templates and styling:
 
