@@ -1,28 +1,17 @@
 title: Senthen Velmurugan
-description: "Student of computer science and systems thinking: cybernetics, feedback, and how wholes behave."
+description: "Senthen Velmurugan: projects and experience."
 author: Senthen Velmurugan
 url: "https://sent-hen.github.io"   # update to your GitHub Pages URL
 baseurl: ""                          # e.g. "/your-repo-name" if not a user/org page
 
 markdown: kramdown
 
-plugins:
-  - jekyll-feed
-
 collections:
-  notes:
-    output: true
-    permalink: /notes/:path/
   projects:          # writeups for completed projects; entries live in _data/projects.yml
     output: true
     permalink: /projects/:path/
 
 defaults:
-  - scope:
-      path: ""
-      type: "notes"
-    values:
-      layout: "note"
   - scope:
       path: ""
       type: "projects"

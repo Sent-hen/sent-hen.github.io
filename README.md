@@ -6,10 +6,9 @@ The design borrows from stephango.com: the Flexoki palette, one narrow sans-seri
 
 ## Structure
 
-- `index.md`, `about.md`, `projects.html`, `experience.md`, `notes.md`: the five pages in the nav
+- `index.md`, `projects.html`, `experience.md`: the home page and the two pages in the nav
 - `_data/projects.yml`: every project on the Projects page (summary, bullets, tags). `_data/tag_popularity.yml` breaks ties when tags are sorted
 - `_projects/`: one write-up page per finished project. The `project:` field has to match a slug in `_data/projects.yml`
-- `_notes/`: the Notes page, one short note per file
 - `_layouts/`, `_includes/`: page shell, nav and footer
 - `assets/css/style.scss`: all the styling. Theme colors are in `:root` at the top
 - `assets/img/icon.jpg`: favicon and header icon
@@ -34,4 +33,3 @@ GitHub Pages builds the site from `main` on every push, so there's no Actions wo
 
 - LinkedIn URL in `_includes/footer.html` and `about.md`
 - The placeholder line in `about.md` about how I got into systems thinking
-- Replace the two sample notes in `_notes/` with real ones

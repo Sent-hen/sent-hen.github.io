@@ -204,11 +204,26 @@ hr {
   gap: 20px;
 }
 .intro-gif {
+  position: relative;
   flex-shrink: 0;
   width: 160px;
   height: 160px;
-  margin-top: 4px;
+  margin: 4px 0 0;
   border-radius: 6px;
+  overflow: hidden;
+}
+.intro-gif img { display: block; width: 100%; height: 100%; }
+.intro-gif figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: var(--flexoki-yellow-400);
+  pointer-events: none;
 }
 .intro-text {
   min-width: 0;
@@ -220,25 +235,8 @@ hr {
 @media (max-width: 560px) {
   .intro { gap: 14px; }
   .intro-gif { width: 96px; height: 96px; }
+  .intro-gif figcaption { font-size: 7.5px; bottom: 5px; }
   .intro-text { padding-left: 14px; }
-}
-.latest h2 { margin: 0 0 0.3em; }
-.latest .meta { padding-bottom: 0.6em; }
-
-.topics { line-height: 1.8; }
-.topics .sep { color: var(--tx-2); }
-
-/* dated rows: notes list */
-.rows { list-style: none; margin: 0; padding: 0; }
-.rows li { margin: 0 0 0.35em; }
-.rows .row { display: flex; align-items: baseline; }
-.rows .date {
-  flex-shrink: 0;
-  width: 4.6em;
-  font-size: 0.875em;
-  color: var(--tx-2);
-  white-space: nowrap;
-  font-variant-numeric: tabular-nums;
 }
 
 /* entries: projects, experience */
@@ -290,7 +288,7 @@ hr {
   background: var(--action);
 }
 
-/* single note */
+/* writeup page */
 .note .meta { margin-bottom: 2em; }
 .back-link { margin-top: 3em; }
 
@@ -298,9 +296,9 @@ hr {
 .site-footer {
   padding-top: 20px;
   padding-bottom: 60px;
-  font-size: 0.875em;
   color: var(--tx-2);
 }
+.site-footer p { font-size: 0.875em; }
 .site-footer a { color: var(--tx-2); }
 .site-footer a:hover { color: var(--tx); }
 

@@ -1,7 +1,7 @@
 <nav class="site-nav wrap">
   <a class="site-name" href="{{ '/' | relative_url }}">Senthen Velmurugan</a>
   <span class="nav-links">
-    {% assign links = "About:/about/,Projects:/projects/,Experience:/experience/,Notes:/notes/" | split: "," %}
+    {% assign links = "Projects:/projects/,Experience:/experience/" | split: "," %}
     {% for l in links %}{% assign p = l | split: ":" %}
     <a href="{{ p[1] | relative_url }}"{% if page.url == p[1] %} aria-current="page"{% endif %}>{{ p[0] }}</a>
     {% endfor %}
