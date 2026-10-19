@@ -14,13 +14,15 @@ The site has three sections, plus a home page:
 | Projects | `/projects/` | `projects.html` | List and filters, from `_data/projects.yml` |
 | Project writeups | `/projects/<slug>/` | `_projects/<slug>.md` | One page per finished project |
 | Experience | `/experience/` | `experience.md` | Work, education, skills (written inline) |
-| Interests | `/interests/` | `interests.html` | Links to each category |
-| Interest category | `/interests/<key>/` | `interests/<key>.html` | Sortable list, from `_data/interests.yml` |
+| Interests | `/interests/` | `interests.html` | Intro, score legend, current rotation (`rotation: in`, up to 3 per category), then links to every category |
+| Interest category | `/interests/<key>/` | `interests/<key>.html` | Sortable list of that category's items |
+| Interest item | `/interests/<key>/<slug>/` | `_interests/<key>/<slug>.md` | Metadata, score, and the note (the file body) |
 
 Content lives in data files, so most edits never touch HTML:
 
 - `_data/projects.yml`: every project (summary, six bullets, domains, tags, repo link, `writeup: true` if it has a page). `_data/tag_popularity.yml` breaks ties when ranking tags in the filter bar.
-- `_data/interests.yml`: one block per category (`music`, `cinema`, `books`, `products`, `people`, `excerpts`). Each item has `title`, `creator`, `year`, `form`, `source`, `rating` (1–7), and `note`. Products also have `rotation` (`in` or `out`). `year_label` (such as `born` or `founded`) is printed before the year when set. `TODO` shows as a placeholder on the page.
+- `_interests/<category>/<slug>.md`: one file per interest item. Front matter holds `title`, `creator`, `year`, `year_label` (optional: `born`, `founded`), `form`, `source`, `score` (`-1` negative emotion, `0` neutral, `1` positive), `rotation: in` (shows it on /interests/), and `order` (default sort). The body is the note; `TODO` shows as a placeholder.
+- `_data/interests.yml`: category names and order, and the score labels.
 
 Templates and styling:
 
@@ -43,10 +45,10 @@ GitHub Pages builds the site from `main` on every push, so there's no Actions wo
 ## Adding things
 
 - **Project:** add an entry at the top of `_data/projects.yml`. If it's finished, set `writeup: true` and add `_projects/<slug>.md` with `project: <slug>` in the front matter.
-- **Interest item:** add an entry under its category in `_data/interests.yml`. Order in the file is the default "Added" order.
-- **Interest category:** add a block to `_data/interests.yml`, create `interests/<key>.html` with `layout: interest` and `category: <key>`, and add the key to the list in `interests.html`.
+- **Interest item:** add `_interests/<category>/<slug>.md` with the front matter above; write the note as the body.
+- **Interest category:** add it to `order` and `categories` in `_data/interests.yml`, create `interests/<key>.html` with `layout: interest` and `category: <key>`, and add a `defaults` entry for `_interests/<key>` in `_config.yml`.
 - **Nav link:** edit the list in `_includes/nav.html`.
 
 ## To do
 
-- Ratings, notes, and product rotation in `_data/interests.yml` (currently `TODO`)
+- Scores and notes in `_interests/` (currently `TODO`)

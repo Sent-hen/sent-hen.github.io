@@ -27,7 +27,7 @@
 - slug: pid-digitizer
   title: P&ID Digitizer
   when: "2026"
-  status: complete
+  status: in progress
   domains: [AI/ML, Backend/infra]
   summary: Turns scanned engineering drawings (P&IDs) into machine-readable graphs, with a review UI for correcting low-confidence output.
   tags: [Python, PyTorch, OpenCV, FastAPI, Docker, NetworkX, SQLite]
@@ -44,7 +44,7 @@
 - slug: dexpi-viewer
   title: DEXPI P&ID Viewer
   when: "2026"
-  status: complete
+  status: in progress
   domains: [Tooling]
   summary: A dependency-free browser viewer and validator for DEXPI 2.0.1 plant-model XML.
   tags: [JavaScript, Python, XML, SVG]
@@ -61,7 +61,7 @@
 - slug: metal-to-pod
   title: "Metal-to-Pod: self-hosted CI/CD"
   when: "2026"
-  status: complete
+  status: in progress
   domains: [Backend/infra]
   summary: A commit-to-pod delivery path from VMware VMs to Kubernetes with no cloud services, run with SLOs, rollback, and failure drills.
   tags: [Kubernetes, Bash, Go, Docker, Jenkins, Prometheus, Vagrant]
@@ -78,7 +78,7 @@
 - slug: word2eq
   title: Word2Eq
   when: "2024 · rebuilt 2026"
-  status: complete
+  status: in progress
   domains: [AI/ML, Backend/infra]
   summary: A reproducible training pipeline and SLO-instrumented inference service that turns math word problems into verified equations.
   tags: [Python, PyTorch, FastAPI, Docker, Prometheus, Kubernetes, GitHub Actions]
@@ -146,7 +146,7 @@
 - slug: thousand-and-one-words
   title: The Thousand and One Words
   when: "2026"
-  status: complete
+  status: in progress
   domains: [Learning tools]
   summary: A 100-chapter Arabian Nights comic epic that teaches the 1,000 most-used SAT words, generated from one script.
   tags: [Python, HTML, SVG]

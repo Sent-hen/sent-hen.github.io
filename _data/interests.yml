@@ -1,267 +1,32 @@
-# Things I think are masterfully crafted, good or bad.
+# Interest categories, in the order they appear on /interests/.
+# The items themselves live in _interests/<key>/<slug>.md (one file each).
 #
-# Each category becomes a page at /interests/<key>/. Items are a flat list:
-# no numbering, no grouping. Visitors can sort by any of the metadata fields.
-#
-# Item fields
-#   title    what it is called
-#   creator  artist, director, author, or maker
-#   year     year of release or introduction (leave empty if unknown)
-#   form     song, film, novel, watch, pen, ...
-#   source   where it comes from: album, studio, publisher, model number
-#   rating   integer 1-7 (TODO until rated)
-#   note     one or two sentences on why it is here (TODO until written)
-#   rotation products only: in or out (whether it's in use right now)
+# Item front matter
+#   title       what it is called
+#   creator     artist, director, author, or maker
+#   year        year of release or introduction (leave empty if unknown)
+#   year_label  optional word printed before the year: born, founded
+#   form        song, film, novel, watch, pen, ...
+#   source      where it comes from: album, studio, publisher, model line
+#   score       -1 negative, 0 neutral, 1 positive (TODO until scored)
+#   rotation    in = shown on /interests/ as current rotation (keep to 3 per category)
+#   order       position in the default "Added" order on the category page
+# The file body is the note shown on the item's own page.
 
-music:
-  title: Music
-  creator_label: Artist
-  items:
-    - title: American Pie
-      creator: Don McLean
-      year: 1971
-      form: Song
-      source: "American Pie (United Artists)"
-      rating: TODO
-      note: TODO
+order: [products, books, cinema, music, people, excerpts]
 
-    - title: Vienna
-      creator: Billy Joel
-      year: 1977
-      form: Song
-      source: "The Stranger (Columbia)"
-      rating: TODO
-      note: TODO
+scores:
+  - value: -1
+    label: negative emotion
+  - value: 0
+    label: neutral
+  - value: 1
+    label: positive
 
-    - title: Raja Raja Chozhan
-      creator: Ilaiyaraaja, sung by K. J. Yesudas
-      year: 1987
-      form: Song
-      source: "Rettai Vaal Kuruvi (Tamil film soundtrack)"
-      rating: TODO
-      note: TODO
-
-cinema:
-  title: Cinema
-  creator_label: Director
-  items:
-    - title: The Fall
-      creator: Tarsem Singh
-      year: 2006
-      form: Film
-      source: "Googly Films"
-      rating: TODO
-      note: TODO
-
-    - title: Blade Runner
-      creator: Ridley Scott
-      year: 1982
-      form: Film
-      source: "Warner Bros."
-      rating: TODO
-      note: TODO
-
-    - title: My Dinner with Andre
-      creator: Louis Malle
-      year: 1981
-      form: Film
-      source: "Saga Productions"
-      rating: TODO
-      note: TODO
-
-    - title: About Time
-      creator: Richard Curtis
-      year: 2013
-      form: Film
-      source: "Working Title Films"
-      rating: TODO
-      note: TODO
-
-    - title: The Truman Show
-      creator: Peter Weir
-      year: 1998
-      form: Film
-      source: "Paramount Pictures"
-      rating: TODO
-      note: TODO
-
-    - title: WALL-E
-      creator: Andrew Stanton
-      year: 2008
-      form: Animated film
-      source: "Pixar Animation Studios"
-      rating: TODO
-      note: TODO
-
-    - title: Coyote vs. Acme
-      creator: Dave Green
-      year: 2026
-      form: Film
-      source: "Ketchup Entertainment"
-      rating: TODO
-      note: TODO
-
-    - title: Digger
-      creator: Alejandro G. Iñárritu
-      year: 2026
-      form: Film
-      source: "Warner Bros."
-      rating: TODO
-      note: TODO
-
-books:
-  title: Books
-  creator_label: Author
-  items:
-    - title: The Stranger
-      creator: Albert Camus
-      year: 1942
-      form: Novel 
-      source: "Gallimard"
-      rating: 7
-      note: TODO
-
-    - title: Fahrenheit 451
-      creator: Ray Bradbury
-      year: 1953
-      form: Novel
-      source: "Ballantine Books"
-      rating: TODO
-      note: TODO
-
-    - title: The Martian
-      creator: Andy Weir
-      year: 2011
-      form: Novel
-      source: "Self-published; Crown, 2014"
-      rating: TODO
-      note: TODO
-
-products:
-  title: Products
-  creator_label: Maker
-  rotation: true
-  items:
-    - title: G-Shock GW-BX5600-1
-      creator: Casio
-      year:
-      rotation: TODO
-      form: Watch
-      source: "G-Shock 5600 series"
-      rating: TODO
-      note: TODO
-
-    - title: A168
-      creator: Casio
-      year:
-      rotation: TODO
-      form: Watch
-      source: "Casio A168W series"
-      rating: TODO
-      note: TODO
-
-    - title: Brass Sport
-      creator: Kaweco
-      year:
-      rotation: TODO
-      form: Fountain pen
-      source: "Kaweco Sport line"
-      rating: TODO
-      note: TODO
-
-    - title: "800"
-      creator: rOtring
-      year:
-      rotation: TODO
-      form: Mechanical pencil
-      source: "rOtring 800 series"
-      rating: TODO
-      note: TODO
-
-    - title: Armor Brass
-      creator: Zippo
-      year:
-      rotation: TODO
-      form: Lighter
-      source: "Zippo Armor series"
-      rating: TODO
-      note: TODO
-
-    - title: Neo Ergo
-      creator: Qwertykeys
-      year:
-      rotation: TODO
-      form: Mechanical keyboard
-      source: "Qwertykeys Neo series"
-      rating: TODO
-      note: TODO
-
-    - title: Magni
-      creator: Schiit Audio
-      year:
-      rotation: TODO
-      form: Headphone amplifier
-      source: "Schiit Magni series"
-      rating: TODO
-      note: TODO
-
-    - title: HD 6XX
-      creator: Sennheiser
-      year: 2017
-      rotation: TODO
-      form: Headphones
-      source: "Sennheiser × Drop (HD 650 variant)"
-      rating: TODO
-      note: TODO
-
-    - title: Campus Notebook (Semi-B5, 5 mm grid, 40 sheets)
-      creator: Kokuyo
-      year:
-      rotation: TODO
-      form: Notebook
-      source: "Kokuyo Campus line"
-      rating: TODO
-      note: TODO
-
-    - title: Bloc No. 16
-      creator: Rhodia
-      year:
-      rotation: TODO
-      form: Notepad
-      source: "Rhodia Bloc line (A5)"
-      rating: TODO
-      note: TODO
-
-excerpts:
-  title: Excerpts
-  creator_label: Author
-  items: []
-
-people:
-  title: People and groups
-  creator_label: Known for
-  items:
-    - title: Ray Dalio
-      creator: Bridgewater Associates
-      year: 1949
-      year_label: born
-      form: Investor and author
-      source: "Principles: Life and Work (2017)"
-      rating: TODO
-      note: TODO
-
-    - title: Guillermo del Toro
-      creator: "Pan's Labyrinth, The Shape of Water, Pinocchio"
-      year: 1964
-      year_label: born
-      form: Filmmaker
-      rating: TODO
-      note: TODO
-
-    - title: Laika
-      creator: "Kubo and the Two Strings, Corpse Bride"
-      year: 2005
-      year_label: founded
-      form: Stop-motion animation studio
-      rating: TODO
-      note: TODO
+categories:
+  products: { title: Products, creator_label: Maker }
+  books:    { title: Books,    creator_label: Author }
+  cinema:   { title: Cinema,   creator_label: Director }
+  music:    { title: Music,    creator_label: Artist }
+  people:   { title: People,   creator_label: Known for }
+  excerpts: { title: Excerpts, creator_label: Author }

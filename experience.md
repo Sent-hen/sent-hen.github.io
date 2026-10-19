@@ -6,7 +6,7 @@ description: "Experience — Senthen Velmurugan."
 
 # Experience
 
-<p class="status">Currently a student · open to SWE/SDE, FDE, SRE, MLE, DevOps, and MLOps roles</p>
+<p class="status">Currently a part-time student · open to SWE/SDE, FDE, SRE, MLE, DevOps, and MLOps roles</p>
 
 <!-- Keep entries newest first. -->
 
@@ -53,7 +53,7 @@ description: "Experience — Senthen Velmurugan."
   <li class="entry">
     <div class="entry-head">
       <span class="entry-title">M.S. Computer Science</span>
-      <span class="entry-when">In progress</span>
+      <span class="entry-when">In progress · part-time</span>
     </div>
     <div class="entry-sub">Georgia Institute of Technology (OMSCS)</div>
   </li>

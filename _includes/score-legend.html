@@ -1,0 +1,3 @@
+<dl class="score-legend small">
+  {% for d in site.data.interests.scores %}{% include score.html score=d.value %}<dd>{{ d.label }}</dd>{% endfor %}
+</dl>
