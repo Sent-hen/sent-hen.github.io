@@ -1,0 +1,15 @@
+---
+title: Interests
+permalink: /interests/
+description: "Things Senthen Velmurugan thinks are masterfully crafted."
+---
+<h1>Interests</h1>
+
+<p class="muted">I like collecting and appreciating things that I think are masterfully crafted, no matter good or bad.</p>
+
+<ul class="rows categories">
+{% assign order = "music,cinema,books,products,excerpts" | split: "," %}
+{% for key in order %}{% assign c = site.data.interests[key] %}
+  <li><a href="{{ '/interests/' | append: key | append: '/' | relative_url }}" class="plain"><span class="row"><u>{{ c.title }}</u><span class="count muted small">{{ c.items | size }}</span></span></a></li>
+{% endfor %}
+</ul>

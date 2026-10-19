@@ -9,6 +9,11 @@ description: "Senthen Velmurugan: projects and experience."
     <figcaption>the cake is a lie</figcaption>
   </figure>
   <div class="intro-text">
-  <p>One must imagine Sisyphus with better tools.</p>
+  <blockquote class="epigraph">
+    <p>The struggle itself toward the heights is enough to fill a man's heart. One must imagine Sisyphus happy.</p>
+    <cite>Albert Camus, <i>The Myth of Sisyphus</i> (1942)</cite>
+  </blockquote>
+  <p>My goal is simply mastery.</p>
+  <p>I know by pursuing mastery, problems will solve themselves.</p>
   </div>
 </div>

@@ -232,6 +232,20 @@ hr {
   border-left: 1px solid var(--ui-3);
 }
 .intro-text p:last-child { margin-bottom: 0; }
+.epigraph {
+  margin: 0 0 1.1em;
+  padding: 0;
+  font-style: italic;
+  color: var(--tx-2);
+}
+.epigraph p { margin: 0 0 0.3em; }
+.epigraph cite {
+  display: block;
+  font-style: normal;
+  font-size: 0.8em;
+  color: var(--tx-2);
+}
+.epigraph cite::before { content: "— "; }
 @media (max-width: 560px) {
   .intro { gap: 14px; }
   .intro-gif { width: 96px; height: 96px; }
@@ -441,3 +455,41 @@ span.dom, strong.dom { color: var(--accent); }
   border-color: var(--accent);
 }
 .chip.dom[aria-pressed="true"]::before { background: var(--bg); }
+
+/* interests */
+.rows { list-style: none; margin: 0; padding: 0; }
+.rows li { margin: 0 0 0.45em; }
+.rows .row { display: flex; align-items: baseline; gap: 10px; }
+.categories .count { font-variant-numeric: tabular-nums; }
+
+.sort-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 1.6em;
+}
+.sort-bar select, .sort-dir {
+  -webkit-appearance: none;
+  appearance: none;
+  font: inherit;
+  color: var(--tx);
+  background: var(--bg-2);
+  border: 1px solid var(--ui);
+  border-radius: 4px;
+  padding: 1px 8px;
+  cursor: pointer;
+}
+.sort-bar select:hover, .sort-dir:hover { border-color: var(--ui-3); }
+
+.rating { display: inline-flex; gap: 3px; vertical-align: middle; }
+.pip {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: 1px solid var(--ui-3);
+}
+.pip.on { background: var(--yellow); border-color: var(--yellow); }
+.collection .entry-sub i { font-style: italic; }
+.todo { color: var(--tx-3); font-style: italic; }
+.rot-in { color: var(--green); }
+.rot-out { color: var(--tx-2); }
