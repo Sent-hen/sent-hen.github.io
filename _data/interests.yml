@@ -113,6 +113,14 @@ books:
   title: Books
   creator_label: Author
   items:
+    - title: The Stranger
+      creator: Albert Camus
+      year: 1942
+      form: Novel 
+      source: "Gallimard"
+      rating: 7
+      note: TODO
+
     - title: Fahrenheit 451
       creator: Ray Bradbury
       year: 1953

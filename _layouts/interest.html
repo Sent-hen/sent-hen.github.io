@@ -34,7 +34,7 @@ layout: default
       data-rotation="{% if rot == 'in' or rot == 'out' %}{{ rot }}{% endif %}">
     <div class="entry-head">
       <span class="entry-title">{{ it.title }}</span>
-      <span class="entry-when">{% if r >= 1 %}<span class="rating" title="{{ r }} out of 7" aria-label="Rated {{ r }} out of 7">{% for i in (1..7) %}<span class="pip{% if i <= r %} on{% endif %}"></span>{% endfor %}</span>{% else %}<span class="todo">rating TODO</span>{% endif %}</span>
+      <span class="entry-when">{% if r >= 1 %}<span class="rating" title="{{ r }} out of 7" aria-label="Rated {{ r }} out of 7">{{ r }}<span class="rating-max">/7</span></span>{% else %}<span class="todo">rating TODO</span>{% endif %}</span>
     </div>
     <div class="entry-sub">{% if c.rotation %}{% if rot == 'in' %}<span class="rot rot-in">In rotation</span>{% elsif rot == 'out' %}<span class="rot rot-out">Out of rotation</span>{% else %}<span class="todo">rotation TODO</span>{% endif %} · {% endif %}{{ it.creator }}{% if it.year %} · {{ it.year }}{% endif %}{% if it.form %} · {{ it.form }}{% endif %}{% if it.source %} · <i>{{ it.source }}</i>{% endif %}</div>
     {% if it.note == "TODO" or it.note == nil or it.note == "" %}<div class="entry-desc"><p class="todo">Note TODO</p></div>{% else %}<div class="entry-desc"><p>{{ it.note }}</p></div>{% endif %}
