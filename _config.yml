@@ -1,56 +1,26 @@
 title: Senthen Velmurugan
-description: "Senthen Velmurugan: projects and experience."
+description: "Senthen Velmurugan: projects and collection."
 author: Senthen Velmurugan
-url: "https://sent-hen.github.io"   # update to your GitHub Pages URL
-baseurl: ""                          # e.g. "/your-repo-name" if not a user/org page
+url: "https://sent-hen.github.io"
+baseurl: ""
 
 markdown: kramdown
+permalink: pretty
 
 collections:
-  interests:         # one file per item in _interests/<category>/; the body is the note
+  collection:        # one file per item in _collection/<category>/; the folder is the category, the body is the note
     output: true
-    permalink: /interests/:path/
+    permalink: /collection/:path/
   projects:          # writeups for completed projects; entries live in _data/projects.yml
     output: true
     permalink: /projects/:path/
 
 defaults:
   - scope:
-      path: "_interests/products"
-      type: "interests"
+      path: ""
+      type: "collection"
     values:
-      layout: "interest-item"
-      category: "products"
-  - scope:
-      path: "_interests/books"
-      type: "interests"
-    values:
-      layout: "interest-item"
-      category: "books"
-  - scope:
-      path: "_interests/cinema"
-      type: "interests"
-    values:
-      layout: "interest-item"
-      category: "cinema"
-  - scope:
-      path: "_interests/music"
-      type: "interests"
-    values:
-      layout: "interest-item"
-      category: "music"
-  - scope:
-      path: "_interests/people"
-      type: "interests"
-    values:
-      layout: "interest-item"
-      category: "people"
-  - scope:
-      path: "_interests/excerpts"
-      type: "interests"
-    values:
-      layout: "interest-item"
-      category: "excerpts"
+      layout: "item"
   - scope:
       path: ""
       type: "projects"

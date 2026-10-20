@@ -3,7 +3,6 @@
 # roughly following the Stack Overflow developer survey) is shown first.
 - Python
 - JavaScript
-- SQL
 - HTML
 - Bash
 - Docker
@@ -11,7 +10,6 @@
 - Go
 - AWS
 - Kubernetes
-- Node.js
 - NumPy
 - pandas
 - Terraform
@@ -25,8 +23,6 @@
 - Matplotlib
 - SciPy
 - pytest
-- OpenAI API
-- Gemini API
 - XML
 - SVG
 - NetworkX

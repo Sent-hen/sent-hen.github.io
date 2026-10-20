@@ -1,7 +1,0 @@
-{%- assign s = include.score -%}
-{%- if s == 1 or s == 0 or s == -1 -%}
-{%- for d in site.data.interests.scores -%}{%- if d.value == s -%}{%- assign lbl = d.label -%}{%- endif -%}{%- endfor -%}
-<span class="score score-{% if s == 1 %}pos{% elsif s == -1 %}neg{% else %}zero{% endif %}" title="{{ lbl }}" aria-label="Score {{ s }}: {{ lbl }}">{% if s == 1 %}+1{% elsif s == -1 %}&minus;1{% else %}0{% endif %}</span>
-{%- else -%}
-<span class="todo">score TODO</span>
-{%- endif -%}

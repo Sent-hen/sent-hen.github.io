@@ -1,0 +1,7 @@
+{%- comment -%}
+  Items in one collection category, sorted by `order` (items without one go last).
+  The category is the item's folder: _collection/<key>/<slug>.md.
+  Usage: {% include category-items.html key="music" %} then read `items`.
+{%- endcomment -%}
+{%- assign prefix = "_collection/" | append: include.key | append: "/" -%}
+{%- assign items = site.collection | where_exp: "i", "i.relative_path contains prefix" | sort: "order", "last" -%}
