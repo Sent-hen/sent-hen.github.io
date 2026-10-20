@@ -479,3 +479,42 @@ span.dom { color: var(--accent); }
   color: var(--tx-2);
   font-style: italic;
 }
+
+/* collection ratings (1-7, Steph Ango's scale) and status */
+.rating { font-weight: 500; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.rating-max { color: var(--tx-2); font-weight: 400; }
+.rating-label { font-weight: 400; color: var(--tx-2); }
+.rating-7 { color: var(--green); }
+.rating-6 { color: var(--action); }
+.rating-5 { color: var(--blue); }
+.rating-4 { color: var(--yellow); }
+.rating-3 { color: var(--orange); }
+.rating-2 { color: var(--magenta); }
+.rating-1 { color: var(--red); }
+.status-tag {
+  display: inline-block;
+  font-size: 0.8em;
+  color: var(--tx-2);
+  border: 1px solid var(--ui);
+  border-radius: 4px;
+  padding: 0 5px;
+  margin-right: 6px;
+  vertical-align: 0.05em;
+}
+.status-active { color: var(--green); border-color: currentColor; }
+.status-queued { color: var(--blue); border-color: currentColor; }
+.status-paused { color: var(--yellow); border-color: currentColor; }
+.status-done { color: var(--tx-2); }
+.status-dropped { color: var(--tx-3); text-decoration: line-through; }
+.item-score { display: flex; align-items: center; gap: 10px; margin: -1em 0 1.4em; }
+.item-note-preview { margin-top: 4px; }
+.item-note-preview p { margin: 0; }
+.rules dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 12px;
+  margin: 0 0 1.2em;
+}
+.rules dt { text-align: right; }
+.rules dd { margin: 0; color: var(--tx-2); }
+.rules dd b { color: var(--tx); font-weight: 500; }

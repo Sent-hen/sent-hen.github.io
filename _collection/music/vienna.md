@@ -6,4 +6,6 @@ form: "Song"
 source: "The Stranger (Columbia)"
 rotation: in
 order: 2
+rating: TODO
+status: active
 ---

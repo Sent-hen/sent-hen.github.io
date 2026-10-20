@@ -5,4 +5,6 @@ year: 2017
 form: "Headphones"
 source: "Sennheiser × Drop (HD 650 variant)"
 order: 8
+rating: TODO
+status: TODO
 ---

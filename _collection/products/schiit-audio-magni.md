@@ -5,4 +5,6 @@ year:
 form: "Headphone amplifier"
 source: "Schiit Magni series"
 order: 7
+rating: TODO
+status: TODO
 ---

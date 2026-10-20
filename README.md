@@ -14,7 +14,8 @@ _projects/<slug>.md            writeup  /projects/<slug>/
 experience.md                Experience  /experience/
 
 _layouts/                    default (page shell), project, category, item
-_includes/                   head, nav, footer, category-items (finds a category's items)
+_includes/                   head, nav, footer, category-items (finds a category's items),
+                             rating, status, rating-rules (the scale shown on Collection pages)
 assets/css/style.scss        all styling; Flexoki colors in :root
 assets/img/                  icon.jpg (favicon), cake.gif (home)
 _config.yml                  collections, permalinks, layout defaults
@@ -56,6 +57,8 @@ form: "Song"
 source: "American Pie (United Artists)"
 rotation: in         # optional: shows it on /collection/ (up to 3 per category)
 order: 1             # optional: default sort position
+rating: 7            # 1-7 (7 Perfect … 1 Evil); anything else shows "rating TODO"
+status: active       # queued, active, paused, done, or dropped
 ---
 
 The note, in Markdown.
@@ -109,6 +112,7 @@ Writeup in Markdown.
 |---|---|
 | Home page text, quote, GIF | `index.md` |
 | Collection intro line | `collection.html` |
+| Rating and status rules shown on Collection pages | `_includes/rating-rules.html` |
 | Experience (work, education, skills) | `experience.md` |
 | Nav links and their order | the `links` list in `_includes/nav.html` |
 | Footer links (GitHub, LinkedIn, Email) | `_includes/footer.html` |

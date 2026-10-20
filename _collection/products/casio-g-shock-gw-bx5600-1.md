@@ -6,4 +6,6 @@ form: "Watch"
 source: "G-Shock 5600 series"
 rotation: in
 order: 1
+rating: TODO
+status: active
 ---

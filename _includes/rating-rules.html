@@ -1,0 +1,15 @@
+<section class="rules small">
+  <p class="label">How I rate</p>
+  <dl>
+    <dt>{% include rating.html value=7 %}</dt><dd><b>Perfect.</b> Life-changing. Worth going out of your way for.</dd>
+    <dt>{% include rating.html value=6 %}</dt><dd><b>Excellent.</b> I'd come back to it again and again.</dd>
+    <dt>{% include rating.html value=5 %}</dt><dd><b>Good.</b> Enjoyable, but not worth a detour.</dd>
+    <dt>{% include rating.html value=4 %}</dt><dd><b>Passable.</b> Fine when nothing better is around.</dd>
+    <dt>{% include rating.html value=3 %}</dt><dd><b>Bad.</b> Avoid it if you can.</dd>
+    <dt>{% include rating.html value=2 %}</dt><dd><b>Atrocious.</b> Actively avoid.</dd>
+    <dt>{% include rating.html value=1 %}</dt><dd><b>Evil.</b> Life-changing, in the wrong direction.</dd>
+  </dl>
+  <p class="label">Status</p>
+  <p>{% include status.html value="queued" %} want to try · {% include status.html value="active" %} using or into it now · {% include status.html value="paused" %} set aside for now · {% include status.html value="done" %} finished · {% include status.html value="dropped" %} gave up on it</p>
+  <p class="muted">Scale from <a href="https://stephango.com/vault#rating-system">Steph Ango</a>.</p>
+</section>

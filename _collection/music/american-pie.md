@@ -6,4 +6,6 @@ form: "Song"
 source: "American Pie (United Artists)"
 rotation: in
 order: 1
+rating: TODO
+status: active
 ---

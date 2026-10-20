@@ -21,7 +21,7 @@ description: "A collection of things Senthen Velmurugan thinks are masterfully c
   <ul class="entries">
   {% for it in current limit: 3 %}
     <li class="entry">
-      <div class="entry-head"><span class="entry-title"><a href="{{ it.url | relative_url }}">{{ it.title }}</a></span></div>
+      <div class="entry-head"><span class="entry-title"><a href="{{ it.url | relative_url }}">{{ it.title }}</a></span><span class="entry-when">{% include rating.html value=it.rating %}</span></div>
       <div class="entry-sub">{{ it.creator }}{% if it.year %} · {{ it.year }}{% endif %}{% if it.form %} · {{ it.form }}{% endif %}</div>
     </li>
   {% endfor %}
@@ -39,3 +39,6 @@ description: "A collection of things Senthen Velmurugan thinks are masterfully c
   <li><a href="{{ cat.url | relative_url }}" class="plain"><span class="row"><u>{{ cat.title }}</u><span class="count muted small">{{ items.size }}</span></span></a></li>
 {% endfor %}
 </ul>
+
+<hr>
+{% include rating-rules.html %}

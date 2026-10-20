@@ -5,4 +5,6 @@ year:
 form: "Notebook"
 source: "Kokuyo Campus line"
 order: 9
+rating: TODO
+status: TODO
 ---

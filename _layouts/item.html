@@ -8,7 +8,7 @@ layout: default
   <p class="small"><a href="{{ c.url | default: '/collection/' | relative_url }}" class="muted">&larr; {{ c.title | default: 'Collection' }}</a></p>
   <h1>{{ page.title }}</h1>
   <div class="meta muted small">{{ page.creator }}{% if page.year %} · {{ page.year }}{% endif %}{% if page.form %} · {{ page.form }}{% endif %}{% if page.source %} · <i>{{ page.source }}</i>{% endif %}{% if page.rotation == "in" %} · <span class="rot rot-in">In rotation</span>{% endif %}</div>
-
+  <p class="item-score">{% include rating.html value=page.rating label=true %} {% include status.html value=page.status %}</p>
 
   {% assign body = content | strip_html | strip %}
   {% if body == "" or body == "TODO" %}
@@ -16,4 +16,6 @@ layout: default
   {% else %}
   <div class="item-note">{{ content }}</div>
   {% endif %}
+  <hr>
+  {% include rating-rules.html %}
 </article>
