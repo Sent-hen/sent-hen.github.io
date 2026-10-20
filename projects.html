@@ -29,34 +29,65 @@ description: "Projects by Senthen Velmurugan: backend and infrastructure, securi
 {% endfor %}
 {% assign keyed = keyed | sort %}
 
+{% comment %} Rank domains the same way: most projects first, ties keep first-seen order. {% endcomment %}
 {% assign all_domains = "" | split: "" %}
 {% for p in projects %}{% assign all_domains = all_domains | concat: p.domains %}{% endfor %}
+{% assign uniq_domains = all_domains | uniq %}
+{% assign dkeyed = "" | split: "" %}
+{% for d in uniq_domains %}
+  {% assign n = 0 %}{% for x in all_domains %}{% if x == d %}{% assign n = n | plus: 1 %}{% endif %}{% endfor %}
+  {% assign k1 = 999 | minus: n | prepend: "000" | slice: -3, 3 %}
+  {% assign k2 = forloop.index | prepend: "000" | slice: -3, 3 %}
+  {% assign dkey = k1 | append: "|" | append: k2 | append: "|" | append: n | append: "|" | append: d %}
+  {% assign dkeyed = dkeyed | push: dkey %}
+{% endfor %}
+{% assign dkeyed = dkeyed | sort %}
+{% assign statuses = projects | map: "status" | uniq %}
 
-<div class="filters" id="filters" hidden>
-  <div class="filter-row">
-    <span class="filter-label">Domain</span>
-    <span class="filter-chips">
-    {% assign domain_order = "Backend/infra,Security,AI/ML" | split: "," %}
-    {% for d in domain_order %}
-      {% assign n = 0 %}{% for x in all_domains %}{% if x == d %}{% assign n = n | plus: 1 %}{% endif %}{% endfor %}
-      {% assign dc = d | downcase | replace: "/", "-" | replace: " ", "-" %}<button type="button" class="chip dom dom-{{ dc }}" data-filter="{{ d }}" aria-pressed="false">{{ d }} <span class="count">{{ n }}</span></button>
-    {% endfor %}
-    </span>
-  </div>
-  <div class="filter-row">
-    <span class="filter-label">Tech</span>
-    <span class="filter-chips">
-    {% for key in keyed %}{% assign parts = key | split: "|" %}
-      <button type="button" class="chip{% if forloop.index > 10 %} extra{% endif %}" data-filter="{{ parts[3] }}" aria-pressed="false">{{ parts[3] }} <span class="count">{{ parts[2] }}</span></button>
-    {% endfor %}
-    {% if keyed.size > 10 %}<button type="button" class="chip-more" id="chip-more">+{{ keyed.size | minus: 10 }} more</button>{% endif %}
-    </span>
-  </div>
+<div class="sort-bar filter-bar small" id="filter-bar" hidden>
+  <label><span class="muted">Domain</span>
+    <select id="f-domain">
+      <option value="">All</option>
+      {% for key in dkeyed %}{% assign parts = key | split: "|" %}<option value="{{ parts[3] }}">{{ parts[3] }} ({{ parts[2] }})</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label><span class="muted">Tech</span>
+    <select id="f-tech">
+      <option value="">All</option>
+      {% for key in keyed %}{% assign parts = key | split: "|" %}<option value="{{ parts[3] }}">{{ parts[3] }} ({{ parts[2] }})</option>
+      {% endfor %}
+    </select>
+  </label>
+  {% if statuses.size > 1 %}<label><span class="muted">Status</span>
+    <select id="f-status">
+      <option value="">All</option>
+      {% for st in statuses %}<option value="{{ st }}">{{ st | capitalize }}</option>
+      {% endfor %}
+    </select>
+  </label>{% endif %}
+  <label><span class="muted">Sort</span>
+    <select id="sort-by">
+      <option value="index">Listed</option>
+      <option value="title">Title</option>
+      <option value="year">Year</option>
+    </select>
+  </label>
+  <button type="button" id="sort-dir" class="sort-dir" aria-label="Reverse order" title="Reverse order">&darr;</button>
+  <span class="filter-status muted" id="filter-count" aria-live="polite"></span>
+  <button type="button" class="filter-clear" id="filter-clear" hidden>Clear</button>
 </div>
 
 <ul class="entries" id="project-list">
 {% for p in projects %}
-  <li class="entry" id="{{ p.slug }}" data-tags="{{ p.domains | join: ';' }};{{ p.tags | join: ';' }}">
+  {% assign yr = p.when | slice: 0, 4 %}
+  <li class="entry" id="{{ p.slug }}"
+      data-index="{{ forloop.index }}"
+      data-title="{{ p.title | escape }}"
+      data-year="{{ yr }}"
+      data-status="{{ p.status }}"
+      data-domains=";{{ p.domains | join: ';' }};"
+      data-tech=";{{ p.tags | join: ';' }};">
     <div class="entry-head">
       <span class="entry-title">
         {% if p.writeup %}<a href="{{ '/projects/' | append: p.slug | append: '/' | relative_url }}">{{ p.title }}</a>
@@ -73,7 +104,7 @@ description: "Projects by Senthen Velmurugan: backend and infrastructure, securi
         {% endfor %}
       </ul>
     </div>
-    <div class="tags">{% for t in p.tags %}<span class="tag">{{ t }}</span>{% endfor %}</div>
+    <div class="tags">{% for t in p.tags %}<button type="button" class="tag tag-filter" data-tech="{{ t }}" title="Show projects using {{ t }}">{{ t }}</button>{% endfor %}</div>
     <div class="entry-links small">
       {% if p.writeup %}<a href="{{ '/projects/' | append: p.slug | append: '/' | relative_url }}">Writeup &rarr;</a>{% endif %}
       {% if p.repo != "" %}<a href="{{ p.repo }}">Code</a>{% else %}<span class="muted">Private repo</span>{% endif %}
@@ -82,36 +113,65 @@ description: "Projects by Senthen Velmurugan: backend and infrastructure, securi
 {% endfor %}
 </ul>
 
-<p class="muted small" id="filter-empty" hidden>No projects match that filter.</p>
+<p class="muted small" id="filter-empty" hidden>No projects match these filters.</p>
 
 <script>
+  // Filters and sort for the project list. Everything works without JavaScript too: the bar stays hidden
+  // and the list shows in file order.
   (function () {
-    var bar = document.getElementById('filters');
-    var items = document.querySelectorAll('#project-list > .entry');
-    var chips = bar.querySelectorAll('.chip');
+    var bar = document.getElementById('filter-bar');
+    var list = document.getElementById('project-list');
+    var items = Array.prototype.slice.call(list.children);
+    var domain = document.getElementById('f-domain');
+    var tech = document.getElementById('f-tech');
+    var status = document.getElementById('f-status');
+    var by = document.getElementById('sort-by');
+    var dir = document.getElementById('sort-dir');
+    var count = document.getElementById('filter-count');
+    var clear = document.getElementById('filter-clear');
     var empty = document.getElementById('filter-empty');
+    var desc = false;
     bar.hidden = false;
-    var more = document.getElementById('chip-more');
-    if (more) more.addEventListener('click', function () {
-      bar.classList.add('show-all');
-      more.hidden = true;
-    });
-    function apply(value) {
+
+    function has(li, attr, value) { return !value || li.dataset[attr].indexOf(';' + value + ';') !== -1; }
+
+    function apply() {
       var shown = 0;
       items.forEach(function (li) {
-        var match = !value || li.getAttribute('data-tags').split(';').indexOf(value) !== -1;
-        li.hidden = !match;
-        if (match) shown++;
+        var ok = has(li, 'domains', domain.value) && has(li, 'tech', tech.value) &&
+                 (!status || !status.value || li.dataset.status === status.value);
+        li.hidden = !ok;
+        if (ok) shown++;
       });
-      chips.forEach(function (c) {
-        c.setAttribute('aria-pressed', c.getAttribute('data-filter') === value ? 'true' : 'false');
-      });
+      var key = by.value, sign = desc ? -1 : 1;
+      if (key === 'year') sign = -sign;   // newest first by default
+      items.slice().sort(function (a, b) {
+        var d = key === 'title' ? a.dataset.title.localeCompare(b.dataset.title, undefined, { sensitivity: 'base' })
+              : key === 'year' ? (Number(a.dataset.year) || 0) - (Number(b.dataset.year) || 0)
+              : a.dataset.index - b.dataset.index;
+        return d !== 0 ? d * sign : a.dataset.index - b.dataset.index;
+      }).forEach(function (li) { list.appendChild(li); });
+      var filtered = domain.value || tech.value || (status && status.value);
+      count.textContent = shown + ' of ' + items.length;
+      clear.hidden = !filtered;
       empty.hidden = shown > 0;
     }
-    chips.forEach(function (c) {
-      c.addEventListener('click', function () {
-        apply(c.getAttribute('aria-pressed') === 'true' ? null : c.getAttribute('data-filter'));
-      });
+
+    [domain, tech, status].forEach(function (el) { if (el) el.addEventListener('change', apply); });
+    by.addEventListener('change', function () { desc = false; dir.innerHTML = '&darr;'; apply(); });
+    dir.addEventListener('click', function () { desc = !desc; dir.innerHTML = desc ? '&uarr;' : '&darr;'; apply(); });
+    clear.addEventListener('click', function () {
+      domain.value = ''; tech.value = ''; if (status) status.value = '';
+      apply();
     });
+    // Clicking a tag on a project filters by that tag.
+    list.addEventListener('click', function (e) {
+      var t = e.target.closest('.tag-filter');
+      if (!t) return;
+      tech.value = tech.value === t.dataset.tech ? '' : t.dataset.tech;
+      apply();
+      bar.scrollIntoView({ block: 'nearest' });
+    });
+    apply();
   })();
 </script>

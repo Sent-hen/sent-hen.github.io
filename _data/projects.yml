@@ -1,28 +1,12 @@
-# Projects shown on /projects/. Keep entries newest first.
+# Projects shown on /projects/, in this order. Move an entry to reorder the page.
 #
 # slug     anchor id on /projects/, and the writeup URL (/projects/<slug>/) when writeup: true
-# status   complete | in progress   (only complete projects get a writeup page in _projects/)
+# status   complete | in progress   (in progress shows a badge)
+# writeup  true if _projects/<slug>.md exists; the title then links to it
 # domains  Backend/infra | Security | AI/ML | other short labels
 # tags     tech, ordered by how heavily the project uses it (most first)
 # repo     public repository URL; leave empty for private repos
 # bullets  six STAR/XYZ bullets: accomplished X, measured by Y, by doing Z
-
-- slug: personal-vpn
-  title: Personal VPN
-  when: "2026"
-  status: in progress
-  domains: [Security, Backend/infra]
-  summary: One-command private WireGuard server in the cloud, with a client tool and a written threat model.
-  tags: [Terraform, Go, Bash, WireGuard, Linux, nftables]
-  repo: https://github.com/Sent-hen/VPN
-  writeup: false
-  bullets:
-    - "Set out to protect my traffic on untrusted networks (café Wi-Fi, hotel networks) without handing that trust to a commercial VPN, by owning every layer from server to client."
-    - "Provisioned a hardened WireGuard server on Hetzner for about €4 a month with a single <code>terraform apply</code>, using cloud-init for SSH hardening, nftables NAT over IPv4 and IPv6, Unbound DNS, fail2ban, and unattended security upgrades."
-    - "Kept private keys from ever crossing the network by having each device generate its own key and share only the public half, and by generating the server key on first boot, so Terraform state holds no secrets."
-    - "Built <code>vpnctl</code>, a Go CLI for device key generation and WireGuard client configs, covered by 11 Go unit tests, plus a <code>vpn-peer</code> tool to add or remove devices without rebuilding the server."
-    - "Reduced the attack surface to one UDP port by default-denying inbound traffic in nftables and the cloud firewall, and limiting key-only SSH to listed admin CIDRs."
-    - "Documented a threat model that states plainly what the VPN protects against and what it doesn't (privacy on untrusted networks, not anonymity), plus a manual runbook that mirrors every automated step. Next: a Windows service with a WFP kill switch and a Tauri UI."
 
 - slug: pid-digitizer
   title: P&ID Digitizer
@@ -57,6 +41,23 @@
     - "Added metamodel checks against the Core and Plant 2.0.1 specs (class existence and abstractness, property kinds, target types, multiplicity bounds) by generating a compact class table from the spec XML with a Python build script."
     - "Gave pipelines a headless path with a Python CLI validator (lxml) that runs both XSD and metamodel checks."
     - "Made large models navigable with symbols for equipment, valves, and instruments, an inspector showing references and back-references, a model tree, ID and tag search, SVG export, and light and dark themes."
+
+- slug: personal-vpn
+  title: Personal VPN
+  when: "2026"
+  status: in progress
+  domains: [Security, Backend/infra]
+  summary: One-command private WireGuard server in the cloud, with a client tool and a written threat model.
+  tags: [Terraform, Go, Bash, WireGuard, Linux, nftables]
+  repo: https://github.com/Sent-hen/VPN
+  writeup: false
+  bullets:
+    - "Set out to protect my traffic on untrusted networks (café Wi-Fi, hotel networks) without handing that trust to a commercial VPN, by owning every layer from server to client."
+    - "Provisioned a hardened WireGuard server on Hetzner for about €4 a month with a single <code>terraform apply</code>, using cloud-init for SSH hardening, nftables NAT over IPv4 and IPv6, Unbound DNS, fail2ban, and unattended security upgrades."
+    - "Kept private keys from ever crossing the network by having each device generate its own key and share only the public half, and by generating the server key on first boot, so Terraform state holds no secrets."
+    - "Built <code>vpnctl</code>, a Go CLI for device key generation and WireGuard client configs, covered by 11 Go unit tests, plus a <code>vpn-peer</code> tool to add or remove devices without rebuilding the server."
+    - "Reduced the attack surface to one UDP port by default-denying inbound traffic in nftables and the cloud firewall, and limiting key-only SSH to listed admin CIDRs."
+    - "Documented a threat model that states plainly what the VPN protects against and what it doesn't (privacy on untrusted networks, not anonymity), plus a manual runbook that mirrors every automated step. Next: a Windows service with a WFP kill switch and a Tauri UI."
 
 - slug: metal-to-pod
   title: "Metal-to-Pod: self-hosted CI/CD"
