@@ -32,7 +32,7 @@ description: "Senthen Velmurugan: consumption and creation."
     </section>
     <section>
       <p class="label">Who I want to be</p>
-      <p>Someone who uses techne to increase quality of life.</p>
+      <p>Someone who uses technology to increase quality of life.</p>
       <p class="iam">Currently mastering&hellip;</p>
       <ul class="iam-list">
         <li><span class="boxed">the human condition</span></li>
