@@ -1,0 +1,11 @@
+# Experiments shown on /experiments/, in this order. Smaller and looser than projects:
+# things tried to learn something, whether or not they became anything.
+#
+# - title: Name of the experiment
+#   when: "2026"
+#   status: active          # queued, active, paused, done, or dropped
+#   rating: TODO            # 1-7 on the shared scale
+#   favorite: true          # optional
+#   summary: One sentence on what I tried and what happened.
+#   link: https://...       # optional: repo, notebook, or write-up
+[]

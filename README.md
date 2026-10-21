@@ -12,6 +12,8 @@ projects.html                Projects  /projects/ (filter by domain, tech, statu
 _data/projects.yml             every project shown on /projects/
 _data/tag_popularity.yml       tie-breaker when ranking tech tags
 _projects/<slug>.md            writeup  /projects/<slug>/
+experiments.html             Experiments  /experiments/
+_data/experiments.yml          every experiment shown on /experiments/ (format in the file)
 experience.md                Experience  /experience/
 something-else.html          Something else  /something-else/ (a box with a ?)
 

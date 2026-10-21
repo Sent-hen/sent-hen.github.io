@@ -4,10 +4,13 @@ description: "Senthen Velmurugan: consumption and creation."
 ---
 
 <div class="intro">
+  <div class="intro-side">
   <figure class="intro-gif">
     <img src="{{ '/assets/img/cake.gif' | relative_url }}" width="160" height="160" alt="Animated ASCII-art cake">
     <figcaption>the cake is a lie</figcaption>
   </figure>
+  {% include golden-spiral.html %}
+  </div>
   <div class="intro-text">
   <blockquote class="epigraph">
     <p>The struggle itself toward the heights is enough to fill a man's heart. One must imagine Sisyphus happy.</p>
