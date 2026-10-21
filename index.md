@@ -17,7 +17,8 @@ description: "Senthen Velmurugan: consumption and creation."
     <section>
       <p class="label">Who I am</p>
       <p>I'm Senthen.</p>
-      <p class="iam">I'm&hellip;</p>
+      <p>I like contrasts.</p>
+      <p class="iam">I'm a(n)&hellip;</p>
       <ul class="iam-list">
         <li>autodidact</li>
         <li>entrepreneur</li>
@@ -29,7 +30,13 @@ description: "Senthen Velmurugan: consumption and creation."
     <section>
       <p class="label">Who I want to be</p>
       <p>Someone who uses techne to increase quality of life.</p>
-      <p>Mastering systems engineering.</p>
+      <p class="iam">Currently mastering&hellip;</p>
+      <ul class="iam-list">
+        <li><span class="boxed">the human condition</span></li>
+        <li>linguistics</li>
+        <li>systems engineering</li>
+        <li>piano</li>
+      </ul>
     </section>
   </div>
   <p class="infinity-arrow" aria-label="From zero to one"><span>0</span>{% include ripples.html %}<span>1</span></p>

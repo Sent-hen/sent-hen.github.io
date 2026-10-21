@@ -260,6 +260,13 @@ hr {
 .iam { margin: 0 0 0.2em; }
 .iam-list { list-style: none; margin: 0 0 1em; padding: 0 0 0 1.2em; }
 .iam-list li { margin: 0; }
+.boxed {
+  display: inline-block;
+  border: 1px solid var(--tx-2);
+  border-radius: 4px;
+  padding: 0 6px;
+  margin: 2px 0;
+}
 
 /* home: 0 → 1 line above the site note */
 .infinity-arrow {
