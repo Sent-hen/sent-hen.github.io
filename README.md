@@ -128,3 +128,7 @@ Writeup in Markdown.
 | Site title and description | `_config.yml` |
 
 YAML is indentation-sensitive: use spaces, not tabs, and quote values that contain `:` or start with a number you want kept as text (`title: "800"`).
+
+## License
+
+[MIT](LICENSE).

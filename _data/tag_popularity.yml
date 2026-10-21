@@ -3,6 +3,7 @@
 # roughly following the Stack Overflow developer survey) is shown first.
 - Python
 - JavaScript
+- CSS
 - HTML
 - Bash
 - Docker
@@ -32,3 +33,5 @@
 - nftables
 - Cowrie
 - Vector
+- Jekyll
+- Liquid

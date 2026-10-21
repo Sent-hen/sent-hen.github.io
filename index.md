@@ -16,18 +16,23 @@ description: "Senthen Velmurugan: consumption and creation."
   <div class="duality">
     <section>
       <p class="label">Who I am</p>
-      <p>I'm Senthen.<br>I'm an autodidact.</p>
+      <p>I'm Senthen.</p>
+      <p class="iam">I'm&hellip;</p>
+      <ul class="iam-list">
+        <li>autodidact</li>
+        <li>entrepreneur</li>
+        <li>scientist</li>
+      </ul>
       <p>I like engaging in intense dialogue to let an answer emerge.</p>
       <p>I like bottom-up and top-down thinking.</p>
-      <p>My central beliefs are Aristotle's golden mean and the Dao.</p>
     </section>
     <section>
       <p class="label">Who I want to be</p>
       <p>Someone who uses techne to increase quality of life.</p>
-      <p>I'm currently exploring the golden mean as a way of life.</p>
       <p>Mastering systems engineering.</p>
     </section>
   </div>
+  <p class="infinity-arrow" aria-label="From zero to one"><span>0</span>{% include ripples.html %}<span>1</span></p>
   <p class="muted small site-note">This is a site where I keep what I'm building and showcase things I like.</p>
   </div>
 </div>

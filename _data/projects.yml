@@ -173,3 +173,21 @@
     - "Mapped the words onto a memory palace of 100 landmarks in the Round City of Baghdad, each with the same 10 stations."
     - "Generated all 100 chapter pages, image-prompt files, and the combined script from one source with a Python build, so a one-line edit updates every page."
     - "Drew the character sheets and city map as vector SVG in Python, and wrote an image prompt for every frame."
+
+- slug: personal-website
+  title: Personal website
+  when: "2023 · rebuilt 2026"
+  status: active
+  rating: TODO
+  domains: [Web]
+  summary: This site. A static Jekyll site on GitHub Pages that logs what I consume and what I create.
+  tags: [Jekyll, Liquid, HTML, CSS, JavaScript]
+  repo: https://github.com/Sent-hen/sent-hen.github.io
+  writeup: false
+  bullets:
+    - "Built a personal site with no server, no database, and no build pipeline to maintain, by publishing a static Jekyll site straight from the main branch through GitHub Pages."
+    - "Made adding an entry a one-file change: each of 227 logged books, films, songs, poems, and products is a Markdown file whose folder sets its category, so no index or list needs updating."
+    - "Kept projects data-driven in a single YAML file, so filters for domain, tech, status, and favorites, tag rankings, and counts are all generated from it rather than written by hand."
+    - "Gave Consumption and Creation one shared vocabulary of tags, a 1-7 rating scale, five statuses, and favorites, with the rules shown at the bottom of every page that uses them."
+    - "Added filtering and sorting with a small amount of plain JavaScript and no libraries, while keeping every page fully readable with JavaScript turned off."
+    - "Designed it around the Flexoki palette with light and dark themes, then trimmed it repeatedly, removing unused pages, styles, and data so the whole site stays easy to maintain by hand."
