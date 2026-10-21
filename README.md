@@ -4,18 +4,20 @@
 
 ```
 index.md                     Home  /
-collection.html              Collection  /collection/
-collection/<key>.html          category  /collection/<key>/
-_collection/<key>/<slug>.md    item  /collection/<key>/<slug>/
+consumption.html             Consumption  /consumption/
+consumption/<key>.html         category  /consumption/<key>/
+_consumption/<key>/<slug>.md   item  /consumption/<key>/<slug>/
+creation.html                Creation  /creation/ (featured projects, links below)
 projects.html                Projects  /projects/ (filter by domain, tech, status; sort)
 _data/projects.yml             every project shown on /projects/
 _data/tag_popularity.yml       tie-breaker when ranking tech tags
 _projects/<slug>.md            writeup  /projects/<slug>/
 experience.md                Experience  /experience/
+something-else.html          Something else  /something-else/ (a box with a ?)
 
 _layouts/                    default (page shell), project, category, item
 _includes/                   head, nav, footer, category-items (finds a category's items),
-                             rating, status, rating-rules (the scale shown on Collection pages)
+                             rating, status, favorite, rating-rules (shared by Consumption and Creation)
 assets/css/style.scss        all styling; Flexoki colors in :root
 assets/img/                  icon.jpg (favicon), cake.gif (home)
 _config.yml                  collections, permalinks, layout defaults
@@ -44,9 +46,9 @@ git push
 
 GitHub Pages builds `main` in about a minute. If the live site doesn't update, check the repo's Actions tab: a failed "pages build and deployment" run shows the error (usually a YAML typo).
 
-### Add a collection item
+### Add a consumption item
 
-Create `_collection/<key>/<slug>.md`. The folder sets the category, so this is the only step:
+Create `_consumption/<key>/<slug>.md`. The folder sets the category, so this is the only step:
 
 ```markdown
 ---
@@ -55,25 +57,26 @@ creator: "Don McLean"
 year: 1971
 form: "Song"
 source: "American Pie (United Artists)"
-rotation: in         # optional: shows it on /collection/ (up to 3 per category)
+rotation: in         # optional: shows it on /consumption/ (up to 3 per category)
 order: 1             # optional: default sort position
 rating: 7            # 1-7 (7 Perfect … 1 Evil); anything else shows "rating TODO"
 status: active       # queued, active, paused, done, or dropped
+favorite: true       # optional: adds a ★ favorite tag and shows it under the Favorites filter
 ---
 
 The note, in Markdown.
 ```
 
-### Add a collection category
+### Add a consumption category
 
-Create `collection/<key>.html` and put its items in `_collection/<key>/`:
+Create `consumption/<key>.html` and put its items in `_consumption/<key>/` (an empty category shows "Nothing here yet."):
 
 ```yaml
 ---
 layout: category
 title: Music
 creator_label: Artist   # label for the creator sort option
-order: 4                # position on /collection/
+order: 4                # position on /consumption/
 ---
 ```
 
@@ -85,7 +88,9 @@ Add an entry to `_data/projects.yml`. The page shows projects in file order, so 
 - slug: my-project            # anchor on /projects/ and writeup URL
   title: My Project
   when: "2026"
-  status: in progress         # or complete; the Status filter appears once both exist
+  status: active              # queued, active, paused, done, or dropped (same tags as Consumption)
+  rating: TODO                # 1-7 on the shared scale
+  favorite: true              # optional: ★ favorite tag and the Favorites filter
   domains: [Backend/infra]    # appear in the Domain filter, most-used first
   summary: One sentence.
   tags: [Python, Docker]      # most-used first; appear in the Tech filter and are clickable
@@ -111,10 +116,11 @@ Writeup in Markdown.
 | To change | Edit |
 |---|---|
 | Home page text, quote, GIF | `index.md` |
-| Collection intro line | `collection.html` |
-| Rating and status rules shown on Collection pages | `_includes/rating-rules.html` |
+| Consumption intro line | `consumption.html` |
+| Creation intro line; Featured = first 3 projects | `creation.html` |
+| Rating and status rules (shared by Consumption and Creation) | `_includes/rating-rules.html` |
 | Experience (work, education, skills) | `experience.md` |
-| Nav links and their order | the `links` list in `_includes/nav.html` |
+| Nav links, their order, and which sections each highlights | the `links` list in `_includes/nav.html` |
 | Footer links (GitHub, LinkedIn, Email) | `_includes/footer.html` |
 | Colors | the `:root` variables at the top of `assets/css/style.scss` |
 | A domain's color | the `.dom-*` rules in `assets/css/style.scss` (`Backend/infra` → `.dom-backend-infra`); domains without a rule are gray |

@@ -1,7 +1,9 @@
 # Projects shown on /projects/, in this order. Move an entry to reorder the page.
 #
 # slug     anchor id on /projects/, and the writeup URL (/projects/<slug>/) when writeup: true
-# status   complete | in progress   (in progress shows a badge)
+# status   queued | active | paused | done | dropped   (same tags as Consumption)
+# rating   1-7 on the shared scale, or TODO
+# favorite optional: true adds the ★ favorite tag
 # writeup  true if _projects/<slug>.md exists; the title then links to it
 # domains  Backend/infra | Security | AI/ML | other short labels
 # tags     tech, ordered by how heavily the project uses it (most first)
@@ -11,7 +13,9 @@
 - slug: pid-digitizer
   title: P&ID Digitizer
   when: "2026"
-  status: in progress
+  status: active
+  rating: TODO
+  favorite: true
   domains: [AI/ML, Backend/infra]
   summary: Turns scanned engineering drawings (P&IDs) into machine-readable graphs, with a review UI for correcting low-confidence output.
   tags: [Python, PyTorch, OpenCV, FastAPI, Docker, NetworkX, SQLite]
@@ -28,7 +32,9 @@
 - slug: dexpi-viewer
   title: DEXPI P&ID Viewer
   when: "2026"
-  status: in progress
+  status: active
+  rating: TODO
+  favorite: true
   domains: [Tooling]
   summary: A dependency-free browser viewer and validator for DEXPI 2.0.1 plant-model XML.
   tags: [JavaScript, Python, XML, SVG]
@@ -45,7 +51,8 @@
 - slug: personal-vpn
   title: Personal VPN
   when: "2026"
-  status: in progress
+  status: active
+  rating: TODO
   domains: [Security, Backend/infra]
   summary: One-command private WireGuard server in the cloud, with a client tool and a written threat model.
   tags: [Terraform, Go, Bash, WireGuard, Linux, nftables]
@@ -62,7 +69,8 @@
 - slug: metal-to-pod
   title: "Metal-to-Pod: self-hosted CI/CD"
   when: "2026"
-  status: in progress
+  status: active
+  rating: TODO
   domains: [Backend/infra]
   summary: A commit-to-pod delivery path from VMware VMs to Kubernetes with no cloud services, run with SLOs, rollback, and failure drills.
   tags: [Kubernetes, Bash, Go, Docker, Jenkins, Prometheus, Vagrant]
@@ -79,7 +87,8 @@
 - slug: word2eq
   title: Word2Eq
   when: "2024 · rebuilt 2026"
-  status: in progress
+  status: active
+  rating: TODO
   domains: [AI/ML, Backend/infra]
   summary: A reproducible training pipeline and SLO-instrumented inference service that turns math word problems into verified equations.
   tags: [Python, PyTorch, FastAPI, Docker, Prometheus, Kubernetes, GitHub Actions]
@@ -96,7 +105,8 @@
 - slug: honeypot-attack-map
   title: Honeypot and attack map
   when: "2026"
-  status: in progress
+  status: active
+  rating: TODO
   domains: [Security, Backend/infra]
   summary: An isolated SSH/Telnet honeypot on AWS that ships attacker activity off-box for enrichment, mapping, and ML campaign analysis.
   tags: [Terraform, AWS, Bash, Docker, Cowrie, Vector]
@@ -113,7 +123,8 @@
 - slug: cs2-tradeup-analysis
   title: The $2 billion patch note
   when: "2026"
-  status: in progress
+  status: active
+  rating: TODO
   domains: [Data analysis]
   summary: A financial event study of how one game update repriced a multi-billion-dollar virtual item market overnight.
   tags: [Python, pandas, NumPy, SciPy, Matplotlib, pytest]
@@ -130,7 +141,8 @@
 - slug: limits-of-foresight
   title: The limits of foresight
   when: "2026"
-  status: in progress
+  status: active
+  rating: TODO
   domains: [AI/ML, Research]
   summary: A cognitive-science project testing whether human lookahead in Go and belief recursion in poker are the same depth-limited computation.
   tags: [Python, LaTeX]
@@ -147,7 +159,8 @@
 - slug: thousand-and-one-words
   title: The Thousand and One Words
   when: "2026"
-  status: in progress
+  status: active
+  rating: TODO
   domains: [Learning tools]
   summary: A 100-chapter Arabian Nights comic epic that teaches the 1,000 most-used SAT words, generated from one script.
   tags: [Python, HTML, SVG]

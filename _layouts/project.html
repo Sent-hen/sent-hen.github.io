@@ -5,6 +5,7 @@ layout: default
 <article class="note project">
   <h1>{{ p.title }}</h1>
   <div class="meta muted small">{{ p.when }}{% for d in p.domains %} · {% assign dc = d | downcase | replace: "/", "-" | replace: " ", "-" %}<span class="dom dom-{{ dc }}">{{ d }}</span>{% endfor %}</div>
+  <p class="item-score">{% include rating.html value=p.rating label=true %} {% include status.html value=p.status %}{% include favorite.html value=p.favorite %}</p>
   <p class="lede">{{ p.summary }}</p>
   <div class="tags project-tags">{% for t in p.tags %}<span class="tag">{{ t }}</span>{% endfor %}</div>
   <p class="small">{% if p.repo != "" %}<a href="{{ p.repo }}">Source code</a>{% else %}<span class="muted">Source is in a private repository.</span>{% endif %}</p>
@@ -17,5 +18,7 @@ layout: default
     {% endfor %}
   </ul>
 
-  <p class="back-link small"><a href="{{ '/projects/' | relative_url }}#{{ p.slug }}" class="muted">&larr; All projects</a></p>
+  <p class="back-link small"><a href="{{ '/projects/' | relative_url }}#{{ p.slug }}" class="muted">&larr; Projects</a></p>
+  <hr>
+  {% include rating-rules.html %}
 </article>

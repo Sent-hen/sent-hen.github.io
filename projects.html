@@ -4,6 +4,7 @@ permalink: /projects/
 description: "Projects by Senthen Velmurugan: backend and infrastructure, security, and AI/ML."
 ---
 
+<p class="small"><a href="{{ '/creation/' | relative_url }}" class="muted">&larr; Creation</a></p>
 <h1>Projects</h1>
 
 <p class="muted">Things I've built.</p>
@@ -42,7 +43,6 @@ description: "Projects by Senthen Velmurugan: backend and infrastructure, securi
   {% assign dkeyed = dkeyed | push: dkey %}
 {% endfor %}
 {% assign dkeyed = dkeyed | sort %}
-{% assign statuses = projects | map: "status" | uniq %}
 
 <div class="sort-bar filter-bar small" id="filter-bar" hidden>
   <label><span class="muted">Domain</span>
@@ -59,16 +59,21 @@ description: "Projects by Senthen Velmurugan: backend and infrastructure, securi
       {% endfor %}
     </select>
   </label>
-  {% if statuses.size > 1 %}<label><span class="muted">Status</span>
+  <label><span class="muted">Status</span>
     <select id="f-status">
       <option value="">All</option>
-      {% for st in statuses %}<option value="{{ st }}">{{ st | capitalize }}</option>
-      {% endfor %}
+      <option value="queued">Queued</option>
+      <option value="active">Active</option>
+      <option value="paused">Paused</option>
+      <option value="done">Done</option>
+      <option value="dropped">Dropped</option>
     </select>
-  </label>{% endif %}
+  </label>
+  <label class="fav-toggle muted"><input type="checkbox" id="f-fav"> Favorites</label>
   <label><span class="muted">Sort</span>
     <select id="sort-by">
       <option value="index">Listed</option>
+      <option value="rating">Rating</option>
       <option value="title">Title</option>
       <option value="year">Year</option>
     </select>
@@ -86,6 +91,8 @@ description: "Projects by Senthen Velmurugan: backend and infrastructure, securi
       data-title="{{ p.title | escape }}"
       data-year="{{ yr }}"
       data-status="{{ p.status }}"
+      {% assign r = p.rating | plus: 0 %}data-rating="{% if r >= 1 and r <= 7 %}{{ r }}{% endif %}"
+      data-favorite="{% if p.favorite == true %}1{% endif %}"
       data-domains=";{{ p.domains | join: ';' }};"
       data-tech=";{{ p.tags | join: ';' }};">
     <div class="entry-head">
@@ -94,9 +101,9 @@ description: "Projects by Senthen Velmurugan: backend and infrastructure, securi
         {% elsif p.repo != "" %}<a href="{{ p.repo }}">{{ p.title }}</a>
         {% else %}{{ p.title }}{% endif %}
       </span>
-      <span class="entry-when">{{ p.when }}</span>
+      <span class="entry-when">{% include favorite.html value=p.favorite %}{% include status.html value=p.status %} {% include rating.html value=p.rating %}</span>
     </div>
-    <div class="entry-sub">{% for d in p.domains %}{% assign dc = d | downcase | replace: "/", "-" | replace: " ", "-" %}<span class="dom dom-{{ dc }}">{{ d }}</span>{% unless forloop.last %} · {% endunless %}{% endfor %}{% if p.status != "complete" %} · <span class="badge">{{ p.status }}</span>{% endif %}</div>
+    <div class="entry-sub">{{ p.when }} · {% for d in p.domains %}{% assign dc = d | downcase | replace: "/", "-" | replace: " ", "-" %}<span class="dom dom-{{ dc }}">{{ d }}</span>{% unless forloop.last %} · {% endunless %}{% endfor %}</div>
     <div class="entry-desc">
       <p>{{ p.summary }}</p>
       <ul class="bullets">
@@ -115,6 +122,9 @@ description: "Projects by Senthen Velmurugan: backend and infrastructure, securi
 
 <p class="muted small" id="filter-empty" hidden>No projects match these filters.</p>
 
+<hr>
+{% include rating-rules.html %}
+
 <script>
   // Filters and sort for the project list. Everything works without JavaScript too: the bar stays hidden
   // and the list shows in file order.
@@ -125,6 +135,7 @@ description: "Projects by Senthen Velmurugan: backend and infrastructure, securi
     var domain = document.getElementById('f-domain');
     var tech = document.getElementById('f-tech');
     var status = document.getElementById('f-status');
+    var fav = document.getElementById('f-fav');
     var by = document.getElementById('sort-by');
     var dir = document.getElementById('sort-dir');
     var count = document.getElementById('filter-count');
@@ -139,29 +150,36 @@ description: "Projects by Senthen Velmurugan: backend and infrastructure, securi
       var shown = 0;
       items.forEach(function (li) {
         var ok = has(li, 'domains', domain.value) && has(li, 'tech', tech.value) &&
-                 (!status || !status.value || li.dataset.status === status.value);
+                 (!status.value || li.dataset.status === status.value) &&
+                 (!fav.checked || li.dataset.favorite);
         li.hidden = !ok;
         if (ok) shown++;
       });
       var key = by.value, sign = desc ? -1 : 1;
-      if (key === 'year') sign = -sign;   // newest first by default
+      if (key === 'year' || key === 'rating') sign = -sign;   // newest / highest first by default
       items.slice().sort(function (a, b) {
-        var d = key === 'title' ? a.dataset.title.localeCompare(b.dataset.title, undefined, { sensitivity: 'base' })
+        if (key === 'rating' && (!a.dataset.rating || !b.dataset.rating)) {   // unrated always last
+          if (a.dataset.rating) return -1;
+          if (b.dataset.rating) return 1;
+          return a.dataset.index - b.dataset.index;
+        }
+        var d = key === 'rating' ? Number(a.dataset.rating) - Number(b.dataset.rating)
+              : key === 'title' ? a.dataset.title.localeCompare(b.dataset.title, undefined, { sensitivity: 'base' })
               : key === 'year' ? (Number(a.dataset.year) || 0) - (Number(b.dataset.year) || 0)
               : a.dataset.index - b.dataset.index;
         return d !== 0 ? d * sign : a.dataset.index - b.dataset.index;
       }).forEach(function (li) { list.appendChild(li); });
-      var filtered = domain.value || tech.value || (status && status.value);
+      var filtered = domain.value || tech.value || status.value || fav.checked;
       count.textContent = shown + ' of ' + items.length;
       clear.hidden = !filtered;
       empty.hidden = shown > 0;
     }
 
-    [domain, tech, status].forEach(function (el) { if (el) el.addEventListener('change', apply); });
+    [domain, tech, status, fav].forEach(function (el) { el.addEventListener('change', apply); });
     by.addEventListener('change', function () { desc = false; dir.innerHTML = '&darr;'; apply(); });
     dir.addEventListener('click', function () { desc = !desc; dir.innerHTML = desc ? '&uarr;' : '&darr;'; apply(); });
     clear.addEventListener('click', function () {
-      domain.value = ''; tech.value = ''; if (status) status.value = '';
+      domain.value = ''; tech.value = ''; status.value = ''; fav.checked = false;
       apply();
     });
     // Clicking a tag on a project filters by that tag.

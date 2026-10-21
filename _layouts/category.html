@@ -3,7 +3,7 @@ layout: default
 ---
 {% assign key = page.name | split: "." | first %}
 {% include category-items.html key=key %}
-<p class="small"><a href="{{ '/collection/' | relative_url }}" class="muted">&larr; Collection</a></p>
+<p class="small"><a href="{{ '/consumption/' | relative_url }}" class="muted">&larr; Consumption</a></p>
 <h1>{{ page.title }}</h1>
 
 {% if items.size > 0 %}
@@ -17,6 +17,7 @@ layout: default
     <option value="done">Done</option>
     <option value="dropped">Dropped</option>
   </select>
+  <label class="fav-toggle muted"><input type="checkbox" id="f-fav"> Favorites</label>
   <label for="sort-by" class="muted">Sort by</label>
   <select id="sort-by">
     <option value="index">Added</option>
@@ -40,6 +41,7 @@ layout: default
       data-index="{{ forloop.index }}"
       data-rating="{% if r >= 1 and r <= 7 %}{{ r }}{% endif %}"
       data-status="{{ st }}"
+      data-favorite="{% if it.favorite == true %}1{% endif %}"
       data-year="{{ it.year }}"
       data-title="{{ it.title | escape }}"
       data-creator="{{ it.creator | escape }}"
@@ -47,7 +49,7 @@ layout: default
       data-rotation="{% if rot == 'in' %}in{% endif %}">
     <div class="entry-head">
       <span class="entry-title"><a href="{{ it.url | relative_url }}">{{ it.title }}</a></span>
-      <span class="entry-when">{% include status.html value=it.status %} {% include rating.html value=it.rating %}</span>
+      <span class="entry-when">{% include favorite.html value=it.favorite %}{% include status.html value=it.status %} {% include rating.html value=it.rating %}</span>
     </div>
     <div class="entry-sub">{% if rot == 'in' %}<span class="rot rot-in">In rotation</span> · {% endif %}{{ it.creator }}{% if it.year %} · {{ it.year }}{% endif %}{% if it.form %} · {{ it.form }}{% endif %}{% if it.source %} · <i>{{ it.source }}</i>{% endif %}</div>
     {% assign note = it.content | strip_html | strip %}
@@ -68,6 +70,7 @@ layout: default
     var statusRank = { active: 1, queued: 2, paused: 3, done: 4, dropped: 5 };
     var text = { title: 1, creator: 1, form: 1, rotation: 1 };
     var filter = document.getElementById('f-status');
+    var fav = document.getElementById('f-fav');
     var empty = document.getElementById('filter-empty');
     function sort() {
       var key = by.value;
@@ -86,17 +89,18 @@ layout: default
       items.forEach(function (li) { list.appendChild(li); });
       var shown = 0;
       items.forEach(function (li) {
-        li.hidden = !!filter.value && li.dataset.status !== filter.value;
+        li.hidden = (!!filter.value && li.dataset.status !== filter.value) || (fav.checked && !li.dataset.favorite);
         if (!li.hidden) shown++;
       });
       empty.hidden = shown > 0;
     }
     filter.addEventListener('change', sort);
+    fav.addEventListener('change', sort);
     by.addEventListener('change', function () { desc = false; dir.innerHTML = '&darr;'; sort(); });
     dir.addEventListener('click', function () { desc = !desc; dir.innerHTML = desc ? '&uarr;' : '&darr;'; sort(); });
   })();
 </script>
-<p class="muted small" id="filter-empty" hidden>Nothing with that status.</p>
+<p class="muted small" id="filter-empty" hidden>Nothing matches those filters.</p>
 {% else %}
 <p class="muted">Nothing here yet.</p>
 {% endif %}

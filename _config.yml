@@ -1,5 +1,5 @@
 title: Senthen Velmurugan
-description: "Senthen Velmurugan: collection, projects, and experience."
+description: "Senthen Velmurugan: consumption and creation."
 author: Senthen Velmurugan
 url: "https://sent-hen.github.io"
 baseurl: ""
@@ -8,9 +8,9 @@ markdown: kramdown
 permalink: pretty
 
 collections:
-  collection:        # one file per item in _collection/<category>/; the folder is the category, the body is the note
+  consumption:       # one file per item in _consumption/<category>/; the folder is the category, the body is the note
     output: true
-    permalink: /collection/:path/
+    permalink: /consumption/:path/
   projects:          # writeups for completed projects; entries live in _data/projects.yml
     output: true
     permalink: /projects/:path/
@@ -18,7 +18,7 @@ collections:
 defaults:
   - scope:
       path: ""
-      type: "collection"
+      type: "consumption"
     values:
       layout: "item"
   - scope:

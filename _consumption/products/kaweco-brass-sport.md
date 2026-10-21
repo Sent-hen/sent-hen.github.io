@@ -8,4 +8,5 @@ rotation: in
 order: 3
 rating: TODO
 status: active
+favorite: true
 ---

@@ -1,3 +1,4 @@
+{%- comment -%} Shared by Consumption and Creation. {%- endcomment -%}
 <section class="rules small">
   <p class="label">How I rate</p>
   <dl>
@@ -10,6 +11,7 @@
     <dt>{% include rating.html value=1 %}</dt><dd><b>Evil.</b> Life-changing, in the wrong direction.</dd>
   </dl>
   <p class="label">Status</p>
-  <p>{% include status.html value="queued" %} want to try · {% include status.html value="active" %} using or into it now · {% include status.html value="paused" %} set aside for now · {% include status.html value="done" %} finished · {% include status.html value="dropped" %} gave up on it</p>
+  <p>{% include status.html value="queued" %} want to get to it · {% include status.html value="active" %} in progress now · {% include status.html value="paused" %} set aside for now · {% include status.html value="done" %} finished · {% include status.html value="dropped" %} gave up on it</p>
+  <p>{% include favorite.html value=true %} one of my favorites, regardless of status</p>
   <p class="muted">Scale from <a href="https://stephango.com/vault#rating-system">Steph Ango</a>.</p>
 </section>

@@ -284,7 +284,7 @@ hr {
   background: var(--action);
 }
 
-/* entries: projects, experience, collection */
+/* entries: projects, experience, consumption */
 .entries { list-style: none; margin: 0 0 1em; padding: 0; }
 .entry { margin: 0 0 1.6em; }
 .entry-head {
@@ -343,10 +343,6 @@ hr {
 .entry-desc .bullets { margin: 0.4em 0 0; font-size: 0.94em; }
 .entry-desc .bullets li { margin-bottom: 0.3em; }
 .entry-links { display: flex; gap: 16px; margin-top: 8px; }
-.badge {
-  color: var(--orange);
-  white-space: nowrap;
-}
 code {
   font-family: var(--font-mono);
   font-size: 0.88em;
@@ -414,7 +410,25 @@ span.dom { color: var(--accent); }
   vertical-align: 0.1em;
 }
 
-/* collection */
+/* something else: one big box */
+.unknown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  border: 2px solid var(--ui-3);
+  border-radius: 8px;
+  font-size: clamp(6rem, 30vw, 14rem);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--tx-2);
+  user-select: none;
+}
+
+/* consumption */
 .rows { list-style: none; margin: 0; padding: 0; }
 .rows li { margin: 0 0 0.45em; }
 .rows .row { display: flex; align-items: baseline; gap: 10px; }
@@ -439,7 +453,7 @@ span.dom { color: var(--accent); }
 }
 .sort-bar select:hover, .sort-dir:hover { border-color: var(--ui-3); }
 
-/* projects filter bar (same controls as the collection sort bar) */
+/* projects filter bar (same controls as the consumption sort bar) */
 .filter-bar { flex-wrap: wrap; gap: 8px 14px; margin-bottom: 2em; }
 .filter-bar label { display: inline-flex; align-items: center; gap: 6px; }
 .filter-bar .filter-status { margin-left: auto; font-variant-numeric: tabular-nums; }
@@ -480,7 +494,7 @@ span.dom { color: var(--accent); }
   font-style: italic;
 }
 
-/* collection ratings (1-7, Steph Ango's scale) and status */
+/* consumption ratings (1-7, Steph Ango's scale) and status */
 .rating { font-weight: 500; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .rating-max { color: var(--tx-2); font-weight: 400; }
 .rating-label { font-weight: 400; color: var(--tx-2); }
@@ -504,7 +518,10 @@ span.dom { color: var(--accent); }
 .status-active { color: var(--green); border-color: currentColor; }
 .status-queued { color: var(--blue); border-color: currentColor; }
 .status-paused { color: var(--yellow); border-color: currentColor; }
-.status-done { color: var(--tx-2); }
+.status-done { color: var(--purple); border-color: currentColor; }
+.favorite-tag { color: var(--magenta); border-color: currentColor; }
+.fav-toggle { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; }
+.fav-toggle input { accent-color: var(--magenta); margin: 0; }
 .status-dropped { color: var(--tx-3); text-decoration: line-through; }
 .item-score { display: flex; align-items: center; gap: 10px; margin: -1em 0 1.4em; }
 .item-note-preview { margin-top: 4px; }
@@ -518,3 +535,4 @@ span.dom { color: var(--accent); }
 .rules dt { text-align: right; }
 .rules dd { margin: 0; color: var(--tx-2); }
 .rules dd b { color: var(--tx); font-weight: 500; }
+.poem { white-space: pre-line; font-style: italic; line-height: 1.7; }

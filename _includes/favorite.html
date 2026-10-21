@@ -1,0 +1,2 @@
+{%- comment -%} Favorite tag. Usage: {% include favorite.html value=it.favorite %}. Shows only when the item has `favorite: true`. {%- endcomment -%}
+{%- if include.value == true -%}<span class="status-tag favorite-tag" title="Favorite">&#9733; favorite</span>{%- endif -%}
