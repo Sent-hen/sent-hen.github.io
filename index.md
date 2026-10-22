@@ -25,7 +25,8 @@ description: "Senthen Velmurugan: input, stuff, and output."
       <p class="label">Who I am</p>
       <p>I'm Senthen <span class="t-ph">(SAYN-thuhn)</span>.</p>
       <p>I like contrasts.</p>
-      <p class="iam">I'm a(n)&hellip;</p>
+      <p>I am a Human-Centered Engineer.</p>
+      <p class="iam">but also&hellip;</p>
       <ul class="iam-list">
         <li>autodidact</li>
         <li>entrepreneur</li>
