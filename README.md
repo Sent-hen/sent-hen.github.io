@@ -51,7 +51,7 @@ localStorage.setItem('theme', next);
 
 ## 5. Colors (Flexoki)
 
-All colors are variables at the top of the stylesheet, redefined for dark mode. The three home visuals (cake, spiral, ripple) use fixed Flexoki values instead, so they don't change with the theme.
+All colors are variables at the top of the stylesheet, redefined for dark mode. The spiral and ripple use fixed Flexoki values; the cake inverts the page instead.
 
 `assets/css/style.scss`
 
@@ -60,38 +60,41 @@ All colors are variables at the top of the stylesheet, redefined for dark mode. 
   --bg: var(--flexoki-paper);
   --tx: var(--flexoki-black);
   --yellow: var(--flexoki-yellow-600);
-  --tint-red: var(--flexoki-red-100);   /* golden spiral squares */
+  --motion: reverse;   /* light mode plays the spiral and ripple backwards; dark sets normal */
 }
 ```
 
 ## 6. Home: the cake
 
-A slice of cake like the Portal icon (curved back, three dark layers on the cut face, a cherry on top), drawn flat in ink on paper with outlines. An optical illusion: the slice is rendered once in 3D (ray-traced, perspective camera looking down at about 30 degrees), then that flat picture spins in the 2D plane. Colors are fixed, so it looks the same in light and dark.
+The Portal cake icon in its 3/4 perspective, drawn as a flat 2D vector (curved back on the left, striped cut face on the right, cherry on top), then shown as Matrix rain: columns of digits fall through the tile and are bright only where the drawing is. Light mode rains 0s, dark mode rains 1s, and the tile inverts the page (white on black in light mode, black on white in dark). Without JavaScript the plain drawing shows instead.
 
-`index.md` (the tile), `assets/js/cake.js` (the drawing), `assets/css/style.scss` (`.cake`: paper tile, black frame)
+`_includes/cake.html` (the drawing, in `currentColor`), `assets/js/cake.js` (the rain), `assets/css/style.scss` (`.cake`, `--cake-bg`, `--cake-ink`, `--cake-digit`)
 
 ```html
 <figure class="cake">
-  <canvas id="cake" width="160" height="160" role="img" aria-label="…"></canvas>
+  {% include cake.html %}
 </figure>
 <script src="{{ '/assets/js/cake.js' | relative_url }}" defer></script>
 ```
 
+```scss
+:root { --cake-bg: var(--flexoki-black); --cake-ink: var(--flexoki-paper); --cake-digit: "0"; }  /* light */
+/* dark: --cake-bg: paper; --cake-ink: black; --cake-digit: "1" */
+```
+
 ```js
-var SPEED = 0.55;   // radians per second (2D spin)
-var POSE = 0.8;     // which side of the slice faces us
-var TILT = -0.52;   // camera angle (negative = looking down)
-var VIEW = 1.02;    // smaller = bigger cake
+var CELL = 4.5;   // character size in CSS pixels (smaller = sharper cake)
+var SPEED = 14;   // rows per second
 ```
 
 ## 7. Home: golden spiral
 
-Fibonacci squares with the golden spiral, zooming into its eye forever. There is no rotation; the turning is the spiral's self-similarity. The drawing is generated; the speed is in the stylesheet.
+Fibonacci squares with the golden spiral, zooming into its eye forever (out of it in light mode). There is no rotation; the turning is the spiral's self-similarity. The drawing is generated; the speed is in the stylesheet.
 
 `_includes/golden-spiral.html` (drawing and keyframes), `assets/css/style.scss` (speed and colors)
 
 ```scss
-.golden-spiral .zoom { animation: golden-zoom 4s linear infinite; }
+.golden-spiral .zoom { animation: golden-zoom 4s linear infinite var(--motion); }
 .golden-spiral .sq-red { fill: var(--tint-red); }
 ```
 
@@ -111,12 +114,12 @@ The Camus quote, then "Who I am" and "Who I want to be" side by side.
 
 ## 9. Home: 0 → 1 ripple
 
-Circles that all touch at 0, each 1.17× the last; growing the group by 1.17× makes a seamless outward ripple.
+Circles that all touch at 0, each 1.17× the last; growing the group by 1.17× makes a seamless ripple: outward 0 → 1 in dark mode, inward 1 → 0 in light mode.
 
 `_includes/ripples.html` (circles), `assets/css/style.scss` (animation)
 
 ```scss
-.infinity-arrow .ripples .wave { animation: ripple-out 1.6s linear infinite; }
+.infinity-arrow .ripples .wave { animation: ripple-out 1.6s linear infinite var(--motion); }
 @keyframes ripple-out { to { transform: scale(1.17); } }
 ```
 

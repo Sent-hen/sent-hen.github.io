@@ -1,0 +1,37 @@
+{%- comment -%}
+  The cake: a flat 2D drawing of the Portal cake icon, drawn in its 3/4 perspective (curved back on
+  the left, striped cut face on the right, cherry on top). Everything is drawn in `currentColor` on a
+  transparent background, so `.cake` in style.scss sets both colors; they invert against the page.
+  Coordinates follow the reference image (1920 × 1080), cropped to the cake.
+{%- endcomment -%}
+<svg class="cake-art" viewBox="500 80 880 880" role="img" aria-label="A slice of cake with a cherry on top">
+  <g fill="none" stroke="currentColor" stroke-width="22" stroke-linecap="round" stroke-linejoin="round">
+    <!-- curved back: left edge, bottom curve, and the rim along the top -->
+    <path d="M557 383 V836 Q557 862 590 884 Q680 940 845 932"/>
+    <path d="M548 380 Q560 366 612 362"/>
+    <path d="M575 398 Q590 438 690 470 Q760 492 845 487"/>
+    <!-- top face: front edge to the point, and the back edge from the point toward the cherry -->
+    <path d="M845 487 L1328 254"/>
+    <path d="M1325 252 L905 318"/>
+    <!-- bottom edge of the cut face -->
+    <path d="M845 932 L1335 712"/>
+    <!-- seam between the curved back and the cut face -->
+    <path d="M845 487 V932"/>
+    <!-- cream dollops around the cherry -->
+    <path d="M676 274 L628 326 L668 392"/>
+    <path d="M708 396 L755 438 L810 425"/>
+    <path d="M908 322 L975 350 L893 418"/>
+    <!-- cherry stem -->
+    <path d="M826 240 L896 186 L842 122 L858 106"/>
+  </g>
+  <g fill="currentColor">
+    <!-- three dark layers on the cut face -->
+    <path d="M845 524 L1335 300 V402 L845 628 Z"/>
+    <path d="M845 680 L1335 456 V556 L845 784 Z"/>
+    <path d="M845 836 L1335 612 V712 L845 932 Z"/>
+    <!-- cherry -->
+    <circle cx="790" cy="320" r="90"/>
+  </g>
+  <!-- the notch where the stem meets the cherry, in the tile color -->
+  <path class="cake-notch" d="M796 286 Q808 258 832 262 Q815 274 798 292 Z"/>
+</svg>

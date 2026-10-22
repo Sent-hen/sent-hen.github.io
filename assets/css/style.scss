@@ -50,6 +50,10 @@
   --purple: var(--flexoki-purple-600);
   --magenta: var(--flexoki-magenta-600);
   --selection: rgba(187, 220, 206, 0.3);
+  --motion: reverse;   /* light: the spiral zooms out and the ripple flows back from 1 to 0 */
+  --cake-bg: var(--flexoki-black);    /* the cake inverts the page: white cake on black here */
+  --cake-ink: var(--flexoki-paper);
+  --cake-digit: "0";   /* light mode rains 0s */
 }
 
 /* dark */
@@ -71,6 +75,10 @@
   --purple: var(--flexoki-purple-400);
   --magenta: var(--flexoki-magenta-400);
   --selection: rgba(30, 95, 91, 0.3);
+  --motion: normal;    /* dark: the spiral zooms in and the ripple flows out from 0 to 1 */
+  --cake-bg: var(--flexoki-paper);    /* black cake on white here */
+  --cake-ink: var(--flexoki-black);
+  --cake-digit: "1";   /* dark mode rains 1s */
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) { @include dark; }
@@ -200,28 +208,31 @@ hr {
   align-items: flex-start;
   gap: 20px;
 }
-/* home: the cake, an ASCII slice drawn by assets/js/cake.js */
+/* home: the cake, the Portal icon drawn in falling digits (assets/js/cake.js masks rain with _includes/cake.html); colors invert the page */
 .cake {
   position: relative;
   flex-shrink: 0;
   width: 160px;
   height: 160px;
   margin: 4px 0 0;
-  border: 3px solid var(--flexoki-black);
+  border: 3px solid var(--cake-ink);
   border-radius: 10px;
   overflow: hidden;
-  background: var(--flexoki-paper);
+  background: var(--cake-bg);
+  color: var(--cake-ink);
 }
-.cake canvas { display: block; width: 100%; height: 100%; }
+.cake-art { display: block; width: 100%; height: 100%; padding: 8%; }
+.cake-notch { fill: var(--cake-bg); }
+.cake-rain { display: block; width: 100%; height: 100%; }
 
 /* left column: cake, then the golden spiral below it */
 .intro-side { flex-shrink: 0; display: flex; flex-direction: column; gap: 16px; }
-/* the three home visuals (cake, spiral, ripple) use fixed Flexoki colors: the same in light and dark */
+/* the spiral and ripple use fixed Flexoki colors (the cake inverts the page instead) */
 .golden-spiral { display: block; width: 160px; height: 160px; border-radius: 6px; overflow: hidden; background: var(--flexoki-black); }
 .golden-spiral .zoom {
   transform-box: view-box;
   transform-origin: 80px 80px;
-  animation: golden-zoom 4s linear infinite;   /* zooms inward forever; keyframes are in _includes/golden-spiral.html */
+  animation: golden-zoom 4s linear infinite var(--motion);   /* zooms in (dark) or out (light) forever; keyframes in _includes/golden-spiral.html */
 }
 .golden-spiral .sq { stroke: var(--flexoki-black); stroke-width: 1; vector-effect: non-scaling-stroke; }
 .golden-spiral .sq-red { fill: var(--flexoki-red-400); }
@@ -295,7 +306,7 @@ hr {
 .infinity-arrow .ripples .wave {
   transform-box: view-box;
   transform-origin: 0 36px;
-  animation: ripple-out 1.6s linear infinite;
+  animation: ripple-out 1.6s linear infinite var(--motion);   /* outward 0 → 1 in dark, inward 1 → 0 in light */
 }
 .infinity-arrow .ripples circle { vector-effect: non-scaling-stroke; }
 @keyframes ripple-out { to { transform: scale(1.17); } }

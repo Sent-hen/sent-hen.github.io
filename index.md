@@ -6,7 +6,7 @@ description: "Senthen Velmurugan: input, stuff, and output."
 <div class="intro">
   <div class="intro-side">
   <figure class="cake">
-    <canvas id="cake" width="160" height="160" role="img" aria-label="A slice of cake with a cherry on top, like the Portal cake icon, turning slowly"></canvas>
+    {% include cake.html %}
   </figure>
   <script src="{{ '/assets/js/cake.js' | relative_url }}" defer></script>
   {% include golden-spiral.html %}
