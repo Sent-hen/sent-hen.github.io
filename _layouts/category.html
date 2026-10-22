@@ -3,107 +3,79 @@ layout: default
 ---
 {% assign key = page.name | split: "." | first %}
 {% include category-items.html key=key %}
-<p class="small"><a href="{{ '/consumption/' | relative_url }}" class="muted">&larr; Consumption</a></p>
+<p class="small"><a href="{{ '/input/' | relative_url }}" class="muted">&larr; Input</a></p>
 <h1>{{ page.title }}</h1>
 
 {% if items.size > 0 %}
 <div class="sort-bar small" id="sort-bar" hidden>
-  <label for="f-status" class="muted">Status</label>
-  <select id="f-status">
-    <option value="">All</option>
-    <option value="queued">Queued</option>
-    <option value="active">Active</option>
-    <option value="paused">Paused</option>
-    <option value="done">Done</option>
-    <option value="dropped">Dropped</option>
-  </select>
-  <label class="fav-toggle muted"><input type="checkbox" id="f-fav"> Favorites</label>
+  <label class="fav-toggle muted"><input type="checkbox" id="f-active"> Active only</label>
   <label for="sort-by" class="muted">Sort by</label>
   <select id="sort-by">
     <option value="index">Added</option>
-    <option value="rating">Rating</option>
-    <option value="status">Status</option>
     <option value="year">Year</option>
-    <option value="title">Title</option>
+    <option value="title">Alphabetical</option>
     <option value="creator">{{ page.creator_label | default: "Creator" }}</option>
     <option value="form">Form</option>
-    <option value="rotation">Rotation</option>
   </select>
   <button type="button" id="sort-dir" class="sort-dir" aria-label="Reverse order" title="Reverse order">&darr;</button>
 </div>
 
 <ul class="entries collection" id="collection">
 {% for it in items %}
-  {% assign rot = it.rotation | downcase %}
-  {% assign r = it.rating | plus: 0 %}
-  {% assign st = it.status | downcase %}
   <li class="entry item"
       data-index="{{ forloop.index }}"
-      data-rating="{% if r >= 1 and r <= 7 %}{{ r }}{% endif %}"
-      data-status="{{ st }}"
-      data-favorite="{% if it.favorite == true %}1{% endif %}"
+      data-active="{% if it.status == 'active' %}1{% endif %}"
       data-year="{{ it.year }}"
       data-title="{{ it.title | escape }}"
       data-creator="{{ it.creator | escape }}"
-      data-form="{{ it.form | escape }}"
-      data-rotation="{% if rot == 'in' %}in{% endif %}">
+      data-form="{{ it.form | escape }}">
     <div class="entry-head">
-      <span class="entry-title"><a href="{{ it.url | relative_url }}">{{ it.title }}</a></span>
-      <span class="entry-when">{% include favorite.html value=it.favorite %}{% include status.html value=it.status %} {% include rating.html value=it.rating %}</span>
+      <span class="entry-title"><a href="{{ it.url | relative_url }}" class="plain"><u>{% include item-title.html item=it %}</u></a></span>
+      <span class="entry-when">{% include status.html value=it.status %}</span>
     </div>
-    <div class="entry-sub">{% if rot == 'in' %}<span class="rot rot-in">In rotation</span> · {% endif %}{{ it.creator }}{% if it.year %} · {{ it.year }}{% endif %}{% if it.form %} · {{ it.form }}{% endif %}{% if it.source %} · <i>{{ it.source }}</i>{% endif %}</div>
+    <div class="entry-sub">{{ it.creator }}{% if it.year %} · {{ it.year }}{% endif %}{% if it.form %} · {{ it.form }}{% endif %}{% if it.source %} · <i>{{ it.source }}</i>{% endif %}</div>
     {% assign note = it.content | strip_html | strip %}
     <div class="entry-desc item-note-preview">{% if note == "" or note == "TODO" %}<p class="todo">Note TODO</p>{% else %}<p>{{ note | truncatewords: 40 }}</p>{% endif %}</div>
   </li>
 {% endfor %}
 </ul>
+<p class="muted small" id="filter-empty" hidden>Nothing active here.</p>
 
 <script>
+  // Sort and "Active only" for this category. Without JavaScript the list shows in file order.
   (function () {
     var list = document.getElementById('collection');
     var by = document.getElementById('sort-by');
     var dir = document.getElementById('sort-dir');
+    var active = document.getElementById('f-active');
+    var empty = document.getElementById('filter-empty');
     var desc = false;
     document.getElementById('sort-bar').hidden = false;
-    // Numeric keys sort high-to-low first; text keys A-Z. Empty values always go last.
-    var numeric = { index: false, year: true, rating: true };
-    var statusRank = { active: 1, queued: 2, paused: 3, done: 4, dropped: 5 };
-    var text = { title: 1, creator: 1, form: 1, rotation: 1 };
-    var filter = document.getElementById('f-status');
-    var fav = document.getElementById('f-fav');
-    var empty = document.getElementById('filter-empty');
-    function sort() {
+    function apply() {
       var key = by.value;
       var items = Array.prototype.slice.call(list.children);
-      var flip = (numeric[key] ? -1 : 1) * (desc ? -1 : 1);
-      if (key === 'index') flip = desc ? -1 : 1;
+      var flip = (key === 'year' ? -1 : 1) * (desc ? -1 : 1);   // year: newest first; text: A-Z
       items.sort(function (a, b) {
         var x = a.dataset[key], y = b.dataset[key];
-        if (key === 'status') { x = statusRank[x] || ''; y = statusRank[y] || ''; }
         if (!x && !y) return a.dataset.index - b.dataset.index;
         if (!x) return 1;
         if (!y) return -1;
-        var d = (!(key in text) || key === 'status') ? Number(x) - Number(y) : x.localeCompare(y, undefined, { sensitivity: 'base' });
+        var d = key === 'index' || key === 'year' ? Number(x) - Number(y) : x.localeCompare(y, undefined, { sensitivity: 'base' });
         return d !== 0 ? d * flip : a.dataset.index - b.dataset.index;
       });
-      items.forEach(function (li) { list.appendChild(li); });
       var shown = 0;
       items.forEach(function (li) {
-        li.hidden = (!!filter.value && li.dataset.status !== filter.value) || (fav.checked && !li.dataset.favorite);
+        list.appendChild(li);
+        li.hidden = active.checked && !li.dataset.active;
         if (!li.hidden) shown++;
       });
       empty.hidden = shown > 0;
     }
-    filter.addEventListener('change', sort);
-    fav.addEventListener('change', sort);
-    by.addEventListener('change', function () { desc = false; dir.innerHTML = '&darr;'; sort(); });
-    dir.addEventListener('click', function () { desc = !desc; dir.innerHTML = desc ? '&uarr;' : '&darr;'; sort(); });
+    active.addEventListener('change', apply);
+    by.addEventListener('change', function () { desc = false; dir.innerHTML = '&darr;'; apply(); });
+    dir.addEventListener('click', function () { desc = !desc; dir.innerHTML = desc ? '&uarr;' : '&darr;'; apply(); });
   })();
 </script>
-<p class="muted small" id="filter-empty" hidden>Nothing matches those filters.</p>
 {% else %}
 <p class="muted">Nothing here yet.</p>
 {% endif %}
-
-<hr>
-{% include rating-rules.html %}

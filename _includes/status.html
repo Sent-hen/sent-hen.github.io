@@ -1,3 +1,3 @@
-{%- comment -%} Status badge. Usage: {% include status.html value=it.status %}. Values: queued, active, paused, done, dropped. {%- endcomment -%}
+{%- comment -%} Active tag: shows only when `status: active`. Usage: {% include status.html value=it.status %} {%- endcomment -%}
 {%- assign s = include.value | downcase -%}
-{%- if s == "queued" or s == "active" or s == "paused" or s == "done" or s == "dropped" -%}<span class="status-tag status-{{ s }}">{{ s }}</span>{%- else -%}<span class="todo">status TODO</span>{%- endif -%}
+{%- if s == "active" -%}<span class="status-tag status-active">active</span>{%- endif -%}

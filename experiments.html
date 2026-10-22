@@ -3,7 +3,7 @@ title: Experiments
 permalink: /experiments/
 description: "Experiments by Senthen Velmurugan."
 ---
-<p class="small"><a href="{{ '/creation/' | relative_url }}" class="muted">&larr; Creation</a></p>
+<p class="small"><a href="{{ '/output/' | relative_url }}" class="muted">&larr; Output</a></p>
 <h1>Experiments</h1>
 
 <p class="muted">Smaller things I've tried, to learn something.</p>
@@ -12,12 +12,13 @@ description: "Experiments by Senthen Velmurugan."
 
 {% assign experiments = site.data.experiments %}
 {% if experiments and experiments.size > 0 %}
-<ul class="entries">
+{% include sort-bar.html target="experiment-list" %}
+<ul class="entries" id="experiment-list">
 {% for e in experiments %}
-  <li class="entry">
+  <li class="entry" data-index="{{ forloop.index }}" data-title="{{ e.title | escape }}" data-year="{{ e.when | slice: 0, 4 }}">
     <div class="entry-head">
       <span class="entry-title">{% if e.link %}<a href="{{ e.link }}">{{ e.title }}</a>{% else %}{{ e.title }}{% endif %}</span>
-      <span class="entry-when">{% include favorite.html value=e.favorite %}{% include status.html value=e.status %} {% include rating.html value=e.rating %}</span>
+      <span class="entry-when">{% include status.html value=e.status %}</span>
     </div>
     {% if e.when %}<div class="entry-sub">{{ e.when }}</div>{% endif %}
     {% if e.summary %}<div class="entry-desc"><p>{{ e.summary }}</p></div>{% endif %}
@@ -28,5 +29,3 @@ description: "Experiments by Senthen Velmurugan."
 <p class="muted">Nothing here yet.</p>
 {% endif %}
 
-<hr>
-{% include rating-rules.html %}

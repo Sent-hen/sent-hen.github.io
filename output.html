@@ -1,0 +1,35 @@
+---
+title: Output
+permalink: /output/
+description: "Output: what Senthen Velmurugan has built, tried, and worked on."
+---
+<h1>Output</h1>
+
+<p>What I've built and where I've built it.</p>
+
+{% comment %} Featured: the first 3 projects in _data/projects.yml. Reorder that file to change them. {% endcomment %}
+<p class="label">Featured</p>
+
+<section class="rotation">
+  <ul class="entries">
+  {% for p in site.data.projects limit: 3 %}
+    <li class="entry">
+      <div class="entry-head">
+        <span class="entry-title"><a href="{% if p.writeup %}{{ '/projects/' | append: p.slug | append: '/' | relative_url }}{% else %}{{ '/projects/' | relative_url }}#{{ p.slug }}{% endif %}">{{ p.title }}</a></span>
+        <span class="entry-when">{% include status.html value=p.status %}</span>
+      </div>
+      <div class="entry-sub">{{ p.when }} · {% for d in p.domains %}{% assign dc = d | downcase | replace: "/", "-" | replace: " ", "-" %}<span class="dom dom-{{ dc }}">{{ d }}</span>{% unless forloop.last %} · {% endunless %}{% endfor %}</div>
+      <div class="entry-desc"><p>{{ p.summary }}</p></div>
+    </li>
+  {% endfor %}
+  </ul>
+</section>
+
+<hr>
+
+<ul class="rows categories">
+  <li><a href="{{ '/projects/' | relative_url }}" class="plain"><span class="row"><u>Projects</u><span class="count muted small">{{ site.data.projects | size }}</span></span></a></li>
+  <li><a href="{{ '/experiments/' | relative_url }}" class="plain"><span class="row"><u>Experiments</u><span class="count muted small">{{ site.data.experiments | size }}</span></span></a></li>
+  <li><a href="{{ '/experience/' | relative_url }}" class="plain"><span class="row"><u>Experience</u></span></a></li>
+</ul>
+

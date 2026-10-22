@@ -4,7 +4,7 @@ permalink: /experience/
 description: "Experience — Senthen Velmurugan."
 ---
 
-<p class="small"><a href="{{ '/creation/' | relative_url }}" class="muted">&larr; Creation</a></p>
+<p class="small"><a href="{{ '/output/' | relative_url }}" class="muted">&larr; Output</a></p>
 
 # Experience
 

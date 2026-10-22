@@ -1,9 +1,7 @@
 # Projects shown on /projects/, in this order. Move an entry to reorder the page.
 #
 # slug     anchor id on /projects/, and the writeup URL (/projects/<slug>/) when writeup: true
-# status   queued | active | paused | done | dropped   (same tags as Consumption)
-# rating   1-7 on the shared scale, or TODO
-# favorite optional: true adds the ★ favorite tag
+# status   active, or leave it out (active shows a tag)
 # writeup  true if _projects/<slug>.md exists; the title then links to it
 # domains  Backend/infra | Security | AI/ML | other short labels
 # tags     tech, ordered by how heavily the project uses it (most first)
@@ -14,8 +12,6 @@
   title: P&ID Digitizer
   when: "2026"
   status: active
-  rating: TODO
-  favorite: true
   domains: [AI/ML, Backend/infra]
   summary: Turns scanned engineering drawings (P&IDs) into machine-readable graphs, with a review UI for correcting low-confidence output.
   tags: [Python, PyTorch, OpenCV, FastAPI, Docker, NetworkX, SQLite]
@@ -33,8 +29,6 @@
   title: DEXPI P&ID Viewer
   when: "2026"
   status: active
-  rating: TODO
-  favorite: true
   domains: [Tooling]
   summary: A dependency-free browser viewer and validator for DEXPI 2.0.1 plant-model XML.
   tags: [JavaScript, Python, XML, SVG]
@@ -52,7 +46,6 @@
   title: Personal VPN
   when: "2026"
   status: active
-  rating: TODO
   domains: [Security, Backend/infra]
   summary: One-command private WireGuard server in the cloud, with a client tool and a written threat model.
   tags: [Terraform, Go, Bash, WireGuard, Linux, nftables]
@@ -70,7 +63,6 @@
   title: "Metal-to-Pod: self-hosted CI/CD"
   when: "2026"
   status: active
-  rating: TODO
   domains: [Backend/infra]
   summary: A commit-to-pod delivery path from VMware VMs to Kubernetes with no cloud services, run with SLOs, rollback, and failure drills.
   tags: [Kubernetes, Bash, Go, Docker, Jenkins, Prometheus, Vagrant]
@@ -88,7 +80,6 @@
   title: Word2Eq
   when: "2024 · rebuilt 2026"
   status: active
-  rating: TODO
   domains: [AI/ML, Backend/infra]
   summary: A reproducible training pipeline and SLO-instrumented inference service that turns math word problems into verified equations.
   tags: [Python, PyTorch, FastAPI, Docker, Prometheus, Kubernetes, GitHub Actions]
@@ -106,7 +97,6 @@
   title: Honeypot and attack map
   when: "2026"
   status: active
-  rating: TODO
   domains: [Security, Backend/infra]
   summary: An isolated SSH/Telnet honeypot on AWS that ships attacker activity off-box for enrichment, mapping, and ML campaign analysis.
   tags: [Terraform, AWS, Bash, Docker, Cowrie, Vector]
@@ -124,7 +114,6 @@
   title: The $2 billion patch note
   when: "2026"
   status: active
-  rating: TODO
   domains: [Data analysis]
   summary: A financial event study of how one game update repriced a multi-billion-dollar virtual item market overnight.
   tags: [Python, pandas, NumPy, SciPy, Matplotlib, pytest]
@@ -142,7 +131,6 @@
   title: The limits of foresight
   when: "2026"
   status: active
-  rating: TODO
   domains: [AI/ML, Research]
   summary: A cognitive-science project testing whether human lookahead in Go and belief recursion in poker are the same depth-limited computation.
   tags: [Python, LaTeX]
@@ -160,7 +148,6 @@
   title: The Thousand and One Words
   when: "2026"
   status: active
-  rating: TODO
   domains: [Learning tools]
   summary: A 100-chapter Arabian Nights comic epic that teaches the 1,000 most-used SAT words, generated from one script.
   tags: [Python, HTML, SVG]
@@ -178,7 +165,6 @@
   title: Personal website
   when: "2023 · rebuilt 2026"
   status: active
-  rating: TODO
   domains: [Web]
   summary: This site. A static Jekyll site on GitHub Pages that logs what I consume and what I create.
   tags: [Jekyll, Liquid, HTML, CSS, JavaScript]
@@ -187,7 +173,7 @@
   bullets:
     - "Built a personal site with no server, no database, and no build pipeline to maintain, by publishing a static Jekyll site straight from the main branch through GitHub Pages."
     - "Made adding an entry a one-file change: each of 227 logged books, films, songs, poems, and products is a Markdown file whose folder sets its category, so no index or list needs updating."
-    - "Kept projects data-driven in a single YAML file, so filters for domain, tech, status, and favorites, tag rankings, and counts are all generated from it rather than written by hand."
-    - "Gave Consumption and Creation one shared vocabulary of tags, a 1-7 rating scale, five statuses, and favorites, with the rules shown at the bottom of every page that uses them."
+    - "Kept projects data-driven in a single YAML file, so the domain and tech filters, tag rankings, and counts are all generated from it rather than written by hand."
+    - "Kept tagging minimal on purpose: one shared active tag across Input and Output marks what is in use or in progress right now, and nothing else."
     - "Added filtering and sorting with a small amount of plain JavaScript and no libraries, while keeping every page fully readable with JavaScript turned off."
     - "Designed it around the Flexoki palette with light and dark themes, then trimmed it repeatedly, removing unused pages, styles, and data so the whole site stays easy to maintain by hand."

@@ -1,0 +1,24 @@
+---
+title: Stuff
+permalink: /stuff/
+description: "Stuff Senthen Velmurugan didn't want to figure out."
+---
+<h1>Stuff</h1>
+
+<p>Stuff I didn't want to figure out.</p>
+
+{% comment %} Any Input item with `stuff: true` in its front matter shows up here. {% endcomment %}
+{% assign stuff = site.input | where: "stuff", true | sort: "title" %}
+{% if stuff.size > 0 %}
+{% include sort-bar.html target="stuff-list" %}
+<ul class="entries" id="stuff-list">
+{% for it in stuff %}
+  <li class="entry" data-index="{{ forloop.index }}" data-title="{{ it.title | escape }}" data-year="{{ it.year }}">
+    <div class="entry-head"><span class="entry-title"><a href="{{ it.url | relative_url }}" class="plain"><u>{% include item-title.html item=it %}</u></a></span><span class="entry-when">{% include status.html value=it.status %}</span></div>
+    <div class="entry-sub">{{ it.creator }}{% if it.year %} · {{ it.year }}{% endif %}{% if it.form %} · {{ it.form }}{% endif %}</div>
+  </li>
+{% endfor %}
+</ul>
+{% else %}
+<p class="muted">Nothing here yet.</p>
+{% endif %}

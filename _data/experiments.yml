@@ -3,9 +3,7 @@
 #
 # - title: Name of the experiment
 #   when: "2026"
-#   status: active          # queued, active, paused, done, or dropped
-#   rating: TODO            # 1-7 on the shared scale
-#   favorite: true          # optional
+#   status: active          # optional: shows the active tag
 #   summary: One sentence on what I tried and what happened.
 #   link: https://...       # optional: repo, notebook, or write-up
 []

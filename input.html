@@ -1,0 +1,42 @@
+---
+title: Input
+permalink: /input/
+description: "Input: raw sources Senthen Velmurugan cared to log."
+---
+<h1>Input</h1>
+
+<p>Raw sources. A collection of things I cared to log.</p>
+
+{% assign categories = site.pages | where: "layout", "category" | sort: "order", "last" %}
+
+<p class="label">Active</p>
+
+{% comment %} Items marked `status: active`, grouped by category. {% endcomment %}
+{% for cat in categories %}
+  {% assign key = cat.name | split: "." | first %}
+  {% include category-items.html key=key %}
+  {% assign current = items | where: "status", "active" %}
+  {% if current.size > 0 %}
+<section class="rotation">
+  <p class="label sub"><a href="{{ cat.url | relative_url }}">{{ cat.title }}</a></p>
+  <ul class="entries">
+  {% for it in current %}
+    <li class="entry">
+      <div class="entry-head"><span class="entry-title"><a href="{{ it.url | relative_url }}" class="plain"><u>{% include item-title.html item=it %}</u></a></span><span class="entry-when">{% include status.html value=it.status %}</span></div>
+      <div class="entry-sub">{{ it.creator }}{% if it.year %} · {{ it.year }}{% endif %}{% if it.form %} · {{ it.form }}{% endif %}</div>
+    </li>
+  {% endfor %}
+  </ul>
+</section>
+  {% endif %}
+{% endfor %}
+
+<hr>
+
+<p class="label">All</p>
+
+<ul class="rows categories">
+{% for cat in categories %}{% assign key = cat.name | split: "." | first %}{% include category-items.html key=key %}
+  <li><a href="{{ cat.url | relative_url }}" class="plain"><span class="row"><u>{{ cat.title }}</u><span class="count muted small">{{ items.size }}</span></span></a></li>
+{% endfor %}
+</ul>

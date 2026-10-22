@@ -1,14 +1,14 @@
 ---
 title: Home
-description: "Senthen Velmurugan: consumption and creation."
+description: "Senthen Velmurugan: input, stuff, and output."
 ---
 
 <div class="intro">
   <div class="intro-side">
-  <figure class="intro-gif">
-    <img src="{{ '/assets/img/cake.gif' | relative_url }}" width="160" height="160" alt="Animated ASCII-art cake">
-    <figcaption>the cake is a lie</figcaption>
+  <figure class="cake">
+    <canvas id="cake" width="160" height="160" role="img" aria-label="A slice of cake with a cherry on top, like the Portal cake icon, turning slowly"></canvas>
   </figure>
+  <script src="{{ '/assets/js/cake.js' | relative_url }}" defer></script>
   {% include golden-spiral.html %}
   </div>
   <div class="intro-text">
@@ -19,7 +19,7 @@ description: "Senthen Velmurugan: consumption and creation."
   <div class="duality">
     <section>
       <p class="label">Who I am</p>
-      <p>I'm Senthen.</p>
+      <p>I'm Senthen <span class="t-ph">(SAYN-thuhn)</span>.</p>
       <p>I like contrasts.</p>
       <p class="iam">I'm a(n)&hellip;</p>
       <ul class="iam-list">
