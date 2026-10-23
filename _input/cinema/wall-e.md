@@ -7,5 +7,4 @@ form: "Cinema"
 source: "Pixar Animation Studios"
 order: 6
 stuff: true
-pinned: 2
 ---

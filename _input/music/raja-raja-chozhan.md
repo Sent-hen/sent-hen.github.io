@@ -5,7 +5,7 @@ lang: ta
 phonetic: "RAH-juh RAH-juh CHOH-zhun"
 creator: "Ilaiyaraaja, sung by K. J. Yesudas"
 year: 1987
-form: "Song"
+form: "Music"
 source: "Rettai Vaal Kuruvi (Tamil film soundtrack)"
 order: 3
 stuff: true

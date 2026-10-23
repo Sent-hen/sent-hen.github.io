@@ -7,5 +7,4 @@ form: "Cinema"
 source: "Googly Films"
 order: 1
 stuff: true
-pinned: 4
 ---

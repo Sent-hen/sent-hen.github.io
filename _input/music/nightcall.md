@@ -3,6 +3,6 @@ title: "Nightcall"
 phonetic: "NYT-kawl"
 creator: "Kavinsky"
 year: 2010
-form: "Song"
+form: "Music"
 order: 28
 ---

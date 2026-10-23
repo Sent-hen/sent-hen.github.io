@@ -6,5 +6,4 @@ year: 2006
 form: "Cinema"
 order: 24
 stuff: true
-pinned: 3
 ---

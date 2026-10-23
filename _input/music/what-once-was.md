@@ -3,6 +3,6 @@ title: "What Once Was"
 phonetic: "WUT WUNSS WUZ"
 creator: "Her's"
 year:
-form: "Song"
+form: "Music"
 order: 26
 ---

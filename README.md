@@ -188,11 +188,10 @@ lang: fr
 phonetic: "luh fess-TAN"
 creator: "Camille"
 year: 2007
-form: "Song"
+form: "Music"
 order: 10
 status: active              # optional
 stuff: true                 # optional: also list it on /stuff/
-pinned: 1                   # optional: keep it at the top of /stuff/, 1 first
 ---
 
 The note, in Markdown.
@@ -220,7 +219,7 @@ The only tag. Shows when `status: active`, on Input items.
 
 ## 15. Stuff
 
-Every Input item with `stuff: true`, sortable alphabetically or by year. Items with `pinned: 1`, `2`, ... stay on top in that order (The Truman Show, WALL-E, Children of Men, The Fall, American Pie, Vienna).
+Every Input item with `stuff: true`, sorted by category (Cinema, then Music, ...) and title, or alphabetically, or by year.
 
 `stuff.html`
 
@@ -230,14 +229,14 @@ Every Input item with `stuff: true`, sortable alphabetically or by year. Items w
 
 ## 15a. Alphabetical / Year sort
 
-A sort control for simple lists (Stuff). Each list item carries `data-title` and `data-year`.
+A sort control for simple lists (Stuff). Each list item carries `data-title` and `data-year`, and `data-category` when `category=true` adds the Category sort (then the default).
 
 `_includes/sort-bar.html`
 
 ```liquid
-{% include sort-bar.html target="stuff-list" %}
+{% include sort-bar.html target="stuff-list" category=true %}
 <ul id="stuff-list">
-  <li data-index="1" data-title="Vienna" data-year="1977">…</li>
+  <li data-index="1" data-category="music" data-title="Vienna" data-year="1977">…</li>
 </ul>
 ```
 

@@ -3,6 +3,7 @@ title: "At the Door"
 phonetic: "at thuh DOR"
 creator: "The Strokes"
 year: 2020
-form: "Song"
+form: "Music"
 order: 57
+stuff: true
 ---

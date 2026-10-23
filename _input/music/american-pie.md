@@ -3,9 +3,8 @@ title: "American Pie"
 phonetic: "uh-MER-ih-kun PY"
 creator: "Don McLean"
 year: 1971
-form: "Song"
+form: "Music"
 source: "American Pie (United Artists)"
 order: 1
 stuff: true
-pinned: 5
 ---
