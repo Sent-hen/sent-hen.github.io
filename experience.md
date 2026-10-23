@@ -8,7 +8,7 @@ description: "Experience — Senthen Velmurugan."
 
 # Experience
 
-<p class="status">Currently a part-time student · open to SWE/SDE, FDE, SRE, MLE, DevOps, and MLOps roles</p>
+<p class="status">Currently a part-time student · open to roles where I can be of service</p>
 
 <!-- Keep entries newest first. Dates are YYYY MM. -->
 
