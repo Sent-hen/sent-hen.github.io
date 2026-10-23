@@ -5,7 +5,7 @@ description: "Stuff, by Senthen Velmurugan."
 ---
 <h1>Stuff</h1>
 
-{% comment %} Any Input item with `stuff: true` in its front matter shows up here, by category (its folder) then title. {% endcomment %}
+{% comment %} Any Input item with `stuff: true` in its front matter shows up here, by category (its folder) then title. Input pages are not published, so entries are not links. {% endcomment %}
 {% assign stuff = site.input | where: "stuff", true | sort: "relative_path" %}
 {% if stuff.size > 0 %}
 {% include sort-bar.html target="stuff-list" category=true %}
@@ -13,7 +13,7 @@ description: "Stuff, by Senthen Velmurugan."
 {% for it in stuff %}
   {% assign path = it.relative_path | split: "/" %}
   <li class="entry" data-index="{{ forloop.index }}" data-category="{{ path[1] }}" data-title="{{ it.title | escape }}" data-year="{{ it.year }}">
-    <div class="entry-head"><span class="entry-title"><a href="{{ it.url | relative_url }}" class="plain"><u>{% include item-title.html item=it %}</u></a></span><span class="entry-when">{% include status.html value=it.status %}</span></div>
+    <div class="entry-head"><span class="entry-title">{% include item-title.html item=it phonetic=true %}</span><span class="entry-when">{% include status.html value=it.status %}</span></div>
     <div class="entry-sub">{{ it.creator }}{% if it.year %} · {{ it.year }}{% endif %}{% if it.form %} · {{ it.form }}{% endif %}</div>
   </li>
 {% endfor %}

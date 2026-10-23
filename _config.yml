@@ -1,5 +1,5 @@
 title: Senthen Velmurugan
-description: "Senthen Velmurugan: input, stuff, and output."
+description: "Senthen Velmurugan: output."
 author: Senthen Velmurugan
 url: "https://sent-hen.github.io"
 baseurl: ""
@@ -10,8 +10,8 @@ plugins:
 permalink: pretty
 
 collections:
-  input:             # one file per item in _input/<category>/; the folder is the category, the body is the note
-    output: true
+  input:             # one file per item in _input/<category>/; kept in the repo but not published (output: true to bring back)
+    output: false
     permalink: /input/:path/
   notes:             # one note per file in _notes/; each is about an experiment in _data/experiments.yml
     output: true
@@ -34,6 +34,9 @@ defaults:
       layout: "default"
 
 exclude:
+  # Input is not published; the files stay so it can come back. Stuff reads the input items directly.
+  - input.html
+  - input
   - Gemfile
   - Gemfile.lock
   - README.md

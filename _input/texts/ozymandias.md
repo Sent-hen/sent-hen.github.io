@@ -6,6 +6,7 @@ year: 1818
 form: "Sonnet"
 source: "The Examiner, 11 January 1818"
 order: 1
+redirect_from: /input/poems/ozymandias/
 ---
 
 <div class="poem">I met a traveller from an antique land,

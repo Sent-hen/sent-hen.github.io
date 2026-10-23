@@ -20,14 +20,14 @@ Every page is wrapped in the same head, nav, and footer.
 </html>
 ```
 
-## 2. Nav: Input · Stuff · Output
+## 2. Nav: Stuff · Output
 
 The links after the name. Each entry is `Label:/url/` plus any other sections it should highlight for.
 
 `_includes/nav.html`
 
 ```liquid
-{% assign links = "Input:/input/,Stuff:/stuff/,Output:/output/:/experiments/:/notes/:/experience/" | split: "," %}
+{% assign links = "Stuff:/stuff/,Output:/output/:/experiments/:/notes/:/experience/" | split: "," %}
 ```
 
 ## 3. Theme toggle
@@ -66,7 +66,7 @@ All colors are variables at the top of the stylesheet, redefined for dark mode. 
 
 ## 5a. Home: banner
 
-The jumping spider photo across the top of the home page, below the nav, shown whole at the column width. Credit is under [Credits](#credits).
+The jumping spider photo across the top of the home page, below the nav, shown whole at the column width, with the caption "To cultivate a sense of curiosity." below it (`.banner-caption`). Credit is under [Credits](#credits).
 
 `assets/img/jumping-spider.webp`, `index.md`, `assets/css/style.scss` (`.banner`)
 
@@ -118,14 +118,14 @@ Below the spiral: a grid with an x axis through the middle, arrowheads on both e
 .axes-dot-x { animation: axes-sway 2.4s ease-in-out infinite alternate; }   /* left and right */
 ```
 
-## 8. Home: epigraph and the two halves
+## 8. Home: my quotes and the two halves
 
-The 0 → 1 ripple (section 9) sits first, then the Camus and Russell quotes, then "Who I am" and "Who am I" side by side. "Who am I" ends with "Currently mastering…" and "Cannot master in my lifetime…" lists (`.iam`, `.iam-list`). The site note and a `.quotes` block of two more quotes close the column.
+My two quotes sit first (`.quotes`, no attribution: originality is the art of concealing your source), then the 0 → 1 ripple (section 9), then "Who I am" and "Who am I" side by side. "Who am I" ends with "Currently mastering…" and "Cannot master in my lifetime…" lists (`.iam`, `.iam-list`). The site note closes the column.
 
 `index.md`
 
 ```html
-<blockquote class="epigraph">…<cite>Albert Camus, <i>The Myth of Sisyphus</i> (1942)</cite></blockquote>
+<div class="quotes"><blockquote class="epigraph"><p>Originality is the art of concealing your source.</p></blockquote> … </div>
 <div class="duality">
   <section><p class="label">Who I am</p> … </section>
   <section><p class="label">Who am I</p> … </section>
@@ -143,9 +143,13 @@ Circles that all touch at 0, each 1.17× the last; growing the group by 1.17× m
 @keyframes ripple-out { to { transform: scale(1.17); } }
 ```
 
+## Not published: Input (sections 10 to 14)
+
+The site shows Stuff and Output. Input (raw sources) stays in the repo but is not built: `_config.yml` sets the `input` collection to `output: false` and excludes `input.html` and `input/`. Stuff still lists the input items marked `stuff: true`, as plain text rather than links. To bring Input back, set `output: true`, remove those two lines from `exclude`, add `Input:/input/,` to the front of the nav links, and link the Stuff titles again.
+
 ## 10. Input
 
-Raw sources. Shows active items, then every category with its count. Categories are found automatically.
+Raw sources. Shows active items, then every category with its count. Categories are found automatically. Texts holds poems, essays, aphorisms, and the sources behind the home-page quotes (The Myth of Sisyphus, the Face to Face interview); old /input/poems/ and /input/essays/ links redirect to it.
 
 `input.html`
 
@@ -195,14 +199,14 @@ stuff: true                 # optional: also list it on /stuff/
 ---
 ```
 
-## 13. Item title: original · English · phonetic
+## 13. Item title: original · English (· phonetic on Stuff only)
 
 `_includes/item-title.html`
 
 ```liquid
 {% if i.original and i.original != i.title %}<span class="t-orig">{{ i.original }}</span> · {% endif %}
 <span class="t-en">{{ i.title }}</span>
-{% if i.phonetic %} · <span class="t-ph">{{ i.phonetic }}</span>{% endif %}
+{% if include.phonetic and i.phonetic %} · <span class="t-ph">{{ i.phonetic }}</span>{% endif %}   <!-- phonetic=true on /stuff/ only -->
 ```
 
 ## 14. Active tag
@@ -298,13 +302,13 @@ Work, education, skills, and organizations, newest first, with dates as YYYY MM,
 
 ## 20. Site settings
 
-Title, the `input` and `notes` collections, their layouts, and the redirect plugin for old links.
+Title, the `input` (unpublished) and `notes` collections, their layouts, what is excluded, and the redirect plugin for old links.
 
 `_config.yml`
 
 ```yaml
 collections:
-  input:    { output: true, permalink: /input/:path/ }
+  input:    { output: false, permalink: /input/:path/ }   # not published
   notes:    { output: true, permalink: /notes/:path/ }
 ```
 
