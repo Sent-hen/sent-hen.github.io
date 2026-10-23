@@ -221,7 +221,7 @@ The only tag. Shows when `status: active`, on Input items.
 
 ## 15. Stuff
 
-Every Input item with `stuff: true`, sortable alphabetically or by year. Items with `pinned: 1`, `2`, ... stay on top in that order (The Fall, The Truman Show, About Time, WALL-E, Children of Men).
+Every Input item with `stuff: true`, sortable alphabetically or by year. Items with `pinned: 1`, `2`, ... stay on top in that order (The Truman Show, WALL-E, Children of Men, The Fall, American Pie, Vienna).
 
 `stuff.html`
 

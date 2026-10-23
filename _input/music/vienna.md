@@ -7,4 +7,5 @@ form: "Song"
 source: "The Stranger (Columbia)"
 order: 2
 stuff: true
+pinned: 6
 ---

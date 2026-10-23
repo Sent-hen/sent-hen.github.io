@@ -7,5 +7,5 @@ form: "Cinema"
 source: "Googly Films"
 order: 1
 stuff: true
-pinned: 1   # position at the top of /stuff/
+pinned: 4
 ---

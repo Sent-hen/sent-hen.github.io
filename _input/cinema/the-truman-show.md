@@ -7,5 +7,5 @@ form: "Cinema"
 source: "Paramount Pictures"
 order: 5
 stuff: true
-pinned: 2
+pinned: 1
 ---
