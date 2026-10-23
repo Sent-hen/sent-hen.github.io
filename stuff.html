@@ -1,11 +1,9 @@
 ---
 title: Stuff
 permalink: /stuff/
-description: "Stuff Senthen Velmurugan didn't want to figure out."
+description: "Stuff, by Senthen Velmurugan."
 ---
 <h1>Stuff</h1>
-
-<p>Stuff I didn't want to figure out.</p>
 
 {% comment %} Any Input item with `stuff: true` in its front matter shows up here; `pinned: 1`, `2`, ... keeps it on top in that order. {% endcomment %}
 {% assign all = site.input | where: "stuff", true | sort: "title" %}

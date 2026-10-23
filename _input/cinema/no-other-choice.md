@@ -5,6 +5,6 @@ lang: ko
 phonetic: "UH-jjul-soo-gah UHP-dah"
 creator: "Park Chan-wook"
 year: 2025
-form: "Film"
+form: "Cinema"
 order: 58
 ---

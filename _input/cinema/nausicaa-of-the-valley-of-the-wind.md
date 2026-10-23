@@ -5,6 +5,6 @@ lang: ja
 phonetic: "KAH-zeh noh TAH-nee noh NOW-shee-kah"
 creator: "Hayao Miyazaki"
 year: 1984
-form: "Animated film"
+form: "Cinema"
 order: 55
 ---

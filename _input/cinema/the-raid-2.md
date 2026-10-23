@@ -5,6 +5,6 @@ lang: id
 phonetic: "buh-RAHN-dahl"
 creator: "Gareth Evans"
 year: 2014
-form: "Film"
+form: "Cinema"
 order: 97
 ---

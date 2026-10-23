@@ -5,6 +5,6 @@ lang: zh
 phonetic: "WOH hoo tsahng LOONG"
 creator: "Ang Lee"
 year: 2000
-form: "Film"
+form: "Cinema"
 order: 28
 ---

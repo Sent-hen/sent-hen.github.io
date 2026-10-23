@@ -5,6 +5,6 @@ lang: zh-HK
 phonetic: "JING moh MOON"
 creator: "Lo Wei"
 year: 1972
-form: "Film"
+form: "Cinema"
 order: 35
 ---

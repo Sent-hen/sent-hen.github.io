@@ -5,6 +5,6 @@ lang: zh-HK
 phonetic: "NGAW see SOY"
 creator: "Jackie Chan and Benny Chan"
 year: 1998
-form: "Film"
+form: "Cinema"
 order: 109
 ---

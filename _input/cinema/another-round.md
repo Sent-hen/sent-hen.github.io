@@ -5,6 +5,6 @@ lang: da
 phonetic: "DROOK"
 creator: "Thomas Vinterberg"
 year: 2020
-form: "Film"
+form: "Cinema"
 order: 15
 ---

@@ -5,6 +5,6 @@ lang: ta
 phonetic: "vih-roo-MAHN-dee"
 creator: "Kamal Haasan"
 year: 2004
-form: "Film"
+form: "Cinema"
 order: 105
 ---

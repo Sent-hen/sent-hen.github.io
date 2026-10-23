@@ -3,6 +3,6 @@ title: "The Godfather"
 phonetic: "thuh GOD-fah-ther"
 creator: "Francis Ford Coppola"
 year: 1972
-form: "Film"
+form: "Cinema"
 order: 85
 ---

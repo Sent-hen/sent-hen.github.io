@@ -5,6 +5,6 @@ lang: zh-HK
 phonetic: "GING chaht GOO see"
 creator: "Jackie Chan"
 year: 1985
-form: "Film"
+form: "Cinema"
 order: 64
 ---

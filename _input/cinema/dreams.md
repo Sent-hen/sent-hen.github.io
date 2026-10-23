@@ -5,6 +5,6 @@ lang: ja
 phonetic: "YOO-meh"
 creator: "Akira Kurosawa"
 year: 1990
-form: "Film"
+form: "Cinema"
 order: 31
 ---

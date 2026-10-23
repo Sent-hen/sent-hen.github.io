@@ -5,6 +5,6 @@ lang: ja
 phonetic: "SEN-nen JOH-yoo"
 creator: "Satoshi Kon"
 year: 2001
-form: "Animated film"
+form: "Cinema"
 order: 71
 ---

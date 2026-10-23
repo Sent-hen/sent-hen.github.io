@@ -3,6 +3,6 @@ title: "Fight Club"
 phonetic: "FYT KLUB"
 creator: "David Fincher"
 year: 1999
-form: "Film"
+form: "Cinema"
 order: 33
 ---

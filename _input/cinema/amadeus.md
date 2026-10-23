@@ -3,6 +3,6 @@ title: "Amadeus"
 phonetic: "am-uh-DAY-us"
 creator: "Miloš Forman"
 year: 1984
-form: "Film"
+form: "Cinema"
 order: 12
 ---

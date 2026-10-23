@@ -5,6 +5,6 @@ lang: id
 phonetic: "ser-BOO-ahn MOWT"
 creator: "Gareth Evans"
 year: 2011
-form: "Film"
+form: "Cinema"
 order: 96
 ---

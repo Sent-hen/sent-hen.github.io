@@ -3,7 +3,7 @@ title: "WALL-E"
 phonetic: "WAW-lee"
 creator: "Andrew Stanton"
 year: 2008
-form: "Animated film"
+form: "Cinema"
 source: "Pixar Animation Studios"
 order: 6
 stuff: true

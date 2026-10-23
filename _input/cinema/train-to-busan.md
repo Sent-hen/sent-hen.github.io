@@ -5,6 +5,6 @@ lang: ko
 phonetic: "BOO-sahn-heng"
 creator: "Yeon Sang-ho"
 year: 2016
-form: "Film"
+form: "Cinema"
 order: 102
 ---

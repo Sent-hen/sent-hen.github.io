@@ -5,6 +5,6 @@ lang: zh-HK
 phonetic: "chung-HING SUM-lum"
 creator: "Wong Kar-wai"
 year: 1994
-form: "Film"
+form: "Cinema"
 order: 25
 ---

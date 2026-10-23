@@ -3,6 +3,6 @@ title: "Tenet"
 phonetic: "TEN-it"
 creator: "Christopher Nolan"
 year: 2020
-form: "Film"
+form: "Cinema"
 order: 81
 ---
