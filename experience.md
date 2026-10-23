@@ -49,6 +49,31 @@ description: "Experience — Senthen Velmurugan."
 
 <hr>
 
+<p class="label">Skills</p>
+
+<div class="entry-desc">
+  <!-- Only skills that carry over to any domain. -->
+  <p>Problem Solver</p>
+  <p><span class="muted">Languages</span> &nbsp;Python, Go, C/C++, SQL, Bash</p>
+  <p><span class="muted">Tools</span> &nbsp;Linux, Git, Docker</p>
+  <p><span class="muted">Foundations</span> &nbsp;data structures and algorithms, system design, testing, version control</p>
+</div>
+
+<hr>
+
+<p class="label">Organizations</p>
+
+<ul class="entries">
+  <li class="entry">
+    <div class="entry-head">
+      <span class="entry-title">Mensa</span>
+      <span class="entry-when">2013 &ndash; Present</span>
+    </div>
+  </li>
+</ul>
+
+<hr>
+
 <p class="label">Education</p>
 
 <ul class="entries">
@@ -65,28 +90,5 @@ description: "Experience — Senthen Velmurugan."
       <span class="entry-when">Completed</span>
     </div>
     <div class="entry-sub">University of Texas at Dallas</div>
-  </li>
-</ul>
-
-<hr>
-
-<p class="label">Skills</p>
-
-<div class="entry-desc">
-  <p><span class="muted">Languages</span> &nbsp;Python, Go, C/C++, SQL, NoSQL, Bash</p>
-  <p><span class="muted">Tools</span> &nbsp;Linux, Git, Docker, Kubernetes, PostgreSQL, Terraform, Prometheus, PyTorch</p>
-  <p><span class="muted">Foundations</span> &nbsp;SDLC (Agile, CI/CD, testing), data structures and algorithms, system design, distributed systems, concurrency, databases, operating systems, networking (TCP/IP)</p>
-</div>
-
-<hr>
-
-<p class="label">Organizations</p>
-
-<ul class="entries">
-  <li class="entry">
-    <div class="entry-head">
-      <span class="entry-title">Mensa</span>
-      <span class="entry-when">2013 &ndash; Present</span>
-    </div>
   </li>
 </ul>
