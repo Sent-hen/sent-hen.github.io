@@ -193,7 +193,7 @@ form: "Song"
 order: 10
 status: active              # optional
 stuff: true                 # optional: also list it on /stuff/
-pinned: true                # optional: keep it at the top of /stuff/
+pinned: 1                   # optional: keep it at the top of /stuff/, 1 first
 ---
 
 The note, in Markdown.
@@ -221,7 +221,7 @@ The only tag. Shows when `status: active`, on Input items.
 
 ## 15. Stuff
 
-Stuff I didn't want to figure out: every Input item with `stuff: true`, sortable alphabetically or by year. Items with `pinned: true` stay on top (The Fall).
+Stuff I didn't want to figure out: every Input item with `stuff: true`, sortable alphabetically or by year. Items with `pinned: 1`, `2`, ... stay on top in that order (The Fall, The Truman Show, About Time, WALL-E).
 
 `stuff.html`
 
