@@ -56,7 +56,7 @@ description: "Experience — Senthen Velmurugan."
   <p>Problem Solver</p>
   <p><span class="muted">Languages</span> &nbsp;Python, Go, C/C++, SQL, Bash</p>
   <p><span class="muted">Tools</span> &nbsp;Linux, Git, Docker</p>
-  <p><span class="muted">Foundations</span> &nbsp;scripting, networking, containerization</p>
+  <p><span class="muted">Fundamentals</span> &nbsp;Input/Output, Logic/Control, Data/State</p>
 </div>
 
 <hr>
