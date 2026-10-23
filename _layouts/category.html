@@ -34,8 +34,6 @@ layout: default
       <span class="entry-when">{% include status.html value=it.status %}</span>
     </div>
     <div class="entry-sub">{{ it.creator }}{% if it.year %} · {{ it.year }}{% endif %}{% if it.form %} · {{ it.form }}{% endif %}{% if it.source %} · <i>{{ it.source }}</i>{% endif %}</div>
-    {% assign note = it.content | strip_html | strip %}
-    <div class="entry-desc item-note-preview">{% if note == "" or note == "TODO" %}<p class="todo">Note TODO</p>{% else %}<p>{{ note | truncatewords: 40 }}</p>{% endif %}</div>
   </li>
 {% endfor %}
 </ul>

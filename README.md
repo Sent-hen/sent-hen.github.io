@@ -176,7 +176,7 @@ order: 4                # position on /input/
 
 ## 12. Input item
 
-One file per item; the folder is its category. The body is the note.
+One file per item; the folder is its category. This is a public site, so items carry no notes, commentary, or ratings: just the facts below. A body is only for the work itself, such as a poem's text.
 
 `_input/<key>/<slug>.md`, `_layouts/item.html`
 
@@ -193,8 +193,6 @@ order: 10
 status: active              # optional
 stuff: true                 # optional: also list it on /stuff/
 ---
-
-The note, in Markdown.
 ```
 
 ## 13. Item title: original · English · phonetic
