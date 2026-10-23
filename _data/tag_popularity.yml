@@ -1,4 +1,4 @@
-# Tie-breaker for ranking tags on /projects/: when two tags are used by the same
+# Tie-breaker for ranking tags on /experiments/: when two tags are used by the same
 # number of projects, the one listed earlier here (more widely used in industry,
 # roughly following the Stack Overflow developer survey) is shown first.
 - Python

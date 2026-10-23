@@ -1,6 +1,8 @@
 ---
 title: "Metal-to-Pod: self-hosted CI/CD"
-project: metal-to-pod
+experiment: metal-to-pod   # must match the slug in _data/experiments.yml
+written: "2026-10"   # YYYY-MM; orders /notes/
+redirect_from: /projects/metal-to-pod/
 description: "A self-hosted path from VMware VMs to a running Kubernetes pod, with SLOs and automatic rollback."
 ---
 

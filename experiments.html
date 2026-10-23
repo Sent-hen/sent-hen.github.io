@@ -1,31 +1,150 @@
 ---
 title: Experiments
 permalink: /experiments/
-description: "Experiments by Senthen Velmurugan."
+redirect_from: /projects/
+description: "Experiments by Senthen Velmurugan: backend and infrastructure, security, and AI/ML."
 ---
+
 <p class="small"><a href="{{ '/output/' | relative_url }}" class="muted">&larr; Output</a></p>
 <h1>Experiments</h1>
 
-<p class="muted">Smaller things I've tried, to learn something.</p>
+<p class="muted">Things I've built and tried, newest first.</p>
 
-<!-- Entries live in _data/experiments.yml. -->
+<!-- Entries live in _data/experiments.yml. Notes about them live in _notes/. -->
 
-{% assign experiments = site.data.experiments %}
-{% if experiments and experiments.size > 0 %}
-{% include sort-bar.html target="experiment-list" %}
-<ul class="entries" id="experiment-list">
-{% for e in experiments %}
-  <li class="entry" data-index="{{ forloop.index }}" data-title="{{ e.title | escape }}" data-year="{{ e.when | slice: 0, 4 }}">
+{% assign projects = site.data.experiments | sort: "start" | reverse %}
+
+{% comment %} Rank tech tags: most experiments first, ties broken by _data/tag_popularity.yml. {% endcomment %}
+{% assign all_tags = "" | split: "" %}
+{% for p in projects %}{% assign all_tags = all_tags | concat: p.tags %}{% endfor %}
+{% assign uniq_tags = all_tags | uniq %}
+{% assign keyed = "" | split: "" %}
+{% for t in uniq_tags %}
+  {% assign n = 0 %}
+  {% for x in all_tags %}{% if x == t %}{% assign n = n | plus: 1 %}{% endif %}{% endfor %}
+  {% assign pop = 999 %}
+  {% for q in site.data.tag_popularity %}{% if q == t %}{% assign pop = forloop.index %}{% break %}{% endif %}{% endfor %}
+  {% assign k1 = 999 | minus: n | prepend: "000" | slice: -3, 3 %}
+  {% assign k2 = pop | prepend: "000" | slice: -3, 3 %}
+  {% assign key = k1 | append: "|" | append: k2 | append: "|" | append: n | append: "|" | append: t %}
+  {% assign keyed = keyed | push: key %}
+{% endfor %}
+{% assign keyed = keyed | sort %}
+
+{% comment %} Rank domains the same way: most experiments first, ties keep first-seen order. {% endcomment %}
+{% assign all_domains = "" | split: "" %}
+{% for p in projects %}{% assign all_domains = all_domains | concat: p.domains %}{% endfor %}
+{% assign uniq_domains = all_domains | uniq %}
+{% assign dkeyed = "" | split: "" %}
+{% for d in uniq_domains %}
+  {% assign n = 0 %}{% for x in all_domains %}{% if x == d %}{% assign n = n | plus: 1 %}{% endif %}{% endfor %}
+  {% assign k1 = 999 | minus: n | prepend: "000" | slice: -3, 3 %}
+  {% assign k2 = forloop.index | prepend: "000" | slice: -3, 3 %}
+  {% assign dkey = k1 | append: "|" | append: k2 | append: "|" | append: n | append: "|" | append: d %}
+  {% assign dkeyed = dkeyed | push: dkey %}
+{% endfor %}
+{% assign dkeyed = dkeyed | sort %}
+
+<div class="sort-bar filter-bar small" id="filter-bar" hidden>
+  <label><span class="muted">Domain</span>
+    <select id="f-domain">
+      <option value="">All</option>
+      {% for key in dkeyed %}{% assign parts = key | split: "|" %}<option value="{{ parts[3] }}">{{ parts[3] }} ({{ parts[2] }})</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label><span class="muted">Tech</span>
+    <select id="f-tech">
+      <option value="">All</option>
+      {% for key in keyed %}{% assign parts = key | split: "|" %}<option value="{{ parts[3] }}">{{ parts[3] }} ({{ parts[2] }})</option>
+      {% endfor %}
+    </select>
+  </label>
+  <span class="filter-status muted" id="filter-count" aria-live="polite"></span>
+  <button type="button" class="filter-clear" id="filter-clear" hidden>Clear</button>
+</div>
+
+{% comment %} Two groups: status active is In progress (green tag), status done is Done (grey box). Each is newest first. {% endcomment %}
+{% assign groups = "active,done" | split: "," %}
+{% for g in groups %}
+{% assign list = projects | where: "status", g %}
+{% if list.size > 0 %}
+<section class="exp-group">
+<p class="exp-group-label">{% include progress.html value=g %}</p>
+<ul class="entries exp-list">
+{% for p in list %}
+  <li class="entry" id="{{ p.slug }}"
+      data-domains=";{{ p.domains | join: ';' }};"
+      data-tech=";{{ p.tags | join: ';' }};">
     <div class="entry-head">
-      <span class="entry-title">{% if e.link %}<a href="{{ e.link }}">{{ e.title }}</a>{% else %}{{ e.title }}{% endif %}</span>
-      <span class="entry-when">{% include status.html value=e.status %}</span>
+      <span class="entry-title">
+        {% if p.note %}<a href="{{ '/notes/' | append: p.slug | append: '/' | relative_url }}">{{ p.title }}</a>
+        {% elsif p.repo != "" %}<a href="{{ p.repo }}">{{ p.title }}</a>
+        {% else %}{{ p.title }}{% endif %}
+      </span>
+      <span class="entry-when">{{ p.start | replace: "-", " " }}</span>
     </div>
-    {% if e.when %}<div class="entry-sub">{{ e.when }}</div>{% endif %}
-    {% if e.summary %}<div class="entry-desc"><p>{{ e.summary }}</p></div>{% endif %}
+    <div class="entry-sub">{% for d in p.domains %}{% assign dc = d | downcase | replace: "/", "-" | replace: " ", "-" %}<span class="dom dom-{{ dc }}">{{ d }}</span>{% unless forloop.last %} · {% endunless %}{% endfor %}</div>
+    <div class="entry-desc">
+      <p>{{ p.summary }}</p>
+      <ul class="bullets">
+        {% for b in p.bullets %}<li>{{ b }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="tags">{% for t in p.tags %}<button type="button" class="tag tag-filter" data-tech="{{ t }}" title="Show experiments using {{ t }}">{{ t }}</button>{% endfor %}</div>
+    <div class="entry-links small">
+      {% if p.note %}<a href="{{ '/notes/' | append: p.slug | append: '/' | relative_url }}">Note &rarr;</a>{% endif %}
+      {% if p.repo != "" %}<a href="{{ p.repo }}">Code</a>{% else %}<span class="muted">Private repo</span>{% endif %}
+    </div>
   </li>
 {% endfor %}
 </ul>
-{% else %}
-<p class="muted">Nothing here yet.</p>
+</section>
 {% endif %}
+{% endfor %}
 
+<p class="muted small" id="filter-empty" hidden>No experiments match these filters.</p>
+
+<script>
+  // Domain and Tech filters for the experiment lists. Without JavaScript the bar stays hidden and everything shows.
+  (function () {
+    var bar = document.getElementById('filter-bar');
+    var groups = Array.prototype.slice.call(document.querySelectorAll('.exp-group'));
+    var items = Array.prototype.slice.call(document.querySelectorAll('.exp-list > li'));
+    var domain = document.getElementById('f-domain');
+    var tech = document.getElementById('f-tech');
+    var count = document.getElementById('filter-count');
+    var clear = document.getElementById('filter-clear');
+    var empty = document.getElementById('filter-empty');
+    bar.hidden = false;
+
+    function has(li, attr, value) { return !value || li.dataset[attr].indexOf(';' + value + ';') !== -1; }
+
+    function apply() {
+      var shown = 0;
+      items.forEach(function (li) {
+        var ok = has(li, 'domains', domain.value) && has(li, 'tech', tech.value);
+        li.hidden = !ok;
+        if (ok) shown++;
+      });
+      // hide a group (In progress / Done) when the filters leave it empty
+      groups.forEach(function (g) { g.hidden = !g.querySelector('.exp-list > li:not([hidden])'); });
+      count.textContent = shown + ' of ' + items.length;
+      clear.hidden = !(domain.value || tech.value);
+      empty.hidden = shown > 0;
+    }
+
+    [domain, tech].forEach(function (el) { el.addEventListener('change', apply); });
+    clear.addEventListener('click', function () { domain.value = ''; tech.value = ''; apply(); });
+    // Clicking a tag on an experiment filters by that tag.
+    document.addEventListener('click', function (e) {
+      var t = e.target.closest('.tag-filter');
+      if (!t) return;
+      tech.value = tech.value === t.dataset.tech ? '' : t.dataset.tech;
+      apply();
+      bar.scrollIntoView({ block: 'nearest' });
+    });
+    apply();
+  })();
+</script>

@@ -27,7 +27,7 @@ The links after the name. Each entry is `Label:/url/` plus any other sections it
 `_includes/nav.html`
 
 ```liquid
-{% assign links = "Input:/input/,Stuff:/stuff/,Output:/output/:/projects/:/experiments/:/experience/" | split: "," %}
+{% assign links = "Input:/input/,Stuff:/stuff/,Output:/output/:/experiments/:/notes/:/experience/" | split: "," %}
 ```
 
 ## 3. Theme toggle
@@ -64,11 +64,21 @@ All colors are variables at the top of the stylesheet, redefined for dark mode. 
 }
 ```
 
+## 5a. Home: banner
+
+The jumping spider photo across the top of the home page, below the nav, shown whole at the column width. Credit is under [Credits](#credits).
+
+`assets/img/jumping-spider.webp`, `index.md`, `assets/css/style.scss` (`.banner`)
+
+```html
+<img class="banner" src="{{ '/assets/img/jumping-spider.webp' | relative_url }}" alt="…">
+```
+
 ## 6. Home: the cake
 
-The Portal cake icon in its 3/4 perspective, drawn as a flat 2D vector (curved back on the left, striped cut face on the right, cherry on top), then shown as Matrix rain: columns of digits fall through the tile and are bright only where the drawing is. Light mode rains 0s, dark mode rains 1s, and the tile inverts the page (white on black in light mode, black on white in dark). Without JavaScript the plain drawing shows instead.
+The Portal cake icon in its 3/4 perspective, drawn as a flat 2D vector (curved back on the left, striped cut face on the right, cherry on top), then shown as Matrix rain: columns of digits fall through the tile and are bright only where the drawing is. The digits are 0s at the top and 1s at the bottom: in dark mode the rain falls, turning 0 into 1 on the way down; in light mode it rises, turning 1 into 0 on the way up (it follows `--motion`). The tile inverts the page (white on black in light mode, black on white in dark). Without JavaScript the plain drawing shows instead.
 
-`_includes/cake.html` (the drawing, in `currentColor`), `assets/js/cake.js` (the rain), `assets/css/style.scss` (`.cake`, `--cake-bg`, `--cake-ink`, `--cake-digit`)
+`_includes/cake.html` (the drawing, in `currentColor`), `assets/js/cake.js` (the rain), `assets/css/style.scss` (`.cake`, `--cake-bg`, `--cake-ink`, `--motion`)
 
 ```html
 <figure class="cake">
@@ -78,8 +88,8 @@ The Portal cake icon in its 3/4 perspective, drawn as a flat 2D vector (curved b
 ```
 
 ```scss
-:root { --cake-bg: var(--flexoki-black); --cake-ink: var(--flexoki-paper); --cake-digit: "0"; }  /* light */
-/* dark: --cake-bg: paper; --cake-ink: black; --cake-digit: "1" */
+:root { --cake-bg: var(--flexoki-black); --cake-ink: var(--flexoki-paper); }  /* light */
+/* dark: --cake-bg: paper; --cake-ink: black */
 ```
 
 ```js
@@ -89,18 +99,29 @@ var SPEED = 14;   // rows per second
 
 ## 7. Home: golden spiral
 
-Fibonacci squares with the golden spiral, zooming into its eye forever (out of it in light mode). There is no rotation; the turning is the spiral's self-similarity. The drawing is generated; the speed is in the stylesheet.
+Fibonacci squares with the golden spiral, zooming into its eye forever (out of it in light mode). There is no rotation; the turning is the spiral's self-similarity. The drawing is generated; the speed is in the stylesheet. Switching the theme flips the direction from the current frame instead of restarting; `assets/js/motion.js` does this for the spiral and the ripple by setting each animation's playback rate to 1 or -1.
 
-`_includes/golden-spiral.html` (drawing and keyframes), `assets/css/style.scss` (speed and colors)
+`_includes/golden-spiral.html` (drawing and keyframes), `assets/css/style.scss` (speed and colors), `assets/js/motion.js` (direction)
 
 ```scss
 .golden-spiral .zoom { animation: golden-zoom 4s linear infinite var(--motion); }
 .golden-spiral .sq-red { fill: var(--tint-red); }
 ```
 
+## 7a. Home: axes
+
+Below the spiral: a grid with x and y axes through the middle, arrowheads on all four ends, a yellow dot moving up and down the y axis, and a cyan dot moving left and right along the x axis.
+
+`_includes/axes.html` (drawing), `assets/css/style.scss` (`.axes`, colors and speed)
+
+```scss
+.axes-dot-y { animation: axes-bob 2.4s ease-in-out infinite alternate; }    /* up and down */
+.axes-dot-x { animation: axes-sway 2.4s ease-in-out infinite alternate; }   /* left and right */
+```
+
 ## 8. Home: epigraph and the two halves
 
-The Camus quote, then "Who I am" and "Who I want to be" side by side.
+The 0 → 1 ripple (section 9) sits first, then the Camus and Russell quotes, then "Who I am" and "Who am I" side by side. "Who am I" ends with "Currently mastering…" and "Cannot master in my lifetime…" lists (`.iam`, `.iam-list`). The site note and a `.quotes` block of two more quotes close the column.
 
 `index.md`
 
@@ -108,7 +129,7 @@ The Camus quote, then "Who I am" and "Who I want to be" side by side.
 <blockquote class="epigraph">…<cite>Albert Camus, <i>The Myth of Sisyphus</i> (1942)</cite></blockquote>
 <div class="duality">
   <section><p class="label">Who I am</p> … </section>
-  <section><p class="label">Who I want to be</p> … </section>
+  <section><p class="label">Who am I</p> … </section>
 </div>
 ```
 
@@ -172,6 +193,7 @@ form: "Song"
 order: 10
 status: active              # optional
 stuff: true                 # optional: also list it on /stuff/
+pinned: true                # optional: keep it at the top of /stuff/
 ---
 
 The note, in Markdown.
@@ -189,7 +211,7 @@ The note, in Markdown.
 
 ## 14. Active tag
 
-The only tag. Shows when `status: active`, on items, projects, and experiments.
+The only tag. Shows when `status: active`, on Input items.
 
 `_includes/status.html`
 
@@ -199,7 +221,7 @@ The only tag. Shows when `status: active`, on items, projects, and experiments.
 
 ## 15. Stuff
 
-Stuff I didn't want to figure out: every Input item with `stuff: true`, sortable alphabetically or by year.
+Stuff I didn't want to figure out: every Input item with `stuff: true`, sortable alphabetically or by year. Items with `pinned: true` stay on top (The Fall).
 
 `stuff.html`
 
@@ -209,7 +231,7 @@ Stuff I didn't want to figure out: every Input item with `stuff: true`, sortable
 
 ## 15a. Alphabetical / Year sort
 
-A sort control for simple lists (Stuff, Experiments). Each list item carries `data-title` and `data-year`.
+A sort control for simple lists (Stuff). Each list item carries `data-title` and `data-year`.
 
 `_includes/sort-bar.html`
 
@@ -222,75 +244,72 @@ A sort control for simple lists (Stuff, Experiments). Each list item carries `da
 
 ## 16. Output
 
-Featured projects (the first 3 in the data file), then links to Projects, Experiments, and Experience.
+Featured experiments, then links to Experiments, Notes, and Experience (in that order).
 
 `output.html`
 
 ```liquid
-{% for p in site.data.projects limit: 3 %} … {% endfor %}
+{% assign featured = site.data.experiments | where_exp: "p", "p.featured" | sort: "featured" %}
 ```
 
-## 17. Projects
+## 17. Experiments
 
-All projects in file order, with Domain and Tech filters, sort, and clickable tags. Filters build themselves from the data; `_data/tag_popularity.yml` breaks ties in the tag ranking.
-
-`projects.html`, `_data/projects.yml`
-
-```yaml
-- slug: my-project
-  title: My Project
-  when: "2026"
-  status: active
-  domains: [Backend/infra]
-  summary: One sentence.
-  tags: [Python, Docker]
-  repo: https://github.com/Sent-hen/my-project   # "" if private
-  writeup: false            # true if _projects/my-project.md exists
-  bullets:
-    - "..."
-```
-
-## 18. Project writeup
-
-`_projects/<slug>.md`, `_layouts/project.html`
-
-```markdown
----
-title: My Project
-project: my-project          # must match the slug in _data/projects.yml
----
-
-Writeup in Markdown.
-```
-
-## 19. Experiments
+Everything I've built or tried, in two groups, In progress (`status: active`, a green tag) and Done (`status: done`, a grey box), each newest first by `start`. The tag is `_includes/progress.html`, also used on Output and on notes. Dates show as YYYY MM. Domain and Tech filters build themselves from the data; `_data/tag_popularity.yml` breaks ties in the tag ranking. Old `/projects/` links redirect here.
 
 `experiments.html`, `_data/experiments.yml`
 
 ```yaml
-- title: Name of the experiment
-  when: "2026"
-  status: active
-  summary: One sentence on what I tried and what happened.
-  link: https://...
+- slug: my-experiment
+  title: My Experiment
+  start: "2026-10"          # YYYY-MM
+  status: active            # active = In progress, done = Done
+  featured: 1               # optional: 1-3 puts it on /output/ in that order
+  domains: [Backend/infra]
+  summary: One sentence.
+  tags: [Python, Docker]
+  repo: https://github.com/Sent-hen/my-experiment   # "" if private
+  note: false               # true if _notes/my-experiment.md exists
+  bullets:
+    - "..."
 ```
 
-## 20. Experience
+## 18. Notes
 
-Work, education, and skills, written directly in the page.
+Writing about the experiments, newest first by `written`. Each note page shows its experiment's summary, tags, and bullets. Old `/projects/<slug>/` links redirect to `/notes/<slug>/`.
+
+`notes.html` (the list), `_notes/<slug>.md` (one per note), `_layouts/note.html`
+
+```markdown
+---
+title: My Experiment
+experiment: my-experiment   # must match the slug in _data/experiments.yml
+written: "2026-10"          # YYYY-MM
+description: "One line, shown on /notes/."
+---
+
+The note, in Markdown.
+```
+
+## 19. Experience
+
+Work, education, skills, and organizations, newest first, with dates as YYYY MM, written directly in the page.
 
 `experience.md`
 
-## 21. Site settings
+```html
+<span class="entry-when">2024 05 &ndash; 2024 08</span>
+```
 
-Title, the `input` and `projects` collections, and their layouts.
+## 20. Site settings
+
+Title, the `input` and `notes` collections, their layouts, and the redirect plugin for old links.
 
 `_config.yml`
 
 ```yaml
 collections:
   input:    { output: true, permalink: /input/:path/ }
-  projects: { output: true, permalink: /projects/:path/ }
+  notes:    { output: true, permalink: /notes/:path/ }
 ```
 
 ## Run and publish
@@ -301,6 +320,10 @@ bundle exec jekyll serve
 ```
 
 Open `http://localhost:4000`. Pushing to `main` publishes through GitHub Pages in about a minute.
+
+## Credits
+
+- Home banner (`assets/img/jumping-spider.webp`): jumping spider on a leaf, a purchased stock photo used under its license. Photographer and source: _to fill in_.
 
 ## License
 

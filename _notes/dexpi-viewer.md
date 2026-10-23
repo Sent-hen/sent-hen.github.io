@@ -1,12 +1,14 @@
 ---
 title: DEXPI P&ID Viewer
-project: dexpi-viewer
+experiment: dexpi-viewer   # must match the slug in _data/experiments.yml
+written: "2026-10"   # YYYY-MM; orders /notes/
+redirect_from: /projects/dexpi-viewer/
 description: "A dependency-free browser viewer and validator for DEXPI 2.0.1 XML."
 ---
 
 ## The problem
 
-DEXPI is the open exchange format for P&IDs, but a DEXPI file can describe a full plant model without any drawing coordinates. That makes it hard to look at, and hard to tell whether a file someone exported, or my own [P&ID Digitizer]({{ '/projects/pid-digitizer/' | relative_url }}) produced, is actually valid.
+DEXPI is the open exchange format for P&IDs, but a DEXPI file can describe a full plant model without any drawing coordinates. That makes it hard to look at, and hard to tell whether a file someone exported, or my own [P&ID Digitizer]({{ '/notes/pid-digitizer/' | relative_url }}) produced, is actually valid.
 
 ## How it works
 

@@ -1,24 +1,25 @@
 ---
 title: Output
 permalink: /output/
-description: "Output: what Senthen Velmurugan has built, tried, and worked on."
+description: "Output: what Senthen Velmurugan has built, tried, written, and worked on."
 ---
 <h1>Output</h1>
 
-<p>What I've built and where I've built it.</p>
+<p>What I've built, written, and where I've worked.</p>
 
-{% comment %} Featured: the first 3 projects in _data/projects.yml. Reorder that file to change them. {% endcomment %}
+{% comment %} Featured: experiments with featured: 1, 2, 3 in _data/experiments.yml, in that order. {% endcomment %}
 <p class="label">Featured</p>
 
+{% assign featured = site.data.experiments | where_exp: "p", "p.featured" | sort: "featured" %}
 <section class="rotation">
   <ul class="entries">
-  {% for p in site.data.projects limit: 3 %}
+  {% for p in featured %}
     <li class="entry">
       <div class="entry-head">
-        <span class="entry-title"><a href="{% if p.writeup %}{{ '/projects/' | append: p.slug | append: '/' | relative_url }}{% else %}{{ '/projects/' | relative_url }}#{{ p.slug }}{% endif %}">{{ p.title }}</a></span>
-        <span class="entry-when">{% include status.html value=p.status %}</span>
+        <span class="entry-title"><a href="{% if p.note %}{{ '/notes/' | append: p.slug | append: '/' | relative_url }}{% else %}{{ '/experiments/' | relative_url }}#{{ p.slug }}{% endif %}">{{ p.title }}</a></span>
+        <span class="entry-when">{{ p.start | replace: "-", " " }}</span>
       </div>
-      <div class="entry-sub">{{ p.when }} · {% for d in p.domains %}{% assign dc = d | downcase | replace: "/", "-" | replace: " ", "-" %}<span class="dom dom-{{ dc }}">{{ d }}</span>{% unless forloop.last %} · {% endunless %}{% endfor %}</div>
+      <div class="entry-sub">{% include progress.html value=p.status %}{% for d in p.domains %}{% assign dc = d | downcase | replace: "/", "-" | replace: " ", "-" %}<span class="dom dom-{{ dc }}">{{ d }}</span>{% unless forloop.last %} · {% endunless %}{% endfor %}</div>
       <div class="entry-desc"><p>{{ p.summary }}</p></div>
     </li>
   {% endfor %}
@@ -28,8 +29,7 @@ description: "Output: what Senthen Velmurugan has built, tried, and worked on."
 <hr>
 
 <ul class="rows categories">
-  <li><a href="{{ '/projects/' | relative_url }}" class="plain"><span class="row"><u>Projects</u><span class="count muted small">{{ site.data.projects | size }}</span></span></a></li>
   <li><a href="{{ '/experiments/' | relative_url }}" class="plain"><span class="row"><u>Experiments</u><span class="count muted small">{{ site.data.experiments | size }}</span></span></a></li>
+  <li><a href="{{ '/notes/' | relative_url }}" class="plain"><span class="row"><u>Notes</u><span class="count muted small">{{ site.notes | size }}</span></span></a></li>
   <li><a href="{{ '/experience/' | relative_url }}" class="plain"><span class="row"><u>Experience</u></span></a></li>
 </ul>
-

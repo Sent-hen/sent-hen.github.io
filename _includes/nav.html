@@ -2,7 +2,7 @@
   <a class="site-name" href="{{ '/' | relative_url }}">Senthen Velmurugan</a>
   <span class="nav-links">
     {% comment %} Each link is Label:/url/:/other/sections/ it also covers (highlighted when you are anywhere inside). {% endcomment %}
-    {% assign links = "Input:/input/,Stuff:/stuff/,Output:/output/:/projects/:/experiments/:/experience/" | split: "," %}
+    {% assign links = "Input:/input/,Stuff:/stuff/,Output:/output/:/experiments/:/notes/:/experience/" | split: "," %}
     {% for l in links %}{% assign p = l | split: ":" %}{% assign current = false %}
       {% for prefix in p offset: 1 %}{% assign n = prefix | size %}{% assign head = page.url | slice: 0, n %}{% if head == prefix %}{% assign current = true %}{% endif %}{% endfor %}
     <a href="{{ p[1] | relative_url }}"{% if current %} aria-current="page"{% endif %}>{{ p[0] }}</a>

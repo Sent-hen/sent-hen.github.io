@@ -53,7 +53,6 @@
   --motion: reverse;   /* light: the spiral zooms out and the ripple flows back from 1 to 0 */
   --cake-bg: var(--flexoki-black);    /* the cake inverts the page: white cake on black here */
   --cake-ink: var(--flexoki-paper);
-  --cake-digit: "0";   /* light mode rains 0s */
 }
 
 /* dark */
@@ -78,7 +77,6 @@
   --motion: normal;    /* dark: the spiral zooms in and the ripple flows out from 0 to 1 */
   --cake-bg: var(--flexoki-paper);    /* black cake on white here */
   --cake-ink: var(--flexoki-black);
-  --cake-digit: "1";   /* dark mode rains 1s */
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) { @include dark; }
@@ -225,6 +223,15 @@ hr {
 .cake-notch { fill: var(--cake-bg); }
 .cake-rain { display: block; width: 100%; height: 100%; }
 
+/* home: the jumping spider across the top, shown whole */
+.banner {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin: 0 0 24px;
+}
+
 /* left column: cake, then the golden spiral below it */
 .intro-side { flex-shrink: 0; display: flex; flex-direction: column; gap: 16px; }
 /* the spiral and ripple use fixed Flexoki colors (the cake inverts the page instead) */
@@ -232,7 +239,7 @@ hr {
 .golden-spiral .zoom {
   transform-box: view-box;
   transform-origin: 80px 80px;
-  animation: golden-zoom 4s linear infinite var(--motion);   /* zooms in (dark) or out (light) forever; keyframes in _includes/golden-spiral.html */
+  animation: golden-zoom 4s linear infinite var(--motion);   /* zooms in (dark) or out (light) forever; keyframes in _includes/golden-spiral.html; assets/js/motion.js flips it without a restart */
 }
 .golden-spiral .sq { stroke: var(--flexoki-black); stroke-width: 1; vector-effect: non-scaling-stroke; }
 .golden-spiral .sq-red { fill: var(--flexoki-red-400); }
@@ -241,6 +248,22 @@ hr {
 .golden-spiral .sq-green { fill: var(--flexoki-green-400); }
 .golden-spiral .arc { fill: none; stroke: var(--flexoki-black); stroke-width: 2.2; vector-effect: non-scaling-stroke; stroke-linecap: round; }
 
+/* below the spiral: grid, x and y axes with arrows on all four ends, a dot moving up and down the y axis and one moving left and right along the x axis */
+.axes { display: block; width: 160px; height: 160px; border-radius: 6px; background: var(--flexoki-black); }
+.axes-grid { fill: none; stroke: var(--flexoki-850); stroke-width: 1; }
+.axes-line { stroke: var(--flexoki-paper); stroke-width: 2; }
+.axes-head { fill: var(--flexoki-paper); }
+.axes-dot { transform-box: view-box; }
+.axes-dot-y {
+  fill: var(--flexoki-yellow-400);
+  animation: axes-bob 2.4s ease-in-out infinite alternate;   /* top to bottom and back */
+}
+.axes-dot-x {
+  fill: var(--flexoki-cyan-400);
+  animation: axes-sway 2.4s ease-in-out infinite alternate;  /* left to right and back */
+}
+@keyframes axes-bob { from { transform: translateY(-56px); } to { transform: translateY(56px); } }
+@keyframes axes-sway { from { transform: translateX(-56px); } to { transform: translateX(56px); } }
 .intro-text {
   min-width: 0;
   align-self: stretch;
@@ -275,6 +298,9 @@ hr {
 .duality .label { margin-bottom: 0.6em; }
 .duality p:last-child { margin-bottom: 0; }
 .site-note { margin: 0; }
+/* home: quotes at the bottom, below the site note */
+.quotes { margin-top: 1.4em; padding-top: 1.2em; border-top: 1px solid var(--ui-3); }
+.quotes .epigraph:last-child { margin-bottom: 0; }
 
 .iam { margin: 0 0 0.2em; }
 .iam-list { list-style: none; margin: 0 0 1em; padding: 0 0 0 1.2em; }
@@ -319,6 +345,7 @@ hr {
   .intro { gap: 14px; }
   .cake { width: 96px; height: 96px; }
   .golden-spiral { width: 96px; height: 96px; }
+  .axes { width: 96px; height: 96px; }
     .intro-text { padding-left: 14px; }
 }
 
@@ -541,6 +568,8 @@ span.dom { color: var(--accent); }
   vertical-align: 0.05em;
 }
 .status-active { color: var(--green); border-color: currentColor; }
+.status-done { color: var(--tx-2); border-color: currentColor; background: var(--ui); }   /* experiments: Done */
+.exp-group-label { margin: 0 0 0.6em; }
 .fav-toggle { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; }
 .fav-toggle input { accent-color: var(--magenta); margin: 0; }
 .item-score { display: flex; align-items: center; gap: 10px; margin: -1em 0 1.4em; }

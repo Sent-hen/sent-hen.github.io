@@ -1,6 +1,8 @@
 ---
 title: Word2Eq
-project: word2eq
+experiment: word2eq   # must match the slug in _data/experiments.yml
+written: "2026-10"   # YYYY-MM; orders /notes/
+redirect_from: /projects/word2eq/
 description: "A reproducible training pipeline and verified inference service for math word problems."
 ---
 

@@ -1,9 +1,184 @@
-# Experiments shown on /experiments/, in this order. Smaller and looser than projects:
-# things tried to learn something, whether or not they became anything.
+# Experiments shown on /experiments/, split into In progress and Done, newest first (by start).
 #
-# - title: Name of the experiment
-#   when: "2026"
-#   status: active          # optional: shows the active tag
-#   summary: One sentence on what I tried and what happened.
-#   link: https://...       # optional: repo, notebook, or write-up
-[]
+# slug      anchor id on /experiments/, and the note URL (/notes/<slug>/) when note is true
+# start     "YYYY-MM" the experiment began; shown as YYYY MM and used for the order
+# status    active (In progress) or done (Done)
+# featured  1, 2, 3: shown on /output/ in that order; leave it out otherwise
+# note      true if _notes/<slug>.md exists; the title then links to it
+# domains   Backend/infra | Security | AI/ML | other short labels
+# tags      tech, ordered by how heavily the experiment uses it (most first)
+# repo      public repository URL; leave empty for private repos
+# bullets   six STAR/XYZ bullets: accomplished X, measured by Y, by doing Z
+
+- slug: pid-digitizer
+  title: P&ID Digitizer
+  start: "2026-10"
+  status: done
+  featured: 2
+  domains: [AI/ML, Backend/infra]
+  summary: Turns scanned engineering drawings (P&IDs) into machine-readable graphs, with a review UI for correcting low-confidence output.
+  tags: [Python, PyTorch, OpenCV, FastAPI, Docker, NetworkX, SQLite]
+  repo: https://github.com/Sent-hen/PID-Digitizer
+  note: true
+  bullets:
+    - "Converted raster piping and instrumentation diagrams into graphs (GraphML and DEXPI 2.0.1 XML), reaching 0.915 edge F1 and 0.997 symbol mAP@0.5 on a 75-sheet test split, by chaining a symbol detector, orthogonal line extraction, and graph assembly."
+    - "Detected small symbols on 7,000 px sheets by tiling into 1024² crops with 256 px overlap and merging boxes class-aware across tile seams, fine-tuning a torchvision Faster R-CNN in under 2 GPU-hours on a laptop RTX 4070."
+    - "Made predictions reviewable by calibrating per-edge confidence scores to observed accuracy and building a review UI that filters to low-confidence edges for relabeling, deleting, confirming, or adding."
+    - "Shipped it as a service: a FastAPI job API with SQLite job state, upload size and type limits, timeouts, and a sha1-checked model, packaged as a non-root CPU Docker image that runs end to end with <code>make demo</code>."
+    - "Kept the evaluation honest by running each test split exactly once and enforcing ruff, <code>mypy --strict</code>, and 99 pytest cases in CI, with 26 design decisions recorded as they were made."
+    - "Found through error analysis that 80% of the remaining misses were nodes 2 to 4 px off rather than topology errors, and reported the real-drawing gap openly (0.49 edge F1 on 8 real sheets) along with the fix I'd try next."
+
+- slug: dexpi-viewer
+  title: DEXPI P&ID Viewer
+  start: "2026-10"
+  status: done
+  featured: 3
+  domains: [Tooling]
+  summary: A dependency-free browser viewer and validator for DEXPI 2.0.1 plant-model XML.
+  tags: [JavaScript, Python, XML, SVG]
+  repo: https://github.com/Sent-hen/DEXPI-PID-Viewer
+  note: true
+  bullets:
+    - "Built a single-page viewer and validator for DEXPI 2.0.1 P&ID files with zero dependencies, so anyone can open a file from disk and inspect it with nothing uploaded."
+    - "Drew diagrams that have no stored coordinates by laying them out from topology alone, with a Sugiyama-style layered flow layout, a stress-majorization network layout, and an auto mode that switches per connected group when the flow result is badly proportioned."
+    - "Caught structural errors before they reach downstream tools by checking well-formedness, ID syntax and uniqueness, and IDREF resolution in the validation panel."
+    - "Added metamodel checks against the Core and Plant 2.0.1 specs (class existence and abstractness, property kinds, target types, multiplicity bounds) by generating a compact class table from the spec XML with a Python build script."
+    - "Gave pipelines a headless path with a Python CLI validator (lxml) that runs both XSD and metamodel checks."
+    - "Made large models navigable with symbols for equipment, valves, and instruments, an inspector showing references and back-references, a model tree, ID and tag search, SVG export, and light and dark themes."
+
+- slug: personal-vpn
+  title: Personal VPN
+  start: "2026-10"
+  status: active
+  domains: [Security, Backend/infra]
+  summary: One-command private WireGuard server in the cloud, with a client tool and a written threat model.
+  tags: [Terraform, Go, Bash, WireGuard, Linux, nftables]
+  repo: https://github.com/Sent-hen/VPN
+  note: false
+  bullets:
+    - "Set out to protect my traffic on untrusted networks (café Wi-Fi, hotel networks) without handing that trust to a commercial VPN, by owning every layer from server to client."
+    - "Provisioned a hardened WireGuard server on Hetzner for about €4 a month with a single <code>terraform apply</code>, using cloud-init for SSH hardening, nftables NAT over IPv4 and IPv6, Unbound DNS, fail2ban, and unattended security upgrades."
+    - "Kept private keys from ever crossing the network by having each device generate its own key and share only the public half, and by generating the server key on first boot, so Terraform state holds no secrets."
+    - "Built <code>vpnctl</code>, a Go CLI for device key generation and WireGuard client configs, covered by 11 Go unit tests, plus a <code>vpn-peer</code> tool to add or remove devices without rebuilding the server."
+    - "Reduced the attack surface to one UDP port by default-denying inbound traffic in nftables and the cloud firewall, and limiting key-only SSH to listed admin CIDRs."
+    - "Documented a threat model that states plainly what the VPN protects against and what it doesn't (privacy on untrusted networks, not anonymity), plus a manual runbook that mirrors every automated step. Next: a Windows service with a WFP kill switch and a Tauri UI."
+
+- slug: metal-to-pod
+  title: "Metal-to-Pod: self-hosted CI/CD"
+  start: "2026-09"
+  status: active
+  domains: [Backend/infra]
+  summary: A commit-to-pod delivery path from VMware VMs to Kubernetes with no cloud services, run with SLOs, rollback, and failure drills.
+  tags: [Kubernetes, Bash, Go, Docker, Jenkins, Prometheus, Vagrant]
+  repo: https://github.com/Sent-hen/metal-to-pod
+  note: true
+  bullets:
+    - "Built a commit-to-pod delivery path with no cloud services across 4 VMware VMs (9 GB total, sized for a 16 GB laptop), provisioned from a single env file with Vagrant and shell."
+    - "Bootstrapped a kubeadm cluster on containerd and Calico, with namespaces, Pod Security, default-deny network policy, and quotas, and fixed the dual-NIC node IP and CNI interface issues explicitly."
+    - "Triggered every build from a git post-receive hook into Jenkins configured entirely as code, pushing to a private registry with TLS from a self-run CA."
+    - "Made releases safe to automate with a multi-stage build that gates on unit tests and ships a ~10 MB distroless, non-root image tagged with the commit SHA, deployed by a namespace-scoped ServiceAccount instead of cluster-admin."
+    - "Caught bad releases automatically with an external smoke test that confirms the new commit is the one serving, and rolls back if the rollout or smoke test fails."
+    - "Ran a Go delivery-promise service (3 distribution centers, 18 lanes, carrier cutoffs and holidays) against 99.5% availability and 99% under 300 ms SLOs, with burn-rate alerts unit-tested in promtool, 8 failure drills, 5 runbooks, and 7 ADRs."
+
+- slug: word2eq
+  title: Word2Eq
+  start: "2024-04"
+  status: active
+  domains: [AI/ML, Backend/infra]
+  summary: A reproducible training pipeline and SLO-instrumented inference service that turns math word problems into verified equations.
+  tags: [Python, PyTorch, FastAPI, Docker, Prometheus, Kubernetes, GitHub Actions]
+  repo: https://github.com/Sent-hen/Word2Eq
+  note: true
+  bullets:
+    - "Rebuilt a non-functional 2024 prototype into an end-to-end train, evaluate, and serve platform for a 6.4M-parameter seq2seq Transformer that trains in under 9 minutes on CPU."
+    - "Eliminated malformed outputs (97.4% to 100% valid equations on 1,000 SVAMP problems) by masking logits with a pushdown-automaton grammar during decoding, then checking every answer symbolically before returning it."
+    - "Made training preemption-safe, with resumed runs producing bit-identical weights, by checkpointing optimizer, scheduler, RNG, and in-epoch position atomically on SIGTERM, verified by 32 pytest cases in CI."
+    - "Made every model traceable to its inputs with versioned artifacts whose model cards record a config fingerprint, SHA-256 data hashes, and the git revision."
+    - "Served 150 requests per second at 73 ms p95 on one laptop CPU by micro-batching requests on a dedicated inference thread behind a bounded queue that sheds overload with a fast 503 and Retry-After."
+    - "Guarded releases with a CI promotion gate on accuracy and validity, and ran the service against availability, latency, and answer-integrity SLOs with burn-rate alerts, a runbook, and a Kubernetes manifest with probes, a PDB, and an HPA."
+
+- slug: honeypot-attack-map
+  title: Honeypot and attack map
+  start: "2026-10"
+  status: active
+  domains: [Security, Backend/infra]
+  summary: An isolated SSH/Telnet honeypot on AWS that ships attacker activity off-box for enrichment, mapping, and ML campaign analysis.
+  tags: [Terraform, AWS, Bash, Docker, Cowrie, Vector]
+  repo: https://github.com/Sent-hen/Honeypot-Attack
+  note: false
+  bullets:
+    - "Set out to see who attacks an exposed server and what they try, and to turn that data into lessons for defending real systems, without letting the bait become a launch point."
+    - "Deployed a Cowrie SSH/Telnet honeypot on an isolated AWS VPC entirely from Terraform, split into two stacks so the honeypot can be destroyed and rebuilt while the collected logs stay put."
+    - "Contained a host I treat as already compromised by running Cowrie in a container with capabilities dropped and no metadata access, and denying all egress except S3."
+    - "Kept the real admin path out of the trap by moving sshd to a high port, key-only and reachable from a single admin IP."
+    - "Shipped every event off-box with Vector to a versioned, write-only S3 bucket as gzipped NDJSON in Hive-style partitions, ready to query from Athena or DuckDB, with budget alerts at 80% forecast and 100% actual spend."
+    - "Next: a FastAPI ingester into PostgreSQL with GeoIP, ASN, and reputation enrichment, a live MapLibre attack map, and HDBSCAN clustering to group attacker campaigns."
+
+- slug: cs2-tradeup-analysis
+  title: The $2 billion patch note
+  start: "2026-09"
+  status: active
+  domains: [Data analysis]
+  summary: A financial event study of how one game update repriced a multi-billion-dollar virtual item market overnight.
+  tags: [Python, pandas, NumPy, SciPy, Matplotlib, pytest]
+  repo: ""
+  note: false
+  bullets:
+    - "Treated Counter-Strike 2's October 2025 trade-up update, which erased an estimated $2 billion of skin value in 48 hours, as a real market shock to be measured rather than a curiosity."
+    - "Measured the crash shape across about 3,900 items, a 19% drawdown with the trough at 25 hours and half the loss recovered 48 hours later, by building price indices from daily Steam market medians."
+    - "Showed that the newly useful Covert inputs gained 43.5% mean abnormal return within 48 hours (t = 8.95) while Restricted and Classified items fell, by running a constant-mean event study per rarity group."
+    - "Found that the cheapest exteriors repriced most (Battle-Scarred Coverts up 147% at 2 days and 258% at 14 days, versus Factory New down 24%), by splitting abnormal returns by wear and StatTrak."
+    - "Modeled the new contract as a call option (five Coverts as the strike, a knife from the collection's pool as the payoff) with expected-value, Monte Carlo, and stress-test views."
+    - "Packaged the analysis as a tested Python CLI that regenerates every table and figure. Next: knife and glove price data to test whether arbitrage closed the gap to each Covert's trade-up floor."
+
+- slug: limits-of-foresight
+  title: The limits of foresight
+  start: "2026-09"
+  status: active
+  domains: [AI/ML, Research]
+  summary: A cognitive-science project testing whether human lookahead in Go and belief recursion in poker are the same depth-limited computation.
+  tags: [Python, LaTeX]
+  repo: ""
+  note: false
+  bullets:
+    - "Framed a question two research literatures rarely test together: whether people stop thinking ahead the same way when reasoning about board positions (Go) and about other minds (poker)."
+    - "Designed two small, interpretable models that share one architecture and one depth parameter, so depth can be compared directly across domains."
+    - "Set four testable hypotheses: depth grows with player rank, belief depth tops out at about 2 levels, people spend more depth when stakes are higher, and returns diminish faster for minds than for boards."
+    - "Planned to fit both models to public human game data, using existing engines only as move evaluators and data sources, not as opponents."
+    - "Grounded the design in bounded rationality, level-k and cognitive-hierarchy models, and resource-rational analysis, citing the prior work each hypothesis builds on."
+    - "Status: pitch milestone for CS 6795 (Cognitive Science) at Georgia Tech, fall 2026. Model fitting and results are still to come."
+
+- slug: thousand-and-one-words
+  title: The Thousand and One Words
+  start: "2026-09"
+  status: active
+  domains: [Learning tools]
+  summary: A 100-chapter Arabian Nights comic epic that teaches the 1,000 most-used SAT words, generated from one script.
+  tags: [Python, HTML, SVG]
+  repo: https://github.com/Sent-hen/1001-SAT-words
+  note: true
+  bullets:
+    - "Wrote a 100-chapter comic epic for readers aged 14 to 16 that teaches the 1,000 most-used SAT words, ten words per chapter."
+    - "Gave every word three memory hooks, a story scene, a picture link, and a place in a memory palace, so readers with different memory styles each get one that sticks."
+    - "Chained all 1,000 words into one unbroken link chain, with each chapter's last word linking to the next chapter's first."
+    - "Mapped the words onto a memory palace of 100 landmarks in the Round City of Baghdad, each with the same 10 stations."
+    - "Generated all 100 chapter pages, image-prompt files, and the combined script from one source with a Python build, so a one-line edit updates every page."
+    - "Drew the character sheets and city map as vector SVG in Python, and wrote an image prompt for every frame."
+
+- slug: personal-website
+  title: Personal website
+  start: "2023-05"
+  status: active
+  featured: 1
+  domains: [Web]
+  summary: This site. A static Jekyll site on GitHub Pages that logs what I consume and what I create, in the <a href="https://github.com/kepano/flexoki">Flexoki</a> color scheme.
+  tags: [Jekyll, Liquid, HTML, CSS, JavaScript]
+  repo: https://github.com/Sent-hen/sent-hen.github.io
+  note: false
+  bullets:
+    - "Built a personal site with no server, no database, and no build pipeline to maintain, by publishing a static Jekyll site straight from the main branch through GitHub Pages."
+    - "Made adding an entry a one-file change: each of 227 logged books, films, songs, poems, and products is a Markdown file whose folder sets its category, so no index or list needs updating."
+    - "Kept experiments data-driven in a single YAML file, so the domain and tech filters, tag rankings, and counts are all generated from it rather than written by hand."
+    - "Kept tagging minimal on purpose: an active tag on Input marks what is in use right now, and experiments are only In progress or Done."
+    - "Added filtering and sorting with a small amount of plain JavaScript and no libraries, while keeping every page fully readable with JavaScript turned off."
+    - "Designed it around <a href=\"https://github.com/kepano/flexoki\">Flexoki</a>, an open-source color scheme by Steph Ango, with light and dark themes, then trimmed it repeatedly, removing unused pages, styles, and data so the whole site stays easy to maintain by hand."

@@ -1,5 +1,6 @@
 {%- comment -%}
-  Alphabetical / Year sort for a simple list. Each <li> needs data-index, data-title, and data-year.
+  Alphabetical / Year sort for a simple list. Each <li> needs data-index, data-title, and data-year;
+  an <li> with data-pinned stays on top whatever the sort.
   Usage: {% include sort-bar.html target="stuff-list" %} placed above <ul id="stuff-list">.
 {%- endcomment -%}
 <div class="sort-bar small" id="{{ include.target }}-sort" hidden>
@@ -21,6 +22,7 @@
       var items = Array.prototype.slice.call(list.children);
       var key = by.value, sign = (key === 'year' ? -1 : 1) * (desc ? -1 : 1);   // A-Z, or newest first
       items.sort(function (a, b) {
+        if (!!a.dataset.pinned !== !!b.dataset.pinned) return a.dataset.pinned ? -1 : 1;
         var x = a.dataset[key], y = b.dataset[key];
         if (!x && !y) return a.dataset.index - b.dataset.index;
         if (!x) return 1;

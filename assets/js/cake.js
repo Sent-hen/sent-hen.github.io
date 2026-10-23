@@ -1,6 +1,7 @@
 // The cake as Matrix rain: columns of digits stream down the tile, and the digits are bright only
 // where the cake drawing is (_includes/cake.html), so the cake appears out of the rain.
-// Light mode rains 0s, dark mode rains 1s (--cake-digit). Colors invert the page (--cake-bg/--cake-ink).
+// Digits are 0 at the top and 1 at the bottom, mixing in the middle. Dark mode rains down (0 → 1),
+// light mode rains up (1 → 0), following --motion. Colors invert the page (--cake-bg/--cake-ink).
 (function () {
   var fig = document.querySelector('.cake');
   var svg = fig && fig.querySelector('.cake-art');
@@ -21,13 +22,13 @@
   canvas.setAttribute('aria-label', svg.getAttribute('aria-label') + ', drawn in falling digits');
   var ctx = canvas.getContext('2d');
 
-  // Theme: colors and digit come from the stylesheet so they follow light/dark.
-  var BG, INK, DIGIT;
+  // Theme: colors and direction come from the stylesheet so they follow light/dark.
+  var BG, INK, UP;
   function readTheme() {
     var cs = getComputedStyle(fig);
     BG = cs.getPropertyValue('--cake-bg').trim() || '#100F0F';
     INK = cs.getPropertyValue('--cake-ink').trim() || '#FFFCF0';
-    DIGIT = (cs.getPropertyValue('--cake-digit').trim() || '0').replace(/['"]/g, '');
+    UP = cs.getPropertyValue('--motion').trim() === 'reverse';   // light: the rain rises
   }
   readTheme();
   new MutationObserver(readTheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
@@ -62,7 +63,11 @@
   };
   pic.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(src);
 
-  // Rain: each column has a falling head at its own speed and offset.
+  // Digits: each cell turns from 0 to 1 at its own depth, so the change is a soft band, not a line.
+  var ones = new Uint8Array(COLS * ROWS);
+  for (var i = 0; i < COLS * ROWS; i++) ones[i] = (Math.floor(i / COLS) + 0.5) / ROWS > 0.3 + 0.4 * Math.random() ? 1 : 0;
+
+  // Rain: each column has a moving head at its own speed and offset.
   var heads = [], speeds = [];
   for (var c = 0; c < COLS; c++) { heads.push(Math.random() * ROWS * 2); speeds.push(0.6 + Math.random() * 0.8); }
   var last = 0;
@@ -72,23 +77,26 @@
     last = t;
     ctx.fillStyle = BG;
     ctx.fillRect(0, 0, N, N);
-    // a '1' has far less ink than a '0', so draw it larger to keep the cake equally solid
-    ctx.font = 'bold ' + Math.round(C * (DIGIT === '1' ? 1.5 : 1.15)) + 'px ui-monospace, "Cascadia Code", Menlo, Consolas, monospace';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillStyle = INK;
     for (var c = 0; c < COLS; c++) {
       heads[c] += dt * SPEED * speeds[c];
       if (heads[c] > ROWS + TRAIL) heads[c] = -Math.random() * ROWS;
-      for (var r = 0; r < ROWS; r++) {
+    }
+    // two passes, 0s then 1s: a '1' has far less ink than a '0', so it is drawn larger to keep the cake equally solid
+    for (var d = 0; d < 2; d++) {
+      ctx.font = 'bold ' + Math.round(C * (d ? 1.5 : 1.15)) + 'px ui-monospace, "Cascadia Code", Menlo, Consolas, monospace';
+      for (var c = 0; c < COLS; c++) for (var r = 0; r < ROWS; r++) {
+        if (ones[r * COLS + c] !== d) continue;
         var m = mask[r * COLS + c];
-        var behind = heads[c] - r;                       // rows since the head passed this cell
+        var behind = heads[c] - (UP ? ROWS - 1 - r : r); // rows since the head passed this cell
         var glow = behind >= 0 && behind < TRAIL ? 1 - behind / TRAIL : 0;
         // the cake always shows; the rain brightens it as heads pass, and faintly fills the tile around it
         var alpha = m > 0 ? m * (0.7 + 0.3 * glow) : 0.1 * glow;
         if (alpha < 0.02) continue;
         ctx.globalAlpha = alpha;
-        ctx.fillText(DIGIT, (c + 0.5) * C, (r + 0.5) * C);
+        ctx.fillText(d ? '1' : '0', (c + 0.5) * C, (r + 0.5) * C);
       }
     }
     ctx.globalAlpha = 1;

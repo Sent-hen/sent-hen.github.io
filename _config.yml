@@ -5,15 +5,17 @@ url: "https://sent-hen.github.io"
 baseurl: ""
 
 markdown: kramdown
+plugins:
+  - jekyll-redirect-from   # old /projects/ links forward to /experiments/ and /notes/
 permalink: pretty
 
 collections:
   input:             # one file per item in _input/<category>/; the folder is the category, the body is the note
     output: true
     permalink: /input/:path/
-  projects:          # writeups for completed projects; entries live in _data/projects.yml
+  notes:             # one note per file in _notes/; each is about an experiment in _data/experiments.yml
     output: true
-    permalink: /projects/:path/
+    permalink: /notes/:path/
 
 defaults:
   - scope:
@@ -23,9 +25,9 @@ defaults:
       layout: "item"
   - scope:
       path: ""
-      type: "projects"
+      type: "notes"
     values:
-      layout: "project"
+      layout: "note"
   - scope:
       path: ""
     values:

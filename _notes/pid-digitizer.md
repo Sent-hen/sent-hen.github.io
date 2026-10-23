@@ -1,6 +1,8 @@
 ---
 title: P&ID Digitizer
-project: pid-digitizer
+experiment: pid-digitizer   # must match the slug in _data/experiments.yml
+written: "2026-10"   # YYYY-MM; orders /notes/
+redirect_from: /projects/pid-digitizer/
 description: "Converts raster P&ID drawings into GraphML and DEXPI graphs with calibrated confidence and a review UI."
 ---
 

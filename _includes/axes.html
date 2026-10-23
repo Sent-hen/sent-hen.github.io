@@ -1,0 +1,16 @@
+{%- comment -%}
+  A grid with an x axis and a y axis through the middle, arrows on all four ends, and two dots: one
+  moves up and down the y axis, the other left and right along the x axis. Colors and speed are in assets/css/style.scss (.axes).
+{%- endcomment -%}
+<svg class="axes" viewBox="0 0 160 160" role="img" aria-label="A grid with x and y axes, one dot moving up and down and one moving left and right">
+  <defs>
+    <marker id="axes-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" class="axes-head"/>
+    </marker>
+  </defs>
+  <path class="axes-grid" d="M16 0V160M32 0V160M48 0V160M64 0V160M80 0V160M96 0V160M112 0V160M128 0V160M144 0V160M0 16H160M0 32H160M0 48H160M0 64H160M0 80H160M0 96H160M0 112H160M0 128H160M0 144H160"/>
+  <line class="axes-line" x1="8" y1="80" x2="152" y2="80" marker-start="url(#axes-arrow)" marker-end="url(#axes-arrow)"/>
+  <line class="axes-line" x1="80" y1="8" x2="80" y2="152" marker-start="url(#axes-arrow)" marker-end="url(#axes-arrow)"/>
+  <circle class="axes-dot axes-dot-y" cx="80" cy="80" r="6"/>
+  <circle class="axes-dot axes-dot-x" cx="80" cy="80" r="6"/>
+</svg>

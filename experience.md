@@ -10,7 +10,7 @@ description: "Experience — Senthen Velmurugan."
 
 <p class="status">Currently a part-time student · open to SWE/SDE, FDE, SRE, MLE, DevOps, and MLOps roles</p>
 
-<!-- Keep entries newest first. -->
+<!-- Keep entries newest first. Dates are YYYY MM. -->
 
 <p class="label">Work</p>
 
@@ -18,7 +18,7 @@ description: "Experience — Senthen Velmurugan."
   <li class="entry">
     <div class="entry-head">
       <span class="entry-title">Machine Learning Engineering Intern</span>
-      <span class="entry-when">May 2024 &ndash; Aug 2024</span>
+      <span class="entry-when">2024 05 &ndash; 2024 08</span>
     </div>
     <div class="entry-sub">KloudGin · Remote</div>
     <div class="entry-desc">
@@ -33,7 +33,7 @@ description: "Experience — Senthen Velmurugan."
   <li class="entry">
     <div class="entry-head">
       <span class="entry-title">Cybersecurity and Systems Intern</span>
-      <span class="entry-when">May 2023 &ndash; Aug 2023</span>
+      <span class="entry-when">2023 05 &ndash; 2023 08</span>
     </div>
     <div class="entry-sub">GBC Computers · Mabank, TX</div>
     <div class="entry-desc">

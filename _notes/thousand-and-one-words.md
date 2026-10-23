@@ -1,6 +1,8 @@
 ---
 title: The Thousand and One Words
-project: thousand-and-one-words
+experiment: thousand-and-one-words   # must match the slug in _data/experiments.yml
+written: "2026-10"   # YYYY-MM; orders /notes/
+redirect_from: /projects/thousand-and-one-words/
 description: "A 100-chapter comic epic that teaches the 1,000 most-used SAT words."
 ---
 
