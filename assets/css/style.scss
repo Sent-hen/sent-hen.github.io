@@ -18,6 +18,15 @@
   --flexoki-950: #1C1B1A;
   --flexoki-cyan-400: #3AA99F;
   --flexoki-cyan-600: #24837B;
+  /* brighter 300 shades from the Flexoki extended palette (used by the Sierpinski triangle) */
+  --flexoki-red-300: #E8705F;
+  --flexoki-orange-300: #EC8B49;
+  --flexoki-yellow-300: #DFB431;
+  --flexoki-green-300: #A0AF54;
+  --flexoki-cyan-300: #5ABDAC;
+  --flexoki-blue-300: #66A0C8;
+  --flexoki-purple-300: #A699D0;
+  --flexoki-magenta-300: #E47DA8;
   --flexoki-red-400: #D14D41;     --flexoki-red-600: #AF3029;
   --flexoki-orange-400: #DA702C;  --flexoki-orange-600: #BC5215;
   --flexoki-yellow-400: #D0A215;  --flexoki-yellow-600: #AD8301;
@@ -249,17 +258,22 @@ hr {
 .golden-spiral .sq-green { fill: var(--flexoki-green-400); }
 .golden-spiral .arc { fill: none; stroke: var(--flexoki-black); stroke-width: 2.2; vector-effect: non-scaling-stroke; stroke-linecap: round; }
 
-/* below the spiral: grid, an x axis with arrows on both ends, and a dot moving left and right along it */
-.axes { display: block; width: 160px; height: 160px; border-radius: 6px; background: var(--flexoki-black); }
-.axes-grid { fill: none; stroke: var(--flexoki-850); stroke-width: 1; }
-.axes-line { stroke: var(--flexoki-paper); stroke-width: 2; }
-.axes-head { fill: var(--flexoki-paper); }
-.axes-dot { transform-box: view-box; }
-.axes-dot-x {
-  fill: var(--flexoki-cyan-400);
-  animation: axes-sway 2.4s ease-in-out infinite alternate;  /* left to right and back */
+/* below the spiral: a Sierpinski triangle zooming in (dark) or out (light) forever; keyframes in _includes/sierpinski.html.
+   It sits on the page background, so it is dark in dark mode and light in light mode. */
+.sierpinski { display: block; width: 160px; height: 160px; overflow: hidden; background: var(--bg); }
+.sierpinski .zoom {
+  transform-box: view-box;
+  transform-origin: 69.143px 74.78px;   /* the zoom point near the middle; see _includes/sierpinski.html */
+  animation: sierpinski-zoom 12s linear infinite var(--motion);   /* 64x per loop */
 }
-@keyframes axes-sway { from { transform: translateX(-56px); } to { transform: translateX(56px); } }
+/* the triangle itself, then one colour per level of holes, biggest first; the cycle of 6 repeats every loop */
+.sierpinski .sier-fill { fill: var(--flexoki-yellow-300); }
+.sierpinski .sier-l0 { fill: var(--flexoki-purple-300); }
+.sierpinski .sier-l1 { fill: var(--flexoki-cyan-300); }
+.sierpinski .sier-l2 { fill: var(--flexoki-blue-300); }
+.sierpinski .sier-l3 { fill: var(--flexoki-orange-300); }
+.sierpinski .sier-l4 { fill: var(--flexoki-magenta-300); }
+.sierpinski .sier-l5 { fill: var(--flexoki-green-300); }
 .intro-text {
   min-width: 0;
   align-self: stretch;
@@ -298,6 +312,19 @@ hr {
 .quotes { margin: 0 0 0.6em; }
 
 .iam { margin: 0 0 0.2em; }
+/* home: my name in three rows: Tamil, English, pronunciation */
+.name-rows { padding-left: 1.2em; }
+.name-rows span { display: block; }
+/* home: the empty box under "systems engineering"; it opens /interests/ */
+.blank-box {
+  display: inline-block;
+  width: 4em;
+  height: 1.1em;
+  vertical-align: middle;
+  border: 1px solid var(--tx-2);
+  border-radius: 4px;
+}
+.blank-box:hover { border-color: var(--tx); }
 .iam-list { list-style: none; margin: 0 0 1em; padding: 0 0 0 1.2em; }
 .iam-list li { margin: 0; }
 .boxed {
@@ -340,7 +367,7 @@ hr {
   .intro { gap: 14px; }
   .cake { width: 96px; height: 96px; }
   .golden-spiral { width: 96px; height: 96px; }
-  .axes { width: 96px; height: 96px; }
+  .sierpinski { width: 96px; height: 96px; }
     .intro-text { padding-left: 14px; }
 }
 

@@ -16,7 +16,7 @@
   status: done
   featured: 2
   domains: [AI/ML, Backend/infra]
-  summary: Turns scanned engineering drawings (P&IDs) into machine-readable graphs, with a review UI for correcting low-confidence output.
+  summary: Turns scanned engineering drawings (P&IDs) into machine-readable graphs, with a review UI for correcting low-confidence output
   tags: [Python, PyTorch, OpenCV, FastAPI, Docker, NetworkX, SQLite]
   repo: https://github.com/Sent-hen/PID-Digitizer
   note: true
@@ -34,7 +34,7 @@
   status: done
   featured: 3
   domains: [Tooling]
-  summary: A dependency-free browser viewer and validator for DEXPI 2.0.1 plant-model XML.
+  summary: A dependency-free browser viewer and validator for DEXPI 2.0.1 plant-model XML
   tags: [JavaScript, Python, XML, SVG]
   repo: https://github.com/Sent-hen/DEXPI-PID-Viewer
   note: true
@@ -51,7 +51,7 @@
   start: "2026-10"
   status: active
   domains: [Security, Backend/infra]
-  summary: One-command private WireGuard server in the cloud, with a client tool and a written threat model.
+  summary: One-command private WireGuard server in the cloud, with a client tool and a written threat model
   tags: [Terraform, Go, Bash, WireGuard, Linux, nftables]
   repo: https://github.com/Sent-hen/VPN
   note: false
@@ -68,7 +68,7 @@
   start: "2026-09"
   status: active
   domains: [Backend/infra]
-  summary: A commit-to-pod delivery path from VMware VMs to Kubernetes with no cloud services, run with SLOs, rollback, and failure drills.
+  summary: A commit-to-pod delivery path from VMware VMs to Kubernetes with no cloud services, run with SLOs, rollback, and failure drills
   tags: [Kubernetes, Bash, Go, Docker, Jenkins, Prometheus, Vagrant]
   repo: https://github.com/Sent-hen/metal-to-pod
   note: true
@@ -85,7 +85,7 @@
   start: "2024-04"
   status: active
   domains: [AI/ML, Backend/infra]
-  summary: A reproducible training pipeline and SLO-instrumented inference service that turns math word problems into verified equations.
+  summary: A reproducible training pipeline and SLO-instrumented inference service that turns math word problems into verified equations
   tags: [Python, PyTorch, FastAPI, Docker, Prometheus, Kubernetes, GitHub Actions]
   repo: https://github.com/Sent-hen/Word2Eq
   note: true
@@ -102,7 +102,7 @@
   start: "2026-10"
   status: active
   domains: [Security, Backend/infra]
-  summary: An isolated SSH/Telnet honeypot on AWS that ships attacker activity off-box for enrichment, mapping, and ML campaign analysis.
+  summary: An isolated SSH/Telnet honeypot on AWS that ships attacker activity off-box for enrichment, mapping, and ML campaign analysis
   tags: [Terraform, AWS, Bash, Docker, Cowrie, Vector]
   repo: https://github.com/Sent-hen/Honeypot-Attack
   note: false
@@ -119,7 +119,7 @@
   start: "2026-09"
   status: active
   domains: [Data analysis]
-  summary: A financial event study of how one game update repriced a multi-billion-dollar virtual item market overnight.
+  summary: A financial event study of how one game update repriced a multi-billion-dollar virtual item market overnight
   tags: [Python, pandas, NumPy, SciPy, Matplotlib, pytest]
   repo: ""
   note: false
@@ -136,7 +136,7 @@
   start: "2026-09"
   status: active
   domains: [AI/ML, Research]
-  summary: A cognitive-science project testing whether human lookahead in Go and belief recursion in poker are the same depth-limited computation.
+  summary: A cognitive-science project testing whether human lookahead in Go and belief recursion in poker are the same depth-limited computation
   tags: [Python, LaTeX]
   repo: ""
   note: false
@@ -153,7 +153,7 @@
   start: "2026-09"
   status: active
   domains: [Learning tools]
-  summary: A 100-chapter Arabian Nights comic epic that teaches the 1,000 most-used SAT words, generated from one script.
+  summary: A 100-chapter Arabian Nights comic epic that teaches the 1,000 most-used SAT words, generated from one script
   tags: [Python, HTML, SVG]
   repo: https://github.com/Sent-hen/1001-SAT-words
   note: true
@@ -171,7 +171,7 @@
   status: active
   featured: 1
   domains: [Web]
-  summary: This site. A static Jekyll site on GitHub Pages that shows what I build, in the <a href="https://github.com/kepano/flexoki">Flexoki</a> color scheme.
+  summary: This site, a static Jekyll site on GitHub Pages that shows what I build, in the <a href="https://github.com/kepano/flexoki">Flexoki</a> color scheme
   tags: [Jekyll, Liquid, HTML, CSS, JavaScript]
   repo: https://github.com/Sent-hen/sent-hen.github.io
   note: false

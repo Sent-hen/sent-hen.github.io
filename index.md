@@ -16,7 +16,7 @@ description: "Senthen Velmurugan: output"
   </figure>
   <script src="{{ '/assets/js/cake.js' | relative_url }}" defer></script>
   {% include golden-spiral.html %}
-  {% include axes.html %}
+  {% include sierpinski.html %}
   <script src="{{ '/assets/js/motion.js' | relative_url }}" defer></script>
   </div>
   <div class="intro-text">
@@ -32,17 +32,12 @@ description: "Senthen Velmurugan: output"
   <div class="duality">
     <section>
       <p class="label">Who I am</p>
-      <p>I'm Senthen <span class="t-ph">(SAYN-thuhn)</span></p>
-      <p>I like contrasts</p>
-      <p>I am a Human-Centered Engineer</p>
-      <p class="iam">but also&hellip;</p>
-      <ul class="iam-list">
-        <li>autodidact</li>
-        <li>entrepreneur</li>
-        <li>scientist</li>
-      </ul>
-      <p>I like engaging in intense dialogue to let an answer emerge</p>
-      <p>I like bottom-up and top-down thinking</p>
+      <p class="iam">I'm</p>
+      <p class="name-rows">
+        <span lang="ta">சேந்தன்</span>
+        <span>Senthen</span>
+        <span class="t-ph">SAYN-dhun</span>
+      </p>
     </section>
     <section>
       <p class="label">Who am I</p>
@@ -51,11 +46,7 @@ description: "Senthen Velmurugan: output"
       <ul class="iam-list">
         <li>linguistics</li>
         <li>systems engineering</li>
-        <li>piano</li>
-      </ul>
-      <p class="iam">Cannot master in my lifetime&hellip;</p>
-      <ul class="iam-list">
-        <li><span class="boxed">the human condition</span></li>
+        <li><a href="{{ '/interests/' | relative_url }}" class="blank-box" aria-label="My interests"></a></li>
       </ul>
     </section>
   </div>

@@ -27,7 +27,7 @@ The links after the name. Each entry is `Label:/url/` plus any other sections it
 `_includes/nav.html`
 
 ```liquid
-{% assign links = "Stuff:/stuff/,Output:/output/:/experiments/:/notes/:/experience/" | split: "," %}
+{% assign links = "Stuff:/stuff/,Output:/output/:/experiments/:/notes/:/delete/:/experience/" | split: "," %}
 ```
 
 ## 3. Theme toggle
@@ -99,7 +99,7 @@ var SPEED = 14;   // rows per second
 
 ## 7. Home: golden spiral
 
-Fibonacci squares with the golden spiral, zooming into its eye forever (out of it in light mode). There is no rotation; the turning is the spiral's self-similarity. The drawing is generated; the speed is in the stylesheet. Switching the theme flips the direction from the current frame instead of restarting; `assets/js/motion.js` does this for the spiral and the ripple by setting each animation's playback rate to 1 or -1.
+Fibonacci squares with the golden spiral, zooming into its eye forever (out of it in light mode). There is no rotation; the turning is the spiral's self-similarity. The drawing is generated; the speed is in the stylesheet. Switching the theme flips the direction from the current frame instead of restarting; `assets/js/motion.js` does this for the spiral, the Sierpinski triangle, and the ripple by setting each animation's playback rate to 1 or -1.
 
 `_includes/golden-spiral.html` (drawing and keyframes), `assets/css/style.scss` (speed and colors), `assets/js/motion.js` (direction)
 
@@ -108,19 +108,20 @@ Fibonacci squares with the golden spiral, zooming into its eye forever (out of i
 .golden-spiral .sq-red { fill: var(--tint-red); }
 ```
 
-## 7a. Home: axes
+## 7a. Home: Sierpinski triangle
 
-Below the spiral: a grid with an x axis through the middle, arrowheads on both ends, and a cyan dot moving left and right along it.
+Below the spiral, on the page background (dark in dark mode, light in light mode): a Sierpinski triangle whose holes are coloured by level in bright Flexoki colours (the 300 shades), cycling through six. It zooms into a point near its middle forever, in on dark and out on light. Each loop zooms by 64 (six levels) about a point where the triangle repeats itself exactly, so with the six-colour cycle the loop is seamless. The drawing and keyframes are generated; colours and speed are in the stylesheet, and `assets/js/motion.js` flips the direction without a restart.
 
-`_includes/axes.html` (drawing), `assets/css/style.scss` (`.axes`, colors and speed)
+`_includes/sierpinski.html` (drawing and keyframes), `assets/css/style.scss` (`.sierpinski`, `.sier-l0` to `.sier-l5`)
 
 ```scss
-.axes-dot-x { animation: axes-sway 2.4s ease-in-out infinite alternate; }   /* left and right */
+.sierpinski .zoom { animation: sierpinski-zoom 12s linear infinite var(--motion); }
+.sierpinski .sier-l0 { fill: var(--flexoki-purple-300); }   /* biggest holes; l1 to l5 follow */
 ```
 
 ## 8. Home: my quotes and the two halves
 
-My two quotes sit first (`.quotes`, no attribution: originality is the art of concealing your source), then the 0 → 1 ripple (section 9), then "Who I am" and "Who am I" side by side. "Who am I" ends with "Currently mastering…" and "Cannot master in my lifetime…" lists (`.iam`, `.iam-list`). The site note closes the column.
+My two quotes sit first (`.quotes`, no attribution: originality is the art of concealing your source), then the 0 → 1 ripple (section 9), then "Who I am" and "Who am I" side by side. "Who I am" shows my name in three rows: Tamil (சேந்தன்), English (Senthen), pronunciation (SAYN-dhun) (`.name-rows`). "Who am I" ends with the "Currently mastering…" list (`.iam`, `.iam-list`); the last item under Currently mastering is an empty box (`.blank-box`) that opens `/interests/` (`interests.html`, one `<li>` per interest). The site note closes the column.
 
 `index.md`
 
@@ -244,9 +245,13 @@ A sort control for simple lists (Stuff). Each list item carries `data-title` and
 
 ## 16. Output
 
-Featured experiments, then links to Experiments, Notes, and Experience (in that order).
+Featured experiments, then three open-ended lines, then Experience. No periods in the page text.
 
-`output.html`
+- **create**: what I'm working on (`/experiments/`)
+- **update**: notes (`/notes/`)
+- **delete**: previous beliefs (`/delete/`, `delete.html`, one `<li>` per belief, ending in an empty box)
+
+`output.html`, `delete.html`
 
 ```liquid
 {% assign featured = site.data.experiments | where_exp: "p", "p.featured" | sort: "featured" %}
@@ -265,7 +270,7 @@ Everything I've built or tried, in two groups, In progress (`status: active`, a 
   status: active            # active = In progress, done = Done
   featured: 1               # optional: 1-3 puts it on /output/ in that order
   domains: [Backend/infra]
-  summary: One sentence.
+  summary: One sentence, no period
   tags: [Python, Docker]
   repo: https://github.com/Sent-hen/my-experiment   # "" if private
   note: false               # true if _notes/my-experiment.md exists
