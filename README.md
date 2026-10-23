@@ -110,12 +110,11 @@ Fibonacci squares with the golden spiral, zooming into its eye forever (out of i
 
 ## 7a. Home: axes
 
-Below the spiral: a grid with x and y axes through the middle, arrowheads on all four ends, a yellow dot moving up and down the y axis, and a cyan dot moving left and right along the x axis.
+Below the spiral: a grid with an x axis through the middle, arrowheads on both ends, and a cyan dot moving left and right along it.
 
 `_includes/axes.html` (drawing), `assets/css/style.scss` (`.axes`, colors and speed)
 
 ```scss
-.axes-dot-y { animation: axes-bob 2.4s ease-in-out infinite alternate; }    /* up and down */
 .axes-dot-x { animation: axes-sway 2.4s ease-in-out infinite alternate; }   /* left and right */
 ```
 

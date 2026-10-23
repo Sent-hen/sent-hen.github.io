@@ -248,21 +248,16 @@ hr {
 .golden-spiral .sq-green { fill: var(--flexoki-green-400); }
 .golden-spiral .arc { fill: none; stroke: var(--flexoki-black); stroke-width: 2.2; vector-effect: non-scaling-stroke; stroke-linecap: round; }
 
-/* below the spiral: grid, x and y axes with arrows on all four ends, a dot moving up and down the y axis and one moving left and right along the x axis */
+/* below the spiral: grid, an x axis with arrows on both ends, and a dot moving left and right along it */
 .axes { display: block; width: 160px; height: 160px; border-radius: 6px; background: var(--flexoki-black); }
 .axes-grid { fill: none; stroke: var(--flexoki-850); stroke-width: 1; }
 .axes-line { stroke: var(--flexoki-paper); stroke-width: 2; }
 .axes-head { fill: var(--flexoki-paper); }
 .axes-dot { transform-box: view-box; }
-.axes-dot-y {
-  fill: var(--flexoki-yellow-400);
-  animation: axes-bob 2.4s ease-in-out infinite alternate;   /* top to bottom and back */
-}
 .axes-dot-x {
   fill: var(--flexoki-cyan-400);
   animation: axes-sway 2.4s ease-in-out infinite alternate;  /* left to right and back */
 }
-@keyframes axes-bob { from { transform: translateY(-56px); } to { transform: translateY(56px); } }
 @keyframes axes-sway { from { transform: translateX(-56px); } to { transform: translateX(56px); } }
 .intro-text {
   min-width: 0;
