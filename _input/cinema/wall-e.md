@@ -6,5 +6,5 @@ year: 2008
 form: "Cinema"
 source: "Pixar Animation Studios"
 order: 6
-stuff: 2   # position in the /stuff/ showcase
+stuff: 1   # position in the /stuff/ showcase
 ---
