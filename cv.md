@@ -1,18 +1,22 @@
 ---
-title: Experience
-permalink: /experience/
-description: "Experience — Senthen Velmurugan."
+title: Curriculum Vitae
+permalink: /cv/
+redirect_from: /experience/
+description: "Curriculum vitae of Senthen Velmurugan"
 ---
 
 <p class="small"><a href="{{ '/output/' | relative_url }}" class="muted">&larr; Output</a></p>
 
-# Experience
-
-<p class="status">Currently a part-time student · open to roles where I can be of service</p>
+<header class="cv-head">
+  <h1>Curriculum Vitae</h1>
+  <p class="cv-name">Senthen Velmurugan</p>
+  <p class="cv-contact small muted">Pacific Northwest / Texas · <a href="mailto:senthenvelmurugan@gmail.com">senthenvelmurugan@gmail.com</a> · <a href="https://github.com/Sent-hen">GitHub</a> · <a href="https://www.linkedin.com/in/senthen-velmurugan-989aa9222/">LinkedIn</a></p>
+  <p class="cv-open">Open to tech roles in the Pacific Northwest / Texas</p>
+</header>
 
 <!-- Keep entries newest first. Dates are YYYY MM. -->
 
-<p class="label">Work</p>
+<h2 class="cv-section">Experience</h2>
 
 <ul class="entries">
   <li class="entry">
@@ -28,7 +32,6 @@ description: "Experience — Senthen Velmurugan."
         <li>Reduced query response time from 2.5 s to 800 ms by optimizing search and fine-tuning vector embeddings, while holding 95% relevance.</li>
       </ul>
     </div>
-    <div class="tags"><span class="tag dom dom-ai-ml">AI/ML</span><span class="tag dom dom-backend">Backend</span><span class="tag">Python</span><span class="tag">LangChain</span><span class="tag">Pinecone</span><span class="tag">OpenAI API</span></div>
   </li>
   <li class="entry">
     <div class="entry-head">
@@ -43,13 +46,10 @@ description: "Experience — Senthen Velmurugan."
         <li>Found and patched critical risks by running Nessus vulnerability assessments and validating findings with OpenVAS and manual audits.</li>
       </ul>
     </div>
-    <div class="tags"><span class="tag dom dom-security">Security</span><span class="tag dom dom-infra">Infra</span><span class="tag">pfSense</span><span class="tag">Wireshark</span><span class="tag">Nessus</span><span class="tag">Snort</span></div>
   </li>
 </ul>
 
-<hr>
-
-<p class="label">Skills</p>
+<h2 class="cv-section">Skills</h2>
 
 <div class="entry-desc">
   <!-- Only skills that carry over to any domain. -->
@@ -59,9 +59,7 @@ description: "Experience — Senthen Velmurugan."
   <p><span class="muted">Fundamentals</span> &nbsp;Input/Output, Logic/Control, Data/State</p>
 </div>
 
-<hr>
-
-<p class="label">Organizations</p>
+<h2 class="cv-section">Organizations</h2>
 
 <ul class="entries">
   <li class="entry">
@@ -72,9 +70,7 @@ description: "Experience — Senthen Velmurugan."
   </li>
 </ul>
 
-<hr>
-
-<p class="label">Education</p>
+<h2 class="cv-section">Education</h2>
 
 <ul class="entries">
   <li class="entry">

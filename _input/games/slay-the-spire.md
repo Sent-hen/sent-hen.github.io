@@ -5,5 +5,4 @@ creator: "MegaCrit"
 year: 2019
 form: "Game"
 order: 13
-stuff: true
 ---

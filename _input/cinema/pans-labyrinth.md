@@ -7,5 +7,4 @@ creator: "Guillermo del Toro"
 year: 2006
 form: "Cinema"
 order: 111
-stuff: true
 ---

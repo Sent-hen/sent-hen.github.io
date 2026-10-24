@@ -5,5 +5,5 @@ creator: "Campo Santo"
 year: 2016
 form: "Game"
 order: 7
-stuff: true
+stuff: 2   # position in the /stuff/ showcase
 ---

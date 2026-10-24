@@ -5,5 +5,4 @@ creator: "The Strokes"
 year: 2020
 form: "Music"
 order: 57
-stuff: true
 ---

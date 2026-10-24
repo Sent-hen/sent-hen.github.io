@@ -5,5 +5,5 @@ creator: "Alfonso Cuarón"
 year: 2006
 form: "Cinema"
 order: 24
-stuff: true
+stuff: 4   # position in the /stuff/ showcase
 ---

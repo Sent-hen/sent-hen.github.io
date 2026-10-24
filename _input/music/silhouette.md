@@ -6,5 +6,4 @@ year: 1988
 form: "Music"
 source: "Silhouette (Arista)"
 order: 73
-stuff: true
 ---

@@ -1,6 +1,6 @@
 {%- comment -%}
   Golden spiral over Fibonacci squares (generated). Squares are tinted with Flexoki accents and cycle
-  every 4 steps; the whole drawing zooms into the spiral's eye and loops seamlessly because zooming by
+  every 4 steps; the whole drawing zooms out of the spiral's eye (dark mode; light mode plays it backwards, into the eye) and loops seamlessly because zooming by
   phi^4 maps the tiling onto itself. There is no rotation: the turning you see is the spiral's self-similarity.
 {%- endcomment -%}
 <svg class="golden-spiral" viewBox="0 0 160 160" role="img" aria-label="A golden spiral drawn through Fibonacci squares">
@@ -11,22 +11,22 @@
 </svg>
 <style>
 @keyframes golden-zoom {
-  0.0% { transform: scale(1.0000); }
-  6.2% { transform: scale(1.1278); }
-  12.5% { transform: scale(1.2720); }
-  18.8% { transform: scale(1.4346); }
-  25.0% { transform: scale(1.6180); }
-  31.2% { transform: scale(1.8249); }
-  37.5% { transform: scale(2.0582); }
-  43.8% { transform: scale(2.3213); }
+  0.0% { transform: scale(6.8541); }
+  6.2% { transform: scale(6.0772); }
+  12.5% { transform: scale(5.3884); }
+  18.8% { transform: scale(4.7776); }
+  25.0% { transform: scale(4.2361); }
+  31.2% { transform: scale(3.7559); }
+  37.5% { transform: scale(3.3302); }
+  43.8% { transform: scale(2.9527); }
   50.0% { transform: scale(2.6180); }
-  56.2% { transform: scale(2.9527); }
-  62.5% { transform: scale(3.3302); }
-  68.8% { transform: scale(3.7559); }
-  75.0% { transform: scale(4.2361); }
-  81.2% { transform: scale(4.7776); }
-  87.5% { transform: scale(5.3884); }
-  93.8% { transform: scale(6.0772); }
-  100.0% { transform: scale(6.8541); }
+  56.2% { transform: scale(2.3213); }
+  62.5% { transform: scale(2.0582); }
+  68.8% { transform: scale(1.8249); }
+  75.0% { transform: scale(1.6180); }
+  81.2% { transform: scale(1.4346); }
+  87.5% { transform: scale(1.2720); }
+  93.8% { transform: scale(1.1278); }
+  100.0% { transform: scale(1.0000); }
 }
 </style>

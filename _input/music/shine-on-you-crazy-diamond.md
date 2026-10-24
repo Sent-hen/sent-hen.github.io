@@ -6,5 +6,4 @@ year: 1975
 form: "Music"
 source: "Wish You Were Here (Harvest)"
 order: 76
-stuff: true
 ---

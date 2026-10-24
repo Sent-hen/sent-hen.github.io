@@ -18,15 +18,6 @@
   --flexoki-950: #1C1B1A;
   --flexoki-cyan-400: #3AA99F;
   --flexoki-cyan-600: #24837B;
-  /* brighter 300 shades from the Flexoki extended palette (used by the Sierpinski triangle) */
-  --flexoki-red-300: #E8705F;
-  --flexoki-orange-300: #EC8B49;
-  --flexoki-yellow-300: #DFB431;
-  --flexoki-green-300: #A0AF54;
-  --flexoki-cyan-300: #5ABDAC;
-  --flexoki-blue-300: #66A0C8;
-  --flexoki-purple-300: #A699D0;
-  --flexoki-magenta-300: #E47DA8;
   --flexoki-red-400: #D14D41;     --flexoki-red-600: #AF3029;
   --flexoki-orange-400: #DA702C;  --flexoki-orange-600: #BC5215;
   --flexoki-yellow-400: #D0A215;  --flexoki-yellow-600: #AD8301;
@@ -240,16 +231,17 @@ hr {
   border-radius: 6px;
 }
 .banner-fig { margin: 0 0 24px; }
+.stuff-photo { margin: 0 0 24px; }   /* the photo at the top of /stuff/ */
 .banner-caption { margin-top: 8px; color: var(--tx-2); font-style: italic; text-align: center; }
 
-/* left column: cake, then the golden spiral below it */
+/* left column: cake, the UTC time, the Sierpinski triangle, then the golden spiral */
 .intro-side { flex-shrink: 0; display: flex; flex-direction: column; gap: 16px; }
 /* the spiral and ripple use fixed Flexoki colors (the cake inverts the page instead) */
 .golden-spiral { display: block; width: 160px; height: 160px; border-radius: 6px; overflow: hidden; background: var(--flexoki-black); }
 .golden-spiral .zoom {
   transform-box: view-box;
   transform-origin: 80px 80px;
-  animation: golden-zoom 4s linear infinite var(--motion);   /* zooms in (dark) or out (light) forever; keyframes in _includes/golden-spiral.html; assets/js/motion.js flips it without a restart */
+  animation: golden-zoom 4s linear infinite var(--motion);   /* zooms out (dark) or in (light) forever; keyframes in _includes/golden-spiral.html; assets/js/motion.js flips it without a restart */
 }
 .golden-spiral .sq { stroke: var(--flexoki-black); stroke-width: 1; vector-effect: non-scaling-stroke; }
 .golden-spiral .sq-red { fill: var(--flexoki-red-400); }
@@ -258,22 +250,17 @@ hr {
 .golden-spiral .sq-green { fill: var(--flexoki-green-400); }
 .golden-spiral .arc { fill: none; stroke: var(--flexoki-black); stroke-width: 2.2; vector-effect: non-scaling-stroke; stroke-linecap: round; }
 
-/* below the spiral: a Sierpinski triangle zooming in (dark) or out (light) forever; keyframes in _includes/sierpinski.html.
-   It sits on the page background, so it is dark in dark mode and light in light mode. */
+/* below the spiral: a Sierpinski triangle pointing down, zooming into its bottom point forever in both themes;
+   keyframes in _includes/sierpinski.html. Text colour on the page background. */
 .sierpinski { display: block; width: 160px; height: 160px; overflow: hidden; background: var(--bg); }
 .sierpinski .zoom {
   transform-box: view-box;
-  transform-origin: 69.143px 74.78px;   /* the zoom point near the middle; see _includes/sierpinski.html */
-  animation: sierpinski-zoom 12s linear infinite var(--motion);   /* 64x per loop */
+  transform-origin: 80px 160px;   /* the bottom point */
+  animation: sierpinski-zoom 3s linear infinite;   /* 2x per loop, always in */
 }
-/* the triangle itself, then one colour per level of holes, biggest first; the cycle of 6 repeats every loop */
-.sierpinski .sier-fill { fill: var(--flexoki-yellow-300); }
-.sierpinski .sier-l0 { fill: var(--flexoki-purple-300); }
-.sierpinski .sier-l1 { fill: var(--flexoki-cyan-300); }
-.sierpinski .sier-l2 { fill: var(--flexoki-blue-300); }
-.sierpinski .sier-l3 { fill: var(--flexoki-orange-300); }
-.sierpinski .sier-l4 { fill: var(--flexoki-magenta-300); }
-.sierpinski .sier-l5 { fill: var(--flexoki-green-300); }
+.sierpinski .sier-fill { fill: var(--tx); }
+/* above the triangle: the UTC time, YYYY MM DD HH:MM SS, unlabeled (assets/js/clock.js) */
+.utc-clock { display: block; width: 160px; margin-bottom: -8px; text-align: center; font-size: 0.8em; color: var(--tx-2); font-variant-numeric: tabular-nums; }
 .intro-text {
   min-width: 0;
   align-self: stretch;
@@ -308,6 +295,34 @@ hr {
 .duality .label { margin-bottom: 0.6em; }
 .duality p:last-child { margin-bottom: 0; }
 .site-note { margin: 0; }
+.open-to { margin: 0.4em 0 0; color: var(--tx-2); }
+
+/* stuff: a showcase of 4 per category, left to right */
+.showcase { margin: 0 0 1.6em; }
+.showcase-label { font-size: 0.85em; font-weight: 600; color: var(--tx-2); margin: 0 0 0.6em; }
+.showcase-row { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.showcase-item { border: 1px solid var(--ui-3); border-radius: 6px; padding: 10px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.showcase-title { font-weight: 600; line-height: 1.3; }
+.showcase-item .showcase-ph { white-space: normal; overflow-wrap: anywhere; font-size: 0.75em; }
+.showcase-sub { font-size: 0.8em; color: var(--tx-2); }
+@media (max-width: 560px) { .showcase-row { grid-template-columns: repeat(2, 1fr); } }
+
+/* curriculum vitae (/cv/) */
+.cv-head { margin-bottom: 1.6em; }
+.cv-head h1 { margin-bottom: 0.4em; }
+.cv-name { font-size: 1.2em; font-weight: 600; margin: 0; }
+.cv-contact { margin: 0.2em 0 0.6em; }
+.cv-open { margin: 0; color: var(--green); }
+.cv-section {
+  font-size: 0.85em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tx-2);
+  margin: 1.8em 0 0.8em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--ui-3);
+}
 /* home: my quotes, at the top of the text column */
 .quotes { margin: 0 0 0.6em; }
 
@@ -315,7 +330,7 @@ hr {
 /* home: my name in three rows: Tamil, English, pronunciation */
 .name-rows { padding-left: 1.2em; }
 .name-rows span { display: block; }
-/* home: the empty box under "systems engineering"; it opens /interests/ */
+/* home: the empty box under "systems engineering"; it opens /stuff/ */
 .blank-box {
   display: inline-block;
   width: 4em;

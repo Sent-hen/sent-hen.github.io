@@ -5,5 +5,4 @@ creator: "FromSoftware"
 year: 2019
 form: "Game"
 order: 14
-stuff: true
 ---

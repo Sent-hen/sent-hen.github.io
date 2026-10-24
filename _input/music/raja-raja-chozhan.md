@@ -8,5 +8,4 @@ year: 1987
 form: "Music"
 source: "Rettai Vaal Kuruvi (Tamil film soundtrack)"
 order: 3
-stuff: true
 ---

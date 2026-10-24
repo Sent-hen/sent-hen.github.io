@@ -6,5 +6,4 @@ year: 2001
 form: "Music"
 source: "First Love (Stomp Music)"
 order: 71
-stuff: true
 ---

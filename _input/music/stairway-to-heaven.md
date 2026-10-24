@@ -5,4 +5,5 @@ creator: "Led Zeppelin"
 year: 1971
 form: "Music"
 order: 29
+stuff: 3   # position in the /stuff/ showcase
 ---

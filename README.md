@@ -20,21 +20,21 @@ Every page is wrapped in the same head, nav, and footer.
 </html>
 ```
 
-## 2. Nav: Stuff · Output
+## 2. Nav: Output
 
 The links after the name. Each entry is `Label:/url/` plus any other sections it should highlight for.
 
 `_includes/nav.html`
 
 ```liquid
-{% assign links = "Stuff:/stuff/,Output:/output/:/experiments/:/notes/:/delete/:/experience/" | split: "," %}
+{% assign links = "Output:/output/:/experiments/:/notes/:/delete/:/cv/" | split: "," %}
 ```
 
 ## 3. Theme toggle
 
-Light/dark switch in the nav. Follows the system setting until clicked, then remembers the choice.
+Light/dark switch in the nav. The site starts in dark mode; the switch changes it, and the choice is remembered in `localStorage`.
 
-`_includes/head.html` (applies the saved theme before paint), `_includes/footer.html` (the click handler)
+`_includes/head.html` (applies dark, or the saved choice, before paint), `_includes/footer.html` (the click handler)
 
 ```js
 root.setAttribute('data-theme', next);
@@ -99,7 +99,7 @@ var SPEED = 14;   // rows per second
 
 ## 7. Home: golden spiral
 
-Fibonacci squares with the golden spiral, zooming into its eye forever (out of it in light mode). There is no rotation; the turning is the spiral's self-similarity. The drawing is generated; the speed is in the stylesheet. Switching the theme flips the direction from the current frame instead of restarting; `assets/js/motion.js` does this for the spiral, the Sierpinski triangle, and the ripple by setting each animation's playback rate to 1 or -1.
+At the bottom of the left column (cake, UTC time, triangle, spiral). Fibonacci squares with the golden spiral, zooming out of its eye forever in dark mode and into it in light mode. There is no rotation; the turning is the spiral's self-similarity. The drawing is generated; the speed is in the stylesheet. Switching the theme flips the direction from the current frame instead of restarting; `assets/js/motion.js` does this for the spiral and the ripple by setting each animation's playback rate to 1 or -1.
 
 `_includes/golden-spiral.html` (drawing and keyframes), `assets/css/style.scss` (speed and colors), `assets/js/motion.js` (direction)
 
@@ -110,18 +110,25 @@ Fibonacci squares with the golden spiral, zooming into its eye forever (out of i
 
 ## 7a. Home: Sierpinski triangle
 
-Below the spiral, on the page background (dark in dark mode, light in light mode): a Sierpinski triangle whose holes are coloured by level in bright Flexoki colours (the 300 shades), cycling through six. It zooms into a point near its middle forever, in on dark and out on light. Each loop zooms by 64 (six levels) about a point where the triangle repeats itself exactly, so with the six-colour cycle the loop is seamless. The drawing and keyframes are generated; colours and speed are in the stylesheet, and `assets/js/motion.js` flips the direction without a restart.
+Below the UTC time, after [lutanho.net/fractal/sierpa.html](https://www.lutanho.net/fractal/sierpa.html): a Sierpinski triangle pointing down, in the text colour on the page background, zooming forever into its bottom point in both themes. Each level is three half-size copies of the level below (8 levels), so zooming by 2 about the bottom point turns the bottom copy into the whole and the loop is seamless.
 
-`_includes/sierpinski.html` (drawing and keyframes), `assets/css/style.scss` (`.sierpinski`, `.sier-l0` to `.sier-l5`)
+`_includes/sierpinski.html` (drawing and keyframes), `assets/css/style.scss` (`.sierpinski`)
 
 ```scss
-.sierpinski .zoom { animation: sierpinski-zoom 12s linear infinite var(--motion); }
-.sierpinski .sier-l0 { fill: var(--flexoki-purple-300); }   /* biggest holes; l1 to l5 follow */
+.sierpinski { background: var(--bg); }
+.sierpinski .zoom { transform-origin: 80px 160px; animation: sierpinski-zoom 3s linear infinite; }   /* always in */
+.sierpinski .sier-fill { fill: var(--tx); }
 ```
+
+## 7b. Home: UTC clock
+
+Between the cake and the triangle: the current UTC time as `YYYY MM DD HH:MM SS`, with no label, ticking every second. Empty without JavaScript.
+
+`assets/js/clock.js`, `index.md` (`<time class="utc-clock">`), `assets/css/style.scss` (`.utc-clock`)
 
 ## 8. Home: my quotes and the two halves
 
-My two quotes sit first (`.quotes`, no attribution: originality is the art of concealing your source), then the 0 → 1 ripple (section 9), then "Who I am" and "Who am I" side by side. "Who I am" shows my name in three rows: Tamil (சேந்தன்), English (Senthen), pronunciation (SAYN-dhun) (`.name-rows`). "Who am I" ends with the "Currently mastering…" list (`.iam`, `.iam-list`); the last item under Currently mastering is an empty box (`.blank-box`) that opens `/interests/` (`interests.html`, one `<li>` per interest). The site note closes the column.
+One quote sits first (`.quotes`, "Originality is the art of concealing your source", no attribution), then the 0 → 1 ripple (section 9), then "Who I am" and "Who am I" side by side. "Who I am" shows my name in three rows: Tamil (சேந்தன்), English (Senthen), pronunciation (SAYN-dhun) (`.name-rows`). "Who am I" ends with the "Currently mastering…" list (`.iam`, `.iam-list`); the last item under Currently mastering is an empty box (`.blank-box`) that opens Stuff. The site note ("This is a site where I keep what I'm creating") and "Open to tech roles in the Pacific Northwest / Texas" (`.open-to`) close the column.
 
 `index.md`
 
@@ -146,7 +153,7 @@ Circles that all touch at 0, each 1.17× the last; growing the group by 1.17× m
 
 ## Not published: Input (sections 10 to 14)
 
-The site shows Stuff and Output. Input (raw sources) stays in the repo but is not built: `_config.yml` sets the `input` collection to `output: false` and excludes `input.html` and `input/`. Stuff still lists the input items marked `stuff: true`, as plain text rather than links. To bring Input back, set `output: true`, remove those two lines from `exclude`, add `Input:/input/,` to the front of the nav links, and link the Stuff titles again.
+The site shows Output in the nav, and Stuff through the empty box on the home page. Input (raw sources) stays in the repo but is not built: `_config.yml` sets the `input` collection to `output: false` and excludes `input.html` and `input/`. Stuff still shows the input items marked `stuff: 1` to `stuff: 4`, as plain text rather than links. To bring Input back, set `output: true`, remove those two lines from `exclude`, add `Input:/input/,` to the front of the nav links, and link the Stuff titles again.
 
 ## 10. Input
 
@@ -196,11 +203,11 @@ year: 2007
 form: "Music"
 order: 10
 status: active              # optional
-stuff: true                 # optional: also list it on /stuff/
+stuff: 1                    # optional: 1 to 4, its place in its category on /stuff/
 ---
 ```
 
-## 13. Item title: original · English (· phonetic on Stuff only)
+## 13. Item title: original · English
 
 `_includes/item-title.html`
 
@@ -222,33 +229,22 @@ The only tag. Shows when `status: active`, on Input items.
 
 ## 15. Stuff
 
-Every Input item with `stuff: true`, sorted by category (Cinema, then Music, ...) and title, or alphabetically, or by year.
+Reached from the empty box on the home page, not the nav. A photo sits at the top (`assets/img/everyday-carry.jpg`). Two parts: **stuff i like**, a showcase of 4 per category, left to right (Cinema, Music, Games), each card showing the title, its pronunciation, and creator · year; and **Illusions** (`#illusions`), a plain list written in the page ending in an empty box; clicking the box reloads the page at Illusions.
 
-`stuff.html`
+To change the showcase, set `stuff: 1` to `stuff: 4` on the Input items you want (the number is the position) and remove `stuff` from the one it replaces. To add a category, add `key:Label` to `cats` in `stuff.html`.
 
-```liquid
-{% assign stuff = site.input | where: "stuff", true | sort: "title" %}
-```
-
-## 15a. Alphabetical / Year sort
-
-A sort control for simple lists (Stuff). Each list item carries `data-title` and `data-year`, and `data-category` when `category=true` adds the Category sort (then the default).
-
-`_includes/sort-bar.html`
+`stuff.html`, `assets/css/style.scss` (`.showcase`)
 
 ```liquid
-{% include sort-bar.html target="stuff-list" category=true %}
-<ul id="stuff-list">
-  <li data-index="1" data-category="music" data-title="Vienna" data-year="1977">…</li>
-</ul>
+{% assign cats = "cinema:Cinema,music:Music,games:Games" | split: "," %}
 ```
 
 ## 16. Output
 
-Featured experiments, then three open-ended lines, then Experience. No periods in the page text.
+Featured experiments, then three lines (Experiments, Notes, delete), then Curriculum Vitae. No periods in the page text.
 
-- **create**: what I'm working on (`/experiments/`)
-- **update**: notes (`/notes/`)
+- **Experiments**: what I'm working on (`/experiments/`)
+- **Notes**: notes (`/notes/`)
 - **delete**: previous beliefs (`/delete/`, `delete.html`, one `<li>` per belief, ending in an empty box)
 
 `output.html`, `delete.html`
@@ -295,11 +291,11 @@ description: "One line, shown on /notes/."
 The note, in Markdown.
 ```
 
-## 19. Experience
+## 19. Curriculum Vitae
 
-Work, education, skills, and organizations, newest first, with dates as YYYY MM, written directly in the page.
+`/cv/` (old `/experience/` links redirect here). A header with my name, Pacific Northwest / Texas, email, GitHub, LinkedIn, and "Open to tech roles in the Pacific Northwest / Texas", then Experience, Skills, Organizations, and Education, newest first, with dates as YYYY MM. Written directly in the page; section headings are `<h2 class="cv-section">`.
 
-`experience.md`
+`cv.md`, `assets/css/style.scss` (`.cv-head`, `.cv-section`)
 
 ```html
 <span class="entry-when">2024 05 &ndash; 2024 08</span>

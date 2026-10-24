@@ -5,5 +5,4 @@ creator: "The Strokes"
 year: 2011
 form: "Music"
 order: 58
-stuff: true
 ---

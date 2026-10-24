@@ -6,5 +6,5 @@ year: 2006
 form: "Cinema"
 source: "Googly Films"
 order: 1
-stuff: true
+stuff: 3   # position in the /stuff/ showcase
 ---

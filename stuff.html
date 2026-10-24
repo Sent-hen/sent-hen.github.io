@@ -3,21 +3,41 @@ title: Stuff
 permalink: /stuff/
 description: "Stuff, by Senthen Velmurugan."
 ---
+<img class="banner stuff-photo" width="2000" height="1333" src="{{ '/assets/img/everyday-carry.jpg' | relative_url }}" alt="Everyday carry on a cardboard box: a leather wallet, a folding knife, a phone, a G-Shock watch, and brass pens, clip, and lighter on a suede tray">
+
 <h1>Stuff</h1>
 
-{% comment %} Any Input item with `stuff: true` in its front matter shows up here, by category (its folder) then title. Input pages are not published, so entries are not links. {% endcomment %}
-{% assign stuff = site.input | where: "stuff", true | sort: "relative_path" %}
-{% if stuff.size > 0 %}
-{% include sort-bar.html target="stuff-list" category=true %}
-<ul class="entries" id="stuff-list">
-{% for it in stuff %}
-  {% assign path = it.relative_path | split: "/" %}
-  <li class="entry" data-index="{{ forloop.index }}" data-category="{{ path[1] }}" data-title="{{ it.title | escape }}" data-year="{{ it.year }}">
-    <div class="entry-head"><span class="entry-title">{% include item-title.html item=it phonetic=true %}</span><span class="entry-when">{% include status.html value=it.status %}</span></div>
-    <div class="entry-sub">{{ it.creator }}{% if it.year %} · {{ it.year }}{% endif %}{% if it.form %} · {{ it.form }}{% endif %}</div>
-  </li>
-{% endfor %}
-</ul>
-{% else %}
-<p class="muted">Nothing here yet.</p>
+<p class="label">stuff i like</p>
+
+{% comment %}
+  A showcase of 4 per category, left to right. An Input item shows here when its front matter has
+  `stuff: 1` to `stuff: 4` (its position). Categories are listed below in order.
+{% endcomment %}
+{% assign cats = "cinema:Cinema,music:Music,games:Games" | split: "," %}
+{% for c in cats %}{% assign cp = c | split: ":" %}
+{% assign prefix = "_input/" | append: cp[0] | append: "/" %}
+{% assign items = site.input | where_exp: "i", "i.relative_path contains prefix" | where_exp: "i", "i.stuff" | sort: "stuff" %}
+{% if items.size > 0 %}
+<section class="showcase">
+  <h2 class="showcase-label">{{ cp[1] }}</h2>
+  <ol class="showcase-row">
+  {% for it in items limit: 4 %}
+    <li class="showcase-item">
+      <span class="showcase-title">{% include item-title.html item=it %}</span>
+      {% if it.phonetic %}<span class="showcase-ph t-ph">{{ it.phonetic }}</span>{% endif %}
+      <span class="showcase-sub">{{ it.creator }}{% if it.year %} · {{ it.year }}{% endif %}</span>
+    </li>
+  {% endfor %}
+  </ol>
+</section>
 {% endif %}
+{% endfor %}
+
+<hr>
+
+<p class="label" id="illusions">Illusions</p>
+
+<!-- One <li> per illusion. The empty box keeps the list open-ended; clicking it reopens this page at Illusions. -->
+<ul class="iam-list">
+  <li><a href="#illusions" class="blank-box" aria-label="Illusions" onclick="history.scrollRestoration = 'manual'; location.hash = 'illusions'; location.reload(); return false;"></a></li>
+</ul>

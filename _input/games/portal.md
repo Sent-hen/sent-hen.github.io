@@ -5,5 +5,4 @@ creator: "Valve"
 year: 2007
 form: "Game"
 order: 4
-stuff: true
 ---

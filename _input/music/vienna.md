@@ -6,5 +6,4 @@ year: 1977
 form: "Music"
 source: "The Stranger (Columbia)"
 order: 2
-stuff: true
 ---

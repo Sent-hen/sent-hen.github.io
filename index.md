@@ -15,17 +15,16 @@ description: "Senthen Velmurugan: output"
     {% include cake.html %}
   </figure>
   <script src="{{ '/assets/js/cake.js' | relative_url }}" defer></script>
-  {% include golden-spiral.html %}
+  <time class="utc-clock"></time>
   {% include sierpinski.html %}
+  {% include golden-spiral.html %}
+  <script src="{{ '/assets/js/clock.js' | relative_url }}" defer></script>
   <script src="{{ '/assets/js/motion.js' | relative_url }}" defer></script>
   </div>
   <div class="intro-text">
   <div class="quotes">
     <blockquote class="epigraph">
       <p>Originality is the art of concealing your source</p>
-    </blockquote>
-    <blockquote class="epigraph">
-      <p>A jack of all trades, master of one, is oftentimes better than a master of none</p>
     </blockquote>
   </div>
   <p class="infinity-arrow" aria-label="From zero to one"><span>0</span>{% include ripples.html %}<span>1</span></p>
@@ -46,10 +45,11 @@ description: "Senthen Velmurugan: output"
       <ul class="iam-list">
         <li>linguistics</li>
         <li>systems engineering</li>
-        <li><a href="{{ '/interests/' | relative_url }}" class="blank-box" aria-label="My interests"></a></li>
+        <li><a href="{{ '/stuff/' | relative_url }}" class="blank-box" aria-label="Stuff"></a></li>
       </ul>
     </section>
   </div>
-  <p class="muted small site-note">This is a site where I keep what I'm building</p>
+  <p class="muted small site-note">This is a site where I keep what I'm creating</p>
+  <p class="small open-to">Open to tech roles in the Pacific Northwest / Texas</p>
   </div>
 </div>

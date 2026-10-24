@@ -5,5 +5,5 @@ creator: "EA Redwood Shores"
 year: 2008
 form: "Game"
 order: 1
-stuff: true
+stuff: 3   # position in the /stuff/ showcase
 ---

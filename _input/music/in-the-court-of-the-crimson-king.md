@@ -6,5 +6,4 @@ year: 1969
 form: "Music"
 source: "In the Court of the Crimson King (Island)"
 order: 74
-stuff: true
 ---

@@ -5,5 +5,5 @@ creator: "Valve"
 year: 2011
 form: "Game"
 order: 5
-stuff: true
+stuff: 1   # position in the /stuff/ showcase
 ---

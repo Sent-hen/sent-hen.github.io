@@ -5,5 +5,4 @@ creator: "Telltale Games"
 year: 2018
 form: "Game"
 order: 10
-stuff: true
 ---

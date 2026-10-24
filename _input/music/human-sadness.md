@@ -6,5 +6,4 @@ year: 2014
 form: "Music"
 source: "Tyranny (Cult Records)"
 order: 77
-stuff: true
 ---

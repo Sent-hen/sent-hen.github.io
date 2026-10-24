@@ -5,5 +5,4 @@ creator: "Daft Punk feat. Julian Casablancas"
 year: 2013
 form: "Music"
 order: 14
-stuff: true
 ---

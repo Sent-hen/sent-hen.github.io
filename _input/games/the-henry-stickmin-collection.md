@@ -5,5 +5,4 @@ creator: "PuffballsUnited"
 year: 2020
 form: "Game"
 order: 8
-stuff: true
 ---
