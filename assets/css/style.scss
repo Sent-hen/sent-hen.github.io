@@ -259,8 +259,9 @@ hr {
   animation: sierpinski-zoom 3s linear infinite;   /* 2x per loop, always in */
 }
 .sierpinski .sier-fill { fill: var(--tx); }
-/* above the triangle: the UTC time, YYYY MM DD HH:MM SS, unlabeled (assets/js/clock.js) */
-.utc-clock { display: block; width: 160px; margin-bottom: -8px; text-align: center; font-size: 0.8em; color: var(--tx-2); font-variant-numeric: tabular-nums; }
+/* above and below the triangle: the same UTC time, YYYY MM DD HH:MM SS, unlabeled (assets/js/clock.js) */
+.utc-clock { display: block; width: 100%; white-space: nowrap; margin-bottom: -8px; text-align: center; font-size: 0.8em; color: var(--tx-2); font-variant-numeric: tabular-nums; }
+.utc-clock-below { margin: -8px 0 0; }
 .intro-text {
   min-width: 0;
   align-self: stretch;
@@ -286,7 +287,7 @@ hr {
 /* home: two halves, side by side, split by a rule */
 .duality {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: max-content 1fr;   /* "Who I am" is short, so "Who am I" gets the room its lines need */
   margin: 0 0 1.2em;
 }
 .duality section { min-width: 0; }
@@ -297,15 +298,12 @@ hr {
 .site-note { margin: 0; }
 .open-to { margin: 0.4em 0 0; color: var(--tx-2); }
 
-/* stuff: a showcase of 4 per category, left to right */
-.showcase { margin: 0 0 1.6em; }
-.showcase-label { font-size: 0.85em; font-weight: 600; color: var(--tx-2); margin: 0 0 0.6em; }
-.showcase-row { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-.showcase-item { border: 1px solid var(--ui-3); border-radius: 6px; padding: 10px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-.showcase-title { font-weight: 600; line-height: 1.3; }
-.showcase-item .showcase-ph { white-space: normal; overflow-wrap: anywhere; font-size: 0.75em; }
-.showcase-sub { font-size: 0.8em; color: var(--tx-2); }
-@media (max-width: 560px) { .showcase-row { grid-template-columns: repeat(2, 1fr); } }
+/* stuff: a showcase of 4 per category, left to right, in pairs: 1 / 2 · 3 / 4 */
+.showcase { margin: 0 0 1.4em; }
+.showcase-label { font-size: 0.85em; font-weight: 600; color: var(--tx-2); margin: 0 0 0.3em; }
+.showcase-row { margin: 0; line-height: 1.6; }
+.showcase-item { white-space: nowrap; }   /* a title never breaks; the line breaks at the slashes */
+.showcase-sep { color: var(--tx-3); }
 
 /* curriculum vitae (/cv/) */
 .cv-head { margin-bottom: 1.6em; }
@@ -341,7 +339,7 @@ hr {
 }
 .blank-box:hover { border-color: var(--tx); }
 .iam-list { list-style: none; margin: 0 0 1em; padding: 0 0 0 1.2em; }
-.iam-list li { margin: 0; }
+.iam-list li { margin: 0; white-space: nowrap; }   /* each item stays on one line on every screen */
 .boxed {
   display: inline-block;
   border: 1px solid var(--tx-2);
@@ -373,6 +371,7 @@ hr {
 }
 .infinity-arrow .ripples circle { vector-effect: non-scaling-stroke; }
 @keyframes ripple-out { to { transform: scale(1.17); } }
+@media (max-width: 560px) { .iam-list { font-size: min(1em, 4vw); padding-left: 0.8em; } }   /* phones: shrink with the screen so each item stays on one line */
 @media (max-width: 720px) {
   .duality { grid-template-columns: 1fr; }
   .duality section:first-child { padding: 0 0 1em; }
@@ -383,6 +382,7 @@ hr {
   .cake { width: 96px; height: 96px; }
   .golden-spiral { width: 96px; height: 96px; }
   .sierpinski { width: 96px; height: 96px; }
+  .utc-clock { font-size: 0.55em; }   /* fits the 96px column */
     .intro-text { padding-left: 14px; }
 }
 

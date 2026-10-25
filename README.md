@@ -122,13 +122,13 @@ Below the UTC time, after [lutanho.net/fractal/sierpa.html](https://www.lutanho.
 
 ## 7b. Home: UTC clock
 
-Between the cake and the triangle: the current UTC time as `YYYY MM DD HH:MM SS`, with no label, ticking every second. Empty without JavaScript.
+Above and below the triangle: the same current UTC time as `YYYY MM DD HH:MM SS`, with no label, ticking every second. Empty without JavaScript.
 
-`assets/js/clock.js`, `index.md` (`<time class="utc-clock">`), `assets/css/style.scss` (`.utc-clock`)
+`assets/js/clock.js`, `index.md` (two `<time class="utc-clock">`), `assets/css/style.scss` (`.utc-clock`)
 
 ## 8. Home: my quotes and the two halves
 
-One quote sits first (`.quotes`, "Originality is the art of concealing your source", no attribution), then the 0 → 1 ripple (section 9), then "Who I am" and "Who am I" side by side. "Who I am" shows my name in three rows: Tamil (சேந்தன்), English (Senthen), pronunciation (SAYN-dhun) (`.name-rows`). "Who am I" ends with the "Currently mastering…" list (`.iam`, `.iam-list`); the last item under Currently mastering is an empty box (`.blank-box`) that opens Stuff. The site note ("This is a site where I keep what I'm creating") and "Open to tech roles in the Pacific Northwest / Texas" (`.open-to`) close the column.
+One quote sits first (`.quotes`, "Originality is the art of concealing your source", no attribution), then the 0 → 1 ripple (section 9), then "Who I am" and "Who am I" side by side. "Who I am" shows my name in three rows: Tamil (சேந்தன்), English (Senthen), pronunciation (SAYN-dhun) (`.name-rows`). "Who am I" ends with the "Currently mastering…" list (`.iam`, `.iam-list`; each item stays on one line on every screen, shrinking with the screen on phones); the last item under Currently mastering is an empty box (`.blank-box`) that opens Stuff. The site note ("This is a site where I keep what I'm creating") and "Open to tech roles in the Pacific Northwest / Texas" (`.open-to`) close the column.
 
 `index.md`
 
@@ -229,11 +229,11 @@ The only tag. Shows when `status: active`, on Input items.
 
 ## 15. Stuff
 
-Reached from the empty box on the home page, not the nav. A photo sits at the top (`assets/img/everyday-carry.jpg`). Two parts: **stuff i like**, a showcase of 4 per category, left to right (Cinema, Music, Games), each card showing the title, its pronunciation, and creator · year; and **Illusions** (`#illusions`), a plain list written in the page ending in an empty box; clicking the box reloads the page at Illusions.
+Reached from the empty box on the home page, not the nav. A photo sits at the top (`assets/img/everyday-carry.jpg`). Two parts: **stuff i like**, a showcase of 4 per category, left to right (Cinema, Music, Games), in pairs, `1 / 2 · 3 / 4` (creator and year show on hover); and **Illusions** (`#illusions`), a plain list written in the page ending in an empty box; clicking the box reloads the page at Illusions.
 
 To change the showcase, set `stuff: 1` to `stuff: 4` on the Input items you want (the number is the position) and remove `stuff` from the one it replaces. To add a category, add `key:Label` to `cats` in `stuff.html`.
 
-`stuff.html`, `assets/css/style.scss` (`.showcase`)
+`stuff.html`, `assets/css/style.scss` (`.showcase`, `.showcase-sep`)
 
 ```liquid
 {% assign cats = "cinema:Cinema,music:Music,games:Games" | split: "," %}

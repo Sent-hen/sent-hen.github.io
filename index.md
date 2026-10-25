@@ -17,6 +17,7 @@ description: "Senthen Velmurugan: output"
   <script src="{{ '/assets/js/cake.js' | relative_url }}" defer></script>
   <time class="utc-clock"></time>
   {% include sierpinski.html %}
+  <time class="utc-clock utc-clock-below"></time>
   {% include golden-spiral.html %}
   <script src="{{ '/assets/js/clock.js' | relative_url }}" defer></script>
   <script src="{{ '/assets/js/motion.js' | relative_url }}" defer></script>
@@ -43,7 +44,7 @@ description: "Senthen Velmurugan: output"
       <p>Someone who uses technology to increase quality of life</p>
       <p class="iam">Currently mastering&hellip;</p>
       <ul class="iam-list">
-        <li>linguistics</li>
+        <li>computational linguistics</li>
         <li>systems engineering</li>
         <li><a href="{{ '/stuff/' | relative_url }}" class="blank-box" aria-label="Stuff"></a></li>
       </ul>
