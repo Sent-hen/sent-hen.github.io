@@ -160,7 +160,7 @@ u {
   cursor: pointer;
 }
 .theme-toggle:hover { background: var(--ui-3); }
-/* knob is the icon itself: sun in light mode, moon in dark mode */
+/* knob is the icon itself, like a stock ticker: a green ▲ for the green theme, a red ▼ for the red one */
 .theme-toggle::after {
   content: "";
   position: absolute;
@@ -168,16 +168,16 @@ u {
   left: 3px;
   width: 14px;
   height: 14px;
-  background: var(--orange);
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='5'/%3E%3Cpath d='M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1' stroke='black' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
-          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='5'/%3E%3Cpath d='M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1' stroke='black' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  background: var(--flexoki-green-400);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3L22.5 20.5H1.5Z'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3L22.5 20.5H1.5Z'/%3E%3C/svg%3E") center / contain no-repeat;
   transition: transform 0.2s ease;
 }
 .theme-toggle[aria-checked="true"]::after {
-  transform: translateX(14px) rotate(-20deg);
-  background: var(--yellow);
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M21 14.6A9 9 0 1 1 9.4 3a9 9 0 0 0 11.6 11.6z'/%3E%3C/svg%3E");
-          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M21 14.6A9 9 0 1 1 9.4 3a9 9 0 0 0 11.6 11.6z'/%3E%3C/svg%3E");
+  transform: translateX(14px);
+  background: var(--brick-300);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M1.5 3.5H22.5L12 21Z'/%3E%3C/svg%3E");
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M1.5 3.5H22.5L12 21Z'/%3E%3C/svg%3E");
 }
 
 /* headings */
@@ -270,6 +270,8 @@ hr {
 /* above and below the triangle: the same UTC time, YYYY MM DD HH:MM SS, unlabeled (assets/js/clock.js) */
 .utc-clock { display: block; width: 100%; white-space: nowrap; margin-bottom: -8px; text-align: center; font-size: 0.8em; color: var(--tx-2); font-variant-numeric: tabular-nums; }
 .utc-clock-below { margin: -8px 0 0; }
+/* captions under the tiramisu, the lower clock, and the golden spiral */
+.tile-caption { width: 100%; margin: -8px 0 0; text-align: center; font-size: 0.8em; font-style: italic; color: var(--tx-2); }
 .intro-text {
   min-width: 0;
   align-self: stretch;
@@ -394,6 +396,7 @@ hr {
   .golden-spiral { width: 96px; height: 96px; }
   .sierpinski { width: 96px; height: 96px; }
   .utc-clock { font-size: 0.55em; }   /* fits the 96px column */
+  .tile-caption { font-size: 0.6em; }
     .intro-text { padding-left: 14px; }
 }
 

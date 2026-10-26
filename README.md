@@ -32,13 +32,15 @@ The links after the name. Each entry is `Label:/url/` plus any other sections it
 
 ## 3. Theme toggle
 
-Light/dark switch in the nav. The site starts in dark mode; the switch changes it, and the choice is remembered in `localStorage`.
+Red/green switch in the nav: a red ▼ on the red brick theme, a green ▲ on the green one, like a stock ticker.
 
-`_includes/head.html` (applies dark, or the saved choice, before paint), `_includes/footer.html` (the click handler)
+Each visit opens green or red by chance, and the chance follows a plate of tiramisu: a fresh plate is made at midnight (the visitor's local time) and goes off by exponential decay with a half-life of 12 hours. The chance it is still fresh is `2^(-hours since midnight / 12)` (100% at midnight, 50% at noon, 25% by night); fresh opens green, gone off opens red. The pick holds for the visit (`sessionStorage`), and the switch changes it.
+
+`_includes/head.html` (the tiramisu, before paint), `_includes/footer.html` (the click handler)
 
 ```js
-root.setAttribute('data-theme', next);
-localStorage.setItem('theme', next);
+var fresh = Math.pow(2, -hours / HALF_LIFE_HOURS);   // HALF_LIFE_HOURS = 12
+t = Math.random() < fresh ? 'light' : 'dark';         // light = green, dark = red
 ```
 
 ## 4. Footer
@@ -51,7 +53,7 @@ localStorage.setItem('theme', next);
 
 ## 5. Colors: green roof and red brick
 
-Two earthy themes. Light mode is the green roof (a bottle/moss green page with cream text); dark mode, the default, is the red brick cottage (deep brick page, pale brick text). All colors are variables at the top of the stylesheet. The spiral and ripple use fixed Flexoki colors; the cake and its digits invert the page.
+Two earthy themes. Light mode is the green roof (a bottle/moss green page with cream text); dark mode is the red brick cottage (deep brick page, pale brick text). All colors are variables at the top of the stylesheet. The spiral and ripple use fixed Flexoki colors; the tiramisu and its digits invert the page.
 
 `assets/css/style.scss`, `_includes/head.html` (the browser bar colors)
 
@@ -70,11 +72,11 @@ The jumping spider photo across the top of the home page, below the nav, shown w
 <img class="banner" src="{{ '/assets/img/jumping-spider.webp' | relative_url }}" alt="…">
 ```
 
-## 6. Home: the cake
+## 6. Home: the tiramisu
 
-The Portal cake icon in its 3/4 perspective, drawn as a flat 2D vector (curved back on the left, striped cut face on the right, cherry on top), then shown as Matrix rain: columns of digits fall through the tile and are bright only where the drawing is. The digits are 0s at the top and 1s at the bottom: in dark mode the rain falls, turning 0 into 1 on the way down; in light mode it rises, turning 1 into 0 on the way up (it follows `--motion`). The tile inverts the page (white on black in light mode, black on white in dark). Without JavaScript the plain drawing shows instead.
+A slice of tiramisu in 3/4 view on a plate, drawn as a flat 2D vector (cocoa-dusted top, a cut face of mascarpone and coffee-soaked ladyfinger layers carried round the side), then shown as Matrix rain: columns of digits fall through the tile and are bright only where the drawing is. The digits are 0s at the top and 1s at the bottom: in dark mode the rain falls, turning 0 into 1 on the way down; in light mode it rises, turning 1 into 0 on the way up (it follows `--motion`). The tile inverts the page (white on black in light mode, black on white in dark). Without JavaScript the plain drawing shows instead. Under the tile, the caption "A plate of Tiramisu" (`.tile-caption`; the same captions read "Time" under the lower clock and "a + b is to a as a is to b" under the golden spiral).
 
-`_includes/cake.html` (the drawing, in `currentColor`), `assets/js/cake.js` (the rain), `assets/css/style.scss` (`.cake`, `--cake-bg`, `--cake-ink`, `--motion`)
+`_includes/cake.html` (the tiramisu drawing, in `currentColor`; the files keep the old "cake" names), `assets/js/cake.js` (the rain), `assets/css/style.scss` (`.cake`, `--cake-bg`, `--cake-ink`, `--motion`)
 
 ```html
 <figure class="cake">
@@ -89,7 +91,7 @@ The Portal cake icon in its 3/4 perspective, drawn as a flat 2D vector (curved b
 ```
 
 ```js
-var CELL = 4.5;   // character size in CSS pixels (smaller = sharper cake)
+var CELL = 4.5;   // character size in CSS pixels (smaller = sharper tiramisu)
 var SPEED = 14;   // rows per second
 ```
 
@@ -129,7 +131,7 @@ One quote sits first (`.quotes`, "Originality is the art of concealing your sour
 `index.md`
 
 ```html
-<div class="quotes"><blockquote class="epigraph"><p>Originality is the art of concealing your source.</p></blockquote> … </div>
+<div class="quotes"><blockquote class="epigraph"><p>Originality is the art of concealing your source</p></blockquote> … </div>
 <div class="duality">
   <section><p class="label">Who I am</p> … </section>
   <section><p class="label">Who am I</p> … </section>

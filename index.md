@@ -14,11 +14,14 @@ description: "Senthen Velmurugan: output"
   <figure class="cake">
     {% include cake.html %}
   </figure>
+  <p class="tile-caption">A plate of Tiramisu</p>
   <script src="{{ '/assets/js/cake.js' | relative_url }}" defer></script>
   <time class="utc-clock"></time>
   {% include sierpinski.html %}
   <time class="utc-clock utc-clock-below"></time>
+  <p class="tile-caption">Time</p>
   {% include golden-spiral.html %}
+  <p class="tile-caption">a + b is to a as a is to b</p>
   <script src="{{ '/assets/js/clock.js' | relative_url }}" defer></script>
   <script src="{{ '/assets/js/motion.js' | relative_url }}" defer></script>
   </div>

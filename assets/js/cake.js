@@ -1,5 +1,5 @@
-// The cake as Matrix rain: columns of digits stream down the tile, and the digits are bright only
-// where the cake drawing is (_includes/cake.html), so the cake appears out of the rain.
+// The tiramisu as Matrix rain: columns of digits stream down the tile, and the digits are bright only
+// where the tiramisu drawing is (_includes/cake.html), so the tiramisu appears out of the rain.
 // Digits are 0 at the top and 1 at the bottom, mixing in the middle. Dark mode rains down (0 → 1),
 // light mode rains up (1 → 0), following --motion. Colors invert the page (--cake-bg/--cake-ink).
 (function () {
@@ -8,7 +8,7 @@
   if (!svg || !document.createElement('canvas').getContext) return;
 
   var SIZE = 160;                 // CSS pixels
-  var CELL = 4.5;                 // character cell, CSS pixels (smaller = sharper cake)
+  var CELL = 4.5;                 // character cell, CSS pixels (smaller = sharper tiramisu)
   var PAD = 0.08;                 // margin around the drawing, as a fraction of the tile
   var SPEED = 14;                 // rows per second
   var TRAIL = 9;                  // how many rows each falling head lights up behind it
@@ -41,7 +41,6 @@
   var mask = new Float32Array(COLS * ROWS);
   var src = svg.outerHTML
     .replace(/currentColor/g, '#000')
-    .replace(/class="cake-notch"/, 'class="cake-notch" fill="none"')
     .replace('<svg', '<svg xmlns="http://www.w3.org/2000/svg" width="' + N + '" height="' + N + '"');
   var pic = new Image();
   pic.onload = function () {
@@ -84,7 +83,7 @@
       heads[c] += dt * SPEED * speeds[c];
       if (heads[c] > ROWS + TRAIL) heads[c] = -Math.random() * ROWS;
     }
-    // two passes, 0s then 1s: a '1' has far less ink than a '0', so it is drawn larger to keep the cake equally solid
+    // two passes, 0s then 1s: a '1' has far less ink than a '0', so it is drawn larger to keep the tiramisu equally solid
     for (var d = 0; d < 2; d++) {
       ctx.font = 'bold ' + Math.round(C * (d ? 1.5 : 1.15)) + 'px ui-monospace, "Cascadia Code", Menlo, Consolas, monospace';
       for (var c = 0; c < COLS; c++) for (var r = 0; r < ROWS; r++) {
@@ -92,7 +91,7 @@
         var m = mask[r * COLS + c];
         var behind = heads[c] - (UP ? ROWS - 1 - r : r); // rows since the head passed this cell
         var glow = behind >= 0 && behind < TRAIL ? 1 - behind / TRAIL : 0;
-        // the cake always shows; the rain brightens it as heads pass, and faintly fills the tile around it
+        // the tiramisu always shows; the rain brightens it as heads pass, and faintly fills the tile around it
         var alpha = m > 0 ? m * (0.7 + 0.3 * glow) : 0.1 * glow;
         if (alpha < 0.02) continue;
         ctx.globalAlpha = alpha;

@@ -7,11 +7,23 @@
   <meta name="theme-color" content="#261312" media="(prefers-color-scheme: dark)">
 
   <script>
-    // Dark by default. The toggle in the nav switches to light (or back), and the choice is remembered.
+    // Each visit opens green (light) or red (dark) by chance, and the chance follows a plate of tiramisu.
+    // A fresh plate is made at midnight (the visitor's local time) and goes off by exponential decay with a
+    // half-life of 12 hours, so the chance it is still fresh is 2^(-hours since midnight / 12): 100% at
+    // midnight, 50% at noon, 25% just before the next plate. Fresh means green (▲), gone off means red (▼).
+    // The pick holds for the rest of the visit (sessionStorage); the toggle in the nav switches it.
     (function () {
+      var HALF_LIFE_HOURS = 12;
       var t;
-      try { t = localStorage.getItem('theme'); } catch (e) {}
-      document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+      try { t = sessionStorage.getItem('theme'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark') {
+        var now = new Date();
+        var hours = now.getHours() + now.getMinutes() / 60 + now.getSeconds() / 3600;
+        var fresh = Math.pow(2, -hours / HALF_LIFE_HOURS);
+        t = Math.random() < fresh ? 'light' : 'dark';
+        try { sessionStorage.setItem('theme', t); } catch (e) {}
+      }
+      document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
 
