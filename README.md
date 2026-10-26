@@ -27,7 +27,7 @@ The links after the name. Each entry is `Label:/url/` plus any other sections it
 `_includes/nav.html`
 
 ```liquid
-{% assign links = "Output:/output/:/experiments/:/notes/:/cv/" | split: "," %}
+{% assign links = "Output:/output/:/experiments/:/cv/" | split: "," %}
 ```
 
 ## 3. Theme toggle
@@ -74,9 +74,9 @@ The jumping spider photo across the top of the home page, below the nav, shown w
 
 ## 6. Home: the tiramisu
 
-A slice of tiramisu in 3/4 view on a plate, drawn as a flat 2D vector (cocoa-dusted top, a cut face of mascarpone and coffee-soaked ladyfinger layers carried round the side), then shown as Matrix rain: columns of digits fall through the tile and are bright only where the drawing is. The digits are 0s at the top and 1s at the bottom: in dark mode the rain falls, turning 0 into 1 on the way down; in light mode it rises, turning 1 into 0 on the way up (it follows `--motion`). The tile inverts the page (white on black in light mode, black on white in dark). Without JavaScript the plain drawing shows instead. Under the tile, the caption "A plate of Tiramisu" (`.tile-caption`; the same captions read "Time" under the lower clock and "a + b is to a as a is to b" under the golden spiral).
+A slice of tiramisu in 3/4 view on a plate, drawn as a flat 2D vector (cocoa-dusted top, a cut face of mascarpone and coffee-soaked ladyfinger layers carried round the side), then shown as Matrix rain: columns of digits fall through the tile and are bright only where the drawing is. The digits are 0s at the top and 1s at the bottom, and the rain falls, turning 0 into 1 on the way down. The tile inverts the page. Without JavaScript the plain drawing shows instead. Under the tile, the caption "A plate of Tiramisu" (`.tile-caption`; the same captions read "Time" under the lower clock and "a + b is to a as a is to b" under the golden spiral).
 
-`_includes/cake.html` (the tiramisu drawing, in `currentColor`; the files keep the old "cake" names), `assets/js/cake.js` (the rain), `assets/css/style.scss` (`.cake`, `--cake-bg`, `--cake-ink`, `--motion`)
+`_includes/cake.html` (the tiramisu drawing, in `currentColor`; the files keep the old "cake" names), `assets/js/cake.js` (the rain), `assets/css/style.scss` (`.cake`, `--cake-bg`, `--cake-ink`)
 
 ```html
 <figure class="cake">
@@ -97,12 +97,12 @@ var SPEED = 14;   // rows per second
 
 ## 7. Home: golden spiral
 
-At the bottom of the left column (cake, UTC time, triangle, spiral). Fibonacci squares with the golden spiral, zooming out of its eye forever in dark mode and into it in light mode. There is no rotation; the turning is the spiral's self-similarity. The drawing is generated; the speed is in the stylesheet. Switching the theme flips the direction from the current frame instead of restarting; `assets/js/motion.js` does this for the spiral and the ripple by setting each animation's playback rate to 1 or -1.
+At the bottom of the left column (cake, UTC time, triangle, spiral). Fibonacci squares with the golden spiral, growing out of its eye forever. There is no rotation; the turning is the spiral's self-similarity. The drawing is generated; the speed is in the stylesheet. Like every animation on the home page it runs one way, 0 to 1, whatever the theme.
 
-`_includes/golden-spiral.html` (drawing and keyframes), `assets/css/style.scss` (speed and colors), `assets/js/motion.js` (direction)
+`_includes/golden-spiral.html` (drawing and keyframes), `assets/css/style.scss` (speed and colors)
 
 ```scss
-.golden-spiral .zoom { animation: golden-zoom 4s linear infinite var(--motion); }
+.golden-spiral .zoom { animation: golden-zoom 4s linear infinite; }
 .golden-spiral .sq-red { fill: var(--flexoki-red-600); }   /* earth tones: brick, verdigris (cyan-600), ochre, moss */
 ```
 
@@ -140,20 +140,26 @@ One quote sits first (`.quotes`, "Originality is the art of concealing your sour
 
 ## 9. Home: 0 → 1 ripple
 
-Circles that all touch at 0, each 1.17× the last; growing the group by 1.17× makes a seamless ripple: outward 0 → 1 in dark mode, inward 1 → 0 in light mode.
+Circles that all touch at 0, each 1.17× the last; growing the group by 1.17× makes a seamless ripple, outward from 0 to 1.
 
 `_includes/ripples.html` (circles), `assets/css/style.scss` (animation)
 
 ```scss
-.infinity-arrow .ripples .wave { animation: ripple-out 1.6s linear infinite var(--motion); }
+.infinity-arrow .ripples .wave { animation: ripple-out 1.6s linear infinite; }
 @keyframes ripple-out { to { transform: scale(1.17); } }
 ```
 
 ## 9a. Home: ripple, side view
 
-Below the ripple: the same circles seen edge-on, drawn as a wave whose crests sit where each circle reaches its right edge. Its height grows with distance like the circles, so it uses the same `.wave` animation and moves in step with the ripple, in the same direction for each theme.
+Below the ripple: the same circles seen edge-on, drawn as a wave whose crests sit where each circle reaches its right edge. Its height grows with distance like the circles, so it uses the same `.wave` animation and moves in step with the ripple, 0 to 1.
 
 `_includes/ripple-side.html` (generated wave), `index.md`
+
+## 9b. Quality of life
+
+"quality of life" in "Who am I" is underlined and opens a note: "My goal is to reduce the friction of tactics and operations so people can work on mastering their strategy", over an animation of three bars, Strategy, Tactics, Operations, where tactics and operations shrink and strategy grows, back and forth.
+
+`quality-of-life.html`, `assets/css/style.scss` (`.qol`)
 
 ## 10. Stuff items
 
@@ -192,7 +198,7 @@ The three featured projects (`featured: 1` to `3` in `_data/experiments.yml`), t
 
 ## 17. Projects / Experiments
 
-Everything I've built or tried, in two groups, In progress (`status: active`, a green tag) and Done (`status: done`, a grey box), each newest first by `start`. The tag is `_includes/progress.html`, also used on Output and on notes. Dates show as YYYY MM. Old `/projects/` links redirect here.
+Everything I've built or tried, in two groups, In progress (`status: active`, a green tag) and Done (`status: done`, a grey box), each newest first by `start`. The tag is `_includes/progress.html`, also used on Output. Under each project, on both pages, "Note" opens its four bullets and "Code" links the repository (`_includes/project-links.html`). The four bullets follow a pattern without labelling it: the idea, what stood against it, what I built, what's next. Dates show as YYYY MM. Old `/projects/` links redirect here.
 
 `experiments.html`, `_data/experiments.yml`
 
@@ -206,26 +212,8 @@ Everything I've built or tried, in two groups, In progress (`status: active`, a 
   summary: One sentence, no period
   tags: [Python, Docker]
   repo: https://github.com/Sent-hen/my-experiment   # "" if private
-  note: false               # true if _notes/my-experiment.md exists
-  bullets:
+  bullets:                  # four: the idea, what stood against it, what I built, what's next
     - "..."
-```
-
-## 18. Notes
-
-Writing about the experiments, newest first by `written`. Each note page shows its experiment's summary, tags, and bullets. Old `/projects/<slug>/` links redirect to `/notes/<slug>/`.
-
-`notes.html` (the list), `_notes/<slug>.md` (one per note), `_layouts/note.html`
-
-```markdown
----
-title: My Experiment
-experiment: my-experiment   # must match the slug in _data/experiments.yml
-written: "2026-10"          # YYYY-MM
-description: "One line, shown on /notes/."
----
-
-The note, in Markdown.
 ```
 
 ## 19. Curriculum Vitae
@@ -240,14 +228,13 @@ The note, in Markdown.
 
 ## 20. Site settings
 
-Title, the `input` (read by Stuff, not published) and `notes` collections, the note layout, and the redirect plugin for old `/projects/` and `/experience/` links.
+Title, the `input` collection (read by Stuff, not published), and the redirect plugin for old `/projects/` and `/experience/` links.
 
 `_config.yml`
 
 ```yaml
 collections:
   input:    { output: false }   # read by Stuff, not published
-  notes:    { output: true, permalink: /notes/:path/ }
 ```
 
 ## Run and publish

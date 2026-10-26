@@ -1,0 +1,15 @@
+{%- comment -%}
+  Under each project: "Note" opens its four bullets, "Code" links the repository.
+  Usage: {% include project-links.html p=p %}
+{%- endcomment -%}
+{%- assign p = include.p -%}
+<div class="project-links small">
+  <details class="project-note">
+    <summary>Note</summary>
+    <ul class="bullets">
+      {% for b in p.bullets %}<li>{{ b }}</li>
+      {% endfor %}
+    </ul>
+  </details>
+  {% if p.repo != "" %}<a class="project-code" href="{{ p.repo }}">Code</a>{% else %}<span class="project-code muted">Private repo</span>{% endif %}
+</div>

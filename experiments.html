@@ -7,7 +7,7 @@ description: "Projects and experiments by Senthen Velmurugan"
 <p class="small"><a href="{{ '/output/' | relative_url }}" class="muted">&larr; Output</a></p>
 <h1>Projects / Experiments</h1>
 
-<!-- Entries live in _data/experiments.yml. Notes about them live in _notes/. -->
+<!-- Entries live in _data/experiments.yml. -->
 {% assign projects = site.data.experiments | sort: "start" | reverse %}
 
 {% comment %} Two groups: status active is In progress (green tag), status done is Done (grey box). Each is newest first. {% endcomment %}
@@ -22,25 +22,14 @@ description: "Projects and experiments by Senthen Velmurugan"
   <li class="entry" id="{{ p.slug }}">
     <div class="entry-head">
       <span class="entry-title">
-        {% if p.note %}<a href="{{ '/notes/' | append: p.slug | append: '/' | relative_url }}">{{ p.title }}</a>
-        {% elsif p.repo != "" %}<a href="{{ p.repo }}">{{ p.title }}</a>
-        {% else %}{{ p.title }}{% endif %}
+        {{ p.title }}
       </span>
       <span class="entry-when">{{ p.start | replace: "-", " " }}</span>
     </div>
     <div class="entry-sub">{% for d in p.domains %}{% assign dc = d | downcase | replace: "/", "-" | replace: " ", "-" %}<span class="dom dom-{{ dc }}">{{ d }}</span>{% unless forloop.last %} · {% endunless %}{% endfor %}</div>
-    <div class="entry-desc">
-      <p>{{ p.summary }}</p>
-      <ul class="bullets">
-        {% for b in p.bullets %}<li>{{ b }}</li>
-        {% endfor %}
-      </ul>
-    </div>
+    <div class="entry-desc"><p>{{ p.summary }}</p></div>
     <div class="tags">{% for t in p.tags %}<span class="tag">{{ t }}</span>{% endfor %}</div>
-    <div class="entry-links small">
-      {% if p.note %}<a href="{{ '/notes/' | append: p.slug | append: '/' | relative_url }}">Note &rarr;</a>{% endif %}
-      {% if p.repo != "" %}<a href="{{ p.repo }}">Code</a>{% else %}<span class="muted">Private repo</span>{% endif %}
-    </div>
+    {% include project-links.html p=p %}
   </li>
 {% endfor %}
 </ul>

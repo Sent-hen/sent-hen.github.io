@@ -23,7 +23,6 @@ description: "Senthen Velmurugan: output"
   {% include golden-spiral.html %}
   <p class="tile-caption">a + b is to a as a is to b</p>
   <script src="{{ '/assets/js/clock.js' | relative_url }}" defer></script>
-  <script src="{{ '/assets/js/motion.js' | relative_url }}" defer></script>
   </div>
   <div class="intro-text">
   <div class="quotes">
@@ -45,7 +44,7 @@ description: "Senthen Velmurugan: output"
     </section>
     <section>
       <p class="label">Who am I</p>
-      <p>Someone who uses technology to increase quality of life</p>
+      <p>Someone who uses technology to increase <a href="{{ '/quality-of-life/' | relative_url }}">quality of life</a></p>
       <p class="iam">Currently mastering&hellip;</p>
       <ul class="iam-list">
         <li>computational linguistics</li>

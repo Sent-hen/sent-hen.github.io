@@ -12,11 +12,12 @@ description: "Output: projects, experiments, and CV by Senthen Velmurugan"
   {% for p in featured %}
     <li class="entry">
       <div class="entry-head">
-        <span class="entry-title"><a href="{% if p.note %}{{ '/notes/' | append: p.slug | append: '/' | relative_url }}{% else %}{{ '/experiments/' | relative_url }}#{{ p.slug }}{% endif %}">{{ p.title }}</a></span>
+        <span class="entry-title"><a href="{{ '/experiments/' | relative_url }}#{{ p.slug }}">{{ p.title }}</a></span>
         <span class="entry-when">{{ p.start | replace: "-", " " }}</span>
       </div>
       <div class="entry-sub">{% include progress.html value=p.status %}{% for d in p.domains %}{% assign dc = d | downcase | replace: "/", "-" | replace: " ", "-" %}<span class="dom dom-{{ dc }}">{{ d }}</span>{% unless forloop.last %} · {% endunless %}{% endfor %}</div>
       <div class="entry-desc"><p>{{ p.summary }}</p></div>
+      {% include project-links.html p=p %}
     </li>
   {% endfor %}
   </ul>

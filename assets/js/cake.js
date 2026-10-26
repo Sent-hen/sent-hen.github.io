@@ -1,7 +1,7 @@
 // The tiramisu as Matrix rain: columns of digits stream down the tile, and the digits are bright only
 // where the tiramisu drawing is (_includes/cake.html), so the tiramisu appears out of the rain.
-// Digits are 0 at the top and 1 at the bottom, mixing in the middle. Dark mode rains down (0 → 1),
-// light mode rains up (1 → 0), following --motion. Colors invert the page (--cake-bg/--cake-ink).
+// Digits are 0 at the top and 1 at the bottom, mixing in the middle; the rain falls, 0 → 1.
+// Colors invert the page (--cake-bg/--cake-ink).
 (function () {
   var fig = document.querySelector('.cake');
   var svg = fig && fig.querySelector('.cake-art');
@@ -22,13 +22,12 @@
   canvas.setAttribute('aria-label', svg.getAttribute('aria-label') + ', drawn in falling digits');
   var ctx = canvas.getContext('2d');
 
-  // Theme: colors and direction come from the stylesheet so they follow light/dark.
-  var BG, INK, UP;
+  // Theme: colors come from the stylesheet so they follow the theme.
+  var BG, INK;
   function readTheme() {
     var cs = getComputedStyle(fig);
     BG = cs.getPropertyValue('--cake-bg').trim() || '#100F0F';
     INK = cs.getPropertyValue('--cake-ink').trim() || '#FFFCF0';
-    UP = cs.getPropertyValue('--motion').trim() === 'reverse';   // light: the rain rises
   }
   readTheme();
   new MutationObserver(readTheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
@@ -89,7 +88,7 @@
       for (var c = 0; c < COLS; c++) for (var r = 0; r < ROWS; r++) {
         if (ones[r * COLS + c] !== d) continue;
         var m = mask[r * COLS + c];
-        var behind = heads[c] - (UP ? ROWS - 1 - r : r); // rows since the head passed this cell
+        var behind = heads[c] - r; // rows since the head passed this cell
         var glow = behind >= 0 && behind < TRAIL ? 1 - behind / TRAIL : 0;
         // the tiramisu always shows; the rain brightens it as heads pass, and faintly fills the tile around it
         var alpha = m > 0 ? m * (0.7 + 0.3 * glow) : 0.1 * glow;

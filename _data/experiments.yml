@@ -1,14 +1,14 @@
 # Experiments shown on /experiments/, split into In progress and Done, newest first (by start).
 #
-# slug      anchor id on /experiments/, and the note URL (/notes/<slug>/) when note is true
+# slug      anchor id on /experiments/
 # start     "YYYY-MM" the experiment began; shown as YYYY MM and used for the order
 # status    active (In progress) or done (Done)
 # featured  1, 2, 3: shown on /output/ in that order; leave it out otherwise
-# note      true if _notes/<slug>.md exists; the title then links to it
 # domains   Backend/infra | Security | AI/ML | other short labels
 # tags      tech, ordered by how heavily the experiment uses it (most first)
 # repo      public repository URL; leave empty for private repos
-# bullets   six STAR/XYZ bullets: accomplished X, measured by Y, by doing Z
+# bullets   four, shown under "Note", following a pattern without labelling it:
+#           the idea (thesis), what stood against it (antithesis), what I built (synthesis), what's next
 
 - slug: pid-digitizer
   title: P&ID Digitizer
@@ -19,14 +19,11 @@
   summary: Turns scanned engineering drawings (P&IDs) into machine-readable graphs, with a review UI for correcting low-confidence output
   tags: [Python, PyTorch, OpenCV, FastAPI, Docker, NetworkX, SQLite]
   repo: https://github.com/Sent-hen/PID-Digitizer
-  note: true
   bullets:
-    - "Converted raster piping and instrumentation diagrams into graphs (GraphML and DEXPI 2.0.1 XML), reaching 0.915 edge F1 and 0.997 symbol mAP@0.5 on a 75-sheet test split, by chaining a symbol detector, orthogonal line extraction, and graph assembly."
-    - "Detected small symbols on 7,000 px sheets by tiling into 1024² crops with 256 px overlap and merging boxes class-aware across tile seams, fine-tuning a torchvision Faster R-CNN in under 2 GPU-hours on a laptop RTX 4070."
-    - "Made predictions reviewable by calibrating per-edge confidence scores to observed accuracy and building a review UI that filters to low-confidence edges for relabeling, deleting, confirming, or adding."
-    - "Shipped it as a service: a FastAPI job API with SQLite job state, upload size and type limits, timeouts, and a sha1-checked model, packaged as a non-root CPU Docker image that runs end to end with <code>make demo</code>."
-    - "Kept the evaluation honest by running each test split exactly once and enforcing ruff, <code>mypy --strict</code>, and 99 pytest cases in CI, with 26 design decisions recorded as they were made."
-    - "Found through error analysis that 80% of the remaining misses were nodes 2 to 4 px off rather than topology errors, and reported the real-drawing gap openly (0.49 edge F1 on 8 real sheets) along with the fix I'd try next."
+    - "Engineering drawings (P&IDs) hold a plant's process logic, but as scanned images no software can query them; as a graph (GraphML or DEXPI 2.0.1 XML) they can be"
+    - "Symbols are tiny on 7,000 px sheets, lines cross and break, and a model that is confidently wrong is worse than no model, so accuracy alone does not make the output usable"
+    - "Chained a tiled Faster R-CNN symbol detector, orthogonal line extraction, and graph assembly (0.915 edge F1 and 0.997 symbol mAP@0.5 on a 75-sheet test split), calibrated each edge's confidence, and built a review UI that surfaces only the doubtful edges, shipped as a FastAPI service in a Docker image"
+    - "Real drawings still score lower (0.49 edge F1 on 8 sheets), and 80% of the remaining misses are nodes 2 to 4 px off rather than wrong connections, so closing that gap starts with node placement"
 
 - slug: dexpi-viewer
   title: DEXPI P&ID Viewer
@@ -37,14 +34,11 @@
   summary: A dependency-free browser viewer and validator for DEXPI 2.0.1 plant-model XML
   tags: [JavaScript, Python, XML, SVG]
   repo: https://github.com/Sent-hen/DEXPI-PID-Viewer
-  note: true
   bullets:
-    - "Built a single-page viewer and validator for DEXPI 2.0.1 P&ID files with zero dependencies, so anyone can open a file from disk and inspect it with nothing uploaded."
-    - "Drew diagrams that have no stored coordinates by laying them out from topology alone, with a Sugiyama-style layered flow layout, a stress-majorization network layout, and an auto mode that switches per connected group when the flow result is badly proportioned."
-    - "Caught structural errors before they reach downstream tools by checking well-formedness, ID syntax and uniqueness, and IDREF resolution in the validation panel."
-    - "Added metamodel checks against the Core and Plant 2.0.1 specs (class existence and abstractness, property kinds, target types, multiplicity bounds) by generating a compact class table from the spec XML with a Python build script."
-    - "Gave pipelines a headless path with a Python CLI validator (lxml) that runs both XSD and metamodel checks."
-    - "Made large models navigable with symbols for equipment, valves, and instruments, an inspector showing references and back-references, a model tree, ID and tag search, SVG export, and light and dark themes."
+    - "DEXPI is the open exchange format for P&IDs, so a valid file should be all you need to see and check a plant model"
+    - "A DEXPI file can describe a whole plant with no drawing coordinates, and checking one usually means heavy tools or uploading it somewhere"
+    - "Built a zero-dependency, single-page viewer that lays diagrams out from topology alone (layered flow and stress-majorization layouts, picked per connected group) and validates structure and the Core and Plant 2.0.1 metamodel in the browser, plus a Python command-line validator with XSD checks for pipelines"
+    - "Next, checking every drawing the P&ID Digitizer produces as it comes out, so a scan can be digitized, viewed, and validated end to end"
 
 - slug: personal-website
   title: Personal website
@@ -55,11 +49,8 @@
   summary: This site, a static Jekyll site on GitHub Pages that shows what I build, in the <a href="https://github.com/kepano/flexoki">Flexoki</a> color scheme
   tags: [Jekyll, Liquid, HTML, CSS, JavaScript]
   repo: https://github.com/Sent-hen/sent-hen.github.io
-  note: false
   bullets:
-    - "Built a personal site with no server, no database, and no build pipeline to maintain, by publishing a static Jekyll site straight from the main branch through GitHub Pages."
-    - "Made adding an entry a one-file change: each experiment is one YAML entry and each note one Markdown file, so no index or list needs updating."
-    - "Kept projects data-driven in a single YAML file, so every list and count is generated from it rather than written by hand."
-    - "Kept tagging minimal on purpose: experiments are only In progress or Done."
-    - "Drew the home page animations (Matrix-rain cake, golden spiral, Sierpinski triangle, ripple) as generated SVG and a little plain JavaScript, with no libraries."
-    - "Designed it around <a href=\"https://github.com/kepano/flexoki\">Flexoki</a>, an open-source color scheme by Steph Ango, with light and dark themes, then trimmed it repeatedly, removing unused pages, styles, and data so the whole site stays easy to maintain by hand."
+    - "A personal site should show what I make, with nothing to run or maintain"
+    - "Every feature I added (pages, tags, filters, categories) made it heavier to keep up by hand"
+    - "A static Jekyll site on GitHub Pages, driven by one YAML file, with generated SVG and plain-JavaScript animations, cut back again and again to only what is used"
+    - "Next, letting it grow only as fast as there is something worth adding"

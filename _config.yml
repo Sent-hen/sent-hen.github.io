@@ -12,16 +12,8 @@ permalink: pretty
 collections:
   input:             # the things on /stuff/: one file per item in _input/<category>/; read by Stuff, not published as pages
     output: false
-  notes:             # one note per file in _notes/; each is about an experiment in _data/experiments.yml
-    output: true
-    permalink: /notes/:path/
 
 defaults:
-  - scope:
-      path: ""
-      type: "notes"
-    values:
-      layout: "note"
   - scope:
       path: ""
     values:

@@ -58,7 +58,6 @@
   --purple: var(--flexoki-purple-400);
   --magenta: var(--flexoki-magenta-400);
   --selection: rgba(160, 175, 84, 0.3);
-  --motion: reverse;   /* light: the spiral zooms in and the ripple flows back from 1 to 0 */
   --cake-bg: var(--roof-cream);    /* the cake inverts the page: green cake on cream here */
   --cake-ink: var(--roof-900);
 }
@@ -82,7 +81,6 @@
   --purple: var(--flexoki-purple-400);
   --magenta: var(--flexoki-magenta-400);
   --selection: rgba(232, 112, 95, 0.3);
-  --motion: normal;    /* dark: the spiral zooms out and the ripple flows out from 0 to 1 */
   --cake-bg: var(--brick-50);    /* dark cake on light here */
   --cake-ink: var(--brick-950);
 }
@@ -248,7 +246,7 @@ hr {
 .golden-spiral .zoom {
   transform-box: view-box;
   transform-origin: 80px 80px;
-  animation: golden-zoom 4s linear infinite var(--motion);   /* zooms out (dark) or in (light) forever; keyframes in _includes/golden-spiral.html; assets/js/motion.js flips it without a restart */
+  animation: golden-zoom 4s linear infinite;   /* grows out of the eye forever, 0 to 1; keyframes in _includes/golden-spiral.html */
 }
 .golden-spiral .sq { stroke: var(--flexoki-black); stroke-width: 1; vector-effect: non-scaling-stroke; }
 /* earth tones from Flexoki's darker shades: brick, verdigris, ochre, moss */
@@ -325,6 +323,19 @@ hr {
 .output-stack { display: flex; flex-direction: column; align-items: flex-start; gap: 0.1em; margin: 0 0 1.2em; }
 .output-slash { color: var(--tx-3); }
 
+/* quality of life (/quality-of-life/): effort moves from operations and tactics to strategy, on a loop */
+.qol-goal { font-size: 1.1em; max-width: 30em; }
+.qol { display: block; width: 100%; max-width: 480px; margin: 1.6em 0; }
+.qol text { fill: var(--tx); font-family: var(--font-ui); font-size: 13px; }
+.qol-track { fill: var(--ui); }
+.qol-bar { transform-box: fill-box; transform-origin: left center; animation: 6s ease-in-out infinite alternate; }
+.qol-strategy .qol-bar { fill: var(--green); animation-name: qol-grow; }
+.qol-tactics .qol-bar { fill: var(--yellow); animation-name: qol-ease; }
+.qol-operations .qol-bar { fill: var(--red); animation-name: qol-ease-more; }
+@keyframes qol-grow { from { transform: scaleX(0.15); } to { transform: scaleX(1); } }        /* strategy gets the room */
+@keyframes qol-ease { from { transform: scaleX(0.7); } to { transform: scaleX(0.25); } }      /* tactics: less friction */
+@keyframes qol-ease-more { from { transform: scaleX(0.95); } to { transform: scaleX(0.12); } } /* operations: least */
+
 /* curriculum vitae (/cv/) */
 .cv-head { margin-bottom: 1.6em; }
 .cv-head h1 { margin-bottom: 0.4em; }
@@ -380,7 +391,7 @@ hr {
 .infinity-arrow .ripples .wave {
   transform-box: view-box;
   transform-origin: 0 36px;
-  animation: ripple-out 1.6s linear infinite var(--motion);   /* outward 0 → 1 in dark, inward 1 → 0 in light */
+  animation: ripple-out 1.6s linear infinite;   /* outward, 0 → 1 */
 }
 .infinity-arrow .ripples circle { vector-effect: non-scaling-stroke; }
 @keyframes ripple-out { to { transform: scale(1.17); } }
@@ -458,7 +469,14 @@ hr {
 /* projects */
 .entry-desc .bullets { margin: 0.4em 0 0; font-size: 0.94em; }
 .entry-desc .bullets li { margin-bottom: 0.3em; }
-.entry-links { display: flex; gap: 16px; margin-top: 8px; }
+/* under each project: Note (opens the four bullets) and Code */
+.project-links { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; margin-top: 6px; }
+.project-note summary { cursor: pointer; color: var(--action); list-style: none; }
+.project-note summary::-webkit-details-marker { display: none; }
+.project-note summary::after { content: " +"; color: var(--tx-3); }
+.project-note[open] summary::after { content: " −"; }
+.project-note[open] { flex-basis: 100%; }   /* open, the bullets take the row and Code follows them */
+.project-note .bullets { margin: 6px 0 0; font-size: 1.05em; }
 code {
   font-family: var(--font-mono);
   font-size: 0.88em;
