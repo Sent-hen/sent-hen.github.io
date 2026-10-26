@@ -121,8 +121,7 @@ a {
   text-underline-offset: 1.5px;
 }
 a:hover { text-decoration-color: var(--tx); }
-a.plain { text-decoration: none; }
-a.plain:hover u { text-decoration-color: var(--tx); }
+
 u {
   text-decoration-color: var(--ui-3);
   text-underline-offset: 1.5px;
@@ -355,14 +354,7 @@ hr {
 }
 .blank-box:hover { border-color: var(--tx); }
 .iam-list { list-style: none; margin: 0 0 1em; padding: 0 0 0 1.2em; }
-.iam-list li { margin: 0; white-space: nowrap; }   /* each item stays on one line on every screen */
-.boxed {
-  display: inline-block;
-  border: 1px solid var(--tx-2);
-  border-radius: 4px;
-  padding: 0 6px;
-  margin: 2px 0;
-}
+.iam-list li { margin: 0; white-space: nowrap; }
 
 /* home: 0 → 1 line above the site note */
 .infinity-arrow {
@@ -400,22 +392,6 @@ hr {
   .sierpinski { width: 96px; height: 96px; }
   .utc-clock { font-size: 0.55em; }   /* fits the 96px column */
     .intro-text { padding-left: 14px; }
-}
-
-.status {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.875em;
-  color: var(--tx-2);
-  margin-bottom: 1.2em;
-}
-.status::before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--action);
 }
 
 /* entries: projects, experience, input */
@@ -489,9 +465,6 @@ code {
 .project .lede { font-size: 1.05em; }
 .project-tags { margin: -0.4em 0 1em; }
 
-@media (max-width: 560px) {
-}
-
 /* writeups: code blocks and tables */
 pre {
   font-family: var(--font-mono);
@@ -522,14 +495,11 @@ th { font-weight: 500; color: var(--tx-2); }
 
 /* domain accents: one Flexoki color per domain */
 .dom { --accent: var(--tx-2); }
-.dom-backend-infra, .dom-backend, .dom-infra { --accent: var(--blue); }
-.dom-security { --accent: var(--red); }
+.dom-backend-infra { --accent: var(--blue); }
+
 .dom-ai-ml { --accent: var(--purple); }
 .dom-tooling { --accent: var(--yellow); }
 .dom-web { --accent: var(--orange); }
-.dom-data-analysis { --accent: var(--green); }
-.dom-research { --accent: var(--magenta); }
-.dom-learning-tools { --accent: var(--action); }
 
 span.dom { color: var(--accent); }
 .tag.dom { color: var(--accent); }
@@ -544,69 +514,9 @@ span.dom { color: var(--accent); }
   vertical-align: 0.1em;
 }
 
-/* input */
-.rows { list-style: none; margin: 0; padding: 0; }
-.rows li { margin: 0 0 0.45em; }
-.rows .row { display: flex; align-items: baseline; gap: 10px; }
-.categories .count { font-variant-numeric: tabular-nums; }
-
-.sort-bar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 0 0 1.6em;
-}
-.sort-bar select, .sort-dir {
-  -webkit-appearance: none;
-  appearance: none;
-  font: inherit;
-  color: var(--tx);
-  background: var(--bg-2);
-  border: 1px solid var(--ui);
-  border-radius: 4px;
-  padding: 1px 8px;
-  cursor: pointer;
-}
-.sort-bar select:hover, .sort-dir:hover { border-color: var(--ui-3); }
-
-/* projects filter bar (same controls as the input sort bar) */
-.filter-bar { flex-wrap: wrap; gap: 8px 14px; margin-bottom: 2em; }
-.filter-bar label { display: inline-flex; align-items: center; gap: 6px; }
-.filter-bar .filter-status { margin-left: auto; font-variant-numeric: tabular-nums; }
-.filter-clear {
-  -webkit-appearance: none;
-  appearance: none;
-  font: inherit;
-  color: var(--action);
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  text-decoration: underline;
-  text-decoration-color: var(--ui-3);
-}
-.tag-filter {
-  -webkit-appearance: none;
-  appearance: none;
-  font-family: inherit;
-  line-height: inherit;
-  cursor: pointer;
-}
-.tag-filter:hover { color: var(--tx); border-color: var(--ui-3); }
-
-.collection .entry-sub i { font-style: italic; }
 .rotation { margin-bottom: 1.6em; }
 .rotation .entry { margin-bottom: 0.9em; }
 .rotation .entry-sub { margin-bottom: 0; }
-
-.label.sub { margin-top: 0.6em; }
-.item-note blockquote {
-  margin: 0 0 1em;
-  padding-left: 14px;
-  border-left: 2px solid var(--ui-3);
-  color: var(--tx-2);
-  font-style: italic;
-}
 
 /* active tag */
 .status-tag {
@@ -622,10 +532,6 @@ span.dom { color: var(--accent); }
 .status-active { color: var(--green); border-color: currentColor; }
 .status-done { color: var(--tx-2); border-color: currentColor; background: var(--ui); }   /* experiments: Done */
 .exp-group-label { margin: 0 0 0.6em; }
-.fav-toggle { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; }
-.fav-toggle input { accent-color: var(--magenta); margin: 0; }
-.poem { white-space: pre-line; font-style: italic; line-height: 1.7; }
-.dialogue p { margin: 0 0 0.9em; }   /* interview excerpts on Texts items */
 
 /* item titles: original language, then English, then phonetic (see _includes/item-title.html) */
 .t-sep { color: var(--tx-3); }

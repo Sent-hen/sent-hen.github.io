@@ -1,28 +1,22 @@
 title: Senthen Velmurugan
-description: "Senthen Velmurugan: output."
+description: "Senthen Velmurugan"
 author: Senthen Velmurugan
 url: "https://sent-hen.github.io"
 baseurl: ""
 
 markdown: kramdown
 plugins:
-  - jekyll-redirect-from   # old /projects/ links forward to /experiments/ and /notes/
+  - jekyll-redirect-from   # old /projects/ and /experience/ links forward to /experiments/ and /cv/
 permalink: pretty
 
 collections:
-  input:             # one file per item in _input/<category>/; kept in the repo but not published (output: true to bring back)
+  input:             # the things on /stuff/: one file per item in _input/<category>/; read by Stuff, not published as pages
     output: false
-    permalink: /input/:path/
   notes:             # one note per file in _notes/; each is about an experiment in _data/experiments.yml
     output: true
     permalink: /notes/:path/
 
 defaults:
-  - scope:
-      path: ""
-      type: "input"
-    values:
-      layout: "item"
   - scope:
       path: ""
       type: "notes"
@@ -34,9 +28,6 @@ defaults:
       layout: "default"
 
 exclude:
-  # Input is not published; the files stay so it can come back. Stuff reads the input items directly.
-  - input.html
-  - input
   - Gemfile
   - Gemfile.lock
   - README.md

@@ -1,7 +1,0 @@
-{%- comment -%}
-  Items in one input category, sorted by `order` (items without one go last).
-  The category is the item's folder: _input/<key>/<slug>.md.
-  Usage: {% include category-items.html key="music" %} then read `items`.
-{%- endcomment -%}
-{%- assign prefix = "_input/" | append: include.key | append: "/" -%}
-{%- assign items = site.input | where_exp: "i", "i.relative_path contains prefix" | sort: "order", "last" -%}

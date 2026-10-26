@@ -1,10 +1,7 @@
 {%- comment -%}
-  Item title: original language first, then English, e.g. "Le Festin · The Feast". With phonetic=true
-  (not used on the site right now; /stuff/ shows the phonetic on its own line) a phonetic spelling follows: "Le Festin · The Feast · luh fess-TAN".
-  Usage: {% include item-title.html item=it %} or {% include item-title.html item=it phonetic=true %}.
-  Front matter: `original` (only when it differs from the English `title`) and `phonetic`.
+  Item title: original language first, then English, e.g. "Le Festin · The Feast".
+  Usage: {% include item-title.html item=it %}. Front matter: `original` (only when it differs from `title`) and `lang`.
 {%- endcomment -%}
 {%- assign i = include.item -%}
 {%- if i.original and i.original != i.title -%}<span class="t-orig" lang="{{ i.lang | default: '' }}">{{ i.original }}</span> <span class="t-sep">&middot;</span> {% endif -%}
 <span class="t-en">{{ i.title }}</span>
-{%- if include.phonetic and i.phonetic %} <span class="t-sep">&middot;</span> <span class="t-ph">{{ i.phonetic }}</span>{% endif -%}

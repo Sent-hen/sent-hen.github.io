@@ -59,7 +59,7 @@
   bullets:
     - "Built a personal site with no server, no database, and no build pipeline to maintain, by publishing a static Jekyll site straight from the main branch through GitHub Pages."
     - "Made adding an entry a one-file change: each experiment is one YAML entry and each note one Markdown file, so no index or list needs updating."
-    - "Kept experiments data-driven in a single YAML file, so the domain and tech filters, tag rankings, and counts are all generated from it rather than written by hand."
+    - "Kept projects data-driven in a single YAML file, so every list and count is generated from it rather than written by hand."
     - "Kept tagging minimal on purpose: experiments are only In progress or Done."
-    - "Added filtering and sorting with a small amount of plain JavaScript and no libraries, while keeping every page fully readable with JavaScript turned off."
+    - "Drew the home page animations (Matrix-rain cake, golden spiral, Sierpinski triangle, ripple) as generated SVG and a little plain JavaScript, with no libraries."
     - "Designed it around <a href=\"https://github.com/kepano/flexoki\">Flexoki</a>, an open-source color scheme by Steph Ango, with light and dark themes, then trimmed it repeatedly, removing unused pages, styles, and data so the whole site stays easy to maintain by hand."

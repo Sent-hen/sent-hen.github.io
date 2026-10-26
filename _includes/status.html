@@ -1,3 +1,0 @@
-{%- comment -%} Active tag: shows only when `status: active`. Usage: {% include status.html value=it.status %} {%- endcomment -%}
-{%- assign s = include.value | downcase -%}
-{%- if s == "active" -%}<span class="status-tag status-active">active</span>{%- endif -%}

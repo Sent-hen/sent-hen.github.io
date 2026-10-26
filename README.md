@@ -153,87 +153,28 @@ Below the ripple: the same circles seen edge-on, drawn as a wave whose crests si
 
 `_includes/ripple-side.html` (generated wave), `index.md`
 
-## Not published: Input (sections 10 to 14)
+## 10. Stuff items
 
-The site shows Output in the nav, and Stuff through the empty box on the home page. Input (raw sources) stays in the repo but is not built: `_config.yml` sets the `input` collection to `output: false` and excludes `input.html` and `input/`. Stuff still shows the input items marked `stuff: 1` to `stuff: 4`, as plain text rather than links. To bring Input back, set `output: true`, remove those two lines from `exclude`, add `Input:/input/,` to the front of the nav links, and link the Stuff titles again.
+The things on Stuff live in `_input/<category>/` (cinema, music, games), one small file each. They are read by the Stuff pages, not published as pages of their own. `stuff: 1` to `4` puts an item in its category's row on `/stuff/`; every item shows on that category's full list.
 
-## 10. Input
-
-Raw sources. Shows active items, then every category with its count. Categories are found automatically. Texts holds poems, essays, aphorisms, and the sources behind the home-page quotes (The Myth of Sisyphus, the Face to Face interview); old /input/poems/ and /input/essays/ links redirect to it.
-
-`input.html`
-
-```liquid
-{% assign categories = site.pages | where: "layout", "category" | sort: "order", "last" %}
-{% assign current = items | where: "status", "active" %}
-```
-
-## 11. Input category
-
-One page per category, with sort and an "Active only" filter.
-
-`input/<key>.html` (one per category), `_layouts/category.html` (the list), `_includes/category-items.html` (finds the items)
-
-```yaml
----
-layout: category
-title: Music
-creator_label: Artist   # label for the creator sort
-order: 4                # position on /input/
----
-```
-
-```liquid
-{% assign prefix = "_input/" | append: include.key | append: "/" %}
-{% assign items = site.input | where_exp: "i", "i.relative_path contains prefix" | sort: "order", "last" %}
-```
-
-## 12. Input item
-
-One file per item; the folder is its category. This is a public site, so items carry no notes, commentary, or ratings: just the facts below. A body is only for the work itself, such as a poem's text.
-
-`_input/<key>/<slug>.md`, `_layouts/item.html`
+`_input/<category>/<slug>.md`, `_includes/item-title.html` (original title · English title)
 
 ```markdown
 ---
 title: "The Feast"          # English
 original: "Le Festin"       # original language, only when different
 lang: fr
-phonetic: "luh fess-TAN"
 creator: "Camille"
 year: 2007
-form: "Music"
-order: 10
-status: active              # optional
-stuff: 1                    # optional: 1 to 4, its place in its category on /stuff/
+stuff: 1                    # optional: 1 to 4, its place in its category's row on /stuff/
 ---
-```
-
-## 13. Item title: original · English
-
-`_includes/item-title.html`
-
-```liquid
-{% if i.original and i.original != i.title %}<span class="t-orig">{{ i.original }}</span> · {% endif %}
-<span class="t-en">{{ i.title }}</span>
-{% if include.phonetic and i.phonetic %} · <span class="t-ph">{{ i.phonetic }}</span>{% endif %}   <!-- phonetic=true on /stuff/ only -->
-```
-
-## 14. Active tag
-
-The only tag. Shows when `status: active`, on Input items.
-
-`_includes/status.html`
-
-```liquid
-{% if include.value == "active" %}<span class="status-tag status-active">active</span>{% endif %}
 ```
 
 ## 15. Stuff
 
 Reached from the empty box on the home page, not the nav. A photo sits at the top (`assets/img/everyday-carry.jpg`). Two parts: **stuff**, a showcase of 4 per category, left to right (Cinema, Music, Games), in pairs, `1 / 2 · 3 / 4`, then "…" which opens everything in that category A to Z (`/stuff/cinema/`, `/stuff/music/`, `/stuff/games/`: `stuff/<key>.html` with `_layouts/stuff-list.html`); creator and year show on hover; a plain "…" under the last row leaves room for more categories; and **Illusions** (`#illusions`), a plain list written in the page ending in an empty box; clicking the box reloads the page at Illusions.
 
-To change the showcase, set `stuff: 1` to `stuff: 4` on the Input items you want (the number is the position) and remove `stuff` from the one it replaces. To add a category, add `key:Label` to `cats` in `stuff.html` and a `stuff/<key>.html` page like the others.
+To change the showcase, set `stuff: 1` to `stuff: 4` on the items you want (in `_input/`) (the number is the position) and remove `stuff` from the one it replaces. To add a category, add `key:Label` to `cats` in `stuff.html` and a `stuff/<key>.html` page like the others.
 
 `stuff.html`, `assets/css/style.scss` (`.showcase`, `.showcase-sep`)
 
@@ -249,7 +190,7 @@ The three featured projects (`featured: 1` to `3` in `_data/experiments.yml`), t
 
 ## 17. Projects / Experiments
 
-Everything I've built or tried, in two groups, In progress (`status: active`, a green tag) and Done (`status: done`, a grey box), each newest first by `start`. The tag is `_includes/progress.html`, also used on Output and on notes. Dates show as YYYY MM. Domain and Tech filters build themselves from the data; `_data/tag_popularity.yml` breaks ties in the tag ranking. Old `/projects/` links redirect here.
+Everything I've built or tried, in two groups, In progress (`status: active`, a green tag) and Done (`status: done`, a grey box), each newest first by `start`. The tag is `_includes/progress.html`, also used on Output and on notes. Dates show as YYYY MM. Old `/projects/` links redirect here.
 
 `experiments.html`, `_data/experiments.yml`
 
@@ -297,13 +238,13 @@ The note, in Markdown.
 
 ## 20. Site settings
 
-Title, the `input` (unpublished) and `notes` collections, their layouts, what is excluded, and the redirect plugin for old links.
+Title, the `input` (read by Stuff, not published) and `notes` collections, the note layout, and the redirect plugin for old `/projects/` and `/experience/` links.
 
 `_config.yml`
 
 ```yaml
 collections:
-  input:    { output: false, permalink: /input/:path/ }   # not published
+  input:    { output: false }   # read by Stuff, not published
   notes:    { output: true, permalink: /notes/:path/ }
 ```
 
