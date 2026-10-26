@@ -1,0 +1,21 @@
+---
+layout: default
+---
+{%- comment -%}
+  Everything in one Input category, A to Z, reached from the "…" after its row on /stuff/.
+  Each page in stuff/ sets `key` (the folder in _input/) and `title`.
+{%- endcomment -%}
+{% assign prefix = "_input/" | append: page.key | append: "/" %}
+{% assign items = site.input | where_exp: "i", "i.relative_path contains prefix" | sort: "title" %}
+<p class="small"><a href="{{ '/stuff/' | relative_url }}" class="muted">&larr; Stuff</a></p>
+<h1>{{ page.title }}</h1>
+<p class="muted">{{ page.subtitle }}</p>
+
+<ul class="entries">
+{% for it in items %}
+  <li class="entry">
+    <div class="entry-head"><span class="entry-title">{% include item-title.html item=it %}</span></div>
+    <div class="entry-sub">{{ it.creator }}{% if it.year %} · {{ it.year }}{% endif %}</div>
+  </li>
+{% endfor %}
+</ul>

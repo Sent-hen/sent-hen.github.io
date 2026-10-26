@@ -29,6 +29,7 @@ description: "Senthen Velmurugan: output"
     </blockquote>
   </div>
   <p class="infinity-arrow" aria-label="From zero to one"><span>0</span>{% include ripples.html %}<span>1</span></p>
+  <p class="infinity-arrow" aria-hidden="true"><span>0</span>{% include ripple-side.html %}<span>1</span></p>
   <div class="duality">
     <section>
       <p class="label">Who I am</p>

@@ -151,6 +151,12 @@ Circles that all touch at 0, each 1.17× the last; growing the group by 1.17× m
 @keyframes ripple-out { to { transform: scale(1.17); } }
 ```
 
+## 9a. Home: ripple, side view
+
+Below the ripple: the same circles seen edge-on, drawn as a wave whose crests sit where each circle reaches its right edge. Its height grows with distance like the circles, so it uses the same `.wave` animation and moves in step with the ripple, in the same direction for each theme.
+
+`_includes/ripple-side.html` (generated wave), `index.md`
+
 ## Not published: Input (sections 10 to 14)
 
 The site shows Output in the nav, and Stuff through the empty box on the home page. Input (raw sources) stays in the repo but is not built: `_config.yml` sets the `input` collection to `output: false` and excludes `input.html` and `input/`. Stuff still shows the input items marked `stuff: 1` to `stuff: 4`, as plain text rather than links. To bring Input back, set `output: true`, remove those two lines from `exclude`, add `Input:/input/,` to the front of the nav links, and link the Stuff titles again.
@@ -229,9 +235,9 @@ The only tag. Shows when `status: active`, on Input items.
 
 ## 15. Stuff
 
-Reached from the empty box on the home page, not the nav. A photo sits at the top (`assets/img/everyday-carry.jpg`). Two parts: **stuff i like**, a showcase of 4 per category, left to right (Cinema, Music, Games), in pairs, `1 / 2 · 3 / 4` (creator and year show on hover); and **Illusions** (`#illusions`), a plain list written in the page ending in an empty box; clicking the box reloads the page at Illusions.
+Reached from the empty box on the home page, not the nav. A photo sits at the top (`assets/img/everyday-carry.jpg`). Two parts: **stuff i like**, a showcase of 4 per category, left to right (Cinema, Music, Games), in pairs, `1 / 2 · 3 / 4`, then "…" which opens everything in that category A to Z (`/stuff/cinema/`, `/stuff/music/`, `/stuff/games/`: `stuff/<key>.html` with `_layouts/stuff-list.html`); creator and year show on hover; and **Illusions** (`#illusions`), a plain list written in the page ending in an empty box; clicking the box reloads the page at Illusions.
 
-To change the showcase, set `stuff: 1` to `stuff: 4` on the Input items you want (the number is the position) and remove `stuff` from the one it replaces. To add a category, add `key:Label` to `cats` in `stuff.html`.
+To change the showcase, set `stuff: 1` to `stuff: 4` on the Input items you want (the number is the position) and remove `stuff` from the one it replaces. To add a category, add `key:Label` to `cats` in `stuff.html` and a `stuff/<key>.html` page like the others.
 
 `stuff.html`, `assets/css/style.scss` (`.showcase`, `.showcase-sep`)
 

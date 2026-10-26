@@ -304,6 +304,8 @@ hr {
 .showcase-row { margin: 0; line-height: 1.6; }
 .showcase-item { white-space: nowrap; }   /* a title never breaks; the line breaks at the slashes */
 .showcase-sep { color: var(--tx-3); }
+.showcase-more { text-decoration: none; color: var(--tx-2); }   /* the "…" that opens the full list */
+.showcase-more:hover { color: var(--tx); }
 
 /* curriculum vitae (/cv/) */
 .cv-head { margin-bottom: 1.6em; }
