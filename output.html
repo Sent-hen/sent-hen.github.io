@@ -1,13 +1,11 @@
 ---
 title: Output
 permalink: /output/
-description: "Output: what Senthen Velmurugan creates, updates, and deletes"
+description: "Output: projects, experiments, and CV by Senthen Velmurugan"
 ---
 <h1>Output</h1>
 
 {% comment %} Featured: experiments with featured: 1, 2, 3 in _data/experiments.yml, in that order. {% endcomment %}
-<p class="label">Featured</p>
-
 {% assign featured = site.data.experiments | where_exp: "p", "p.featured" | sort: "featured" %}
 <section class="rotation">
   <ul class="entries">
@@ -26,15 +24,17 @@ description: "Output: what Senthen Velmurugan creates, updates, and deletes"
 
 <hr>
 
-{% comment %} Three lines: Experiments (what I'm working on), Notes, delete (previous beliefs). Open-ended on purpose. {% endcomment %}
-<ul class="rows categories">
-  <li><a href="{{ '/experiments/' | relative_url }}" class="plain"><span class="row"><u>Experiments</u><span class="count muted small">{{ site.data.experiments | size }}</span></span></a></li>
-  <li><a href="{{ '/notes/' | relative_url }}" class="plain"><span class="row"><u>Notes</u><span class="count muted small">{{ site.notes | size }}</span></span></a></li>
-  <li><a href="{{ '/delete/' | relative_url }}" class="plain"><span class="row"><u>delete</u></span></a></li>
-</ul>
+{% comment %} Four categories, stacked in two pairs: Projects / Experiments, a rule, then CV / Resume. {% endcomment %}
+<div class="output-stack">
+  <a href="{{ '/experiments/' | relative_url }}">Projects</a>
+  <span class="output-slash">/</span>
+  <a href="{{ '/experiments/' | relative_url }}">Experiments</a>
+</div>
 
 <hr>
 
-<ul class="rows categories">
-  <li><a href="{{ '/cv/' | relative_url }}" class="plain"><span class="row"><u>Curriculum Vitae</u></span></a></li>
-</ul>
+<div class="output-stack">
+  <a href="{{ '/cv/' | relative_url }}">CV</a>
+  <span class="output-slash">/</span>
+  <a href="{{ '/cv/' | relative_url }}">Resume</a>
+</div>

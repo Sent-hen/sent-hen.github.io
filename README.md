@@ -27,7 +27,7 @@ The links after the name. Each entry is `Label:/url/` plus any other sections it
 `_includes/nav.html`
 
 ```liquid
-{% assign links = "Output:/output/:/experiments/:/notes/:/delete/:/cv/" | split: "," %}
+{% assign links = "Output:/output/:/experiments/:/notes/:/cv/" | split: "," %}
 ```
 
 ## 3. Theme toggle
@@ -49,19 +49,15 @@ localStorage.setItem('theme', next);
 <a href="https://github.com/Sent-hen">GitHub</a> · <a href="https://www.linkedin.com/in/...">LinkedIn</a> · <a href="mailto:...">Email</a>
 ```
 
-## 5. Colors (Flexoki)
+## 5. Colors: green roof and red brick
 
-All colors are variables at the top of the stylesheet, redefined for dark mode. The spiral and ripple use fixed Flexoki values; the cake inverts the page instead.
+Two earthy themes. Light mode is the green roof (a bottle/moss green page with cream text); dark mode, the default, is the red brick cottage (deep brick page, pale brick text). All colors are variables at the top of the stylesheet. The spiral and ripple use fixed Flexoki colors; the cake and its digits invert the page.
 
-`assets/css/style.scss`
+`assets/css/style.scss`, `_includes/head.html` (the browser bar colors)
 
 ```scss
-:root {
-  --bg: var(--flexoki-paper);
-  --tx: var(--flexoki-black);
-  --yellow: var(--flexoki-yellow-600);
-  --motion: reverse;   /* light mode plays the spiral and ripple backwards; dark sets normal */
-}
+:root { --bg: var(--roof-900); --tx: var(--roof-cream); }               /* light: green roof */
+@mixin dark { --bg: var(--brick-950); --tx: var(--brick-50); }          /* dark: red brick */
 ```
 
 ## 5a. Home: banner
@@ -105,7 +101,7 @@ At the bottom of the left column (cake, UTC time, triangle, spiral). Fibonacci s
 
 ```scss
 .golden-spiral .zoom { animation: golden-zoom 4s linear infinite var(--motion); }
-.golden-spiral .sq-red { fill: var(--tint-red); }
+.golden-spiral .sq-red { fill: var(--flexoki-red-600); }   /* earth tones: brick, verdigris (cyan-600), ochre, moss */
 ```
 
 ## 7a. Home: Sierpinski triangle
@@ -235,7 +231,7 @@ The only tag. Shows when `status: active`, on Input items.
 
 ## 15. Stuff
 
-Reached from the empty box on the home page, not the nav. A photo sits at the top (`assets/img/everyday-carry.jpg`). Two parts: **stuff i like**, a showcase of 4 per category, left to right (Cinema, Music, Games), in pairs, `1 / 2 · 3 / 4`, then "…" which opens everything in that category A to Z (`/stuff/cinema/`, `/stuff/music/`, `/stuff/games/`: `stuff/<key>.html` with `_layouts/stuff-list.html`); creator and year show on hover; and **Illusions** (`#illusions`), a plain list written in the page ending in an empty box; clicking the box reloads the page at Illusions.
+Reached from the empty box on the home page, not the nav. A photo sits at the top (`assets/img/everyday-carry.jpg`). Two parts: **stuff**, a showcase of 4 per category, left to right (Cinema, Music, Games), in pairs, `1 / 2 · 3 / 4`, then "…" which opens everything in that category A to Z (`/stuff/cinema/`, `/stuff/music/`, `/stuff/games/`: `stuff/<key>.html` with `_layouts/stuff-list.html`); creator and year show on hover; a plain "…" under the last row leaves room for more categories; and **Illusions** (`#illusions`), a plain list written in the page ending in an empty box; clicking the box reloads the page at Illusions.
 
 To change the showcase, set `stuff: 1` to `stuff: 4` on the Input items you want (the number is the position) and remove `stuff` from the one it replaces. To add a category, add `key:Label` to `cats` in `stuff.html` and a `stuff/<key>.html` page like the others.
 
@@ -247,19 +243,11 @@ To change the showcase, set `stuff: 1` to `stuff: 4` on the Input items you want
 
 ## 16. Output
 
-Featured experiments, then three lines (Experiments, Notes, delete), then Curriculum Vitae. No periods in the page text.
+The three featured projects (`featured: 1` to `3` in `_data/experiments.yml`), then four categories stacked in two pairs, each word on its own line: **Projects / Experiments** (both open `/experiments/`), a rule, then **CV / Resume** (both open `/cv/`).
 
-- **Experiments**: what I'm working on (`/experiments/`)
-- **Notes**: notes (`/notes/`)
-- **delete**: previous beliefs (`/delete/`, `delete.html`, one `<li>` per belief, ending in an empty box)
+`output.html`, `assets/css/style.scss` (`.output-stack`)
 
-`output.html`, `delete.html`
-
-```liquid
-{% assign featured = site.data.experiments | where_exp: "p", "p.featured" | sort: "featured" %}
-```
-
-## 17. Experiments
+## 17. Projects / Experiments
 
 Everything I've built or tried, in two groups, In progress (`status: active`, a green tag) and Done (`status: done`, a grey box), each newest first by `start`. The tag is `_includes/progress.html`, also used on Output and on notes. Dates show as YYYY MM. Domain and Tech filters build themselves from the data; `_data/tag_popularity.yml` breaks ties in the tag ranking. Old `/projects/` links redirect here.
 

@@ -31,52 +31,60 @@
   --wrap: 37em;
 }
 
-/* light (default) */
+/* the two themes: light is the green roof (an earthy bottle/moss green), dark is the red brick cottage */
 :root {
-  --bg: var(--flexoki-paper);
-  --bg-2: var(--flexoki-50);
-  --tx: var(--flexoki-black);
-  --tx-2: var(--flexoki-600);
-  --tx-3: var(--flexoki-300);
-  --ui: var(--flexoki-100);
-  --ui-2: var(--flexoki-150);
-  --ui-3: var(--flexoki-200);
-  --action: var(--flexoki-cyan-600);
-  --red: var(--flexoki-red-600);
-  --orange: var(--flexoki-orange-600);
-  --yellow: var(--flexoki-yellow-600);
-  --green: var(--flexoki-green-600);
-  --blue: var(--flexoki-blue-600);
-  --purple: var(--flexoki-purple-600);
-  --magenta: var(--flexoki-magenta-600);
-  --selection: rgba(187, 220, 206, 0.3);
-  --motion: reverse;   /* light: the spiral zooms out and the ripple flows back from 1 to 0 */
-  --cake-bg: var(--flexoki-black);    /* the cake inverts the page: white cake on black here */
-  --cake-ink: var(--flexoki-paper);
+  --roof-cream: #EDEECF; --roof-200: #C3CDA6; --roof-300: #8FA57E; --roof-400: #A0AF54;
+  --roof-600: #557058;   --roof-700: #456049; --roof-800: #3A5442; --roof-850: #34503D; --roof-900: #2C4434;
+  --brick-50: #FFE1D5; --brick-200: #F89A8A; --brick-300: #E8705F; --brick-700: #942822;
+  --brick-800: #6C201C; --brick-850: #551B18; --brick-900: #3E1715; --brick-950: #261312;
 }
 
-/* dark */
-@mixin dark {
-  --bg: var(--flexoki-black);
-  --bg-2: var(--flexoki-950);
-  --tx: var(--flexoki-200);
-  --tx-2: var(--flexoki-500);
-  --tx-3: var(--flexoki-700);
-  --ui: var(--flexoki-900);
-  --ui-2: var(--flexoki-850);
-  --ui-3: var(--flexoki-800);
+/* light: green roof */
+:root {
+  --bg: var(--roof-900);
+  --bg-2: var(--roof-850);
+  --tx: var(--roof-cream);
+  --tx-2: var(--roof-200);
+  --tx-3: var(--roof-600);
+  --ui: var(--roof-800);
+  --ui-2: var(--roof-700);
+  --ui-3: var(--roof-600);
   --action: var(--flexoki-cyan-400);
-  --red: var(--flexoki-red-400);
+  --red: var(--brick-300);
+  --orange: var(--flexoki-orange-400);
+  --yellow: var(--flexoki-yellow-400);
+  --green: var(--roof-400);
+  --blue: var(--flexoki-blue-400);
+  --purple: var(--flexoki-purple-400);
+  --magenta: var(--flexoki-magenta-400);
+  --selection: rgba(160, 175, 84, 0.3);
+  --motion: reverse;   /* light: the spiral zooms in and the ripple flows back from 1 to 0 */
+  --cake-bg: var(--roof-cream);    /* the cake inverts the page: green cake on cream here */
+  --cake-ink: var(--roof-900);
+}
+
+/* dark: red brick cottage */
+@mixin dark {
+  --bg: var(--brick-950);
+  --bg-2: var(--brick-900);
+  --tx: var(--brick-50);
+  --tx-2: var(--brick-200);
+  --tx-3: var(--brick-700);
+  --ui: var(--brick-900);
+  --ui-2: var(--brick-850);
+  --ui-3: var(--brick-800);
+  --action: var(--flexoki-cyan-400);
+  --red: var(--brick-300);
   --orange: var(--flexoki-orange-400);
   --yellow: var(--flexoki-yellow-400);
   --green: var(--flexoki-green-400);
   --blue: var(--flexoki-blue-400);
   --purple: var(--flexoki-purple-400);
   --magenta: var(--flexoki-magenta-400);
-  --selection: rgba(30, 95, 91, 0.3);
-  --motion: normal;    /* dark: the spiral zooms in and the ripple flows out from 0 to 1 */
-  --cake-bg: var(--flexoki-paper);    /* black cake on white here */
-  --cake-ink: var(--flexoki-black);
+  --selection: rgba(232, 112, 95, 0.3);
+  --motion: normal;    /* dark: the spiral zooms out and the ripple flows out from 0 to 1 */
+  --cake-bg: var(--brick-50);    /* dark cake on light here */
+  --cake-ink: var(--brick-950);
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) { @include dark; }
@@ -244,10 +252,11 @@ hr {
   animation: golden-zoom 4s linear infinite var(--motion);   /* zooms out (dark) or in (light) forever; keyframes in _includes/golden-spiral.html; assets/js/motion.js flips it without a restart */
 }
 .golden-spiral .sq { stroke: var(--flexoki-black); stroke-width: 1; vector-effect: non-scaling-stroke; }
-.golden-spiral .sq-red { fill: var(--flexoki-red-400); }
-.golden-spiral .sq-blue { fill: var(--flexoki-blue-400); }
-.golden-spiral .sq-yellow { fill: var(--flexoki-yellow-400); }
-.golden-spiral .sq-green { fill: var(--flexoki-green-400); }
+/* earth tones from Flexoki's darker shades: brick, verdigris, ochre, moss */
+.golden-spiral .sq-red { fill: var(--flexoki-red-600); }
+.golden-spiral .sq-blue { fill: var(--flexoki-cyan-600); }
+.golden-spiral .sq-yellow { fill: var(--flexoki-yellow-600); }
+.golden-spiral .sq-green { fill: var(--flexoki-green-600); }
 .golden-spiral .arc { fill: none; stroke: var(--flexoki-black); stroke-width: 2.2; vector-effect: non-scaling-stroke; stroke-linecap: round; }
 
 /* below the spiral: a Sierpinski triangle pointing down, zooming into its bottom point forever in both themes;
@@ -306,6 +315,11 @@ hr {
 .showcase-sep { color: var(--tx-3); }
 .showcase-more { text-decoration: none; color: var(--tx-2); }   /* the "…" that opens the full list */
 .showcase-more:hover { color: var(--tx); }
+.showcase-etc { margin: -0.8em 0 1.4em; color: var(--tx-2); }   /* the "…" under Games */
+
+/* output: Projects / Experiments and CV / Resume, each word on its own line */
+.output-stack { display: flex; flex-direction: column; align-items: flex-start; gap: 0.1em; margin: 0 0 1.2em; }
+.output-slash { color: var(--tx-3); }
 
 /* curriculum vitae (/cv/) */
 .cv-head { margin-bottom: 1.6em; }
