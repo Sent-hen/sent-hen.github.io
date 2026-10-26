@@ -3,19 +3,51 @@ layout: default
 ---
 {%- comment -%}
   Everything in one Input category, A to Z, reached from the "…" after its row on /stuff/.
-  Each page in stuff/ sets `key` (the folder in _input/) and `title`.
+  Each page in stuff/ sets `key` (the folder in _input/) and `title`. Sort: Alphabetical or Year, ascending or descending.
 {%- endcomment -%}
 {% assign prefix = "_input/" | append: page.key | append: "/" %}
 {% assign items = site.input | where_exp: "i", "i.relative_path contains prefix" | sort: "title" %}
 <p class="small"><a href="{{ '/stuff/' | relative_url }}" class="muted">&larr; Stuff</a></p>
 <h1>{{ page.title }}</h1>
-<p class="muted">{{ page.subtitle }}</p>
 
-<ul class="entries">
+<p class="sort small" hidden>
+  <label for="sort-by" class="muted">Sort by</label>
+  <select id="sort-by">
+    <option value="title">Alphabetical</option>
+    <option value="year">Year</option>
+  </select>
+  <select id="sort-dir" aria-label="Order">
+    <option value="asc">Ascending</option>
+    <option value="desc">Descending</option>
+  </select>
+</p>
+
+<ul class="entries" id="stuff-list">
 {% for it in items %}
-  <li class="entry">
+  <li class="entry" data-index="{{ forloop.index }}" data-year="{{ it.year }}">
     <div class="entry-head"><span class="entry-title">{% include item-title.html item=it %}</span></div>
     <div class="entry-sub">{{ it.creator }}{% if it.year %} · {{ it.year }}{% endif %}</div>
   </li>
 {% endfor %}
 </ul>
+
+<script>
+  // Alphabetical (A to Z as built) or Year (oldest first), ascending or descending.
+  // Without JavaScript the list stays A to Z.
+  (function () {
+    var bar = document.querySelector('.sort');
+    var by = document.getElementById('sort-by'), dir = document.getElementById('sort-dir');
+    var list = document.getElementById('stuff-list');
+    var items = Array.prototype.slice.call(list.children);
+    bar.hidden = false;
+    function apply() {
+      var sign = dir.value === 'desc' ? -1 : 1;
+      items.slice().sort(function (a, b) {
+        var d = by.value === 'year' ? (Number(a.dataset.year) || 0) - (Number(b.dataset.year) || 0) : 0;
+        return sign * (d || a.dataset.index - b.dataset.index);
+      }).forEach(function (li) { list.appendChild(li); });
+    }
+    by.addEventListener('change', apply);
+    dir.addEventListener('change', apply);
+  })();
+</script>

@@ -314,6 +314,9 @@ hr {
 .showcase-sep { color: var(--tx-3); }
 .showcase-more { text-decoration: none; color: var(--tx-2); }   /* the "…" that opens the full list */
 .showcase-more:hover { color: var(--tx); }
+/* stuff lists: the Alphabetical / Year sort */
+.sort { display: flex; align-items: center; gap: 8px; margin: 0 0 1.4em; }
+.sort select { font: inherit; color: var(--tx); background: var(--bg-2); border: 1px solid var(--ui-3); border-radius: 4px; padding: 1px 6px; }
 .showcase-etc { margin: -0.8em 0 1.4em; color: var(--tx-2); }   /* the "…" under Games */
 
 /* output: Projects / Experiments and CV / Resume, each word on its own line */
@@ -353,6 +356,9 @@ hr {
   border-radius: 4px;
 }
 .blank-box:hover { border-color: var(--tx); }
+/* the box on the home page flicks through my interests too fast to read (assets/js/cycle.js) */
+.cycle-box { width: 8.5em; height: auto; padding: 0 6px; color: var(--tx); text-decoration: none; text-align: center; line-height: 1.4; white-space: nowrap; overflow: hidden; }
+.cycle-box { text-shadow: 0 0 10px var(--tx), 0 0 4px var(--tx); color: transparent; }   /* blurred: only a glow of the letters shows */
 .iam-list { list-style: none; margin: 0 0 1em; padding: 0 0 0 1.2em; }
 .iam-list li { margin: 0; white-space: nowrap; }
 

@@ -47,7 +47,9 @@ description: "Senthen Velmurugan: output"
       <ul class="iam-list">
         <li>computational linguistics</li>
         <li>systems engineering</li>
-        <li><a href="{{ '/stuff/' | relative_url }}" class="blank-box" aria-label="Stuff"></a></li>
+        {% comment %} The box cycles through these, one at a time; it opens Stuff. Edit the list in data-words, separated by "|". {% endcomment %}
+        <li><a href="{{ '/stuff/' | relative_url }}" class="blank-box cycle-box" aria-label="Stuff" data-words="Piano/Keyboard|Cooking|Woodworking|Literature|Games|Cinema|Music|Driving|Shaving|Tea"></a></li>
+        <script src="{{ '/assets/js/cycle.js' | relative_url }}" defer></script>
       </ul>
     </section>
   </div>
