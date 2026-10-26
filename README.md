@@ -124,7 +124,7 @@ Above and below the triangle: the same current UTC time as `YYYY MM DD HH:MM SS`
 
 ## 8. Home: my quotes and the two halves
 
-One quote sits first (`.quotes`, "Originality is the art of concealing your source", no attribution), then the 0 → 1 ripple (section 9), then "Who I am" and "Who am I" side by side. "Who I am" shows my name in three rows: Tamil (சேந்தன்), English (Senthen), pronunciation (SAYN-dhun) (`.name-rows`). "Who am I" ends with the "Currently mastering…" list (`.iam`, `.iam-list`; each item stays on one line on every screen, shrinking with the screen on phones); the last item under Currently mastering is a box (`.blank-box.cycle-box`) that flicks through my interests from its `data-words` list in `index.md`, blurred and too fast to read (`assets/js/cycle.js`, 70 ms each; the blur is a text-shadow in `.cycle-box`), and opens Stuff. The site note ("This is a site where I keep what I'm creating") and "Open to tech roles in the Pacific Northwest / Texas" (`.open-to`) close the column.
+One quote sits first (`.quotes`, "Originality is the art of concealing your source", no attribution), then the 0 → 1 ripple (section 9), then "Who I am" and "Who am I" side by side. "Who I am" shows my name in three rows: Tamil (சேந்தன்), English (Senthen), pronunciation (SAYN-dhun) (`.name-rows`). "Who am I" ends with the "Currently mastering…" list (`.iam`, `.iam-list`; each item stays on one line on every screen, shrinking with the screen on phones); the last item under Currently mastering is an empty box (`.blank-box`) that opens Stuff. The site note ("This is a site where I keep what I'm creating") and "Open to tech roles in the Pacific Northwest / Texas" (`.open-to`) close the column.
 
 `index.md`
 
