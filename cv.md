@@ -16,6 +16,14 @@ description: "Curriculum vitae of Senthen Velmurugan"
 
 <!-- Keep entries newest first. Dates are YYYY MM. -->
 
+<h2 class="cv-section">Skills</h2>
+
+<div class="entry-desc">
+  <p><span class="muted">Languages</span> &nbsp;Python, Go, C/C++, SQL, Bash</p>
+  <p><span class="muted">Tools</span> &nbsp;Linux (Debian), Git, Docker, CI/CD</p>
+  <p><span class="muted">Fundamentals</span> &nbsp;Data Structures &amp; Algorithms, Operating Systems, Networking (TCP/IP), Databases, Distributed Systems, System Design</p>
+</div>
+
 <h2 class="cv-section">Experience</h2>
 
 <ul class="entries">
@@ -48,16 +56,6 @@ description: "Curriculum vitae of Senthen Velmurugan"
     </div>
   </li>
 </ul>
-
-<h2 class="cv-section">Skills</h2>
-
-<div class="entry-desc">
-  <!-- Only skills that carry over to any domain. -->
-  <p>Problem Solver</p>
-  <p><span class="muted">Languages</span> &nbsp;Python, Go, C/C++, SQL, Bash</p>
-  <p><span class="muted">Tools</span> &nbsp;Linux, Git, Docker</p>
-  <p><span class="muted">Fundamentals</span> &nbsp;Input/Output, Logic/Control, Data/State</p>
-</div>
 
 <h2 class="cv-section">Organizations</h2>
 

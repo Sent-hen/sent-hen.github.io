@@ -205,7 +205,7 @@ Everything I've built or tried, in two groups, In progress (`status: active`, a 
 
 ## 19. Curriculum Vitae
 
-`/cv/` (old `/experience/` links redirect here). A header with my name, Pacific Northwest / Texas, email, GitHub, LinkedIn, and "Open to tech roles in the Pacific Northwest / Texas", then Experience, Skills, Organizations, and Education, newest first, with dates as YYYY MM. Written directly in the page; section headings are `<h2 class="cv-section">`.
+`/cv/` (old `/experience/` links redirect here). A header with my name, Pacific Northwest / Texas, email, GitHub, LinkedIn, and "Open to tech roles in the Pacific Northwest / Texas", then Skills, Experience, Organizations, and Education, newest first, with dates as YYYY MM. Written directly in the page; section headings are `<h2 class="cv-section">`.
 
 `cv.md`, `assets/css/style.scss` (`.cv-head`, `.cv-section`)
 
