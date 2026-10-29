@@ -163,7 +163,7 @@ Below the ripple: the same circles seen edge-on, drawn as a wave whose crests si
 
 ## 15. Stuff
 
-Reached from the empty box on the home page, not the nav. A photo sits at the top (`assets/img/everyday-carry.jpg`), then each category from `_data/stuff.yml` (Cinema, Music, Games, Texts, Driving) with up to four items, left to right, in pairs: `1 / 2 · 3 / 4`. Creator and year show on hover. A category with no items yet shows its title alone. In Texts, The Ultimate Hitchhiker's Guide to the Galaxy and The Stormlight Archive stand for their whole series, without saying so. Then **Illusions** (`#illusions`), a plain list written in the page ending in an empty box; clicking the box reloads the page at Illusions.
+Reached from the empty box on the home page, not the nav. A photo sits at the top (`assets/img/everyday-carry.jpg`), then each category from `_data/stuff.yml` (Cinema, Music, Games, Literature, Driving) with up to four items, left to right, in pairs: `1 / 2 · 3 / 4`. Creator and year show on hover. A category with no items yet shows its title alone. In Literature, The Ultimate Hitchhiker's Guide to the Galaxy and The Stormlight Archive stand for their whole series, without saying so. Then **Illusions** (`#illusions`), a plain list written in the page ending in an empty box; clicking the box reloads the page at Illusions.
 
 To change an item, edit it in `_data/stuff.yml` (the order there is the order on the page). To add a category, add a `label` with its `items`.
 

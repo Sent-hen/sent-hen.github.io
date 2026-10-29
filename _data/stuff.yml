@@ -22,7 +22,7 @@
     - { title: "Dead Space", creator: "EA Redwood Shores", year: 2008 }
     - { title: "Dark Souls II", creator: "FromSoftware", year: 2014 }
 
-- label: Texts
+- label: Literature
   items:                    # Hitchhiker's and Stormlight stand for their whole series; the year is the first book
     - { title: "The Godfather", creator: "Mario Puzo", year: 1969 }
     - { title: "The Ultimate Hitchhiker's Guide to the Galaxy", creator: "Douglas Adams", year: 1979 }
