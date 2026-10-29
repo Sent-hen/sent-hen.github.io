@@ -157,7 +157,7 @@ Below the ripple: the same circles seen edge-on, drawn as a wave whose crests si
 
 ## 9b. Quality of life
 
-"quality of life" in "Who am I" is underlined and opens a note: "My goal is a balance between all three: strategy, tactics, and operations". Below it, three bars, Strategy, Tactics, Operations, move back and forth from lopsided to level.
+"quality of life" in "Who am I" is underlined and opens a note, "Quality of Life": "My goal is a fulfilling life, and a finite one. I’m working toward alignment between strategy (where I’m going), tactics (how I get there), and operations (how I live each day)." Below it, three bars, Strategy, Tactics, Operations, move back and forth from lopsided to level.
 
 `quality-of-life.html`, `assets/css/style.scss` (`.qol`)
 
