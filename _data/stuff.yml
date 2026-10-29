@@ -23,7 +23,11 @@
     - { title: "Dark Souls II", creator: "FromSoftware", year: 2014 }
 
 - label: Texts
-  items: []
+  items:                    # Hitchhiker's and Stormlight stand for their whole series; the year is the first book
+    - { title: "The Godfather", creator: "Mario Puzo", year: 1969 }
+    - { title: "The Ultimate Hitchhiker's Guide to the Galaxy", creator: "Douglas Adams", year: 1979 }
+    - { title: "The Stormlight Archive", creator: "Brandon Sanderson", year: 2010 }
+    - { title: "World War Z", creator: "Max Brooks", year: 2006 }
 
 - label: Driving
   items: []

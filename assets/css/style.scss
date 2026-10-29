@@ -39,7 +39,7 @@
   --brick-800: #6C201C; --brick-850: #551B18; --brick-900: #3E1715; --brick-950: #261312;
 }
 
-/* light: green roof */
+/* light: green roof. Accents are Flexoki's lighter 200/300 shades so they read on the deep green */
 :root {
   --bg: var(--roof-900);
   --bg-2: var(--roof-850);
@@ -49,14 +49,14 @@
   --ui: var(--roof-800);
   --ui-2: var(--roof-700);
   --ui-3: var(--roof-600);
-  --action: var(--flexoki-cyan-400);
-  --red: var(--brick-300);
-  --orange: var(--flexoki-orange-400);
-  --yellow: var(--flexoki-yellow-400);
-  --green: var(--roof-400);
-  --blue: var(--flexoki-blue-400);
-  --purple: var(--flexoki-purple-400);
-  --magenta: var(--flexoki-magenta-400);
+  --action: #5ABDAC;
+  --red: #F89A8A;
+  --orange: #F9AE77;
+  --yellow: #DFB431;
+  --green: #BEC97E;
+  --blue: #92BFDB;
+  --purple: #C4B9E0;
+  --magenta: #F4A4C2;
   --selection: rgba(160, 175, 84, 0.3);
   --cake-bg: var(--roof-cream);    /* the cake inverts the page: green cake on cream here */
   --cake-ink: var(--roof-900);

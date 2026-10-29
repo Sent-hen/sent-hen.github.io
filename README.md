@@ -34,14 +34,9 @@ The links after the name. Each entry is `Label:/url/` plus any other sections it
 
 Red/green switch in the nav: a red ▼ on the red brick theme, a green ▲ on the green one, like a stock ticker.
 
-Each visit opens green or red by chance, and the chance follows a plate of tiramisu: a fresh plate is made at midnight (the visitor's local time) and goes off by exponential decay with a half-life of 12 hours. The chance it is still fresh is `2^(-hours since midnight / 12)` (100% at midnight, 50% at noon, 25% by night); fresh opens green, gone off opens red. The pick holds for the visit (`sessionStorage`), and the switch changes it.
+The site starts green (light); the switch changes to red (dark), and the choice is remembered (`localStorage`).
 
-`_includes/head.html` (the tiramisu, before paint), `_includes/footer.html` (the click handler)
-
-```js
-var fresh = Math.pow(2, -hours / HALF_LIFE_HOURS);   // HALF_LIFE_HOURS = 12
-t = Math.random() < fresh ? 'light' : 'dark';         // light = green, dark = red
-```
+`_includes/head.html` (applies green, or the saved choice, before paint), `_includes/footer.html` (the click handler)
 
 ## 3a. Still mode
 
@@ -168,7 +163,7 @@ Below the ripple: the same circles seen edge-on, drawn as a wave whose crests si
 
 ## 15. Stuff
 
-Reached from the empty box on the home page, not the nav. A photo sits at the top (`assets/img/everyday-carry.jpg`), then each category from `_data/stuff.yml` (Cinema, Music, Games, Texts, Driving) with up to four items, left to right, in pairs: `1 / 2 · 3 / 4`. Creator and year show on hover. A category with no items yet shows its title alone. Then **Illusions** (`#illusions`), a plain list written in the page ending in an empty box; clicking the box reloads the page at Illusions.
+Reached from the empty box on the home page, not the nav. A photo sits at the top (`assets/img/everyday-carry.jpg`), then each category from `_data/stuff.yml` (Cinema, Music, Games, Texts, Driving) with up to four items, left to right, in pairs: `1 / 2 · 3 / 4`. Creator and year show on hover. A category with no items yet shows its title alone. In Texts, The Ultimate Hitchhiker's Guide to the Galaxy and The Stormlight Archive stand for their whole series, without saying so. Then **Illusions** (`#illusions`), a plain list written in the page ending in an empty box; clicking the box reloads the page at Illusions.
 
 To change an item, edit it in `_data/stuff.yml` (the order there is the order on the page). To add a category, add a `label` with its `items`.
 
@@ -178,7 +173,7 @@ To change an item, edit it in `_data/stuff.yml` (the order there is the order on
 - label: Cinema
   items:
     - { title: "WALL-E", creator: "Andrew Stanton", year: 2008 }
-- label: Texts
+- label: Driving
   items: []                 # title alone until items are added
 ```
 
