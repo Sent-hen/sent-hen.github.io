@@ -25,6 +25,14 @@
       }
       document.documentElement.setAttribute('data-theme', t);
     })();
+    // On a low-end device, or with reduced motion asked for, the drawings stay still (the network does not matter):
+    // the tiramisu shows as its plain drawing and the spiral, triangle, ripple, and bars don't move.
+    (function () {
+      var weak = (navigator.deviceMemory && navigator.deviceMemory <= 2) ||
+                 (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2);
+      var calm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (weak || calm) document.documentElement.classList.add('still');
+    })();
   </script>
 
   <link rel="icon" type="image/jpeg" href="{{ '/assets/img/icon.jpg' | relative_url }}">

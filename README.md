@@ -43,6 +43,12 @@ var fresh = Math.pow(2, -hours / HALF_LIFE_HOURS);   // HALF_LIFE_HOURS = 12
 t = Math.random() < fresh ? 'light' : 'dark';         // light = green, dark = red
 ```
 
+## 3a. Still mode
+
+On a low-end device (2 GB of memory or 2 CPU cores or less), or when the visitor asks for reduced motion (on any network connection the animations run as normal), `_includes/head.html` adds the `still` class to the page. The drawings then show as still images: the tiramisu as its plain drawing (no digit rain), and the spiral, triangle, ripple, and quality-of-life bars without animation.
+
+`_includes/head.html`, `assets/css/style.scss` (`.still`), `assets/js/cake.js`
+
 ## 4. Footer
 
 `_includes/footer.html`
@@ -74,7 +80,7 @@ The jumping spider photo across the top of the home page, below the nav, shown w
 
 ## 6. Home: the tiramisu
 
-A slice of tiramisu in 3/4 view on a plate, drawn as a flat 2D vector (cocoa-dusted top, a cut face of mascarpone and coffee-soaked ladyfinger layers carried round the side), then shown as Matrix rain: columns of digits fall through the tile and are bright only where the drawing is. The digits are 0s at the top and 1s at the bottom, and the rain falls, turning 0 into 1 on the way down. The tile inverts the page. Without JavaScript the plain drawing shows instead. Under the tile, the caption "A plate of Tiramisu" (`.tile-caption`; the same captions read "Time" under the lower clock and "a + b is to a as a is to b" under the golden spiral).
+A slice of tiramisu in 3/4 view on a plate, drawn as a flat 2D vector (cocoa-dusted top, a cut face of mascarpone and coffee-soaked ladyfinger layers carried round the side), then shown as Matrix rain: columns of digits fall through the tile and are bright only where the drawing is. The digits are 0s at the top and 1s at the bottom, and the rain falls, turning 0 into 1 on the way down. The tile inverts the page. Without JavaScript the plain drawing shows instead. Under the tile, the caption "A plate of Tiramisu" (`.tile-caption`; the same captions read "Time" under the lower clock and "a + b is to a, as a is to b" under the golden spiral).
 
 `_includes/cake.html` (the tiramisu drawing, in `currentColor`; the files keep the old "cake" names), `assets/js/cake.js` (the rain), `assets/css/style.scss` (`.cake`, `--cake-bg`, `--cake-ink`)
 
@@ -124,14 +130,13 @@ Above and below the triangle: the same current UTC time as `YYYY MM DD HH:MM SS`
 
 `assets/js/clock.js`, `index.md` (two `<time class="utc-clock">`), `assets/css/style.scss` (`.utc-clock`)
 
-## 8. Home: my quotes and the two halves
+## 8. Home: the two halves
 
-One quote sits first (`.quotes`, "Originality is the art of concealing your source", no attribution), then the 0 → 1 ripple (section 9), then "Who I am" and "Who am I" side by side. "Who I am" shows my name in three rows: Tamil (சேந்தன்), English (Senthen), pronunciation (SAYN-dhun) (`.name-rows`). "Who am I" ends with the "Currently mastering…" list (`.iam`, `.iam-list`; each item stays on one line on every screen, shrinking with the screen on phones); the last item under Currently mastering is an empty box (`.blank-box`) that opens Stuff. The site note ("This is a site where I keep what I'm creating") and "Open to tech roles in the Pacific Northwest / Texas" (`.open-to`) close the column.
+The 0 → 1 ripple (section 9) sits first, then "Who I am" and "Who am I" side by side. "Who I am" shows my name in three rows: Tamil (சேந்தன்), English (Senthen), pronunciation (SAYN-dhun) (`.name-rows`). "Who am I" ends with the "Currently mastering…" list (`.iam`, `.iam-list`; each item stays on one line on every screen, shrinking with the screen on phones); the last item under Currently mastering is an empty box (`.blank-box`) that opens Stuff. The site note ("This is a site where I keep what I'm creating") and "Open to tech roles in the Pacific Northwest / Texas" (`.open-to`) close the column.
 
 `index.md`
 
 ```html
-<div class="quotes"><blockquote class="epigraph"><p>Originality is the art of concealing your source</p></blockquote> … </div>
 <div class="duality">
   <section><p class="label">Who I am</p> … </section>
   <section><p class="label">Who am I</p> … </section>
@@ -157,13 +162,13 @@ Below the ripple: the same circles seen edge-on, drawn as a wave whose crests si
 
 ## 9b. Quality of life
 
-"quality of life" in "Who am I" is underlined and opens a note: "My goal is to reduce the friction of tactics and operations so people can work on mastering their strategy", over an animation of three bars, Strategy, Tactics, Operations, where tactics and operations shrink and strategy grows, back and forth.
+"quality of life" in "Who am I" is underlined and opens a note: "My goal is a balance between all three: strategy, tactics, and operations". Below it, three bars, Strategy, Tactics, Operations, move back and forth from lopsided to level.
 
 `quality-of-life.html`, `assets/css/style.scss` (`.qol`)
 
 ## 10. Stuff items
 
-The things on Stuff live in `_input/<category>/` (cinema, music, games), one small file each. They are read by the Stuff pages, not published as pages of their own. `stuff: 1` to `4` puts an item in its category's row on `/stuff/`; every item shows on that category's full list.
+The things on Stuff live in `_input/<category>/` (cinema, music, games, literature), one small file each. They are read by the Stuff pages, not published as pages of their own. `stuff: 1` to `4` puts an item in its category's row on `/stuff/`; every item shows on that category's full list.
 
 `_input/<category>/<slug>.md`, `_includes/item-title.html` (original title · English title)
 
@@ -180,7 +185,7 @@ stuff: 1                    # optional: 1 to 4, its place in its category's row 
 
 ## 15. Stuff
 
-Reached from the empty box on the home page, not the nav. A photo sits at the top (`assets/img/everyday-carry.jpg`). Two parts: **stuff**, a showcase of 4 per category, left to right (Cinema, Music, Games), in pairs, `1 / 2 · 3 / 4`, then "…" which opens everything in that category, sortable Alphabetical or by Year, ascending or descending (`/stuff/cinema/`, `/stuff/music/`, `/stuff/games/`: `stuff/<key>.html` with `_layouts/stuff-list.html`); creator and year show on hover; a plain "…" under the last row leaves room for more categories; and **Illusions** (`#illusions`), a plain list written in the page ending in an empty box; clicking the box reloads the page at Illusions.
+Reached from the empty box on the home page, not the nav. A photo sits at the top (`assets/img/everyday-carry.jpg`). Two parts: **stuff**, a showcase of 4 per category, left to right (Cinema, Music, Games, Literature), in pairs, `1 / 2 · 3 / 4`, then "…" which opens everything in that category, sortable Alphabetical or by Year, ascending or descending (`/stuff/cinema/`, `/stuff/music/`, `/stuff/games/`, `/stuff/literature/`: `stuff/<key>.html` with `_layouts/stuff-list.html`); creator and year show on hover; Literature has no picks yet, so its row is just "…"; then a bare "Driving" title; a plain "…" under it leaves room for more categories; and **Illusions** (`#illusions`), a plain list written in the page ending in an empty box; clicking the box reloads the page at Illusions.
 
 To change the showcase, set `stuff: 1` to `stuff: 4` on the items you want (in `_input/`) (the number is the position) and remove `stuff` from the one it replaces. To add a category, add `key:Label` to `cats` in `stuff.html` and a `stuff/<key>.html` page like the others.
 

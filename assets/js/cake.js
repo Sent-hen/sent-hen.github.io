@@ -6,6 +6,7 @@
   var fig = document.querySelector('.cake');
   var svg = fig && fig.querySelector('.cake-art');
   if (!svg || !document.createElement('canvas').getContext) return;
+  if (document.documentElement.classList.contains('still')) return;   // slow or low-end: keep the plain drawing
 
   var SIZE = 160;                 // CSS pixels
   var CELL = 4.5;                 // character cell, CSS pixels (smaller = sharper tiramisu)

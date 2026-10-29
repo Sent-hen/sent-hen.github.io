@@ -21,15 +21,10 @@ description: "Senthen Velmurugan: output"
   <time class="utc-clock utc-clock-below"></time>
   <p class="tile-caption">Time</p>
   {% include golden-spiral.html %}
-  <p class="tile-caption">a + b is to a as a is to b</p>
+  <p class="tile-caption">a + b is to a, as a is to b</p>
   <script src="{{ '/assets/js/clock.js' | relative_url }}" defer></script>
   </div>
   <div class="intro-text">
-  <div class="quotes">
-    <blockquote class="epigraph">
-      <p>Originality is the art of concealing your source</p>
-    </blockquote>
-  </div>
   <p class="infinity-arrow" aria-label="From zero to one"><span>0</span>{% include ripples.html %}<span>1</span></p>
   <p class="infinity-arrow" aria-hidden="true"><span>0</span>{% include ripple-side.html %}<span>1</span></p>
   <div class="duality">

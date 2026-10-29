@@ -323,18 +323,26 @@ hr {
 .output-stack { display: flex; flex-direction: column; align-items: flex-start; gap: 0.1em; margin: 0 0 1.2em; }
 .output-slash { color: var(--tx-3); }
 
-/* quality of life (/quality-of-life/): effort moves from operations and tactics to strategy, on a loop */
+/* quality of life (/quality-of-life/): three lopsided bars settle level, a balance between all three, on a loop */
 .qol-goal { font-size: 1.1em; max-width: 30em; }
 .qol { display: block; width: 100%; max-width: 480px; margin: 1.6em 0; }
 .qol text { fill: var(--tx); font-family: var(--font-ui); font-size: 13px; }
 .qol-track { fill: var(--ui); }
 .qol-bar { transform-box: fill-box; transform-origin: left center; animation: 6s ease-in-out infinite alternate; }
-.qol-strategy .qol-bar { fill: var(--green); animation-name: qol-grow; }
-.qol-tactics .qol-bar { fill: var(--yellow); animation-name: qol-ease; }
-.qol-operations .qol-bar { fill: var(--red); animation-name: qol-ease-more; }
-@keyframes qol-grow { from { transform: scaleX(0.15); } to { transform: scaleX(1); } }        /* strategy gets the room */
-@keyframes qol-ease { from { transform: scaleX(0.7); } to { transform: scaleX(0.25); } }      /* tactics: less friction */
-@keyframes qol-ease-more { from { transform: scaleX(0.95); } to { transform: scaleX(0.12); } } /* operations: least */
+.qol-strategy .qol-bar { fill: var(--green); animation-name: qol-strategy; }
+.qol-tactics .qol-bar { fill: var(--yellow); animation-name: qol-tactics; }
+.qol-operations .qol-bar { fill: var(--red); animation-name: qol-operations; }
+@keyframes qol-strategy { from { transform: scaleX(0.2); } to { transform: scaleX(0.65); } }
+@keyframes qol-tactics { from { transform: scaleX(0.95); } to { transform: scaleX(0.65); } }
+@keyframes qol-operations { from { transform: scaleX(0.4); } to { transform: scaleX(0.65); } }   /* all three end level */
+
+/* still mode (set in _includes/head.html on low-end devices or with reduced motion):
+   every drawing shows as a still image */
+.still .golden-spiral .zoom,
+.still .sierpinski .zoom,
+.still .infinity-arrow .ripples .wave,
+.still .qol-bar { animation: none; }
+.still .qol-bar { transform: scaleX(0.65); }   /* the still picture is the balance */
 
 /* curriculum vitae (/cv/) */
 .cv-head { margin-bottom: 1.6em; }
@@ -352,8 +360,6 @@ hr {
   padding-bottom: 0.3em;
   border-bottom: 1px solid var(--ui-3);
 }
-/* home: my quotes, at the top of the text column */
-.quotes { margin: 0 0 0.6em; }
 
 .iam { margin: 0 0 0.2em; }
 /* home: my name in three rows: Tamil, English, pronunciation */
