@@ -3,14 +3,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% if page.title and page.title != "Home" %}{{ page.title }} — {% endif %}{{ site.title }}</title>
   <meta name="description" content="{{ page.description | default: site.description }}">
-  <meta name="theme-color" content="#2C4434" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#261312" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#2C4434">
 
   <script>
-    // Green (light) by default; the switch in the nav changes to red (dark), and the choice is remembered.
+    // Green (light) by default for everyone; the switch in the nav changes to red (dark), and the choice is
+    // remembered. The key is new, so choices saved by older versions of the site don't carry over.
     (function () {
       var t;
-      try { t = localStorage.getItem('theme'); } catch (e) {}
+      try { t = localStorage.getItem('theme-choice'); } catch (e) {}
       document.documentElement.setAttribute('data-theme', t === 'dark' ? 'dark' : 'light');
     })();
     // On a low-end device, or with reduced motion asked for, the drawings stay still (the network does not matter):

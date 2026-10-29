@@ -34,7 +34,7 @@ The links after the name. Each entry is `Label:/url/` plus any other sections it
 
 Red/green switch in the nav: a red ▼ on the red brick theme, a green ▲ on the green one, like a stock ticker.
 
-The site starts green (light); the switch changes to red (dark), and the choice is remembered (`localStorage`).
+The site starts green (light) for everyone, whatever their system setting; the switch changes to red (dark), and the choice is remembered (`localStorage`, key `theme-choice`). Red only ever comes from `data-theme="dark"`.
 
 `_includes/head.html` (applies green, or the saved choice, before paint), `_includes/footer.html` (the click handler)
 
