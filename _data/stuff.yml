@@ -1,0 +1,29 @@
+# Stuff (/stuff/): each category shows its items left to right, in pairs: 1 / 2 · 3 / 4.
+# A category with no items shows its title alone. Hover shows creator and year.
+
+- label: Cinema
+  items:
+    - { title: "WALL-E", creator: "Andrew Stanton", year: 2008 }
+    - { title: "The Truman Show", creator: "Peter Weir", year: 1998 }
+    - { title: "The Fall", creator: "Tarsem Singh", year: 2006 }
+    - { title: "Children of Men", creator: "Alfonso Cuarón", year: 2006 }
+
+- label: Music
+  items:
+    - { title: "Blue Monday", creator: "New Order", year: 1983 }
+    - { title: "American Pie", creator: "Don McLean", year: 1971 }
+    - { title: "Stairway to Heaven", creator: "Led Zeppelin", year: 1971 }
+    - { title: "(Don't Fear) The Reaper", creator: "Blue Öyster Cult", year: 1976 }
+
+- label: Games
+  items:
+    - { title: "Portal 2", creator: "Valve", year: 2011 }
+    - { title: "Firewatch", creator: "Campo Santo", year: 2016 }
+    - { title: "Dead Space", creator: "EA Redwood Shores", year: 2008 }
+    - { title: "Dark Souls II", creator: "FromSoftware", year: 2014 }
+
+- label: Texts
+  items: []
+
+- label: Driving
+  items: []

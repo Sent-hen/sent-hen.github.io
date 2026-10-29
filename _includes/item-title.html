@@ -1,7 +1,0 @@
-{%- comment -%}
-  Item title: original language first, then English, e.g. "Le Festin · The Feast".
-  Usage: {% include item-title.html item=it %}. Front matter: `original` (only when it differs from `title`) and `lang`.
-{%- endcomment -%}
-{%- assign i = include.item -%}
-{%- if i.original and i.original != i.title -%}<span class="t-orig" lang="{{ i.lang | default: '' }}">{{ i.original }}</span> <span class="t-sep">&middot;</span> {% endif -%}
-<span class="t-en">{{ i.title }}</span>

@@ -9,28 +9,13 @@ description: "Stuff, by Senthen Velmurugan."
 
 <p class="label">stuff</p>
 
-{% comment %}
-  A showcase of 4 per category, left to right, in pairs: 1 / 2 · 3 / 4, then "…", which opens the full
-  list for that category (stuff/<key>.html). An Input item shows here when
-  its front matter has `stuff: 1` to `stuff: 4` (its position). Categories are listed below in order.
-{% endcomment %}
-{% assign cats = "cinema:Cinema,music:Music,games:Games,literature:Literature" | split: "," %}
-{% for c in cats %}{% assign cp = c | split: ":" %}
-{% assign prefix = "_input/" | append: cp[0] | append: "/" %}
-{% assign all = site.input | where_exp: "i", "i.relative_path contains prefix" %}
-{% assign items = all | where_exp: "i", "i.stuff" | sort: "stuff" %}
-{% if all.size > 0 %}
+{% comment %} Categories and their items live in _data/stuff.yml: up to 4 each, shown 1 / 2 · 3 / 4. {% endcomment %}
+{% for c in site.data.stuff %}
 <section class="showcase">
-  <h2 class="showcase-label">{{ cp[1] }}</h2>
-  <p class="showcase-row">{% for it in items limit: 4 %}<span class="showcase-item" title="{{ it.creator | escape }}{% if it.year %} · {{ it.year }}{% endif %}">{% include item-title.html item=it %}</span>{% unless forloop.last %}{% assign odd = forloop.index | modulo: 2 %}<span class="showcase-sep">{% if odd == 1 %} / {% else %} · {% endif %}</span>{% endunless %}{% endfor %} <a class="showcase-more" href="{{ '/stuff/' | append: cp[0] | append: '/' | relative_url }}" aria-label="All {{ cp[1] | downcase }}">&hellip;</a></p>
+  <h2 class="showcase-label">{{ c.label }}</h2>
+  {% if c.items.size > 0 %}<p class="showcase-row">{% for it in c.items limit: 4 %}<span class="showcase-item" title="{{ it.creator | escape }} · {{ it.year }}">{{ it.title }}</span>{% unless forloop.last %}{% assign odd = forloop.index | modulo: 2 %}<span class="showcase-sep">{% if odd == 1 %} / {% else %} · {% endif %}</span>{% endunless %}{% endfor %}</p>{% endif %}
 </section>
-{% endif %}
 {% endfor %}
-
-<section class="showcase">
-  <h2 class="showcase-label">Driving</h2>   <!-- a title only, for now -->
-</section>
-<p class="showcase-etc" aria-hidden="true">&hellip;</p>   <!-- under the last row: more categories to come -->
 
 <hr>
 

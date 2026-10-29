@@ -9,10 +9,6 @@ plugins:
   - jekyll-redirect-from   # old /projects/ and /experience/ links forward to /experiments/ and /cv/
 permalink: pretty
 
-collections:
-  input:             # the things on /stuff/: one file per item in _input/<category>/; read by Stuff, not published as pages
-    output: false
-
 defaults:
   - scope:
       path: ""

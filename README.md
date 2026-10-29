@@ -166,33 +166,20 @@ Below the ripple: the same circles seen edge-on, drawn as a wave whose crests si
 
 `quality-of-life.html`, `assets/css/style.scss` (`.qol`)
 
-## 10. Stuff items
-
-The things on Stuff live in `_input/<category>/` (cinema, music, games, literature), one small file each. They are read by the Stuff pages, not published as pages of their own. `stuff: 1` to `4` puts an item in its category's row on `/stuff/`; every item shows on that category's full list.
-
-`_input/<category>/<slug>.md`, `_includes/item-title.html` (original title · English title)
-
-```markdown
----
-title: "The Feast"          # English
-original: "Le Festin"       # original language, only when different
-lang: fr
-creator: "Camille"
-year: 2007
-stuff: 1                    # optional: 1 to 4, its place in its category's row on /stuff/
----
-```
-
 ## 15. Stuff
 
-Reached from the empty box on the home page, not the nav. A photo sits at the top (`assets/img/everyday-carry.jpg`). Two parts: **stuff**, a showcase of 4 per category, left to right (Cinema, Music, Games, Literature), in pairs, `1 / 2 · 3 / 4`, then "…" which opens everything in that category, sortable Alphabetical or by Year, ascending or descending (`/stuff/cinema/`, `/stuff/music/`, `/stuff/games/`, `/stuff/literature/`: `stuff/<key>.html` with `_layouts/stuff-list.html`); creator and year show on hover; Literature has no picks yet, so its row is just "…"; then a bare "Driving" title; a plain "…" under it leaves room for more categories; and **Illusions** (`#illusions`), a plain list written in the page ending in an empty box; clicking the box reloads the page at Illusions.
+Reached from the empty box on the home page, not the nav. A photo sits at the top (`assets/img/everyday-carry.jpg`), then each category from `_data/stuff.yml` (Cinema, Music, Games, Texts, Driving) with up to four items, left to right, in pairs: `1 / 2 · 3 / 4`. Creator and year show on hover. A category with no items yet shows its title alone. Then **Illusions** (`#illusions`), a plain list written in the page ending in an empty box; clicking the box reloads the page at Illusions.
 
-To change the showcase, set `stuff: 1` to `stuff: 4` on the items you want (in `_input/`) (the number is the position) and remove `stuff` from the one it replaces. To add a category, add `key:Label` to `cats` in `stuff.html` and a `stuff/<key>.html` page like the others.
+To change an item, edit it in `_data/stuff.yml` (the order there is the order on the page). To add a category, add a `label` with its `items`.
 
-`stuff.html`, `assets/css/style.scss` (`.showcase`, `.showcase-sep`)
+`stuff.html`, `_data/stuff.yml`, `assets/css/style.scss` (`.showcase`, `.showcase-sep`)
 
-```liquid
-{% assign cats = "cinema:Cinema,music:Music,games:Games" | split: "," %}
+```yaml
+- label: Cinema
+  items:
+    - { title: "WALL-E", creator: "Andrew Stanton", year: 2008 }
+- label: Texts
+  items: []                 # title alone until items are added
 ```
 
 ## 16. Output
@@ -233,14 +220,9 @@ Everything I've built or tried, in two groups, In progress (`status: active`, a 
 
 ## 20. Site settings
 
-Title, the `input` collection (read by Stuff, not published), and the redirect plugin for old `/projects/` and `/experience/` links.
+Title, the default layout, and the redirect plugin for old `/projects/` and `/experience/` links.
 
 `_config.yml`
-
-```yaml
-collections:
-  input:    { output: false }   # read by Stuff, not published
-```
 
 ## Run and publish
 
