@@ -42,7 +42,7 @@ description: "Senthen Velmurugan: output"
       <p>Someone who uses technology to increase <a href="{{ '/quality-of-life/' | relative_url }}">quality of life</a></p>
       <p class="iam">Currently mastering&hellip;</p>
       <ul class="iam-list">
-        <li>computational linguistics</li>
+        <li>linguistics</li>
         <li>systems engineering</li>
         <li><a href="{{ '/stuff/' | relative_url }}" class="blank-box" aria-label="Stuff"></a></li>
       </ul>
