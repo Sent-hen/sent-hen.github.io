@@ -1,11 +1,11 @@
-# Experiments shown on /experiments/, split into In progress and Done, newest first (by start).
+# Projects shown on /projects/, split into In progress and Done, newest first (by start).
 #
-# slug      anchor id on /experiments/
-# start     "YYYY-MM" the experiment began; shown as YYYY MM and used for the order
+# slug      anchor id on /projects/
+# start     "YYYY-MM" the project began; shown as YYYY MM and used for the order
 # status    active (In progress) or done (Done)
 # featured  1, 2, 3: shown on /output/ in that order; leave it out otherwise
 # domains   Backend/infra | Security | AI/ML | other short labels
-# tags      tech, ordered by how heavily the experiment uses it (most first)
+# tags      tech, ordered by how heavily the project uses it (most first)
 # repo      public repository URL; leave empty for private repos
 # site      live site URL, shown as a "Site" link; leave it out if there is none
 # bullets   four, shown under "Note", following a pattern without labelling it:

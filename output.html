@@ -1,18 +1,18 @@
 ---
 title: Output
 permalink: /output/
-description: "Output: projects, experiments, and CV by Senthen Velmurugan"
+description: "Output: projects and CV by Senthen Velmurugan"
 ---
 <h1>Output</h1>
 
-{% comment %} Featured: experiments with featured: 1, 2, 3 in _data/experiments.yml, in that order. {% endcomment %}
-{% assign featured = site.data.experiments | where_exp: "p", "p.featured" | sort: "featured" %}
+{% comment %} Featured: projects with featured: 1, 2, 3 in _data/projects.yml, in that order. {% endcomment %}
+{% assign featured = site.data.projects | where_exp: "p", "p.featured" | sort: "featured" %}
 <section class="rotation">
   <ul class="entries">
   {% for p in featured %}
     <li class="entry">
       <div class="entry-head">
-        <span class="entry-title"><a href="{{ '/experiments/' | relative_url }}#{{ p.slug }}">{{ p.title }}</a></span>
+        <span class="entry-title"><a href="{{ '/projects/' | relative_url }}#{{ p.slug }}">{{ p.title }}</a></span>
         <span class="entry-when">{{ p.start | replace: "-", " " }}</span>
       </div>
       <div class="entry-sub">{% include progress.html value=p.status %}{% for d in p.domains %}{% assign dc = d | downcase | replace: "/", "-" | replace: " ", "-" %}<span class="dom dom-{{ dc }}">{{ d }}</span>{% unless forloop.last %} · {% endunless %}{% endfor %}</div>
@@ -25,11 +25,9 @@ description: "Output: projects, experiments, and CV by Senthen Velmurugan"
 
 <hr>
 
-{% comment %} Four categories, stacked in two pairs: Projects / Experiments, a rule, then CV / Resume. {% endcomment %}
+{% comment %} Three categories: Projects, a rule, then CV / Resume as a pair. {% endcomment %}
 <div class="output-stack">
-  <a href="{{ '/experiments/' | relative_url }}">Projects</a>
-  <span class="output-slash">/</span>
-  <a href="{{ '/experiments/' | relative_url }}">Experiments</a>
+  <a href="{{ '/projects/' | relative_url }}">Projects</a>
 </div>
 
 <hr>

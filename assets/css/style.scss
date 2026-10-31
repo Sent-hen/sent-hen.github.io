@@ -310,7 +310,7 @@ hr {
 .showcase-item { white-space: nowrap; }   /* a title never breaks; the line breaks at the slashes */
 .showcase-sep { color: var(--tx-3); }
 
-/* output: Projects / Experiments and CV / Resume, each word on its own line */
+/* output: Projects, and CV / Resume, each word on its own line */
 .output-stack { display: flex; flex-direction: column; align-items: flex-start; gap: 0.1em; margin: 0 0 1.2em; }
 .output-slash { color: var(--tx-3); }
 
@@ -551,7 +551,7 @@ span.dom { color: var(--accent); }
   vertical-align: 0.05em;
 }
 .status-active { color: var(--green); border-color: currentColor; }
-.status-done { color: var(--tx-2); border-color: currentColor; background: var(--ui); }   /* experiments: Done */
+.status-done { color: var(--tx-2); border-color: currentColor; background: var(--ui); }   /* projects: Done */
 .exp-group-label { margin: 0 0 0.6em; }
 
 /* a pronunciation, e.g. under my name on the home page */

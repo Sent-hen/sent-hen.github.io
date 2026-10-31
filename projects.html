@@ -1,14 +1,14 @@
 ---
-title: Projects / Experiments
-permalink: /experiments/
-redirect_from: /projects/
-description: "Projects and experiments by Senthen Velmurugan"
+title: Projects
+permalink: /projects/
+redirect_from: /experiments/
+description: "Projects by Senthen Velmurugan"
 ---
 <p class="small"><a href="{{ '/output/' | relative_url }}" class="muted">&larr; Output</a></p>
-<h1>Projects / Experiments</h1>
+<h1>Projects</h1>
 
-<!-- Entries live in _data/experiments.yml. -->
-{% assign projects = site.data.experiments | sort: "start" | reverse %}
+<!-- Entries live in _data/projects.yml. -->
+{% assign projects = site.data.projects | sort: "start" | reverse %}
 
 {% comment %} Two groups: status active is In progress (green tag), status done is Done (grey box). Each is newest first. {% endcomment %}
 {% assign groups = "active,done" | split: "," %}

@@ -6,7 +6,7 @@ baseurl: ""
 
 markdown: kramdown
 plugins:
-  - jekyll-redirect-from   # old /projects/ and /experience/ links forward to /experiments/ and /cv/
+  - jekyll-redirect-from   # old /experiments/ and /experience/ links forward to /projects/ and /cv/
 permalink: pretty
 
 defaults:

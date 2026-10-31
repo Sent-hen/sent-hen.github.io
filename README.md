@@ -27,7 +27,7 @@ The links after the name. Each entry is `Label:/url/` plus any other sections it
 `_includes/nav.html`
 
 ```liquid
-{% assign links = "Output:/output/:/experiments/:/cv/" | split: "," %}
+{% assign links = "Output:/output/:/projects/:/cv/" | split: "," %}
 ```
 
 ## 3. Theme toggle
@@ -179,26 +179,26 @@ To change an item, edit it in `_data/stuff.yml` (the order there is the order on
 
 ## 16. Output
 
-The three featured projects (`featured: 1` to `3` in `_data/experiments.yml`), then four categories stacked in two pairs, each word on its own line: **Projects / Experiments** (both open `/experiments/`), a rule, then **CV / Resume** (both open `/cv/`).
+The three featured projects (`featured: 1` to `3` in `_data/projects.yml`), then the categories, each word on its own line: **Projects** (opens `/projects/`), a rule, then **CV / Resume** (both open `/cv/`).
 
 `output.html`, `assets/css/style.scss` (`.output-stack`)
 
-## 17. Projects / Experiments
+## 17. Projects
 
-Everything I've built or tried, in two groups, In progress (`status: active`, a green tag) and Done (`status: done`, a grey box), each newest first by `start`. The tag is `_includes/progress.html`, also used on Output. Under each project, on both pages, "Note" opens its four bullets and "Code" links the repository (`_includes/project-links.html`). The four bullets follow a pattern without labelling it: the idea, what stood against it, what I built, what's next. Dates show as YYYY MM. Old `/projects/` links redirect here.
+Everything I've built or tried, in two groups, In progress (`status: active`, a green tag) and Done (`status: done`, a grey box), each newest first by `start`. The tag is `_includes/progress.html`, also used on Output. Under each project, on both pages, "Note" opens its four bullets, "Site" links the live site when there is one (`site:`), and "Code" links the repository (`_includes/project-links.html`). The four bullets follow a pattern without labelling it: the idea, what stood against it, what I built, what's next. Dates show as YYYY MM. Old `/experiments/` links redirect here.
 
-`experiments.html`, `_data/experiments.yml`
+`projects.html`, `_data/projects.yml`
 
 ```yaml
-- slug: my-experiment
-  title: My Experiment
+- slug: my-project
+  title: My Project
   start: "2026-10"          # YYYY-MM
   status: active            # active = In progress, done = Done
   featured: 1               # optional: 1-3 puts it on /output/ in that order
   domains: [Backend/infra]
   summary: One sentence, no period
   tags: [Python, Docker]
-  repo: https://github.com/Sent-hen/my-experiment   # "" if private
+  repo: https://github.com/Sent-hen/my-project   # "" if private
   bullets:                  # four: the idea, what stood against it, what I built, what's next
     - "..."
 ```
