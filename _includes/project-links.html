@@ -1,5 +1,5 @@
 {%- comment -%}
-  Under each project: "Note" opens its four bullets, "Code" links the repository.
+  Under each project: "Note" opens its four bullets, "Site" links the live site (if any), "Code" links the repository.
   Usage: {% include project-links.html p=p %}
 {%- endcomment -%}
 {%- assign p = include.p -%}
@@ -11,5 +11,6 @@
       {% endfor %}
     </ul>
   </details>
+  {% if p.site %}<a class="project-code" href="{{ p.site }}">Site</a>{% endif %}
   {% if p.repo != "" %}<a class="project-code" href="{{ p.repo }}">Code</a>{% else %}<span class="project-code muted">Private repo</span>{% endif %}
 </div>

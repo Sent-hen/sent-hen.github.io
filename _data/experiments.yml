@@ -7,8 +7,24 @@
 # domains   Backend/infra | Security | AI/ML | other short labels
 # tags      tech, ordered by how heavily the experiment uses it (most first)
 # repo      public repository URL; leave empty for private repos
+# site      live site URL, shown as a "Site" link; leave it out if there is none
 # bullets   four, shown under "Note", following a pattern without labelling it:
 #           the idea (thesis), what stood against it (antithesis), what I built (synthesis), what's next
+
+- slug: campbell-woodworks
+  title: Campbell Woodworks
+  start: "2026-10"
+  status: done
+  domains: [Web]
+  summary: A storefront site for a family woodshop in Athens, TX, showing their furniture and pointing buyers to a phone call
+  tags: [Jekyll, Liquid, HTML, CSS, Python]
+  repo: https://github.com/Sent-hen/CampbellWoodworks
+  site: https://sent-hen.github.io/CampbellWoodworks/
+  bullets:
+    - "A woodworker who sells at farmers markets should have a page people can find and browse between market days, with nothing to keep running"
+    - "Their work lived only in Facebook posts behind a login, most pieces had no name or price, and orders happen by phone, not checkout"
+    - "Built a static Jekyll site on GitHub Pages where one Markdown file per piece drives the shop, gallery, and detail pages, with category filters, call and email buttons, and 23 pieces photographed from their page and market booth"
+    - "Next, adding prices and stock as the shop confirms them, and the maker's own story on the About page"
 
 - slug: pid-digitizer
   title: P&ID Digitizer
