@@ -70,3 +70,73 @@
     - "Every feature I added (pages, tags, filters, categories) made it heavier to keep up by hand"
     - "A static Jekyll site on GitHub Pages, driven by one YAML file, with generated SVG and plain-JavaScript animations, cut back again and again to only what is used"
     - "Next, letting it grow only as fast as there is something worth adding"
+
+- slug: word2eq
+  title: Word2Eq
+  start: "2024-04"
+  status: active
+  domains: [AI/ML, Backend/infra]
+  summary: A reproducible training pipeline and SLO-instrumented inference service that turns math word problems into verified equations
+  tags: [Python, PyTorch, FastAPI, Docker, Prometheus, Kubernetes, GitHub Actions]
+  repo: https://github.com/Sent-hen/Word2Eq
+  bullets:
+    - "A small model should be able to turn a math word problem into an equation you can trust, and be trained and served like a real system"
+    - "My 2024 prototype never worked, and a model that writes malformed equations or can't be retrained the same way twice isn't trustworthy"
+    - "Rebuilt it as a train, evaluate, and serve platform for a 6.4M-parameter Transformer: grammar-masked decoding took valid equations from 97.4% to 100% on 1,000 SVAMP problems, resumed training is bit-identical, and the service handles 150 requests per second at 73 ms p95 on one laptop CPU"
+    - "Next, running it against its availability, latency, and answer-integrity SLOs on the Kubernetes setup, with the CI promotion gate deciding every release"
+
+- slug: metal-to-pod
+  title: "Metal-to-Pod: self-hosted CI/CD"
+  start: "2026-09"
+  status: active
+  domains: [Backend/infra]
+  summary: A commit-to-pod delivery path from VMware VMs to Kubernetes with no cloud services, run with SLOs, rollback, and failure drills
+  tags: [Kubernetes, Bash, Go, Docker, Jenkins, Prometheus, Vagrant]
+  repo: https://github.com/Sent-hen/metal-to-pod
+  bullets:
+    - "Every commit should reach a running pod on its own, safely, without renting a cloud to do it"
+    - "Without managed services, everything a cloud hides (cluster networking, a registry and its certificates, build triggers, rollback) has to be built and kept running by hand, on a 16 GB laptop"
+    - "Built it across 4 VMware VMs from one env file: a kubeadm cluster with default-deny network policy, a git hook into Jenkins as code, a private TLS registry, ~10 MB distroless images tagged by commit, and a smoke test that rolls back bad releases"
+    - "Next, running the Go delivery-promise service against its 99.5% availability and 300 ms SLOs, with 8 failure drills, 5 runbooks, and burn-rate alerts already in place"
+
+- slug: personal-vpn
+  title: Personal VPN
+  start: "2026-10"
+  status: active
+  domains: [Security, Backend/infra]
+  summary: One-command private WireGuard server in the cloud, with a client tool and a written threat model
+  tags: [Terraform, Go, Bash, WireGuard, Linux, nftables]
+  repo: https://github.com/Sent-hen/VPN
+  bullets:
+    - "My traffic on untrusted networks (café Wi-Fi, hotels) should be private without handing that trust to a commercial VPN"
+    - "Owning every layer means the server, the keys, and the firewall are all mine to get wrong"
+    - "A hardened WireGuard server on Hetzner for about €4 a month with one <code>terraform apply</code>: keys made on each device so no secret crosses the network, one open UDP port, a Go CLI (<code>vpnctl</code>) for device configs, and a threat model that says plainly what it does and doesn't protect"
+    - "Next, a Windows service with a WFP kill switch and a Tauri UI"
+
+- slug: cs2-tradeup-analysis
+  title: The $2 billion patch note
+  start: "2026-09"
+  status: active
+  domains: [Data analysis]
+  summary: A financial event study of how one game update repriced a multi-billion-dollar virtual item market overnight
+  tags: [Python, pandas, NumPy, SciPy, Matplotlib, pytest]
+  repo: ""
+  bullets:
+    - "Counter-Strike 2's October 2025 trade-up update erased an estimated $2 billion of skin value in 48 hours, a real market shock worth measuring"
+    - "A game market isn't a stock market: prices are daily Steam medians across about 3,900 items, and the update helped some items while it hurt others"
+    - "An event study by rarity and wear: a 19% drawdown with the trough at 25 hours, Covert inputs up 43.5% in 48 hours (t = 8.95), Battle-Scarred Coverts up 258% at 14 days, and the new contract modeled as a call option, all from a tested Python CLI"
+    - "Next, knife and glove prices, to test whether arbitrage closed the gap to each Covert's trade-up floor"
+
+- slug: thousand-and-one-words
+  title: The Thousand and One Words
+  start: "2026-09"
+  status: active
+  domains: [Learning tools]
+  summary: A 100-chapter Arabian Nights comic epic that teaches the 1,000 most-used SAT words, generated from one script
+  tags: [Python, HTML, SVG]
+  repo: https://github.com/Sent-hen/1001-SAT-words
+  bullets:
+    - "1,000 SAT words should be learnable as one story rather than a list"
+    - "Readers remember in different ways, and a thousand words is a lot to hold in any of them"
+    - "A 100-chapter comic epic for readers aged 14 to 16, ten words a chapter, each word with a story scene, a picture link, and a place in a memory palace of 100 landmarks in the Round City of Baghdad, all generated from one Python source"
+    - "Next, the art: drawing every frame from the image prompts already written for it"
