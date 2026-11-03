@@ -32,17 +32,17 @@ The links after the name. Each entry is `Label:/url/` plus any other sections it
 
 ## 3. Theme toggle
 
-Red/green switch in the nav: a red ▼ on the red brick theme, a green ▲ on the green one, like a stock ticker.
+Red/green switch at the far right of the nav, standing upright: a green ▲ at the top for the green theme, a red ▼ at the bottom for the red one, like a stock ticker.
 
 The site starts green (light) for everyone, whatever their system setting; the switch changes to red (dark), and the choice is remembered (`localStorage`, key `theme-choice`). Red only ever comes from `data-theme="dark"`.
 
 `_includes/head.html` (applies green, or the saved choice, before paint), `_includes/footer.html` (the click handler)
 
-## 3a. Still mode
+## 3a. Hi / Lo
 
-On a low-end device (2 GB of memory or 2 CPU cores or less), or when the visitor asks for reduced motion (on any network connection the animations run as normal), `_includes/head.html` adds the `still` class to the page. The drawings then show as still images: the tiramisu as its plain drawing (no digit rain), and the spiral, triangle, ripple, and quality-of-life bars without animation.
+A second switch, left of the color switch (where the color switch used to be): **Hi** animates everything, **Lo** shows still line art (the tiramisu as its plain line drawing, and the spiral, triangle, ripple, and quality-of-life bars without moving). The choice is remembered (`localStorage`, key `motion-choice`). Until someone picks, a low-end device (2 GB of memory or 2 CPU cores or less) or a reduced-motion setting starts on Lo; everyone else on Hi. Lo is the `still` class on the page.
 
-`_includes/head.html`, `assets/css/style.scss` (`.still`), `assets/js/cake.js`
+`_includes/nav.html` (the switch), `_includes/head.html` (picks before paint), `_includes/footer.html` (the click handler), `assets/css/style.scss` (`.still`, `.motion-toggle`), `assets/js/cake.js` (starts and stops the rain)
 
 ## 4. Footer
 
@@ -79,7 +79,7 @@ The jumping spider photo across the top of the home page, below the nav, shown w
 
 ## 6. Home: the tiramisu
 
-A slice of tiramisu in 3/4 view on a plate, drawn as a flat 2D vector (cocoa-dusted top, a cut face of mascarpone and coffee-soaked ladyfinger layers carried round the side), then shown as Matrix rain: columns of digits fall through the tile and are bright only where the drawing is. The digits are 0s at the top and 1s at the bottom, and the rain falls, turning 0 into 1 on the way down. The tile inverts the page. Without JavaScript the plain drawing shows instead. Under the tile, the caption "A plate of Tiramisu" (`.tile-caption`; the same captions read "Time" under the lower clock and "a + b is to a, as a is to b" under the golden spiral).
+A slice of tiramisu in 3/4 view on a round plate drawn level, three flat rings straight across (an impossible perspective on purpose), like a drafting sheet (stippled cocoa top, hatched ladyfinger layers, open mascarpone layers, a height dimension, and corner marks). In Lo that drawing is what shows. In Hi only the slice and plate become 0/1 rain, from a copy drawn as brightness (`.tira-solid`, hidden on the page): the slice bright with faint mascarpone layers, the plate dim and thin with a gap around the slice; the canvas is rebuilt whenever the tile size or pixel density changes (zooming in, another screen), so it stays sharp: columns of digits fall through the tile and are bright only where the drawing is. The digits are 0s at the top and 1s at the bottom, and the rain falls, turning 0 into 1 on the way down. The tile inverts the page. Without JavaScript the plain drawing shows instead. Under the tile, the caption "A plate of Tirami su" (`.tile-caption`; the same captions read "Time" under the lower clock and "a + b is to a," / "as a is to b" (two lines) under the golden spiral).
 
 `_includes/cake.html` (the tiramisu drawing, in `currentColor`; the files keep the old "cake" names), `assets/js/cake.js` (the rain), `assets/css/style.scss` (`.cake`, `--cake-bg`, `--cake-ink`)
 

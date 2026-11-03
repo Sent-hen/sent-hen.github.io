@@ -142,12 +142,29 @@ u {
 .nav-links a:hover,
 .nav-links a[aria-current="page"] { color: var(--tx); }
 
+/* Hi / Lo switch: two small labels, the active one filled */
+.motion-toggle {
+  display: inline-flex;
+  flex-shrink: 0;
+  padding: 1px;
+  border: 1px dotted var(--ui-3);
+  background: none;
+  font: inherit;
+  font-size: 0.7em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.motion-toggle span { padding: 1px 5px; color: var(--tx-2); }
+.motion-toggle[aria-checked="true"] .motion-hi,
+.motion-toggle[aria-checked="false"] .motion-lo { background: var(--tx); color: var(--bg); }
+
 /* theme toggle, modeled on stephango.com */
 .theme-toggle {
   position: relative;
   flex-shrink: 0;
-  width: 34px;
-  height: 20px;
+  width: 20px;
+  height: 34px;            /* vertical: green ▲ at the top, red ▼ at the bottom */
   padding: 0;
   border: none;
   border-radius: 10px;
@@ -169,7 +186,7 @@ u {
   transition: transform 0.2s ease;
 }
 .theme-toggle[aria-checked="true"]::after {
-  transform: translateX(14px);
+  transform: translateY(14px);
   background: var(--brick-300);
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M1.5 3.5H22.5L12 21Z'/%3E%3C/svg%3E");
           mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M1.5 3.5H22.5L12 21Z'/%3E%3C/svg%3E");
@@ -224,8 +241,9 @@ hr {
   color: var(--cake-ink);
 }
 .cake-art { display: block; width: 100%; height: 100%; padding: 8%; }
-.cake-notch { fill: var(--cake-bg); }
-.cake-rain { display: block; width: 100%; height: 100%; }
+.cake-art .tira-solid { display: none; }   /* only the Hi rain uses it, as its mask */
+.cake-art .tira-face { fill: var(--cake-bg); stroke: none; }   /* hides the back of the plate behind the slice */
+.cake-rain { display: block; }   /* sized in px by assets/js/cake.js to the tile, so it stays sharp */
 
 /* home: the jumping spider across the top, shown whole */
 .banner {
@@ -239,7 +257,7 @@ hr {
 .banner-caption { margin-top: 8px; color: var(--tx-2); text-align: center; font-size: 0.75em; letter-spacing: 0.08em; text-transform: uppercase; }
 
 /* left column: cake, the UTC time, the Sierpinski triangle, then the golden spiral */
-.intro-side { flex-shrink: 0; display: flex; flex-direction: column; gap: 16px; }
+.intro-side { flex-shrink: 0; width: 160px; display: flex; flex-direction: column; gap: 16px; }   /* exactly the tiles' width, so captions and clocks center under them */
 /* the spiral and ripple use fixed Flexoki colors (the cake inverts the page instead) */
 .golden-spiral { display: block; width: 160px; height: 160px; overflow: hidden; border: 1px dotted var(--tx-2); }
 .golden-spiral .zoom {
@@ -263,7 +281,7 @@ hr {
 .utc-clock { display: block; width: 100%; white-space: nowrap; margin-bottom: -8px; text-align: center; font-size: 0.8em; color: var(--tx-2); font-variant-numeric: tabular-nums; }
 .utc-clock-below { margin: -8px 0 0; }
 /* captions under the tiramisu, the lower clock, and the golden spiral */
-.tile-caption { width: 100%; margin: -8px 0 0; text-align: center; font-size: 0.7em; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tx-2); }
+.tile-caption { width: 100%; overflow-wrap: break-word; margin: -8px 0 0; text-align: center; font-size: 0.7em; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tx-2); }
 .tile-caption::after { content: " ↗"; }   /* pointing at the drawing */
 .intro-text {
   min-width: 0;
@@ -398,6 +416,7 @@ hr {
 }
 @media (max-width: 560px) {
   .intro { gap: 14px; }
+  .intro-side { width: 96px; }
   .cake { width: 96px; height: 96px; }
   .golden-spiral { width: 96px; height: 96px; }
   .sierpinski { width: 96px; height: 96px; }
@@ -472,7 +491,7 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 @media (max-width: 560px) {
   body { font-size: 16.5px; }
   .site-nav { flex-wrap: wrap; padding-bottom: 36px; }
-  .site-name { flex-basis: calc(100% - 44px); }
+  .site-name { flex-basis: calc(100% - 110px); }
   .nav-links { order: 3; justify-content: flex-start; flex-basis: 100%; }
   .entry-head { flex-direction: column; gap: 0; }
 }

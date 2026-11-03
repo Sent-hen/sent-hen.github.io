@@ -22,4 +22,15 @@
     });
     sync();
   })();
+  (function () {
+    // Hi / Lo: adds or removes the `still` class on the page and remembers the choice.
+    var root = document.documentElement, btn = document.getElementById('motion-toggle');
+    function sync() { btn.setAttribute('aria-checked', root.classList.contains('still') ? 'false' : 'true'); }
+    btn.addEventListener('click', function () {
+      var lo = root.classList.toggle('still');
+      try { localStorage.setItem('motion-choice', lo ? 'lo' : 'hi'); } catch (e) {}
+      sync();
+    });
+    sync();
+  })();
 </script>
