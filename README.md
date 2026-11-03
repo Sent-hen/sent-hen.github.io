@@ -54,7 +54,7 @@ On a low-end device (2 GB of memory or 2 CPU cores or less), or when the visitor
 
 ## 5. Colors: green roof and red brick
 
-Two earthy themes. Light mode is the green roof (a bottle/moss green page with cream text); dark mode is the red brick cottage (deep brick page, pale brick text). All colors are variables at the top of the stylesheet. The spiral and ripple use fixed Flexoki colors; the tiramisu and its digits invert the page.
+Two earthy themes. Light mode is the green roof (a bottle/moss green page with cream text); dark mode is the red brick cottage (deep brick page, pale brick text). All colors are variables at the top of the stylesheet. The spiral, ripple, triangle, and tiramisu are drawn in the text color on the page.
 
 `assets/css/style.scss`, `_includes/head.html` (the browser bar colors)
 
@@ -62,6 +62,10 @@ Two earthy themes. Light mode is the green roof (a bottle/moss green page with c
 :root { --bg: var(--roof-900); --tx: var(--roof-cream); }               /* light: green roof */
 @mixin dark { --bg: var(--brick-950); --tx: var(--brick-50); }          /* dark: red brick */
 ```
+
+### Look
+
+A drafting-sheet look: the drawings are cream line art on the page color, each tile framed in dots; labels and captions are small uppercase with arrows (↙ after "Who I am" and "Who am I", ↗ after the tile captions); rules are dotted, and the column dividers dashed; small grids of squares, some filled and some hollow, sit in the page's corners (`body::before`, `body::after`, `.site-footer::before`, `.site-footer::after`).
 
 ## 5a. Home: banner
 
@@ -157,7 +161,7 @@ Below the ripple: the same circles seen edge-on, drawn as a wave whose crests si
 
 ## 9b. Quality of life
 
-"quality of life" in "Who am I" is underlined and opens a note, "Quality of Life": "My goal is a fulfilling life, and a finite one. I’m working toward alignment between strategy (where I’m going), tactics (how I get there), and operations (how I live each day)." Below it, three bars, Strategy, Tactics, Operations, move back and forth from lopsided to level.
+"quality of life" in "Who am I" is underlined and opens "Quality of Life": just a graph, in the line-art look, of three dashed tracks, Strategy, Tactics, Operations, whose bars are always in flux, each on its own rhythm.
 
 `quality-of-life.html`, `assets/css/style.scss` (`.qol`)
 
