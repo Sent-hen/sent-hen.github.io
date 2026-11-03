@@ -6,6 +6,8 @@ Every element of the site, where it lives, and its code.
 
 Every page is wrapped in the same head, nav, and footer.
 
+`_includes/head.html` loads one web font, Gelasio italic from Google Fonts (a free serif drawn to Georgia's measurements), used as `--font-serif` for the italic captions: the banner, the tiramisu, and the golden-ratio formula. Everything else uses the device's own fonts (`--font-ui`, `--font-mono`). The stylesheet and the home page's scripts are linked with `?v=` plus the build time, so browsers fetch the new files after every deploy instead of showing a cached old version.
+
 `_layouts/default.html`
 
 ```html
@@ -69,7 +71,7 @@ A drafting-sheet look: the drawings are cream line art on the page color, each t
 
 ## 5a. Home: banner
 
-The jumping spider photo across the top of the home page, below the nav, shown whole at the column width, with the caption "To cultivate a sense of curiosity." below it (`.banner-caption`). Credit is under [Credits](#credits).
+The jumping spider photo across the top of the home page, below the nav, shown whole at the column width, with the caption "To cultivate a sense of curiosity" below it in the italic serif (`.banner-caption`). Credit is under [Credits](#credits).
 
 `assets/img/jumping-spider.webp`, `index.md`, `assets/css/style.scss` (`.banner`)
 
@@ -221,7 +223,7 @@ Everything I've built or tried, in two groups, In progress (`status: active`, a 
 
 `/resume/`, separate from the CV: the one-page resume, focused on Forward Deployed Software Engineer roles. It mirrors `main/Resume.tex` in the Resume repository (skills, experience, four projects, education); keep the two in step. On Output, "Resume" comes first and opens `/resume/`, then "CV" opens `/cv/`.
 
-**PDFs.** Each page links a PDF built from LaTeX in the Resume repository: `assets/pdf/Senthen-Velmurugan-Resume.pdf` (from `main/Resume.pdf`, one page) and `assets/pdf/Senthen-Velmurugan-CV.pdf` (from `master-cv/CV.pdf`, the full record). After rebuilding either one with `latexmk -pdf`, copy it over the file here under the same name. The PDFs include a phone number; the web pages do not. Skills on both pages are only Languages, Frameworks, and Tools.
+**PDFs.** Each page links a PDF built from LaTeX in the Resume repository: `assets/pdf/Senthen-Velmurugan-Resume.pdf` (from `main/Resume.pdf`, one page) and `assets/pdf/Senthen-Velmurugan-CV.pdf` (from `master-cv/CV.pdf`, the full record). These copies have the phone number covered by a black bar (the digits are not in the files at all); the PDFs in the Resume repository keep it. To update them, run `bash build-public.sh` in the Resume repository, which builds both and writes them here. Skills on both pages are only Languages, Frameworks, and Tools.
 
 `resume.md`
 

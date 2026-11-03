@@ -30,5 +30,12 @@
 
   <link rel="icon" type="image/jpeg" href="{{ '/assets/img/icon.jpg' | relative_url }}">
   <link rel="apple-touch-icon" href="{{ '/assets/img/icon.jpg' | relative_url }}">
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  {%- comment -%} Gelasio: a free serif drawn to Georgia's measurements, for the italic captions, so they look the
+      same on devices without Georgia (most phones). {%- endcomment %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gelasio:ital@1&display=swap">
+  {%- comment -%} ?v= changes on every build, so browsers fetch the new stylesheet after each deploy
+      instead of showing a cached old one. {%- endcomment %}
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 </head>

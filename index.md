@@ -15,14 +15,14 @@ description: "Senthen Velmurugan: output"
     {% include cake.html %}
   </figure>
   <p class="tile-caption tile-serif">A plate of tiramiˈsu</p>
-  <script src="{{ '/assets/js/cake.js' | relative_url }}" defer></script>
+  <script src="{{ '/assets/js/cake.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   <time class="utc-clock"></time>
   {% include sierpinski.html %}
   <time class="utc-clock utc-clock-below"></time>
   <p class="tile-caption">Time</p>
   {% include golden-spiral.html %}
   <p class="tile-caption tile-formula" aria-label="a plus b over a equals a over b"><span class="frac"><span>a + b</span><span>a</span></span> = <span class="frac"><span>a</span><span>b</span></span></p>
-  <script src="{{ '/assets/js/clock.js' | relative_url }}" defer></script>
+  <script src="{{ '/assets/js/clock.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   </div>
   <div class="intro-text">
   <p class="infinity-arrow" aria-label="From zero to one"><span>0</span>{% include ripples.html %}<span>1</span></p>

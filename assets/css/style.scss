@@ -26,6 +26,7 @@
   --flexoki-purple-400: #8B7EC8;  --flexoki-purple-600: #5E409D;
   --flexoki-magenta-400: #CE5D97; --flexoki-magenta-600: #A02F6F;
 
+  --font-serif: "Gelasio", Georgia, "Times New Roman", serif;   /* the italic captions (Gelasio from Google Fonts, head.html) */
   --font-ui: -apple-system, BlinkMacSystemFont, "Inter", "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "Cascadia Code", "IBM Plex Mono", Menlo, Consolas, monospace;
   --wrap: 37em;
@@ -254,7 +255,8 @@ hr {
 }
 .banner-fig { margin: 0 0 24px; }
 .stuff-photo { margin: 0 0 24px; }   /* the photo at the top of /stuff/ */
-.banner-caption { margin-top: 8px; color: var(--tx-2); text-align: center; font-size: 0.75em; letter-spacing: 0.08em; text-transform: uppercase; }
+/* the banner caption in the same italic serif as the tiramisu and formula captions (Time stays in the blocky uppercase) */
+.banner-caption { margin-top: 8px; color: var(--tx-2); text-align: center; font-family: var(--font-serif); font-style: italic; font-size: 0.95em; }
 
 /* left column: cake, the UTC time, the Sierpinski triangle, then the golden spiral */
 .intro-side { flex-shrink: 0; width: 160px; display: flex; flex-direction: column; gap: 16px; }   /* exactly the tiles' width, so captions and clocks center under them */
@@ -284,11 +286,11 @@ hr {
 .tile-caption { width: 100%; overflow-wrap: break-word; margin: -8px 0 0; text-align: center; font-size: 0.7em; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tx-2); }
 .tile-caption::after { content: " ↗"; }   /* pointing at the drawing */
 /* captions set like the formula: italic serif, not uppercase (the tiramisu, with its stress mark) */
-.tile-serif { font-family: Georgia, "Times New Roman", serif; font-style: italic; font-size: 0.85em; letter-spacing: 0; text-transform: none; }
+.tile-serif { font-family: var(--font-serif); font-style: italic; font-size: 0.85em; letter-spacing: 0; text-transform: none; }
 .tile-serif::after { content: none; }
 /* the golden ratio as a formula, (a + b) / a = a / b, in stacked fractions */
 .tile-formula { display: flex; align-items: center; justify-content: center; gap: 0.4em; margin-top: -4px;
-                font-family: Georgia, "Times New Roman", serif; font-style: italic; font-size: 0.85em;
+                font-family: var(--font-serif); font-style: italic; font-size: 0.85em;
                 letter-spacing: 0; text-transform: none; }
 .tile-formula::after { content: none; }
 .frac { display: inline-flex; flex-direction: column; align-items: center; line-height: 1.15; }
