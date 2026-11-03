@@ -14,14 +14,14 @@ description: "Senthen Velmurugan: output"
   <figure class="cake">
     {% include cake.html %}
   </figure>
-  <p class="tile-caption">A plate of Tirami su</p>
+  <p class="tile-caption tile-serif">A plate of tiramiˈsu</p>
   <script src="{{ '/assets/js/cake.js' | relative_url }}" defer></script>
   <time class="utc-clock"></time>
   {% include sierpinski.html %}
   <time class="utc-clock utc-clock-below"></time>
   <p class="tile-caption">Time</p>
   {% include golden-spiral.html %}
-  <p class="tile-caption">a + b is to a,<br>as a is to b</p>
+  <p class="tile-caption tile-formula" aria-label="a plus b over a equals a over b"><span class="frac"><span>a + b</span><span>a</span></span> = <span class="frac"><span>a</span><span>b</span></span></p>
   <script src="{{ '/assets/js/clock.js' | relative_url }}" defer></script>
   </div>
   <div class="intro-text">
@@ -46,9 +46,10 @@ description: "Senthen Velmurugan: output"
         <li>systems engineering</li>
         <li><a href="{{ '/stuff/' | relative_url }}" class="blank-box" aria-label="Stuff"></a></li>
       </ul>
+      <p>I like great storytelling</p>
     </section>
   </div>
   <p class="muted small site-note">This is a site where I keep what I'm creating</p>
-  <p class="small open-to">Open to tech roles in the Pacific Northwest / Texas</p>
+  <p class="small open-to">Open to FDSE roles in the Pacific Northwest / Texas</p>
   </div>
 </div>

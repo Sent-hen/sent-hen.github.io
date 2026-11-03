@@ -27,7 +27,7 @@ The links after the name. Each entry is `Label:/url/` plus any other sections it
 `_includes/nav.html`
 
 ```liquid
-{% assign links = "Output:/output/:/projects/:/cv/" | split: "," %}
+{% assign links = "Output:/output/:/projects/:/cv/:/resume/" | split: "," %}
 ```
 
 ## 3. Theme toggle
@@ -79,7 +79,7 @@ The jumping spider photo across the top of the home page, below the nav, shown w
 
 ## 6. Home: the tiramisu
 
-A slice of tiramisu in 3/4 view on a round plate drawn level, three flat rings straight across (an impossible perspective on purpose), like a drafting sheet (stippled cocoa top, hatched ladyfinger layers, open mascarpone layers, a height dimension, and corner marks). In Lo that drawing is what shows. In Hi only the slice and plate become 0/1 rain, from a copy drawn as brightness (`.tira-solid`, hidden on the page): the slice bright with faint mascarpone layers, the plate dim and thin with a gap around the slice; the canvas is rebuilt whenever the tile size or pixel density changes (zooming in, another screen), so it stays sharp: columns of digits fall through the tile and are bright only where the drawing is. The digits are 0s at the top and 1s at the bottom, and the rain falls, turning 0 into 1 on the way down. The tile inverts the page. Without JavaScript the plain drawing shows instead. Under the tile, the caption "A plate of Tirami su" (`.tile-caption`; the same captions read "Time" under the lower clock and "a + b is to a," / "as a is to b" (two lines) under the golden spiral).
+A slice of tiramisu in 3/4 view on a round plate drawn level, three flat rings straight across (an impossible perspective on purpose), like a drafting sheet (stippled cocoa top, hatched ladyfinger layers, open mascarpone layers, a height dimension, and corner marks). In Lo that drawing is what shows. In Hi only the slice and plate become 0/1 rain, from a copy drawn as brightness (`.tira-solid`, hidden on the page): the slice bright with faint mascarpone layers, the plate dim and thin with a gap around the slice; the canvas is rebuilt whenever the tile size or pixel density changes (zooming in, another screen), so it stays sharp: columns of digits fall through the tile and are bright only where the drawing is. The digits are 0s at the top and 1s at the bottom, and the rain falls, turning 0 into 1 on the way down. The tile inverts the page. Without JavaScript the plain drawing shows instead. Under the tile, the caption "A plate of tiramiˈsu" in italic serif (`.tile-serif`) (`.tile-caption`; the same captions read "Time" under the lower clock and the formula (a + b) / a = a / b, in stacked fractions (`.tile-formula`), under the golden spiral).
 
 `_includes/cake.html` (the tiramisu drawing, in `currentColor`; the files keep the old "cake" names), `assets/js/cake.js` (the rain), `assets/css/style.scss` (`.cake`, `--cake-bg`, `--cake-ink`)
 
@@ -131,7 +131,7 @@ Above and below the triangle: the same current UTC time as `YYYY MM DD HH:MM SS`
 
 ## 8. Home: the two halves
 
-The 0 → 1 ripple (section 9) sits first, then "Who I am" and "Who am I" side by side. "Who I am" shows my name in three rows: Tamil (சேந்தன்), English (Senthen), pronunciation (SAYN-dhun) (`.name-rows`). "Who am I" ends with the "Currently mastering…" list (`.iam`, `.iam-list`; each item stays on one line on every screen, shrinking with the screen on phones); the last item under Currently mastering is an empty box (`.blank-box`) that opens Stuff. The site note ("This is a site where I keep what I'm creating") and "Open to tech roles in the Pacific Northwest / Texas" (`.open-to`) close the column.
+The 0 → 1 ripple (section 9) sits first, then "Who I am" and "Who am I" side by side. "Who I am" shows my name in three rows: Tamil (சேந்தன்), English (Senthen), pronunciation (SAYN-dhun) (`.name-rows`). "Who am I" ends with the "Currently mastering…" list (`.iam`, `.iam-list`; each item stays on one line on every screen, shrinking with the screen on phones); the last item under Currently mastering is an empty box (`.blank-box`) that opens Stuff, followed by "I like great storytelling". The site note ("This is a site where I keep what I'm creating") and "Open to FDSE roles in the Pacific Northwest / Texas" (`.open-to`) close the column.
 
 `index.md`
 
@@ -183,7 +183,7 @@ To change an item, edit it in `_data/stuff.yml` (the order there is the order on
 
 ## 16. Output
 
-The three featured projects (`featured: 1` to `3` in `_data/projects.yml`), then the categories, each word on its own line: **Projects** (opens `/projects/`), a rule, then **CV / Resume** (both open `/cv/`).
+The three featured projects (`featured: 1` to `3` in `_data/projects.yml`), then the categories, each word on its own line: **Projects** (opens `/projects/`), a rule, then **Resume / CV** (open `/resume/` and `/cv/`).
 
 `output.html`, `assets/css/style.scss` (`.output-stack`)
 
@@ -209,13 +209,21 @@ Everything I've built or tried, in two groups, In progress (`status: active`, a 
 
 ## 19. Curriculum Vitae
 
-`/cv/` (old `/experience/` links redirect here). A header with my name, Pacific Northwest / Texas, email, GitHub, LinkedIn, and "Open to tech roles in the Pacific Northwest / Texas", then Skills, Experience, Organizations, and Education, newest first, with dates as YYYY MM. Written directly in the page; section headings are `<h2 class="cv-section">`.
+`/cv/` (old `/experience/` links redirect here). A header with my name, Pacific Northwest / Texas, email, GitHub, LinkedIn, and "Open to FDSE roles in the Pacific Northwest / Texas", a PDF link, then Skills, Experience, Projects, Organizations, and Education, newest first, with dates as YYYY MM. Written directly in the page; section headings are `<h2 class="cv-section">`. Projects is not written by hand: it lists every project in `_data/projects.yml`, newest first (title, tags, summary, and the Note / Site / Code links).
 
 `cv.md`, `assets/css/style.scss` (`.cv-head`, `.cv-section`)
 
 ```html
 <span class="entry-when">2024 05 &ndash; 2024 08</span>
 ```
+
+## 19a. Resume
+
+`/resume/`, separate from the CV: the one-page resume, focused on Forward Deployed Software Engineer roles. It mirrors `main/Resume.tex` in the Resume repository (skills, experience, four projects, education); keep the two in step. On Output, "Resume" comes first and opens `/resume/`, then "CV" opens `/cv/`.
+
+**PDFs.** Each page links a PDF built from LaTeX in the Resume repository: `assets/pdf/Senthen-Velmurugan-Resume.pdf` (from `main/Resume.pdf`, one page) and `assets/pdf/Senthen-Velmurugan-CV.pdf` (from `master-cv/CV.pdf`, the full record). After rebuilding either one with `latexmk -pdf`, copy it over the file here under the same name. The PDFs include a phone number; the web pages do not. Skills on both pages are only Languages, Frameworks, and Tools.
+
+`resume.md`
 
 ## 20. Site settings
 

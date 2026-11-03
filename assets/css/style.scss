@@ -283,6 +283,17 @@ hr {
 /* captions under the tiramisu, the lower clock, and the golden spiral */
 .tile-caption { width: 100%; overflow-wrap: break-word; margin: -8px 0 0; text-align: center; font-size: 0.7em; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tx-2); }
 .tile-caption::after { content: " ↗"; }   /* pointing at the drawing */
+/* captions set like the formula: italic serif, not uppercase (the tiramisu, with its stress mark) */
+.tile-serif { font-family: Georgia, "Times New Roman", serif; font-style: italic; font-size: 0.85em; letter-spacing: 0; text-transform: none; }
+.tile-serif::after { content: none; }
+/* the golden ratio as a formula, (a + b) / a = a / b, in stacked fractions */
+.tile-formula { display: flex; align-items: center; justify-content: center; gap: 0.4em; margin-top: -4px;
+                font-family: Georgia, "Times New Roman", serif; font-style: italic; font-size: 0.85em;
+                letter-spacing: 0; text-transform: none; }
+.tile-formula::after { content: none; }
+.frac { display: inline-flex; flex-direction: column; align-items: center; line-height: 1.15; }
+.frac > span:first-child { padding: 0 0.2em 0.1em; border-bottom: 1px solid currentColor; }
+.frac > span:last-child { padding-top: 0.1em; }
 .intro-text {
   min-width: 0;
   align-self: stretch;
@@ -358,6 +369,7 @@ hr {
 .cv-name { font-size: 1.2em; font-weight: 600; margin: 0; }
 .cv-contact { margin: 0.2em 0 0.6em; }
 .cv-open { margin: 0; color: var(--green); }
+.cv-pdf { margin: 0.4em 0 0; }
 .cv-section {
   font-size: 0.85em;
   font-weight: 600;
