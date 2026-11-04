@@ -1,0 +1,73 @@
+{%- comment -%}
+  Header, Education, Experience, and the main projects, shared word for word by /resume/ and /cv/.
+  It mirrors shared/fdse-header.tex and shared/fdse-core.tex in the Resume repository; keep them in step.
+  KloudGin facts come only from the internship recommendation letter.
+  Usage: {% include cv-core.html title="Resume" pdf="Senthen-Velmurugan-Resume.pdf" note="one page" projects=page.projects %}
+{%- endcomment -%}
+<header class="cv-head">
+  <h1>{{ include.title }}</h1>
+  <p class="cv-name">Senthen Velmurugan</p>
+  <p class="cv-contact small muted">Dallas, TX · <a href="mailto:senthenvelmurugan@gmail.com">senthenvelmurugan@gmail.com</a> · <a href="https://github.com/Sent-hen">GitHub</a> · <a href="https://www.linkedin.com/in/senthen-velmurugan-989aa9222/">LinkedIn</a></p>
+  <p class="cv-open">Open to FDSE roles · Pacific Northwest / Texas preferred, open to relocation anywhere in the US</p>
+  <p class="cv-pdf small"><a href="{{ '/assets/pdf/' | append: include.pdf | relative_url }}">PDF</a> <span class="muted">· {{ include.note }}</span></p>
+</header>
+
+<h2 class="cv-section">Education</h2>
+
+<ul class="entries">
+  <li class="entry">
+    <div class="entry-head">
+      <span class="entry-title">M.S. Computer Science</span>
+      <span class="entry-when">In progress</span>
+    </div>
+    <div class="entry-sub">Georgia Institute of Technology (OMSCS) · Atlanta, GA</div>
+  </li>
+  <li class="entry">
+    <div class="entry-head">
+      <span class="entry-title">B.S. Computer Science</span>
+      <span class="entry-when">Completed</span>
+    </div>
+    <div class="entry-sub">The University of Texas at Dallas · Dallas, TX</div>
+  </li>
+</ul>
+
+<h2 class="cv-section">Experience</h2>
+
+<ul class="entries">
+  <li class="entry">
+    <div class="entry-head">
+      <span class="entry-title">Machine Learning Engineering Intern</span>
+      <span class="entry-when">2024 05 &ndash; 2024 08</span>
+    </div>
+    <div class="entry-sub">KloudGin · Remote</div>
+    <div class="entry-desc">
+      <ul>
+        <li>Raised first-contact resolution 20% over 12 weeks of use by taking the Generative AI team's open question, whether RAG could speed up customer case resolution, from proposal to production rollout</li>
+        <li>Gave support engineers suggested next actions from similar past cases and accepted forum solutions by building a multi-source RAG system: an ingestion pipeline, hybrid vector + BM25 retrieval, and cross-encoder re-ranking</li>
+        <li>Raised top-k precision by measuring retrieval offline and through an A/B feedback loop with support agents, then diagnosing an overfit to long threads and retuning chunking and metadata filters</li>
+        <li>Let other teams integrate it safely with tenant-scoped search, PII scrubbing, safe prompting, and a documented API</li>
+      </ul>
+    </div>
+  </li>
+  <li class="entry">
+    <div class="entry-head">
+      <span class="entry-title">Cybersecurity and Systems Intern</span>
+      <span class="entry-when">2023 05 &ndash; 2023 08</span>
+    </div>
+    <div class="entry-sub">GBC Computers · Mabank, TX</div>
+    <div class="entry-desc">
+      <ul>
+        <li>Improved client network performance by monitoring with PRTG and tracing bottlenecks in Wireshark captures</li>
+        <li>Hardened client infrastructure with pfSense firewall rules, Snort intrusion detection, and endpoint protection</li>
+        <li>Found and patched critical risks with Nessus vulnerability assessments, validated by OpenVAS and manual audits</li>
+      </ul>
+    </div>
+  </li>
+</ul>
+
+<h2 class="cv-section">Projects</h2>
+
+<ul class="entries">
+{% for slug in include.projects %}{% include cv-project.html slug=slug %}
+{% endfor %}
+</ul>

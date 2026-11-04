@@ -1,0 +1,21 @@
+{%- comment -%}
+  One project as it appears on /resume/ and /cv/ and in the PDFs: name, first five tags, year (and
+  "In progress" while active), and its cv: bullets from _data/projects.yml.
+  Usage: {% include cv-project.html slug="pid-digitizer" %}
+{%- endcomment -%}
+{%- assign p = site.data.projects | where: "slug", include.slug | first -%}
+{%- if p -%}
+  <li class="entry">
+    <div class="entry-head">
+      <span class="entry-title"><a href="{{ '/projects/' | relative_url }}#{{ p.slug }}">{{ p.cv_title | default: p.title }}</a></span>
+      <span class="entry-when">{{ p.start | slice: 0, 4 }}{% if p.status == "active" %} &ndash; In progress{% endif %}</span>
+    </div>
+    <div class="entry-sub">{{ p.tags | slice: 0, 5 | join: ", " }}</div>
+    <div class="entry-desc">
+      <ul>
+        {% for b in p.cv %}<li>{{ b }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </li>
+{%- endif -%}

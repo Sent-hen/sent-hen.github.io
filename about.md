@@ -1,6 +1,7 @@
 ---
-title: Home
-description: "Senthen Velmurugan: output"
+title: About
+permalink: /about/
+description: "About Senthen Velmurugan"
 ---
 
 {% comment %} Banner: jumping spider photo, a purchased stock license. Credit is in README.md under "Credits". {% endcomment %}
@@ -50,6 +51,6 @@ description: "Senthen Velmurugan: output"
     </section>
   </div>
   <p class="muted small site-note">This is a site where I keep what I'm creating</p>
-  <p class="small open-to">Open to FDSE roles in the Pacific Northwest / Texas</p>
+  <p class="small open-to">Open to FDSE roles · Pacific Northwest / Texas preferred, open to relocation anywhere in the US</p>
   </div>
 </div>

@@ -573,9 +573,15 @@ span.dom { color: var(--accent); }
   vertical-align: 0.1em;
 }
 
-.rotation { margin-bottom: 1.6em; }
-.rotation .entry { margin-bottom: 0.9em; }
-.rotation .entry-sub { margin-bottom: 0; }
+/* Output's highlighted section: a panel holding the Technical, then Non-technical groups (front matter of output.html) */
+.highlight { margin: 1.2em 0 1.6em; padding: 14px 18px 4px; background: var(--bg-2); border: 1px dotted var(--ui-3); }
+.hl-group { margin: 0 0 0.6em; font-size: 0.75em; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tx-2); }
+.highlight .entries + .hl-group { margin-top: 1.2em; }
+.highlight .entry { margin-bottom: 0.9em; }
+.highlight .entry-sub { margin-bottom: 0; }
+/* the starred projects: a solid rule down the left and a brighter title */
+.entry-star { margin-left: -12px; padding-left: 10px; border-left: 2px solid var(--green); }
+.entry-star .entry-title a { color: var(--green); }
 
 /* active tag */
 .status-tag {

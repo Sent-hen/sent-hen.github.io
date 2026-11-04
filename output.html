@@ -1,16 +1,26 @@
 ---
 title: Output
-permalink: /output/
-description: "Output: projects and CV by Senthen Velmurugan"
+permalink: /
+redirect_from: /output/
+description: "Output: projects, resume, and CV by Senthen Velmurugan"
+# The highlighted section at the top: groups in order, each a list of slugs from _data/projects.yml.
+# Projects listed under `star` get the strongest highlight.
+highlight:
+  - group: Technical
+    projects: [pid-digitizer, dexpi-viewer, word2eq]
+  - group: Non-technical
+    projects: [campbell-woodworks, thai-sizzle]
+star: [pid-digitizer, dexpi-viewer]
 ---
 <h1>Output</h1>
+<p class="small open-to">Open to FDSE roles · Pacific Northwest / Texas preferred, open to relocation anywhere in the US</p>
 
-{% comment %} Featured: projects with featured: 1, 2, 3 in _data/projects.yml, in that order. {% endcomment %}
-{% assign featured = site.data.projects | where_exp: "p", "p.featured" | sort: "featured" %}
-<section class="rotation">
+<section class="highlight" aria-label="Highlighted projects">
+{% for g in page.highlight %}
+  <h2 class="hl-group">{{ g.group }}</h2>
   <ul class="entries">
-  {% for p in featured %}
-    <li class="entry">
+  {% for slug in g.projects %}{% assign p = site.data.projects | where: "slug", slug | first %}{% if p %}
+    <li class="entry{% if page.star contains slug %} entry-star{% endif %}">
       <div class="entry-head">
         <span class="entry-title"><a href="{{ '/projects/' | relative_url }}#{{ p.slug }}">{{ p.title }}</a></span>
         <span class="entry-when">{{ p.start | replace: "-", " " }}</span>
@@ -19,13 +29,14 @@ description: "Output: projects and CV by Senthen Velmurugan"
       <div class="entry-desc"><p>{{ p.summary }}</p></div>
       {% include project-links.html p=p %}
     </li>
-  {% endfor %}
+  {% endif %}{% endfor %}
   </ul>
+{% endfor %}
 </section>
 
 <hr>
 
-{% comment %} Three categories: Projects, a rule, then CV / Resume as a pair. {% endcomment %}
+{% comment %} Then the categories: Projects, a rule, then Resume / CV as a pair. {% endcomment %}
 <div class="output-stack">
   <a href="{{ '/projects/' | relative_url }}">Projects</a>
 </div>
