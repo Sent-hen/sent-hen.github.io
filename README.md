@@ -34,7 +34,7 @@ The links after the name. Each entry is `Label:/url/` plus any other sections it
 
 ## 3. Theme toggle
 
-Red/green switch at the far right of the nav, standing upright: a green ▲ at the top for the green theme, a red ▼ at the bottom for the red one, like a stock ticker.
+Red/green switch at the far right of the nav: one square block holding one arrow, like a stock index. A green ▲ for the green theme, a red ▼ for the red one; clicking flips the arrow in place.
 
 The site starts green (light) for everyone, whatever their system setting; the switch changes to red (dark), and the choice is remembered (`localStorage`, key `theme-choice`). Red only ever comes from `data-theme="dark"`.
 
@@ -67,7 +67,7 @@ Two earthy themes. Light mode is the green roof (a bottle/moss green page with c
 
 ### Look
 
-A drafting-sheet look: the drawings are cream line art on the page color, each tile framed in dots; labels and captions are small uppercase with arrows (↙ after "Who I am" and "Who am I", ↗ after the tile captions); rules are dotted, and the column dividers dashed; small grids of squares, some filled and some hollow, sit in the page's corners (`body::before`, `body::after`, `.site-footer::before`, `.site-footer::after`).
+A drafting-sheet look: the drawings are cream line art on the page color, each tile framed in dots; labels and captions are small uppercase, with no arrows; rules are dotted, and the column dividers dashed; small grids of squares, some filled and some hollow, sit in the page's corners (`body::before`, `body::after`, `.site-footer::before`, `.site-footer::after`).
 
 ## 5a. Home: banner
 
@@ -81,7 +81,7 @@ The jumping spider photo across the top of the home page, below the nav, shown w
 
 ## 6. Home: the tiramisu
 
-A slice of tiramisu in 3/4 view on a round plate drawn level, three flat rings straight across (an impossible perspective on purpose), like a drafting sheet (stippled cocoa top, hatched ladyfinger layers, open mascarpone layers, a height dimension, and corner marks). In Lo that drawing is what shows. In Hi only the slice and plate become 0/1 rain, from a copy drawn as brightness (`.tira-solid`, hidden on the page): the slice bright with faint mascarpone layers, the plate dim and thin with a gap around the slice; the canvas is rebuilt whenever the tile size or pixel density changes (zooming in, another screen), so it stays sharp: columns of digits fall through the tile and are bright only where the drawing is. The digits are 0s at the top and 1s at the bottom, and the rain falls, turning 0 into 1 on the way down. The tile inverts the page. Without JavaScript the plain drawing shows instead. Under the tile, the caption "A plate of tiramiˈsu" in italic serif (`.tile-serif`) (`.tile-caption`; the same captions read "Time" under the lower clock and the formula (a + b) / a = a / b, in stacked fractions (`.tile-formula`), under the golden spiral).
+A slice of tiramisu in 3/4 view on a round plate drawn level, three flat rings straight across (an impossible perspective on purpose), like a drafting sheet (stippled cocoa top, hatched ladyfinger layers, open mascarpone layers, a height dimension, and corner marks). In Lo that drawing is what shows. In Hi only the slice and plate become 0/1 rain, from a copy drawn as brightness (`.tira-solid`, hidden on the page): the slice bright with faint mascarpone layers, the plate dim and thin with a gap around the slice; the canvas is rebuilt whenever the tile size or pixel density changes (zooming in, another screen), so it stays sharp: columns of digits fall through the tile and are bright only where the drawing is. The digits are 0s at the top and 1s at the bottom, and the rain falls, turning 0 into 1 on the way down. The tile inverts the page. Without JavaScript the plain drawing shows instead. Under the tile, the caption "A plate of tiramisu" in italic serif (`.tile-serif`) (`.tile-caption`; the same captions read "Time" under the lower clock and the formula (a + b) / a = a / b, in stacked fractions (`.tile-formula`), under the golden spiral).
 
 `_includes/cake.html` (the tiramisu drawing, in `currentColor`; the files keep the old "cake" names), `assets/js/cake.js` (the rain), `assets/css/style.scss` (`.cake`, `--cake-bg`, `--cake-ink`)
 

@@ -14,7 +14,7 @@ description: "Senthen Velmurugan: output"
   <figure class="cake">
     {% include cake.html %}
   </figure>
-  <p class="tile-caption tile-serif">A plate of tiramiˈsu</p>
+  <p class="tile-caption tile-serif">A plate of tiramisu</p>
   <script src="{{ '/assets/js/cake.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   <time class="utc-clock"></time>
   {% include sierpinski.html %}

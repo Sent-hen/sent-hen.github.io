@@ -160,34 +160,29 @@ u {
 .motion-toggle[aria-checked="true"] .motion-hi,
 .motion-toggle[aria-checked="false"] .motion-lo { background: var(--tx); color: var(--bg); }
 
-/* theme toggle, modeled on stephango.com */
+/* theme toggle: one square block holding one arrow, like a stock index: a green ▲ for the green theme,
+   a red ▼ for the red one. Clicking flips the arrow in place; nothing slides. */
 .theme-toggle {
   position: relative;
   flex-shrink: 0;
   width: 20px;
-  height: 34px;            /* vertical: green ▲ at the top, red ▼ at the bottom */
+  height: 20px;
   padding: 0;
   border: none;
-  border-radius: 10px;
+  border-radius: 3px;
   background: var(--ui-2);
   cursor: pointer;
 }
 .theme-toggle:hover { background: var(--ui-3); }
-/* knob is the icon itself, like a stock ticker: a green ▲ for the green theme, a red ▼ for the red one */
 .theme-toggle::after {
   content: "";
   position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 14px;
-  height: 14px;
+  inset: 3px;
   background: var(--flexoki-green-400);
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3L22.5 20.5H1.5Z'/%3E%3C/svg%3E") center / contain no-repeat;
           mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3L22.5 20.5H1.5Z'/%3E%3C/svg%3E") center / contain no-repeat;
-  transition: transform 0.2s ease;
 }
 .theme-toggle[aria-checked="true"]::after {
-  transform: translateY(14px);
   background: var(--brick-300);
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M1.5 3.5H22.5L12 21Z'/%3E%3C/svg%3E");
           mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M1.5 3.5H22.5L12 21Z'/%3E%3C/svg%3E");
@@ -219,7 +214,6 @@ hr {
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-.duality .label::after { content: " ↙"; }   /* pointing at what follows */
 .label a { color: var(--tx-2); text-decoration: none; }
 .label a:hover { color: var(--tx); }
 
@@ -284,15 +278,12 @@ hr {
 .utc-clock-below { margin: -8px 0 0; }
 /* captions under the tiramisu, the lower clock, and the golden spiral */
 .tile-caption { width: 100%; overflow-wrap: break-word; margin: -8px 0 0; text-align: center; font-size: 0.7em; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tx-2); }
-.tile-caption::after { content: " ↗"; }   /* pointing at the drawing */
 /* captions set like the formula: italic serif, not uppercase (the tiramisu, with its stress mark) */
 .tile-serif { font-family: var(--font-serif); font-style: italic; font-size: 0.85em; letter-spacing: 0; text-transform: none; }
-.tile-serif::after { content: none; }
 /* the golden ratio as a formula, (a + b) / a = a / b, in stacked fractions */
 .tile-formula { display: flex; align-items: center; justify-content: center; gap: 0.4em; margin-top: -4px;
                 font-family: var(--font-serif); font-style: italic; font-size: 0.85em;
                 letter-spacing: 0; text-transform: none; }
-.tile-formula::after { content: none; }
 .frac { display: inline-flex; flex-direction: column; align-items: center; line-height: 1.15; }
 .frac > span:first-child { padding: 0 0.2em 0.1em; border-bottom: 1px solid currentColor; }
 .frac > span:last-child { padding-top: 0.1em; }

@@ -11,6 +11,21 @@
 # bullets   four, shown under "Note", following a pattern without labelling it:
 #           the idea (thesis), what stood against it (antithesis), what I built (synthesis), what's next
 
+- slug: thai-sizzle
+  title: Thai Sizzle
+  start: "2026-11"
+  status: done
+  domains: [Web]
+  summary: A website for a family-run Thai food truck in Mabank, TX, with its menu, hours, photos, Google reviews, and a catering page
+  tags: [Jekyll, Liquid, HTML, CSS, Python, GitHub Actions]
+  repo: https://github.com/Sent-hen/thai-sizzle
+  site: https://sent-hen.github.io/thai-sizzle/
+  bullets:
+    - "A food truck lives on people finding it fast: what's on the menu, what it costs, when it's open, and where it's parked today"
+    - "Their menu and prices were only on the board at the truck, hours shift with weather and events, and a restaurant is on the way, so the site has to change often without a developer"
+    - "Built a static Jekyll site where the menu, hours, reviews, and gallery are each one data file, matched to the truck's menu board (13 dishes), with food-truck structured data for Google and a weekly GitHub Action that refreshes the Google rating"
+    - "Next, online ordering through Squarespace (one link in the config turns every call button into Order Online), and a switch to a restaurant listing when it opens"
+
 - slug: campbell-woodworks
   title: Campbell Woodworks
   start: "2026-10"
