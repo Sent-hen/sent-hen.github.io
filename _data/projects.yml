@@ -1,7 +1,7 @@
-# Projects shown on /projects/, split into In progress and Done, newest first (by start).
+# Projects shown on the /projects/ timeline: active ones first, then the rest, each newest first (by start).
 #
 # slug      anchor id on /projects/
-# start     "YYYY-MM" the project began; shown as YYYY MM and used for the order
+# start     "YYYY-MM" the project began; shown as YYYY MM and used for the order; an active project gets a trailing dash
 # status    active (In progress) or done (Done)
 # domains   Backend/infra | Security | AI/ML | other short labels
 # tags      tech, ordered by how heavily the project uses it (most first)
@@ -54,11 +54,11 @@
 - slug: pid-digitizer
   title: P&ID Digitizer
   start: "2026-10"
-  status: done
+  status: active
   domains: [AI/ML, Backend/infra]
   summary: Turns scanned engineering drawings (P&IDs) into machine-readable graphs, with a review UI for correcting low-confidence output
   tags: [Python, PyTorch, OpenCV, FastAPI, Docker, NetworkX, SQLite]
-  cv_title: "P&ID Digitizer: Scanned Engineering Drawings to Graphs"
+  cv_title: "P&ID Digitizer: Scanned Drawings to Graphs"
   cv:
     - "Turned scanned P&IDs into queryable graphs (GraphML, DEXPI 2.0.1 XML) at 0.915 edge F1 and 0.997 symbol mAP@0.5 on a 75-sheet test split by chaining symbol detection, line extraction, and graph assembly"
     - "Found small symbols on 7,000 px sheets by fine-tuning a Faster R-CNN on overlapping 1024² tiles, merged across seams"
@@ -91,7 +91,7 @@
 - slug: personal-website
   title: Personal website
   start: "2023-05"
-  status: active
+  status: done
   domains: [Web]
   summary: This site, a static Jekyll site on GitHub Pages that shows what I build, in the <a href="https://github.com/kepano/flexoki">Flexoki</a> color scheme
   tags: [Jekyll, Liquid, HTML, CSS, JavaScript]
@@ -109,7 +109,7 @@
 - slug: word2eq
   title: Word2Eq
   start: "2024-04"
-  status: active
+  status: done
   domains: [AI/ML, Backend/infra]
   summary: A reproducible training pipeline and SLO-instrumented inference service that turns math word problems into verified equations
   tags: [Python, PyTorch, FastAPI, Docker, Prometheus, Kubernetes, GitHub Actions]
@@ -127,7 +127,7 @@
 - slug: metal-to-pod
   title: "Metal-to-Pod: self-hosted CI/CD"
   start: "2026-09"
-  status: active
+  status: done
   domains: [Backend/infra]
   summary: A commit-to-pod delivery path from VMware VMs to Kubernetes with no cloud services, run with SLOs, rollback, and failure drills
   tags: [Kubernetes, Bash, Go, Docker, Jenkins, Prometheus, Vagrant]
@@ -146,7 +146,7 @@
 - slug: personal-vpn
   title: Personal VPN
   start: "2026-10"
-  status: active
+  status: done
   domains: [Security, Backend/infra]
   summary: One-command private WireGuard server in the cloud, with a client tool and a written threat model
   tags: [Terraform, Go, Bash, WireGuard, Linux, nftables]
@@ -165,7 +165,7 @@
 - slug: cs2-tradeup-analysis
   title: The $2 billion patch note
   start: "2026-09"
-  status: active
+  status: done
   domains: [Data analysis]
   summary: A financial event study of how one game update repriced a multi-billion-dollar virtual item market overnight
   tags: [Python, pandas, NumPy, SciPy, Matplotlib, pytest]
@@ -183,7 +183,7 @@
 - slug: thousand-and-one-words
   title: The Thousand and One Words
   start: "2026-09"
-  status: active
+  status: done
   domains: [Learning tools]
   summary: A 100-chapter Arabian Nights comic epic that teaches the 1,000 most-used SAT words, generated from one script
   tags: [Python, HTML, SVG]

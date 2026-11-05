@@ -1,6 +1,6 @@
 ---
-title: About
-permalink: /about/
+title: Home
+redirect_from: /about/
 description: "About Senthen Velmurugan"
 ---
 

@@ -4,35 +4,22 @@ permalink: /projects/
 redirect_from: /experiments/
 description: "Projects by Senthen Velmurugan"
 ---
-<p class="small"><a href="{{ '/' | relative_url }}" class="muted">&larr; Output</a></p>
+<p class="small"><a href="{{ '/now/' | relative_url }}" class="muted">&larr; Now</a></p>
 <h1>Projects</h1>
 
 <!-- Entries live in _data/projects.yml. -->
+{% comment %} A timeline: active projects first (with a trailing dash on the date), then the rest; each newest first. {% endcomment %}
 {% assign projects = site.data.projects | sort: "start" | reverse %}
-
-{% comment %} Two groups: status active is In progress (green tag), status done is Done (grey box). Each is newest first. {% endcomment %}
 {% assign groups = "active,done" | split: "," %}
-{% for g in groups %}
-{% assign list = projects | where: "status", g %}
-{% if list.size > 0 %}
-<section>
-<p class="exp-group-label">{% include progress.html value=g %}</p>
-<ul class="entries">
-{% for p in list %}
-  <li class="entry" id="{{ p.slug }}">
-    <div class="entry-head">
-      <span class="entry-title">
-        {{ p.title }}
-      </span>
-      <span class="entry-when">{{ p.start | replace: "-", " " }}</span>
+<ul class="timeline">
+{% for g in groups %}{% assign list = projects | where: "status", g %}{% for p in list %}
+  <li class="timeline-row" id="{{ p.slug }}">
+    <span class="timeline-when">{{ p.start | replace: "-", " " }}{% if p.status == "active" %}&mdash;{% endif %}</span>
+    <div class="timeline-body">
+      <span class="entry-title">{{ p.title }}</span>
+      <p>{{ p.summary }}</p>
+      {% include project-links.html p=p %}
     </div>
-    <div class="entry-sub">{% for d in p.domains %}{% assign dc = d | downcase | replace: "/", "-" | replace: " ", "-" %}<span class="dom dom-{{ dc }}">{{ d }}</span>{% unless forloop.last %} · {% endunless %}{% endfor %}</div>
-    <div class="entry-desc"><p>{{ p.summary }}</p></div>
-    <div class="tags">{% for t in p.tags %}<span class="tag">{{ t }}</span>{% endfor %}</div>
-    {% include project-links.html p=p %}
   </li>
-{% endfor %}
+{% endfor %}{% endfor %}
 </ul>
-</section>
-{% endif %}
-{% endfor %}

@@ -6,7 +6,7 @@ description: "Resume of Senthen Velmurugan, Forward Deployed Software Engineer"
 projects: [pid-digitizer, dexpi-viewer, word2eq, campbell-woodworks, thai-sizzle]
 ---
 
-<p class="small"><a href="{{ '/' | relative_url }}" class="muted">&larr; Output</a></p>
+<p class="small"><a href="{{ '/now/' | relative_url }}" class="muted">&larr; Now</a></p>
 
 <!-- The one-page resume, focused on Forward Deployed Software Engineer roles, the same as main/Resume.tex
      in the Resume repository. The CV at /cv/ is this plus the projects that do not fit on one page. -->

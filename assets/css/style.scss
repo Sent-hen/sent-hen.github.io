@@ -496,8 +496,10 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 @media (max-width: 560px) {
   body { font-size: 16.5px; }
   .site-nav { flex-wrap: wrap; padding-bottom: 36px; }
-  .site-name { flex-basis: calc(100% - 110px); }
-  .nav-links { order: 3; justify-content: flex-start; flex-basis: 100%; }
+  /* the name on its own row; below it About and Now on the left, the switches on the right */
+  .site-nav { row-gap: 8px; }
+  .site-name { flex-basis: 100%; white-space: nowrap; }
+  .nav-links { flex: 1 1 0; justify-content: flex-start; }
   .entry-head { flex-direction: column; gap: 0; }
 }
 
@@ -596,7 +598,12 @@ span.dom { color: var(--accent); }
 }
 .status-active { color: var(--green); border-color: currentColor; }
 .status-done { color: var(--tx-2); border-color: currentColor; background: var(--ui); }   /* projects: Done */
-.exp-group-label { margin: 0 0 0.6em; }
+/* the Projects timeline: date on the left (YYYY MM), project on the right, a dotted line between rows */
+.timeline { list-style: none; margin: 0; padding: 0; }
+.timeline-row { display: grid; grid-template-columns: 6.5em minmax(0, 1fr); gap: 0 1em; padding: 0.9em 0; border-bottom: 1px dotted var(--ui-3); scroll-margin-top: 1em; }
+.timeline-row:last-child { border-bottom: none; }
+.timeline-when { color: var(--tx-2); font-size: 0.875em; font-variant-numeric: tabular-nums; white-space: nowrap; padding-top: 0.15em; }
+.timeline-body p { margin: 0.15em 0 0; color: var(--tx-2); }
 
 /* a pronunciation, e.g. under my name on the home page */
 .t-ph { color: var(--tx-2); font-weight: 400; font-size: 0.85em; white-space: nowrap; }

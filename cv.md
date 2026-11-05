@@ -9,7 +9,7 @@ projects: [pid-digitizer, dexpi-viewer, word2eq, campbell-woodworks, thai-sizzle
 additional: [metal-to-pod, personal-vpn, cs2-tradeup-analysis, personal-website, thousand-and-one-words]
 ---
 
-<p class="small"><a href="{{ '/' | relative_url }}" class="muted">&larr; Output</a></p>
+<p class="small"><a href="{{ '/now/' | relative_url }}" class="muted">&larr; Now</a></p>
 
 {% include cv-core.html title="Curriculum Vitae" pdf="Senthen-Velmurugan-CV.pdf" note="the resume plus every project" projects=page.projects %}
 

@@ -22,14 +22,14 @@ Every page is wrapped in the same head, nav, and footer.
 </html>
 ```
 
-## 2. Nav: Output
+## 2. Nav: About and Now
 
-The links after the name. Each entry is `Label:/url/` plus any other sections it should highlight for. Output is the site's front page (`/`), so it is highlighted only on `/` itself. The name on the left opens About (`/about/`).
+My name is plain text, not a link. After it come two links, About (`/`, the main page) and Now (`/now/`). Each entry is `Label:/url/` plus any other sections it should highlight for; `/` is matched only on the main page itself.
 
 `_includes/nav.html`
 
 ```liquid
-{% assign links = "Output:/:/projects/:/cv/:/resume/" | split: "," %}
+{% assign links = "About:/:/quality-of-life/:/stuff/,Now:/now/:/projects/:/cv/:/resume/" | split: "," %}
 ```
 
 ## 3. Theme toggle
@@ -73,7 +73,7 @@ A drafting-sheet look: the drawings are cream line art on the page color, each t
 
 The jumping spider photo across the top of the About page, below the nav, shown whole at the column width, with the caption "To cultivate a sense of curiosity" below it in the italic serif (`.banner-caption`). Credit is under [Credits](#credits).
 
-`assets/img/jumping-spider.webp`, `about.md`, `assets/css/style.scss` (`.banner`)
+`assets/img/jumping-spider.webp`, `index.md`, `assets/css/style.scss` (`.banner`)
 
 ```html
 <img class="banner" src="{{ '/assets/img/jumping-spider.webp' | relative_url }}" alt="…">
@@ -129,13 +129,13 @@ Below the UTC time, after [lutanho.net/fractal/sierpa.html](https://www.lutanho.
 
 Above and below the triangle: the same current UTC time as `YYYY MM DD HH:MM SS`, with no label, ticking every second. Empty without JavaScript.
 
-`assets/js/clock.js`, `about.md` (two `<time class="utc-clock">`), `assets/css/style.scss` (`.utc-clock`)
+`assets/js/clock.js`, `index.md` (two `<time class="utc-clock">`), `assets/css/style.scss` (`.utc-clock`)
 
 ## 8. About: the two halves
 
 The 0 → 1 ripple (section 9) sits first, then "Who I am" and "Who am I" side by side. "Who I am" shows my name in three rows: Tamil (சேந்தன்), English (Senthen), pronunciation (SAYN-dhun) (`.name-rows`). "Who am I" ends with the "Currently mastering…" list (`.iam`, `.iam-list`; each item stays on one line on every screen, shrinking with the screen on phones); the last item under Currently mastering is an empty box (`.blank-box`) that opens Stuff, followed by "I like great storytelling". The site note ("This is a site where I keep what I'm creating") and "Open to FDSE roles in the Pacific Northwest / Texas" (`.open-to`) close the column.
 
-`about.md`
+`index.md`
 
 ```html
 <div class="duality">
@@ -159,7 +159,7 @@ Circles that all touch at 0, each 1.17× the last; growing the group by 1.17× m
 
 Below the ripple: the same circles seen edge-on, drawn as a wave whose crests sit where each circle reaches its right edge. Its height grows with distance like the circles, so it uses the same `.wave` animation and moves in step with the ripple, 0 to 1.
 
-`_includes/ripple-side.html` (generated wave), `about.md`
+`_includes/ripple-side.html` (generated wave), `index.md`
 
 ## 9b. Quality of life
 
@@ -183,14 +183,16 @@ To change an item, edit it in `_data/stuff.yml` (the order there is the order on
   items: []                 # a category with no items shows its title alone
 ```
 
-## 16. Output
+## 16. Now
 
-The front page, at `/` (old `/output/` links redirect here). Under the title, "Open to FDSE roles · Pacific Northwest / Texas preferred, open to relocation anywhere in the US". Then a highlighted panel (`.highlight`) with two groups, **Technical** (P&ID Digitizer, DEXPI P&ID Viewer, Word2Eq) then **Non-technical** (Campbell Woodworks, Thai Sizzle); P&ID Digitizer and DEXPI P&ID Viewer get the strongest highlight, a green rule and title (`.entry-star`). The groups and the starred projects are listed by slug in the front matter of `output.html`:
+`/now/` (old `/output/` links redirect here). Under the title, "Open to FDSE roles · Pacific Northwest / Texas preferred, open to relocation anywhere in the US". Then a highlighted panel (`.highlight`) with three groups: **Actively working on** (P&ID Digitizer), **Technical** (DEXPI P&ID Viewer, Word2Eq), and **Non-technical** (Campbell Woodworks, Thai Sizzle). P&ID Digitizer and DEXPI P&ID Viewer get the strongest highlight, a green rule and title (`.entry-star`). The groups and the starred projects are listed by slug in the front matter of `now.html`:
 
 ```yaml
 highlight:
+  - group: Actively working on
+    projects: [pid-digitizer]
   - group: Technical
-    projects: [pid-digitizer, dexpi-viewer, word2eq]
+    projects: [dexpi-viewer, word2eq]
   - group: Non-technical
     projects: [campbell-woodworks, thai-sizzle]
 star: [pid-digitizer, dexpi-viewer]
@@ -198,11 +200,13 @@ star: [pid-digitizer, dexpi-viewer]
 
 After the panel, the categories, each word on its own line: **Projects** (opens `/projects/`), a rule, then **Resume / CV** (open `/resume/` and `/cv/`).
 
-`output.html`, `assets/css/style.scss` (`.output-stack`)
+`now.html`, `assets/css/style.scss` (`.highlight`, `.output-stack`)
 
 ## 17. Projects
 
-Everything I've built or tried, in two groups, In progress (`status: active`, a green tag) and Done (`status: done`, a grey box), each newest first by `start`. The tag is `_includes/progress.html`, also used on Output. Under each project, on both pages, "Note" opens its four bullets, "Site" links the live site when there is one (`site:`), and "Code" links the repository (`_includes/project-links.html`). The four bullets follow a pattern without labelling it: the idea, what stood against it, what I built, what's next. Dates show as YYYY MM. Old `/experiments/` links redirect here.
+A timeline: the date on the left as YYYY MM, the project on the right (title, one sentence, then Note / Site / Code), one row each with a dotted line between. Projects with `status: active` come first, with a trailing dash (`2026 10—`), then the rest; each newest first by `start`. "Note" opens the four bullets, which follow a pattern without labelling it: the idea, what stood against it, what I built, what's next. Old `/experiments/` links redirect here.
+
+Set `status: active` on whatever I am working on now, and also change its date in `shared/fdse-core.tex` or `master-cv/CV.tex` in the Resume repository (`2026 -- In Progress`), since the CV and resume pages show "In progress" from the same status.
 
 `projects.html`, `_data/projects.yml`
 
@@ -232,7 +236,7 @@ Everything I've built or tried, in two groups, In progress (`status: active`, a 
 
 ## 19a. Resume
 
-`/resume/`: the one-page resume, focused on Forward Deployed Software Engineer roles, the same as `main/Resume.tex`. The header, Education, Experience (KloudGin from the internship recommendation letter), and the five projects are `_includes/cv-core.html`, shared with `/cv/`, just as `shared/fdse-header.tex` and `shared/fdse-core.tex` are shared by the two PDFs. Change a bullet in both places: the `.tex` file and `_data/projects.yml` (or `cv-core.html` for experience). On Output, "Resume" comes first, then "CV".
+`/resume/`: the one-page resume, focused on Forward Deployed Software Engineer roles, the same as `main/Resume.tex`. The header, Education, Experience (KloudGin from the internship recommendation letter), and the five projects are `_includes/cv-core.html`, shared with `/cv/`, just as `shared/fdse-header.tex` and `shared/fdse-core.tex` are shared by the two PDFs. Change a bullet in both places: the `.tex` file and `_data/projects.yml` (or `cv-core.html` for experience). On Now, "Resume" comes first, then "CV".
 
 **PDFs.** Each page links a PDF built from LaTeX in the Resume repository: `assets/pdf/Senthen-Velmurugan-Resume.pdf` (one page) and `assets/pdf/Senthen-Velmurugan-CV.pdf` (two pages). These copies have the phone number covered by a black bar (the digits are not in the files at all); the PDFs in the Resume repository keep it. To update them, run `bash build-public.sh` in the Resume repository, which builds both and writes them here. Skills on both pages are only Languages, Frameworks, and Tools.
 
