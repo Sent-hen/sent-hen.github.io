@@ -238,7 +238,7 @@ Set `status: active` on whatever I am working on now, and also change its date i
 
 `/resume/`: the one-page resume, focused on Forward Deployed Software Engineer roles, the same as `main/Resume.tex`. The header, Education, Experience (KloudGin from the internship recommendation letter), and the five projects are `_includes/cv-core.html`, shared with `/cv/`, just as `shared/fdse-header.tex` and `shared/fdse-core.tex` are shared by the two PDFs. Change a bullet in both places: the `.tex` file and `_data/projects.yml` (or `cv-core.html` for experience). On Now, "Resume" comes first, then "CV".
 
-**PDFs.** Each page links a PDF built from LaTeX in the Resume repository: `assets/pdf/Senthen-Velmurugan-Resume.pdf` (one page) and `assets/pdf/Senthen-Velmurugan-CV.pdf` (two pages). These copies have the phone number covered by a black bar (the digits are not in the files at all); the PDFs in the Resume repository keep it. To update them, run `bash build-public.sh` in the Resume repository, which builds both and writes them here. Skills on both pages are only Languages, Frameworks, and Tools.
+**PDFs.** Each page links a PDF built from LaTeX in the Resume repository: `assets/pdf/Senthen-Velmurugan-Resume.pdf` (one page) and `assets/pdf/Senthen-Velmurugan-CV.pdf` (two pages). The resume PDF shows the phone number. The CV copy has it covered by a black bar (the digits are not in that file at all); the CV PDF in the Resume repository keeps it. To update them, run `bash build-public.sh` in the Resume repository, which builds both and writes them here. A Word version of the resume is in the Resume repository (`main/Resume.docx`), not on the site. Skills on both pages are only Languages, Frameworks, and Tools.
 
 `resume.md`
 
