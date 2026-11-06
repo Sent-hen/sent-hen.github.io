@@ -209,8 +209,8 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 }
 .sierpinski .sier-fill { fill: var(--tx); }
 
-.utc-clock { display: block; width: 100%; white-space: nowrap; margin-bottom: -8px; text-align: center; font-size: 0.72em; color: var(--tx-2); font-variant-numeric: tabular-nums; }
-.utc-clock-below { margin: -8px 0 0; }
+.clock { display: block; width: 100%; white-space: nowrap; margin-bottom: -8px; text-align: center; font-size: 0.72em; color: var(--tx-2); font-variant-numeric: tabular-nums; }
+.clock-below { margin: -8px 0 0; }
 
 /* captions: uppercase by default (Time); italic serif for the tiramisu and the formula */
 .tile-caption { width: 100%; overflow-wrap: break-word; margin: -8px 0 0; text-align: center; font-size: 0.7em; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tx-2); }
@@ -400,7 +400,7 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
   .intro-side { width: 96px; }
   .intro-text { padding-left: 14px; }
   .cake, .golden-spiral, .sierpinski { width: 96px; height: 96px; }
-  .utc-clock { font-size: 0.55em; white-space: normal; }   /* the date, then the time and UTC, in the 96px column */
+  .clock { font-size: 0.55em; white-space: normal; }   /* the date, then the time and zone, in the 96px column */
   .tile-caption { font-size: 0.6em; }
   .iam-list { font-size: min(1em, 4vw); padding-left: 0.8em; }   /* each item stays on one line */
 }

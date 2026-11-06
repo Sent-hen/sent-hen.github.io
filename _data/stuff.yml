@@ -1,4 +1,4 @@
-# Stuff (/stuff/). Every category is rows of pairs: 1 / 2, then 3 / 4, and so on, in the order written here. Order and pairings are deliberate.
+# Stuff (/stuff/). Every category is rows of pairs: 1 / 2, then 3 / 4, and so on, in the order written here: oldest to newest, by release date.
 # art:    the poster or cover, in assets/img/stuff/
 # also:   more posters this one fades through in turn; each can have its own title, creator, and year
 # square: true for a category with square covers (the rest are 2:3 posters)
@@ -6,37 +6,52 @@
 
 - label: Cinema
   items:
-    - { title: "WALL-E", creator: "Andrew Stanton", year: 2008, art: wall-e.jpg }
     - { title: "The Truman Show", creator: "Peter Weir", year: 1998, art: the-truman-show.jpg }
-    - { title: "The Fall", creator: "Tarsem Singh", year: 2006, art: the-fall-ornate.jpg }
-    - { title: "Children of Men", creator: "Alfonso Cuarón", year: 2006, art: children-of-men.jpg }
-    - { title: "Ratatouille", creator: "Brad Bird", year: 2007, art: ratatouille.jpg }
     - { title: "V for Vendetta", creator: "James McTeigue", year: 2005, art: v-for-vendetta-film.jpg }
+    - { title: "Children of Men", creator: "Alfonso Cuarón", year: 2006, art: children-of-men.jpg }
+    - { title: "The Fall", creator: "Tarsem Singh", year: 2006, art: the-fall-ornate.jpg }
+    - { title: "Ratatouille", creator: "Brad Bird", year: 2007, art: ratatouille.jpg }
+    - { title: "WALL-E", creator: "Andrew Stanton", year: 2008, art: wall-e.jpg }
 
 - label: Music
   square: true
   items:                    # albums; Blue Monday was a single, so it keeps its own name and sleeve
-    - { title: "Blue Monday", creator: "New Order", year: 1983, art: blue-monday.jpg }
-    - { title: "American Pie", creator: "Don McLean", year: 1971, art: american-pie.jpg }
     - { title: "In the Court of the Crimson King", creator: "King Crimson", year: 1969, art: in-the-court-of-the-crimson-king.jpg }
-    - { title: "Agents of Fortune", creator: "Blue Öyster Cult", year: 1976, art: agents-of-fortune.jpg }
+    - { title: "American Pie", creator: "Don McLean", year: 1971, art: american-pie.jpg }
     - { title: "Led Zeppelin IV", creator: "Led Zeppelin", year: 1971, art: led-zeppelin-iv.jpg }
+    - { title: "Wish You Were Here", creator: "Pink Floyd", year: 1975, art: wish-you-were-here.jpg }
+    - { title: "Agents of Fortune", creator: "Blue Öyster Cult", year: 1976, art: agents-of-fortune.jpg }
+    - { title: "Blue Monday", creator: "New Order", year: 1983, art: blue-monday.jpg }
+    - { title: "OK Computer", creator: "Radiohead", year: 1997, art: ok-computer.jpg }
+    - { title: "Is This It", creator: "The Strokes", year: 2001, art: is-this-it.jpg }
+    - { title: "In Rainbows", creator: "Radiohead", year: 2007, art: in-rainbows.jpg }
     - { title: "Random Access Memories", creator: "Daft Punk", year: 2013, art: random-access-memories.jpg }
     - { title: "The New Abnormal", creator: "The Strokes", year: 2020, art: the-new-abnormal.jpg }
 
 - label: Games
-  items:
-    - { title: "Portal 2", creator: "Joshua Weier", year: 2011, art: portal-2.png }
+  items:                    # Project Zomboid has no single lead, so it credits the studio; its year is its 2013 early access
     - { title: "BioShock", creator: "Ken Levine", year: 2007, art: bioshock.jpg }
-    - { title: "Dead Space", creator: "Roman Campos-Oriola", year: 2023, art: dead-space.jpg }
+    - { title: "Team Fortress 2", creator: "Robin Walker", year: 2007, art: team-fortress-2.jpg }
+    - { title: "Portal 2", creator: "Joshua Weier", year: 2011, art: portal-2.png }
+    - { title: "Project Zomboid", creator: "The Indie Stone", year: 2013, art: project-zomboid.jpg }
     - { title: "Dark Souls II", creator: "Tomohiro Shibuya", year: 2014, art: dark-souls-ii.png, also: [{ art: dark-souls-ii-alt.jpg }] }
+    - { title: "The Binding of Isaac: Rebirth", creator: "Edmund McMillen", year: 2014, art: the-binding-of-isaac.jpg }
+    - { title: "Undertale", creator: "Toby Fox", year: 2015, art: undertale.jpg }
+    - { title: "SOMA", creator: "Thomas Grip", year: 2015, art: soma.jpg }
+    - { title: "Firewatch", creator: "Olly Moss", year: 2016, art: firewatch.jpg }
+    - { title: "Hollow Knight", creator: "Ari Gibson", year: 2017, art: hollow-knight.jpg }
+    - { title: "The Henry Stickmin Collection", creator: "Marcus Neves", year: 2020, art: henry-stickmin.jpg }
+    - { title: "Risk of Rain 2", creator: "Duncan Drummond", year: 2020, art: risk-of-rain-2.jpg }
+    - { title: "Dead Space", creator: "Roman Campos-Oriola", year: 2023, art: dead-space.jpg }
 
 - label: Literature
-  items:                    # Hitchhiker's and Stormlight stand for their whole series; the year is the first book, and Stormlight's cover is The Way of Kings
+  items:                    # Lord of the Rings, Hitchhiker's, and Stormlight stand for their whole series; the year is the first book, and Stormlight's cover is The Way of Kings
+    - { title: "The Lord of the Rings", creator: "J.R.R. Tolkien", year: 1954, art: the-lord-of-the-rings.jpg }
+    - { title: "Dune", creator: "Frank Herbert", year: 1965, art: dune.jpg }
     - { title: "The Godfather", creator: "Mario Puzo", year: 1969, art: the-godfather.jpg }
     - { title: "The Ultimate Hitchhiker's Guide to the Galaxy", creator: "Douglas Adams", year: 1979, art: hitchhikers-guide.jpg }
-    - { title: "The Stormlight Archive", creator: "Brandon Sanderson", year: 2010, art: stormlight-archive.jpg }
     - { title: "World War Z", creator: "Max Brooks", year: 2006, art: world-war-z.webp }
+    - { title: "The Stormlight Archive", creator: "Brandon Sanderson", year: 2010, art: stormlight-archive.jpg }
 
 - label: Graphic Novels
   items:                    # creator is the artist; the year is when it began

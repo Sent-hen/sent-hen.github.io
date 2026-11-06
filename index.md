@@ -17,9 +17,9 @@ description: "About Senthen Velmurugan"
   </figure>
   <p class="tile-caption tile-serif">A plate of tiramisu</p>
   <script src="{{ '/assets/js/cake.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
-  <time class="utc-clock"></time>
+  <time class="clock" data-zone="America/Chicago"></time>
   {% include sierpinski.html %}
-  <time class="utc-clock utc-clock-below"></time>
+  <time class="clock clock-below" data-zone="UTC"></time>
   <p class="tile-caption">Time</p>
   {% include golden-spiral.html %}
   <p class="tile-caption tile-formula" aria-label="a plus b over a equals a over b"><span class="frac"><span>a + b</span><span>a</span></span> = <span class="frac"><span>a</span><span>b</span></span></p>
@@ -40,7 +40,7 @@ description: "About Senthen Velmurugan"
     </section>
     <section>
       <p class="label">Who am I</p>
-      <p>Someone who uses technology to increase <a href="{{ '/quality-of-life/' | relative_url }}">quality of life</a></p>
+      <p>Someone who uses technology to increase Quality of Life.</p>
       <p class="iam">Currently mastering&hellip;</p>
       <ul class="iam-list">
         <li>linguistics</li>
