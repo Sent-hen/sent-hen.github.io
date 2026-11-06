@@ -9,7 +9,7 @@
   items:
     - { title: "WALL-E", creator: "Andrew Stanton", year: 2008, art: wall-e.jpg, also: [{ title: "Ratatouille", creator: "Brad Bird", year: 2007, art: ratatouille.jpg }] }
     - { title: "The Truman Show", creator: "Peter Weir", year: 1998, art: the-truman-show.jpg }
-    - { title: "The Fall", creator: "Tarsem Singh", year: 2006, art: the-fall-ornate.jpg, also: [{ art: the-fall.jpg }] }
+    - { title: "The Fall", creator: "Tarsem Singh", year: 2006, art: the-fall-ornate.jpg }
     - { title: "Children of Men", creator: "Alfonso Cuarón", year: 2006, art: children-of-men.jpg }
 
 - label: Music
@@ -28,15 +28,15 @@
     - { title: "Dark Souls II", creator: "Tomohiro Shibuya", year: 2014, art: dark-souls-ii.png, also: [{ art: dark-souls-ii-alt.jpg }] }
 
 - label: Literature
-  items:                    # Hitchhiker's and Stormlight stand for their whole series; the year is the first book, and Stormlight's covers are its five books
+  items:                    # Hitchhiker's and Stormlight stand for their whole series; the year is the first book, and Stormlight's cover is The Way of Kings
     - { title: "The Godfather", creator: "Mario Puzo", year: 1969, art: the-godfather.jpg }
     - { title: "The Ultimate Hitchhiker's Guide to the Galaxy", creator: "Douglas Adams", year: 1979, art: hitchhikers-guide.jpg }
-    - { title: "The Stormlight Archive", creator: "Brandon Sanderson", year: 2010, art: stormlight-archive.jpg, also: [{ art: stormlight-archive-2.jpg }, { art: stormlight-archive-3.jpg }, { art: stormlight-archive-4.jpg }, { art: stormlight-archive-5.jpg }] }
+    - { title: "The Stormlight Archive", creator: "Brandon Sanderson", year: 2010, art: stormlight-archive.jpg }
     - { title: "World War Z", creator: "Max Brooks", year: 2006, art: world-war-z.webp }
 
 - label: Graphic Novels
   items:                    # creator is the artist; the year is when it began
     - { title: "V for Vendetta", creator: "David Lloyd", year: 1982, art: v-for-vendetta.jpg }
-    - { title: "Watchmen", creator: "Dave Gibbons", year: 1986, art: watchmen.jpg, also: [{ art: watchmen-2.jpg }] }
-    - { title: "Berserk", creator: "Kentaro Miura", year: 1989, art: berserk.jpg, also: [{ art: berserk-2.jpg }, { art: berserk-3.jpg }, { art: berserk-4.jpg }, { art: berserk-5.jpg }, { art: berserk-6.jpg }, { art: berserk-7.jpg }, { art: berserk-8.jpg }] }
+    - { title: "Watchmen", creator: "Dave Gibbons", year: 1986, art: watchmen.jpg }
+    - { title: "Berserk", creator: "Kentaro Miura", year: 1989, art: berserk.jpg }
     - { title: "Vagabond", creator: "Takehiko Inoue", year: 1998, art: vagabond.jpg }
