@@ -209,7 +209,7 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 }
 .sierpinski .sier-fill { fill: var(--tx); }
 
-.utc-clock { display: block; width: 100%; white-space: nowrap; margin-bottom: -8px; text-align: center; font-size: 0.8em; color: var(--tx-2); font-variant-numeric: tabular-nums; }
+.utc-clock { display: block; width: 100%; white-space: nowrap; margin-bottom: -8px; text-align: center; font-size: 0.72em; color: var(--tx-2); font-variant-numeric: tabular-nums; }
 .utc-clock-below { margin: -8px 0 0; }
 
 /* captions: uppercase by default (Time); italic serif for the tiramisu and the formula */
@@ -290,13 +290,28 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 .still .qol-tactics .qol-bar { transform: scaleX(0.4); }
 .still .qol-operations .qol-bar { transform: scaleX(0.6); }
 
-/* Stuff: up to 4 per category, in pairs: 1 / 2 · 3 / 4 */
+/* Stuff: each category is two pairs: two posters with a slash between them. Below each, a dot, which becomes
+   title · creator · year on hover or tap. The hidden text keeps its space, so nothing moves. */
 .stuff-photo { margin: 0 0 24px; }
-.showcase { margin: 0 0 1.4em; }
-.showcase-label { font-size: 0.75em; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tx-2); margin: 0 0 0.3em; }
-.showcase-row { margin: 0; line-height: 1.6; }
-.showcase-item { white-space: nowrap; }   /* a title never breaks; the line breaks at the slashes */
-.showcase-sep { color: var(--tx-3); }
+.showcase { margin: 0 0 2.4em; }
+.showcase-label { font-size: 0.75em; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tx-2); margin: 0 0 0.6em; }
+.covers { list-style: none; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); column-gap: 10px; margin: 0 0 0.8em; padding: 0; }
+.covers li { display: contents; }
+.covers li:first-child > * { grid-column: 1; }
+.covers li:last-child > * { grid-column: 3; }
+.cover-stack { grid-row: 1; position: relative; }
+.covers img { display: block; width: 100%; aspect-ratio: 2 / 3; object-fit: cover; border: 1px dotted var(--tx-2); }
+.cover-stack img:not(:first-child) { position: absolute; inset: 0; opacity: 0; transition: opacity 0.8s ease; }
+.cover-stack img.on { opacity: 1; }
+.covers-square img { aspect-ratio: 1; }
+.covers li.cover-slash { display: block; grid-column: 2; grid-row: 1; align-self: center; color: var(--tx-2); }
+.cover-note { grid-row: 2; display: grid; margin: 6px 0 0; text-align: center; font-size: 0.8em; line-height: 1.3; color: var(--tx-2); }
+.cover-note span { grid-area: 1 / 1; }
+.cover-meta { visibility: hidden; }
+.covers li:hover .cover-meta.on,
+.covers li:focus-within .cover-meta.on { visibility: visible; }
+.covers li:hover .cover-dot,
+.covers li:focus-within .cover-dot { visibility: hidden; }
 
 /* Entries: Now, the resume, and the CV */
 .entries { list-style: none; margin: 0 0 1em; padding: 0; }
@@ -386,7 +401,7 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
   .intro-side { width: 96px; }
   .intro-text { padding-left: 14px; }
   .cake, .golden-spiral, .sierpinski { width: 96px; height: 96px; }
-  .utc-clock { font-size: 0.55em; }
+  .utc-clock { font-size: 0.55em; white-space: normal; }   /* the date, then the time and UTC, in the 96px column */
   .tile-caption { font-size: 0.6em; }
   .iam-list { font-size: min(1em, 4vw); padding-left: 0.8em; }   /* each item stays on one line */
 }

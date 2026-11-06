@@ -1,31 +1,42 @@
-# Stuff (/stuff/): each category shows its items left to right, in pairs: 1 / 2 · 3 / 4.
-# A category with no items shows its title alone. Hover shows creator and year.
+# Stuff (/stuff/). Every category is two pairs: 1 / 2, then 3 / 4, in the order written here. Order and pairings are deliberate.
+# art:    the poster or cover, in assets/img/stuff/
+# album:  Music only: title is my song, album is the release the cover belongs to
+# also:   more posters this one fades through in turn; each can have its own title, creator, and year
+# square: true for a category with square covers (the rest are 2:3 posters)
+# creator: the lead: director, artist, author, or band. Hover shows title · creator · year under the poster.
 
 - label: Cinema
   items:
-    - { title: "WALL-E", creator: "Andrew Stanton", year: 2008 }
-    - { title: "The Truman Show", creator: "Peter Weir", year: 1998 }
-    - { title: "The Fall", creator: "Tarsem Singh", year: 2006 }
-    - { title: "Children of Men", creator: "Alfonso Cuarón", year: 2006 }
+    - { title: "WALL-E", creator: "Andrew Stanton", year: 2008, art: wall-e.jpg, also: [{ title: "Ratatouille", creator: "Brad Bird", year: 2007, art: ratatouille.jpg }] }
+    - { title: "The Truman Show", creator: "Peter Weir", year: 1998, art: the-truman-show.jpg }
+    - { title: "The Fall", creator: "Tarsem Singh", year: 2006, art: the-fall-ornate.jpg, also: [{ art: the-fall.jpg }] }
+    - { title: "Children of Men", creator: "Alfonso Cuarón", year: 2006, art: children-of-men.jpg }
 
 - label: Music
+  square: true
   items:
-    - { title: "Blue Monday", creator: "New Order", year: 1983 }
-    - { title: "American Pie", creator: "Don McLean", year: 1971 }
-    - { title: "Stairway to Heaven", creator: "Led Zeppelin", year: 1971 }
-    - { title: "(Don't Fear) The Reaper", creator: "Blue Öyster Cult", year: 1976 }
+    - { title: "Blue Monday", album: "Blue Monday", creator: "New Order", year: 1983, art: blue-monday.jpg }
+    - { title: "American Pie", album: "American Pie", creator: "Don McLean", year: 1971, art: american-pie.jpg }
+    - { title: "In the Court of the Crimson King", album: "In the Court of the Crimson King", creator: "King Crimson", year: 1969, art: in-the-court-of-the-crimson-king.jpg }
+    - { title: "(Don't Fear) The Reaper", album: "Agents of Fortune", creator: "Blue Öyster Cult", year: 1976, art: agents-of-fortune.jpg }
 
 - label: Games
   items:
-    - { title: "Portal 2", creator: "Valve", year: 2011 }
-    - { title: "Firewatch", creator: "Campo Santo", year: 2016 }
-    - { title: "Dead Space", creator: "EA Redwood Shores", year: 2008 }
-    - { title: "Dark Souls II", creator: "FromSoftware", year: 2014 }
+    - { title: "Portal 2", creator: "Joshua Weier", year: 2011, art: portal-2.png }
+    - { title: "BioShock", creator: "Ken Levine", year: 2007, art: bioshock.jpg }
+    - { title: "Dead Space", creator: "Roman Campos-Oriola", year: 2023, art: dead-space.jpg }
+    - { title: "Dark Souls II", creator: "Tomohiro Shibuya", year: 2014, art: dark-souls-ii.png, also: [{ art: dark-souls-ii-alt.jpg }] }
 
 - label: Literature
-  items:                    # Hitchhiker's and Stormlight stand for their whole series; the year is the first book
-    - { title: "The Godfather", creator: "Mario Puzo", year: 1969 }
-    - { title: "The Ultimate Hitchhiker's Guide to the Galaxy", creator: "Douglas Adams", year: 1979 }
-    - { title: "The Stormlight Archive", creator: "Brandon Sanderson", year: 2010 }
-    - { title: "World War Z", creator: "Max Brooks", year: 2006 }
+  items:                    # Hitchhiker's and Stormlight stand for their whole series; the year is the first book, and Stormlight's covers are its five books
+    - { title: "The Godfather", creator: "Mario Puzo", year: 1969, art: the-godfather.jpg }
+    - { title: "The Ultimate Hitchhiker's Guide to the Galaxy", creator: "Douglas Adams", year: 1979, art: hitchhikers-guide.jpg }
+    - { title: "The Stormlight Archive", creator: "Brandon Sanderson", year: 2010, art: stormlight-archive.jpg, also: [{ art: stormlight-archive-2.jpg }, { art: stormlight-archive-3.jpg }, { art: stormlight-archive-4.jpg }, { art: stormlight-archive-5.jpg }] }
+    - { title: "World War Z", creator: "Max Brooks", year: 2006, art: world-war-z.webp }
 
+- label: Graphic Novels
+  items:                    # creator is the artist; the year is when it began
+    - { title: "V for Vendetta", creator: "David Lloyd", year: 1982, art: v-for-vendetta.jpg }
+    - { title: "Watchmen", creator: "Dave Gibbons", year: 1986, art: watchmen.jpg, also: [{ art: watchmen-2.jpg }] }
+    - { title: "Berserk", creator: "Kentaro Miura", year: 1989, art: berserk.jpg, also: [{ art: berserk-2.jpg }, { art: berserk-3.jpg }, { art: berserk-4.jpg }, { art: berserk-5.jpg }, { art: berserk-6.jpg }, { art: berserk-7.jpg }, { art: berserk-8.jpg }] }
+    - { title: "Vagabond", creator: "Takehiko Inoue", year: 1998, art: vagabond.jpg }

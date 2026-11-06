@@ -15,7 +15,7 @@ The rules for the site, then what each page is and where it lives. A static Jeky
 
 - The line about work is the same everywhere: **Open to FDSE roles · Pacific Northwest / Texas preferred, open to relocation anywhere in the US**.
 - Only `status: active` means I'm working on it now. Today that is the P&ID Digitizer alone.
-- Project dates on the web are `YYYY MM`. The clock is `YYYY-MM-DD HH:MM SS`.
+- Project dates on the web are `YYYY MM`. The clock is `YYYY-MM-DD HH:MM SS UTC`.
 
 ### Resume and CV
 
@@ -34,6 +34,10 @@ The rules for the site, then what each page is and where it lives. A static Jeky
 - A drafting sheet: cream line art on the page color, tiles framed in dots, dotted rules, dashed column dividers, small grids of squares in the corners. No arrows after labels.
 - Captions: Time is blocky uppercase. The banner, the tiramisu, and the formula are Gelasio italic, the only web font.
 - Every animation runs one way, 0 to 1. The Hi / Lo switch shows it all as still line art.
+
+### Stuff
+
+- Every category is two pairs of posters: `item 1 / item 2`, then `item 3 / item 4`, with a dot below each poster and `title · lead · year` on hover. The order and the pairings are deliberate, so keep them.
 
 ### Keeping it small
 
@@ -63,7 +67,7 @@ The layout is `_layouts/default.html`: `_includes/head.html`, `_includes/nav.htm
 | --- | --- | --- |
 | Banner | The jumping spider, with "To cultivate a sense of curiosity" | `assets/img/jumping-spider.webp` |
 | Tiramisu | A slice in 3/4 view on a level plate, an impossible perspective on purpose. Hi draws the slice and plate as falling 0s and 1s, 0 at the top and 1 at the bottom. Lo, or no JavaScript, shows the line drawing | `_includes/cake.html`, `assets/js/cake.js` |
-| UTC clock | Above and below the triangle, `YYYY-MM-DD HH:MM SS`, with no label | `assets/js/clock.js` |
+| UTC clock | Above and below the triangle, `YYYY-MM-DD HH:MM SS UTC` | `assets/js/clock.js` |
 | Sierpinski triangle | Pointing down, zooming forever into its bottom point, after [lutanho.net](https://www.lutanho.net/fractal/sierpa.html) | `_includes/sierpinski.html` |
 | Golden spiral | Fibonacci squares growing out of the eye, with the formula (a + b) / a = a / b as its caption | `_includes/golden-spiral.html` |
 | 0 → 1 ripple | Circles that touch at 0, each 1.17× the last | `_includes/ripples.html` |
@@ -79,12 +83,15 @@ To change the rain, edit `CELL` (digit size) and `SPEED` (rows per second) in `c
 
 ## Stuff
 
-`stuff.html`, `_data/stuff.yml`. A photo, then each category with up to four items in pairs, `1 / 2 · 3 / 4`, with creator and year on hover. Under a rule, a plain list written in the page. The order in the file is the order on the page.
+`stuff.html`, `_data/stuff.yml`. A photo, then a plain list of things I like doing, written in the page, and a rule. Then each category (Cinema, Music, Games, Literature, Graphic Novels) as two pairs of posters, with a `/` between the two in a pair. There are no titles on the page: below each poster is a `·`, and hovering or tapping turns it into `title · lead · year`, centered. The lead is the director, artist, author, or band. A poster with `also:` fades through its images in turn, one every 6 seconds (`assets/js/stuff.js`), pausing while hovered or tapped; Lo holds the first. Prefer covers with only the art, title, and author, in high resolution.
+
+Art is in `assets/img/stuff/`. Albums come from Apple Music through [Ben Dodson's artwork finder](https://bendodson.com/projects/apple-music-artwork-finder/), movie posters from [The Movie Database](https://www.themoviedb.org/), games from Steam and [SteamGridDB](https://www.steamgriddb.com/), and books and comics from Apple Books and [Open Library](https://openlibrary.org/). Music shows my song under the cover of its release (`album:`), and Blue Monday uses its floppy-disk single sleeve.
 
 ```yaml
-- label: Cinema
+- label: Music
+  square: true                # square covers; the rest are 2:3 posters
   items:
-    - { title: "WALL-E", creator: "Andrew Stanton", year: 2008 }
+    - { title: "Blue Monday", album: "Blue Monday", creator: "New Order", year: 1983, art: blue-monday.jpg }
 ```
 
 ## Now
@@ -155,6 +162,7 @@ Open `http://localhost:4000`. Pushing to `main` publishes through GitHub Pages i
 
 ## Credits
 
+- Posters and covers (`assets/img/stuff/`): the artwork belongs to the artists, studios, and publishers.
 - Banner (`assets/img/jumping-spider.webp`): a jumping spider on a leaf, a purchased stock photo used under its license. Photographer and source: _to fill in_.
 
 ## License
