@@ -1,24 +1,28 @@
-# Stuff (/stuff/). Every category is two pairs: 1 / 2, then 3 / 4, in the order written here. Order and pairings are deliberate.
+# Stuff (/stuff/). Every category is rows of pairs: 1 / 2, then 3 / 4, and so on, in the order written here. Order and pairings are deliberate.
 # art:    the poster or cover, in assets/img/stuff/
-# album:  Music only: title is my song, album is the release the cover belongs to
 # also:   more posters this one fades through in turn; each can have its own title, creator, and year
 # square: true for a category with square covers (the rest are 2:3 posters)
 # creator: the lead: director, artist, author, or band. Hover shows title · creator · year under the poster.
 
 - label: Cinema
   items:
-    - { title: "WALL-E", creator: "Andrew Stanton", year: 2008, art: wall-e.jpg, also: [{ title: "Ratatouille", creator: "Brad Bird", year: 2007, art: ratatouille.jpg }] }
+    - { title: "WALL-E", creator: "Andrew Stanton", year: 2008, art: wall-e.jpg }
     - { title: "The Truman Show", creator: "Peter Weir", year: 1998, art: the-truman-show.jpg }
     - { title: "The Fall", creator: "Tarsem Singh", year: 2006, art: the-fall-ornate.jpg }
     - { title: "Children of Men", creator: "Alfonso Cuarón", year: 2006, art: children-of-men.jpg }
+    - { title: "Ratatouille", creator: "Brad Bird", year: 2007, art: ratatouille.jpg }
+    - { title: "V for Vendetta", creator: "James McTeigue", year: 2005, art: v-for-vendetta-film.jpg }
 
 - label: Music
   square: true
-  items:
-    - { title: "Blue Monday", album: "Blue Monday", creator: "New Order", year: 1983, art: blue-monday.jpg }
-    - { title: "American Pie", album: "American Pie", creator: "Don McLean", year: 1971, art: american-pie.jpg }
-    - { title: "In the Court of the Crimson King", album: "In the Court of the Crimson King", creator: "King Crimson", year: 1969, art: in-the-court-of-the-crimson-king.jpg }
-    - { title: "(Don't Fear) The Reaper", album: "Agents of Fortune", creator: "Blue Öyster Cult", year: 1976, art: agents-of-fortune.jpg }
+  items:                    # albums; Blue Monday was a single, so it keeps its own name and sleeve
+    - { title: "Blue Monday", creator: "New Order", year: 1983, art: blue-monday.jpg }
+    - { title: "American Pie", creator: "Don McLean", year: 1971, art: american-pie.jpg }
+    - { title: "In the Court of the Crimson King", creator: "King Crimson", year: 1969, art: in-the-court-of-the-crimson-king.jpg }
+    - { title: "Agents of Fortune", creator: "Blue Öyster Cult", year: 1976, art: agents-of-fortune.jpg }
+    - { title: "Led Zeppelin IV", creator: "Led Zeppelin", year: 1971, art: led-zeppelin-iv.jpg }
+    - { title: "Random Access Memories", creator: "Daft Punk", year: 2013, art: random-access-memories.jpg }
+    - { title: "The New Abnormal", creator: "The Strokes", year: 2020, art: the-new-abnormal.jpg }
 
 - label: Games
   items:

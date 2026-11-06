@@ -8,7 +8,7 @@ The rules for the site, then what each page is and where it lives. A static Jeky
 
 - **About** (`/`) is the main page. **Now** (`/now/`) is what I'm doing and what I've made. They are the only two links in the nav.
 - My name in the nav is plain text, not a link.
-- Projects, Resume, and CV are reached from Now. Stuff and Quality of Life are reached from About.
+- Projects, Resume, and CV are reached from Now. A few of my favo(u)rite things (`/stuff/`) and Quality of Life are reached from About.
 - Old links keep working: `/about/`, `/output/`, `/experiments/`, and `/experience/` redirect.
 
 ### Words
@@ -35,9 +35,9 @@ The rules for the site, then what each page is and where it lives. A static Jeky
 - Captions: Time is blocky uppercase. The banner, the tiramisu, and the formula are Gelasio italic, the only web font.
 - Every animation runs one way, 0 to 1. The Hi / Lo switch shows it all as still line art.
 
-### Stuff
+### A few of my favo(u)rite things
 
-- Every category is two pairs of posters: `item 1 / item 2`, then `item 3 / item 4`, with a dot below each poster and `title · lead · year` on hover. The order and the pairings are deliberate, so keep them.
+- Every category is rows of paired posters: `item 1 / item 2`, then `item 3 / item 4`, and so on, with a dot below each poster and `title · lead · year` on hover. The order and the pairings are deliberate, so keep them.
 
 ### Keeping it small
 
@@ -73,7 +73,7 @@ The layout is `_layouts/default.html`: `_includes/head.html`, `_includes/nav.htm
 | 0 → 1 ripple | Circles that touch at 0, each 1.17× the last | `_includes/ripples.html` |
 | Ripple, side view | The same circles edge-on, drawn as a wave, moving in step | `_includes/ripple-side.html` |
 | Who I am | My name in Tamil, English, and pronunciation | `index.md` |
-| Who am I | Quality of life, what I'm currently mastering (the empty box opens Stuff), and what I like | `index.md` |
+| Who am I | Quality of life, what I'm currently mastering (the empty box opens A few of my favo(u)rite things), and what I like | `index.md` |
 
 To change the rain, edit `CELL` (digit size) and `SPEED` (rows per second) in `cake.js`. The files keep the old "cake" names.
 
@@ -81,17 +81,19 @@ To change the rain, edit `CELL` (digit size) and `SPEED` (rows per second) in `c
 
 `quality-of-life.html`. One graph: three dashed tracks, Strategy, Tactics, Operations, whose bars are always in flux, each on its own rhythm.
 
-## Stuff
+## A few of my favo(u)rite things
 
-`stuff.html`, `_data/stuff.yml`. A photo, then a plain list of things I like doing, written in the page, and a rule. Then each category (Cinema, Music, Games, Literature, Graphic Novels) as two pairs of posters, with a `/` between the two in a pair. There are no titles on the page: below each poster is a `·`, and hovering or tapping turns it into `title · lead · year`, centered. The lead is the director, artist, author, or band. Two posters shift, and only these: WALL-E with Ratatouille, and Dark Souls II between two covers. A poster with `also:` fades through its images, one every 6 seconds (`assets/js/stuff.js`), pausing while hovered or tapped; Lo holds the first. Prefer covers with only the art, title, and author, in high resolution.
+`stuff.html`, `_data/stuff.yml`, at `/stuff/`. A photo captioned "I like great craftsmanship", a rule, a plain list of things I like doing written in the page, and a rule. Then each category (Cinema, Music, Games, Literature, Graphic Novels) as rows of paired posters, with a `/` between the two in a pair. There are no titles on the page: below each poster is a `·`, and hovering or tapping turns it into `title · lead · year`, centered. The lead is the director, artist, author, or band. Music shows albums; Blue Monday was a single, so it keeps its own name and floppy-disk sleeve.
 
-Art is in `assets/img/stuff/`. Albums come from Apple Music through [Ben Dodson's artwork finder](https://bendodson.com/projects/apple-music-artwork-finder/), movie posters from [The Movie Database](https://www.themoviedb.org/), games from Steam and [SteamGridDB](https://www.steamgriddb.com/), and books and comics from Apple Books and [Open Library](https://openlibrary.org/). Music shows my song under the cover of its release (`album:`), and Blue Monday uses its floppy-disk single sleeve.
+Only Dark Souls II shifts between two covers. A poster with `also:` fades through its images, one every 6 seconds (`assets/js/stuff.js`), pausing while hovered or tapped; Lo holds the first. Prefer covers with only the art, title, and author, in high resolution.
+
+Art is in `assets/img/stuff/`. Albums come from Apple Music through [Ben Dodson's artwork finder](https://bendodson.com/projects/apple-music-artwork-finder/), movie posters from [The Movie Database](https://www.themoviedb.org/), games from Steam and [SteamGridDB](https://www.steamgriddb.com/), and books and comics from Apple Books and [Open Library](https://openlibrary.org/).
 
 ```yaml
 - label: Music
   square: true                # square covers; the rest are 2:3 posters
   items:
-    - { title: "Blue Monday", album: "Blue Monday", creator: "New Order", year: 1983, art: blue-monday.jpg }
+    - { title: "The New Abnormal", creator: "The Strokes", year: 2020, art: the-new-abnormal.jpg }
 ```
 
 ## Now
@@ -102,10 +104,8 @@ Art is in `assets/img/stuff/`. Albums come from Apple Music through [Ben Dodson'
 highlight:
   - group: Actively working on
     projects: [pid-digitizer]
-  - group: Technical
-    projects: [dexpi-viewer, word2eq]
-  - group: Non-technical
-    projects: [campbell-woodworks, thai-sizzle]
+  - group: Showcase
+    projects: [dexpi-viewer, word2eq, campbell-woodworks]
 star: [pid-digitizer, dexpi-viewer]
 ```
 

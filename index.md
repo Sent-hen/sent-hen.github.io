@@ -45,7 +45,7 @@ description: "About Senthen Velmurugan"
       <ul class="iam-list">
         <li>linguistics</li>
         <li>systems engineering</li>
-        <li><a href="{{ '/stuff/' | relative_url }}" class="blank-box" aria-label="Stuff"></a></li>
+        <li><a href="{{ '/stuff/' | relative_url }}" class="blank-box" aria-label="A few of my favo(u)rite things"></a></li>
       </ul>
       <p>I like good food and great conversations</p>
     </section>
