@@ -11,6 +11,6 @@
       {% endfor %}
     </ul>
   </details>
-  {% if p.site %}<a class="project-code" href="{{ p.site }}">Site</a>{% endif %}
-  {% if p.repo != "" %}<a class="project-code" href="{{ p.repo }}">Code</a>{% else %}<span class="project-code muted">Private repo</span>{% endif %}
+  {% if p.site %}<a href="{{ p.site }}">Site</a>{% endif %}
+  {% if p.repo != "" %}<a href="{{ p.repo }}">Code</a>{% else %}<span class="muted">Private repo</span>{% endif %}
 </div>

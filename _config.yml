@@ -1,12 +1,11 @@
 title: Senthen Velmurugan
 description: "Senthen Velmurugan"
-author: Senthen Velmurugan
 url: "https://sent-hen.github.io"
 baseurl: ""
 
 markdown: kramdown
 plugins:
-  - jekyll-redirect-from   # old /experiments/ and /experience/ links forward to /projects/ and /cv/
+  - jekyll-redirect-from   # old /experiments/, /experience/, /output/ and /about/ links keep working
 permalink: pretty
 
 defaults:
