@@ -133,7 +133,7 @@ Above and below the triangle: the same current UTC time as `YYYY MM DD HH:MM SS`
 
 ## 8. About: the two halves
 
-The 0 → 1 ripple (section 9) sits first, then "Who I am" and "Who am I" side by side. "Who I am" shows my name in three rows: Tamil (சேந்தன்), English (Senthen), pronunciation (SAYN-dhun) (`.name-rows`). "Who am I" ends with the "Currently mastering…" list (`.iam`, `.iam-list`; each item stays on one line on every screen, shrinking with the screen on phones); the last item under Currently mastering is an empty box (`.blank-box`) that opens Stuff, followed by "I like great storytelling". The site note ("This is a site where I keep what I'm creating") and "Open to FDSE roles in the Pacific Northwest / Texas" (`.open-to`) close the column.
+The 0 → 1 ripple (section 9) sits first, then "Who I am" and "Who am I" side by side. "Who I am" shows my name in three rows: Tamil (சேந்தன்), English (Senthen), pronunciation (SAYN-dhun) (`.name-rows`). "Who am I" ends with the "Currently mastering…" list (`.iam`, `.iam-list`; each item stays on one line on every screen, shrinking with the screen on phones); the last item under Currently mastering is an empty box (`.blank-box`) that opens Stuff, followed by "I like good food and great conversations". The site note ("This is a site where I keep what I'm creating") and "Open to FDSE roles in the Pacific Northwest / Texas" (`.open-to`) close the column.
 
 `index.md`
 
@@ -228,17 +228,17 @@ Set `status: active` on whatever I am working on now, and also change its date i
 
 ## 19. Curriculum Vitae
 
-`/cv/` (old `/experience/` links redirect here). The CV is the resume word for word, plus the projects that have outgrown one page, in the same bullet pattern (what was achieved, how it was measured, how it was done). It matches `master-cv/CV.tex` in the Resume repository: header, Education, Experience, Projects, then Additional projects, Skills, and Organizations.
+`/cv/` (old `/experience/` links redirect here). The CV has every resume bullet word for word, plus more bullets and the projects that have outgrown one page. Any bullet on it can be put on the resume, since each follows one pattern: what was achieved, how it was measured, how it was done. Within an entry, where the work used them, bullets run AI/ML, then Backend/Infra, then Cybersecurity. It matches `master-cv/CV.tex` in the Resume repository: header, Education, Experience, Projects, Additional projects, Skills, and Organizations (Artificial Intelligence Society, Mensa).
 
-`cv.md` lists its projects by slug in its front matter (`projects:` for the resume's, `additional:` for the rest, technical first). Each project's name and bullets come from `cv_title:` and `cv:` in `_data/projects.yml`, drawn by `_includes/cv-project.html` with the first five tags and the start year (plus "In progress" while `status: active`).
+`cv.md` lists its projects by slug in its front matter (`projects:` for the resume's, `additional:` for the rest). Each project's name and bullets come from `cv_title:` and `cv:` in `_data/projects.yml`, drawn by `_includes/cv-project.html` with the first five tags and the start year (plus "In progress" while `status: active`).
 
 `cv.md`, `_includes/cv-core.html`, `_includes/cv-project.html`, `assets/css/style.scss` (`.cv-head`, `.cv-section`)
 
 ## 19a. Resume
 
-`/resume/`: the one-page resume, focused on Forward Deployed Software Engineer roles, the same as `main/Resume.tex`. The header, Education, Experience (KloudGin from the internship recommendation letter), and the five projects are `_includes/cv-core.html`, shared with `/cv/`, just as `shared/fdse-header.tex` and `shared/fdse-core.tex` are shared by the two PDFs. Change a bullet in both places: the `.tex` file and `_data/projects.yml` (or `cv-core.html` for experience). On Now, "Resume" comes first, then "CV".
+`/resume/`: the one-page resume, focused on Forward Deployed Software Engineer roles, the same as `main/Resume.tex`. It shows only the bullets marked `resume: true` in `_data/projects.yml`, and in `_includes/cv-core.html` those outside `{% if include.full %}`. Change a bullet in both places: the `.tex` file and the site's file. On Now, "Resume" comes first, then "CV".
 
-**PDFs.** Each page links a PDF built from LaTeX in the Resume repository: `assets/pdf/Senthen-Velmurugan-Resume.pdf` (one page) and `assets/pdf/Senthen-Velmurugan-CV.pdf` (two pages). The resume PDF shows the phone number. The CV copy has it covered by a black bar (the digits are not in that file at all); the CV PDF in the Resume repository keeps it. To update them, run `bash build-public.sh` in the Resume repository, which builds both and writes them here. A Word version of the resume is in the Resume repository (`main/Resume.docx`), not on the site. Skills on both pages are only Languages, Frameworks, and Tools.
+**PDFs.** Each page links a PDF built from LaTeX in the Resume repository: `assets/pdf/Senthen-Velmurugan-Resume.pdf` (one page) and `assets/pdf/Senthen-Velmurugan-CV.pdf`. Both show the phone number; the web pages do not. To update them, run `bash build-public.sh` in the Resume repository, which builds both and writes them here. A Word version of the resume is in the Resume repository (`main/Resume.docx`), not on the site. Skills on both pages are only Languages, Frameworks, and Tools.
 
 `resume.md`
 

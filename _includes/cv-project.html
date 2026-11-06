@@ -1,6 +1,6 @@
 {%- comment -%}
   One project as it appears on /resume/ and /cv/ and in the PDFs: name, first five tags, year (and
-  "In progress" while active), and its cv: bullets from _data/projects.yml.
+  "In progress" while active), and its cv: bullets from _data/projects.yml (with full=true all of them, otherwise those marked resume: true).
   Usage: {% include cv-project.html slug="pid-digitizer" %}
 {%- endcomment -%}
 {%- assign p = site.data.projects | where: "slug", include.slug | first -%}
@@ -13,8 +13,8 @@
     <div class="entry-sub">{{ p.tags | slice: 0, 5 | join: ", " }}</div>
     <div class="entry-desc">
       <ul>
-        {% for b in p.cv %}<li>{{ b }}</li>
-        {% endfor %}
+        {% for b in p.cv %}{% if include.full or b.resume %}<li>{{ b.text }}</li>
+        {% endif %}{% endfor %}
       </ul>
     </div>
   </li>

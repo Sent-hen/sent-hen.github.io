@@ -8,8 +8,9 @@
 # repo      public repository URL; leave empty for private repos
 # site      live site URL, shown as a "Site" link; leave it out if there is none
 # cv_title  the project's name on /resume/ and /cv/ and in the PDFs
-# cv        two or three bullets, word for word the same as the resume and CV PDFs (Resume repository):
-#           what was achieved, how it was measured, how it was done
+# cv        bullets, word for word the same as the PDFs (Resume repository): what was achieved, how it was
+#           measured, how it was done. All are on /cv/; those with resume: true are also on /resume/.
+#           Order, where the project used them: AI/ML, then Backend/Infra, then Cybersecurity
 # bullets   four, shown under "Note", following a pattern without labelling it:
 #           the idea (thesis), what stood against it (antithesis), what I built (synthesis), what's next
 
@@ -22,8 +23,12 @@
   tags: [Jekyll, Liquid, HTML, CSS, Python, GitHub Actions]
   cv_title: "Thai Sizzle: Website for a Family Food Truck"
   cv:
-    - "Put a Thai food truck's menu, prices, hours, and location online, with all 13 dishes matched to its menu board"
-    - "Made it owner-editable with one data file per section, plus a weekly GitHub Action that refreshes the Google rating"
+    - text: "Put a Thai food truck's menu, prices, hours, and location online, with all 13 dishes matched to its menu board"
+      resume: true
+    - text: "Made it owner-editable with one data file per section, plus a weekly GitHub Action that refreshes the Google rating"
+      resume: true
+    - text: "Made it ready to grow: one config link turns every call button into online ordering through Squarespace, and one setting switches its Google structured data to a restaurant"
+    - text: "Kept the Google Places API key out of the browser by using it only at build time, as a GitHub Actions secret"
   repo: https://github.com/Sent-hen/thai-sizzle
   site: https://sent-hen.github.io/thai-sizzle/
   bullets:
@@ -41,8 +46,11 @@
   tags: [Jekyll, Liquid, HTML, CSS, Python]
   cv_title: "Campbell Woodworks: Storefront for a Family Woodshop"
   cv:
-    - "Put a family woodshop's work, once only in Facebook posts behind a login, in front of buyers at no running cost"
-    - "Covered 23 pieces with one Markdown file each, and call buttons instead of a cart, since the shop sells by phone"
+    - text: "Put a family woodshop's work, once only in Facebook posts behind a login, in front of buyers at no running cost"
+      resume: true
+    - text: "Covered 23 pieces with one Markdown file each, and call buttons instead of a cart, since the shop sells by phone"
+      resume: true
+    - text: "Generated the shop, gallery, and detail pages, with category filters, from those files, published as a static Jekyll site on GitHub Pages so there is nothing for the shop to run"
   repo: https://github.com/Sent-hen/CampbellWoodworks
   site: https://sent-hen.github.io/CampbellWoodworks/
   bullets:
@@ -60,9 +68,17 @@
   tags: [Python, PyTorch, OpenCV, FastAPI, Docker, NetworkX, SQLite]
   cv_title: "P&ID Digitizer: Scanned Drawings to Graphs"
   cv:
-    - "Turned scanned P&IDs into queryable graphs (GraphML, DEXPI 2.0.1 XML) at 0.915 edge F1 and 0.997 symbol mAP@0.5 on a 75-sheet test split by chaining symbol detection, line extraction, and graph assembly"
-    - "Found small symbols on 7,000 px sheets by fine-tuning a Faster R-CNN on overlapping 1024² tiles, merged across seams"
-    - "Sent only doubtful edges to a person by calibrating per-edge confidence for a review UI, shipped as a FastAPI job service in a non-root Docker image with strict mypy and 99 pytest cases in CI"
+    - text: "Turned scanned P&IDs into queryable graphs (GraphML, DEXPI 2.0.1 XML) at 0.915 edge F1 and 0.997 symbol mAP@0.5 on a 75-sheet test split by chaining symbol detection, line extraction, and graph assembly"
+      resume: true
+    - text: "Found small symbols on 7,000 px sheets by fine-tuning a Faster R-CNN on overlapping 1024² tiles, merged across seams"
+      resume: true
+    - text: "Kept training cheap, under 2 GPU-hours on a laptop RTX 4070, by fine-tuning a torchvision detector on tiles with 256 px overlap"
+    - text: "Traced 80% of the remaining misses to nodes 2–4 px off rather than topology errors through error analysis, and reported the real-drawing gap openly (0.49 edge F1 on 8 real sheets)"
+    - text: "Kept the evaluation honest by running each test split exactly once and recording 26 design decisions as they were made"
+    - text: "Sent only doubtful edges to a person by calibrating per-edge confidence for a review UI, shipped as a FastAPI job service in a non-root Docker image with strict mypy and 99 pytest cases in CI"
+      resume: true
+    - text: "Made the service reliable to run with SQLite job state and timeouts, in a CPU image that runs end to end with <code>make demo</code>"
+    - text: "Limited what a bad upload or model file can do with upload size and type limits and a SHA-1-checked model"
   repo: https://github.com/Sent-hen/PID-Digitizer
   bullets:
     - "Engineering drawings (P&IDs) hold a plant's process logic, but as scanned images no software can query them; as a graph (GraphML or DEXPI 2.0.1 XML) they can be"
@@ -79,8 +95,14 @@
   tags: [JavaScript, Python, XML, SVG]
   cv_title: "DEXPI P&ID Viewer"
   cv:
-    - "Let anyone open a DEXPI 2.0.1 plant model with nothing installed or uploaded by building a zero-dependency, single-page viewer that lays out diagrams from topology alone, with no stored coordinates"
-    - "Caught invalid files before downstream tools do by validating structure and the metamodel in the browser and a CLI"
+    - text: "Let anyone open a DEXPI 2.0.1 plant model with nothing installed or uploaded by building a zero-dependency, single-page viewer that lays out diagrams from topology alone, with no stored coordinates"
+      resume: true
+    - text: "Drew diagrams with no stored coordinates by building a Sugiyama-style layered flow layout, a stress-majorization network layout, and an auto mode that switches per connected group"
+    - text: "Caught invalid files before downstream tools do by validating structure and the metamodel in the browser and a CLI"
+      resume: true
+    - text: "Checked models against the Core and Plant 2.0.1 specs (class existence, property kinds, target types, multiplicity bounds) by generating a compact class table from the spec XML with a Python build script"
+    - text: "Gave data pipelines a headless path with a Python CLI validator (lxml) that runs both XSD and metamodel checks"
+    - text: "Made large models navigable with equipment, valve, and instrument symbols, a reference inspector, a model tree, ID and tag search, and SVG export"
   repo: https://github.com/Sent-hen/DEXPI-PID-Viewer
   bullets:
     - "DEXPI is the open exchange format for P&IDs, so a valid file should be all you need to see and check a plant model"
@@ -97,8 +119,8 @@
   tags: [Jekyll, Liquid, HTML, CSS, JavaScript]
   cv_title: "Personal Website: sent-hen.github.io"
   cv:
-    - "Published a personal site with nothing to run or maintain as a static Jekyll site on GitHub Pages, where every list is one data file, so adding a project is a one-file change"
-    - "Drew its animations (0/1 rain, golden spiral, Sierpinski triangle, ripple) as generated SVG and plain JavaScript with no libraries, with a Hi/Lo switch for still line art"
+    - text: "Published a personal site with nothing to run or maintain as a static Jekyll site on GitHub Pages, where every list is one data file, so adding a project is a one-file change"
+    - text: "Drew its animations (0/1 rain, golden spiral, Sierpinski triangle, ripple) as generated SVG and plain JavaScript with no libraries, with a Hi/Lo switch for still line art"
   repo: https://github.com/Sent-hen/sent-hen.github.io
   bullets:
     - "A personal site should show what I make, with nothing to run or maintain"
@@ -115,8 +137,14 @@
   tags: [Python, PyTorch, FastAPI, Docker, Prometheus, Kubernetes, GitHub Actions]
   cv_title: "Word2Eq: Seq2Seq Training & Serving"
   cv:
-    - "Took valid equations from 97.4% to 100% on 1,000 SVAMP problems by rebuilding a non-functional prototype into a train, evaluate, and serve platform for a 6.4M-parameter Transformer with grammar-constrained decoding"
-    - "Served 150 requests/s at 73 ms p95 on one laptop CPU by micro-batching behind a bounded queue that sheds overload with a fast 503, and made training preemption-safe with bit-identical resumes"
+    - text: "Took valid equations from 97.4% to 100% on 1,000 SVAMP problems by rebuilding a non-functional prototype into a train, evaluate, and serve platform for a 6.4M-parameter Transformer with grammar-constrained decoding"
+      resume: true
+    - text: "Eliminated malformed outputs by masking logits with a pushdown-automaton grammar during decoding, then checking every answer symbolically before returning it"
+    - text: "Made every model traceable to its inputs with versioned artifacts whose model cards record a config fingerprint, SHA-256 data hashes, and the git revision"
+    - text: "Made resumed training bit-identical by checkpointing optimizer, scheduler, RNG, and in-epoch position atomically on SIGTERM, verified by 32 pytest cases in CI"
+    - text: "Served 150 requests/s at 73 ms p95 on one laptop CPU by micro-batching behind a bounded queue that sheds overload with a fast 503, and made training preemption-safe with bit-identical resumes"
+      resume: true
+    - text: "Guarded releases with a CI promotion gate on accuracy and validity, and ran the service against availability, latency, and answer-integrity SLOs with burn-rate alerts, a runbook, and a Kubernetes manifest with probes, a PDB, and an HPA"
   repo: https://github.com/Sent-hen/Word2Eq
   bullets:
     - "A small model should be able to turn a math word problem into an equation you can trust, and be trained and served like a real system"
@@ -133,9 +161,11 @@
   tags: [Kubernetes, Bash, Go, Docker, Jenkins, Prometheus, Vagrant]
   cv_title: "Metal-to-Pod: Self-Hosted CI/CD to Kubernetes"
   cv:
-    - "Took every commit to a running pod with no cloud services on 4 VMware VMs (16 GB laptop) by building a kubeadm cluster with default-deny network policy, a git hook into Jenkins as code, and a private TLS registry"
-    - "Made releases safe to automate by gating on unit tests, shipping ∼10 MB distroless non-root images tagged by commit, and rolling back automatically when an external smoke test fails"
-    - "Ran a Go delivery-promise service against 99.5% availability and 300 ms latency SLOs, with burn-rate alerts unit-tested in promtool, 8 failure drills, and 5 runbooks"
+    - text: "Took every commit to a running pod with no cloud services on 4 VMware VMs (16 GB laptop) by building a kubeadm cluster with default-deny network policy, a git hook into Jenkins as code, and a private TLS registry"
+    - text: "Made releases safe to automate by gating on unit tests, shipping ∼10 MB distroless non-root images tagged by commit, and rolling back automatically when an external smoke test fails"
+    - text: "Ran a Go delivery-promise service against 99.5% availability and 300 ms latency SLOs, with burn-rate alerts unit-tested in promtool, 8 failure drills, and 5 runbooks"
+    - text: "Made the cluster reproducible from one env file with Vagrant and shell, on containerd and Calico, by fixing the dual-NIC node IP and CNI interface issues explicitly"
+    - text: "Limited the blast radius of a bad deploy with namespaces, Pod Security, quotas, and a namespace-scoped ServiceAccount instead of cluster-admin"
   repo: https://github.com/Sent-hen/metal-to-pod
   bullets:
     - "Every commit should reach a running pod on its own, safely, without renting a cloud to do it"
@@ -152,9 +182,11 @@
   tags: [Terraform, Go, Bash, WireGuard, Linux, nftables]
   cv_title: "Personal VPN"
   cv:
-    - "Kept traffic on untrusted networks private without trusting a commercial VPN by provisioning a hardened WireGuard server on Hetzner for about €4/month with one <code>terraform apply</code>"
-    - "Kept every private key off the network and out of Terraform state by generating keys on each device and the server key on first boot, managed with <code>vpnctl</code>, a Go CLI with 11 unit tests"
-    - "Cut the attack surface to one UDP port with default-deny nftables and cloud firewall rules, and documented a threat model of what it does and does not protect"
+    - text: "Kept traffic on untrusted networks private without trusting a commercial VPN by provisioning a hardened WireGuard server on Hetzner for about €4/month with one <code>terraform apply</code>"
+    - text: "Let devices join or leave without rebuilding the server by writing a <code>vpn-peer</code> tool, plus a manual runbook that mirrors every automated step"
+    - text: "Kept every private key off the network and out of Terraform state by generating keys on each device and the server key on first boot, managed with <code>vpnctl</code>, a Go CLI with 11 unit tests"
+    - text: "Cut the attack surface to one UDP port with default-deny nftables and cloud firewall rules, and documented a threat model of what it does and does not protect"
+    - text: "Hardened the server from first boot with cloud-init SSH hardening, key-only SSH limited to listed admin CIDRs, fail2ban, and unattended security upgrades"
   repo: https://github.com/Sent-hen/VPN
   bullets:
     - "My traffic on untrusted networks (café Wi-Fi, hotels) should be private without handing that trust to a commercial VPN"
@@ -171,8 +203,10 @@
   tags: [Python, pandas, NumPy, SciPy, Matplotlib, pytest]
   cv_title: "The $2 Billion Patch Note: Market Event Study"
   cv:
-    - "Measured how Counter-Strike 2's October 2025 trade-up update repriced about 3,900 items (a 19% drawdown, trough at 25 hours) by building price indices from daily Steam market medians"
-    - "Showed newly useful Covert inputs gained 43.5% mean abnormal return within 48 hours (t = 8.95) with a constant-mean event study by rarity and wear, in a tested Python CLI that regenerates every figure"
+    - text: "Measured how Counter-Strike 2's October 2025 trade-up update repriced about 3,900 items (a 19% drawdown, trough at 25 hours) by building price indices from daily Steam market medians"
+    - text: "Showed newly useful Covert inputs gained 43.5% mean abnormal return within 48 hours (t = 8.95) with a constant-mean event study by rarity and wear, in a tested Python CLI that regenerates every figure"
+    - text: "Found the cheapest exteriors repriced most (Battle-Scarred Coverts up 258% at 14 days, Factory New down 24%) by splitting abnormal returns by wear and StatTrak"
+    - text: "Priced the new contract as a call option, with five Coverts as the strike and a knife from the collection's pool as the payoff, using expected-value, Monte Carlo, and stress-test views"
   repo: ""
   bullets:
     - "Counter-Strike 2's October 2025 trade-up update erased an estimated $2 billion of skin value in 48 hours, a real market shock worth measuring"
@@ -189,8 +223,9 @@
   tags: [Python, HTML, SVG]
   cv_title: "The Thousand and One Words: SAT Vocabulary Comic Epic"
   cv:
-    - "Made 1,000 SAT words learnable as one story by writing a 100-chapter comic epic for readers aged 14 to 16, ten words a chapter, each with a story scene, a picture link, and a memory-palace station"
-    - "Generated all 100 chapter pages, image prompts, and the combined script from one Python source, so a one-line edit updates every page"
+    - text: "Made 1,000 SAT words learnable as one story by writing a 100-chapter comic epic for readers aged 14 to 16, ten words a chapter, each with a story scene, a picture link, and a memory-palace station"
+    - text: "Generated all 100 chapter pages, image prompts, and the combined script from one Python source, so a one-line edit updates every page"
+    - text: "Linked all 1,000 words into one unbroken chain across chapters, on a memory palace of 100 landmarks in the Round City of Baghdad with the same 10 stations each"
   repo: https://github.com/Sent-hen/1001-SAT-words
   bullets:
     - "1,000 SAT words should be learnable as one story rather than a list"

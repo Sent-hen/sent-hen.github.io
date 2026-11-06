@@ -47,7 +47,7 @@ description: "About Senthen Velmurugan"
         <li>systems engineering</li>
         <li><a href="{{ '/stuff/' | relative_url }}" class="blank-box" aria-label="Stuff"></a></li>
       </ul>
-      <p>I like great storytelling</p>
+      <p>I like good food and great conversations</p>
     </section>
   </div>
   <p class="muted small site-note">This is a site where I keep what I'm creating</p>

@@ -3,6 +3,7 @@
   It mirrors shared/fdse-header.tex and shared/fdse-core.tex in the Resume repository; keep them in step.
   KloudGin facts come only from the internship recommendation letter.
   Usage: {% include cv-core.html title="Resume" pdf="Senthen-Velmurugan-Resume.pdf" note="one page" projects=page.projects %}
+  With full=true (the CV) it also shows the bullets that are not on the resume.
 {%- endcomment -%}
 <header class="cv-head">
   <h1>{{ include.title }}</h1>
@@ -44,8 +45,12 @@
       <ul>
         <li>Raised first-contact resolution 20% over 12 weeks of use by taking the Generative AI team's open question, whether RAG could speed up customer case resolution, from proposal to production rollout</li>
         <li>Gave support engineers suggested next actions from similar past cases and accepted forum solutions by building a multi-source RAG system: an ingestion pipeline, hybrid vector + BM25 retrieval, and cross-encoder re-ranking</li>
+        {% if include.full %}<li>Chose the retrieval design with data by framing baselines first, then comparing chunking strategies, embedding models, a BM25 fallback, and cross-encoder re-rankers</li>{% endif %}
         <li>Raised top-k precision by measuring retrieval offline and through an A/B feedback loop with support agents, then diagnosing an overfit to long threads and retuning chunking and metadata filters</li>
+        {% if include.full %}<li>Kept suggestion quality measurable with a light evaluation harness of offline retrieval-quality metrics and spot checks of helpfulness</li>{% endif %}
+        {% if include.full %}<li>Prepared the ticketing corpus and internal forum for retrieval by building document normalization, chunking, and metadata tagging into the ingestion pipeline</li>{% endif %}
         <li>Let other teams integrate it safely with tenant-scoped search, PII scrubbing, safe prompting, and a documented API</li>
+        {% if include.full %}<li>Carried the work from proof of concept to rollout by writing design notes and working directly with stakeholders throughout</li>{% endif %}
       </ul>
     </div>
   </li>
@@ -68,6 +73,6 @@
 <h2 class="cv-section">Projects</h2>
 
 <ul class="entries">
-{% for slug in include.projects %}{% include cv-project.html slug=slug %}
+{% for slug in include.projects %}{% include cv-project.html slug=slug full=include.full %}
 {% endfor %}
 </ul>
