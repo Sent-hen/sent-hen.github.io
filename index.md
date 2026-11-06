@@ -7,7 +7,7 @@ description: "About Senthen Velmurugan"
 {% comment %} Banner: jumping spider photo, a purchased stock license. Credit is in README.md under "Credits". {% endcomment %}
 <figure class="banner-fig">
   <img class="banner" src="{{ '/assets/img/jumping-spider.webp' | relative_url }}" alt="A jumping spider on a green leaf, one leg raised">
-  <figcaption class="banner-caption">To cultivate a sense of curiosity</figcaption>
+  <figcaption class="banner-caption">To cultivate a sense of humor and curiosity</figcaption>
 </figure>
 
 <div class="intro">
