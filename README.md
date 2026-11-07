@@ -30,7 +30,7 @@ The rules for the site, then what each page is and where it lives. A static Jeky
 
 ### Look
 
-- Two themes: green roof by default for everyone, red brick from the switch. The switch is one square whose arrow flips, like a stock index.
+- Two themes: green by default for everyone, red and black from the switch (after Vagabond's cover). The switch is one square whose arrow flips, like a stock index.
 - A drafting sheet: cream line art on the page color, tiles framed in dots, dotted rules, dashed column dividers, small grids of squares in the corners. No arrows after labels.
 - Captions: Time is blocky uppercase. The banner, the tiramisu, and the formula are Gelasio italic, the only web font.
 - Every animation runs one way, 0 to 1. The Hi / Lo switch shows it all as still line art.

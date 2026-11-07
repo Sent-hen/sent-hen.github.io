@@ -1,60 +1,46 @@
 ---
 ---
-/* Colors, fonts, and the column width. Green roof by default; red brick with data-theme="dark" */
+/* Colors, fonts, and the column width. Green by default; red and black with data-theme="dark" */
 :root {
-  --flexoki-cyan-400: #3AA99F;
-  --flexoki-orange-400: #DA702C;
-  --flexoki-yellow-400: #D0A215;
-  --flexoki-green-400: #879A39;
-  --flexoki-blue-400: #4385BE;
-  --flexoki-purple-400: #8B7EC8;
-
-  --roof-cream: #EDEECF; --roof-200: #C3CDA6;
-  --roof-600: #557058;   --roof-700: #456049; --roof-800: #3A5442; --roof-850: #34503D; --roof-900: #2C4434;
-  --brick-50: #FFE1D5; --brick-200: #F89A8A; --brick-300: #E8705F; --brick-700: #942822;
-  --brick-800: #6C201C; --brick-850: #551B18; --brick-900: #3E1715; --brick-950: #261312;
-
   --font-serif: "Gelasio", Georgia, "Times New Roman", serif;   /* the italic captions; Gelasio comes from Google Fonts (head.html) */
   --font-ui: -apple-system, BlinkMacSystemFont, "Inter", "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "Cascadia Code", "IBM Plex Mono", Menlo, Consolas, monospace;
   --wrap: 37em;
 
-  --bg: var(--roof-900);
-  --bg-2: var(--roof-850);
-  --tx: var(--roof-cream);
-  --tx-2: var(--roof-200);
-  --tx-3: var(--roof-600);
-  --ui: var(--roof-800);
-  --ui-2: var(--roof-700);
-  --ui-3: var(--roof-600);
-  --action: #5ABDAC;
-  --orange: #F9AE77;
-  --yellow: #DFB431;
-  --green: #BEC97E;
-  --blue: #92BFDB;
-  --purple: #C4B9E0;
-  --selection: rgba(160, 175, 84, 0.3);
-  --cake-bg: var(--roof-900);
-  --cake-ink: var(--roof-cream);
+  --bg: #2B5B44;
+  --bg-2: #30624A;
+  --tx: #EEEADC;
+  --tx-2: #CBD8C8;
+  --tx-3: #7FA08D;
+  --ui: #356B52;
+  --ui-2: #41775D;
+  --ui-3: #7FA08D;
+  --action: #9ADCC8;
+  --orange: #F4BD92;
+  --yellow: #E8CB6A;
+  --green: #C9E0A8;
+  --blue: #B4D5E8;
+  --purple: #D3CAEC;
+  --selection: rgba(238, 234, 220, 0.25);
+  --cake-bg: var(--bg);
+  --cake-ink: var(--tx);
 }
 :root[data-theme="dark"] {
-  --bg: var(--brick-950);
-  --bg-2: var(--brick-900);
-  --tx: var(--brick-50);
-  --tx-2: var(--brick-200);
-  --tx-3: var(--brick-700);
-  --ui: var(--brick-900);
-  --ui-2: var(--brick-850);
-  --ui-3: var(--brick-800);
-  --action: var(--flexoki-cyan-400);
-  --orange: var(--flexoki-orange-400);
-  --yellow: var(--flexoki-yellow-400);
-  --green: var(--flexoki-green-400);
-  --blue: var(--flexoki-blue-400);
-  --purple: var(--flexoki-purple-400);
-  --selection: rgba(232, 112, 95, 0.3);
-  --cake-bg: var(--brick-950);
-  --cake-ink: var(--brick-50);
+  --bg: #1C1818;
+  --bg-2: #221D1D;
+  --tx: #FF5247;
+  --tx-2: #F44B42;
+  --tx-3: #8F2A26;
+  --ui: #2E2626;
+  --ui-2: #3A2E2E;
+  --ui-3: #8F2A26;
+  --action: #F5C71E;
+  --orange: #F5A23A;
+  --yellow: #F5C71E;
+  --green: #F5C71E;
+  --blue: #F44B42;
+  --purple: #F44B42;
+  --selection: rgba(222, 36, 36, 0.4);
 }
 
 /* Base */
@@ -140,12 +126,12 @@ code {
   content: "";
   position: absolute;
   inset: 3px;
-  background: var(--flexoki-green-400);
+  background: var(--green);
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3L22.5 20.5H1.5Z'/%3E%3C/svg%3E") center / contain no-repeat;
           mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3L22.5 20.5H1.5Z'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 .theme-toggle[aria-checked="true"]::after {
-  background: var(--brick-300);
+  background: var(--tx);
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M1.5 3.5H22.5L12 21Z'/%3E%3C/svg%3E");
           mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M1.5 3.5H22.5L12 21Z'/%3E%3C/svg%3E");
 }

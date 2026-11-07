@@ -36,8 +36,8 @@
 
   function readTheme() {
     var cs = getComputedStyle(fig);
-    BG = cs.getPropertyValue('--cake-bg').trim() || '#2C4434';
-    INK = cs.getPropertyValue('--cake-ink').trim() || '#EDEECF';
+    BG = cs.getPropertyValue('--cake-bg').trim() || '#2B5B44';
+    INK = cs.getPropertyValue('--cake-ink').trim() || '#EEEADC';
   }
 
   // (Re)build for the tile's current size and the screen's current pixel density.
