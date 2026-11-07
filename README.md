@@ -8,7 +8,7 @@ The rules for the site, then what each page is and where it lives. A static Jeky
 
 - **About** (`/`) is the main page. **Now** (`/now/`) is what I'm doing and what I've made. They are the only two links in the nav.
 - My name in the nav is plain text, not a link.
-- Projects, Resume, and CV are reached from Now. A few of my favo(u)rite things (`/stuff/`) is reached from About. Quality of Life (`/quality-of-life/`) has no link to it.
+- Projects, Resume, and CV are reached from Now. A few of my favo(u)rite things (`/stuff/`) and Quality of Life (`/quality-of-life/`) are reached from About.
 - Old links keep working: `/about/`, `/output/`, `/experiments/`, and `/experience/` redirect.
 
 ### Words
@@ -70,8 +70,8 @@ The layout is `_layouts/default.html`: `_includes/head.html`, `_includes/nav.htm
 | Clocks | `YYYY-MM-DD HH:MM SS` plus the zone: Dallas-Fort Worth (CST or CDT) above the triangle, UTC below it; each names its zone in `data-zone` | `assets/js/clock.js` |
 | Sierpinski triangle | Pointing down, zooming forever into its bottom point, after [lutanho.net](https://www.lutanho.net/fractal/sierpa.html) | `_includes/sierpinski.html` |
 | Golden spiral | Fibonacci squares growing out of the eye, with the formula (a + b) / a = a / b as its caption | `_includes/golden-spiral.html` |
-| 0 → 1 ripple | Circles that touch at 0, each 1.17× the last | `_includes/ripples.html` |
-| Ripple, side view | The same circles edge-on, drawn as a wave, moving in step | `_includes/ripple-side.html` |
+| 0 → 1 ripple | The Doppler effect: a ball travels from 0 to 1, dropping ripples that spread out from where it was, so rings pack together ahead of it and stretch apart behind it. The trip is a crescendo with 0 as its source: ripples and ball start quiet at 0 and build to 1, then it starts again from 0 | `assets/js/ripples.js` |
+| Ripple, side view | The same ball and ripples edge-on, as a wave on a line, with a crest wherever a ring is | `assets/js/ripples.js` |
 | Who I am | My name in Tamil, English, and pronunciation | `index.md` |
 | Who am I | What I do, what I'm currently mastering (the empty box opens A few of my favo(u)rite things), and what I like | `index.md` |
 
@@ -79,7 +79,7 @@ To change the rain, edit `CELL` (digit size) and `SPEED` (rows per second) in `c
 
 ## Quality of Life
 
-`quality-of-life.html`. One graph: three dashed tracks, Strategy, Tactics, Operations, whose bars are always in flux, each on its own rhythm.
+`quality-of-life.html`, at `/quality-of-life/`. A graph of three dashed tracks, Strategy, Tactics, Operations, whose bars are always in flux, each on its own rhythm. The focus is on Strategy and Operations, and Tactics recedes. A written note follows, in the page, ending on a coin that flips and lands exactly on its edge (`assets/js/coin.js`). Lo shows it standing on its edge.
 
 ## A few of my favo(u)rite things
 

@@ -15,7 +15,7 @@ description: "About Senthen Velmurugan"
   <figure class="cake">
     {% include cake.html %}
   </figure>
-  <p class="tile-caption tile-serif">A plate of tiramisu</p>
+  <p class="tile-caption tile-serif">Professional tiramisu connoisseur</p>
   <script src="{{ '/assets/js/cake.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   <time class="clock" data-zone="America/Chicago"></time>
   {% include sierpinski.html %}
@@ -26,8 +26,9 @@ description: "About Senthen Velmurugan"
   <script src="{{ '/assets/js/clock.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   </div>
   <div class="intro-text">
-  <p class="infinity-arrow" aria-label="From zero to one"><span>0</span>{% include ripples.html %}<span>1</span></p>
-  <p class="infinity-arrow" aria-hidden="true"><span>0</span>{% include ripple-side.html %}<span>1</span></p>
+  <p class="infinity-arrow" aria-label="From zero to one"><span>0</span><canvas class="ripples" data-view="top"></canvas><span>1</span></p>
+  <p class="infinity-arrow" aria-hidden="true"><span>0</span><canvas class="ripples" data-view="side"></canvas><span>1</span></p>
+  <script src="{{ '/assets/js/ripples.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   <div class="duality">
     <section>
       <p class="label">Who I am</p>
@@ -40,7 +41,7 @@ description: "About Senthen Velmurugan"
     </section>
     <section>
       <p class="label">Who am I</p>
-      <p>Someone who uses technology to increase Quality of Life.</p>
+      <p>Someone who uses technology to increase <a href="{{ '/quality-of-life/' | relative_url }}">Quality of Life</a>.</p>
       <p class="iam">Currently mastering&hellip;</p>
       <ul class="iam-list">
         <li>linguistics</li>

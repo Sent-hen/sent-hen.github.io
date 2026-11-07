@@ -234,14 +234,7 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
   color: var(--tx-2);
   font-variant-numeric: tabular-nums;
 }
-.infinity-arrow .ripples { flex: 1; min-width: 0; height: 72px; color: var(--tx); }
-.infinity-arrow .ripples .wave {
-  transform-box: view-box;
-  transform-origin: 0 36px;
-  animation: ripple-out 1.6s linear infinite;
-}
-.infinity-arrow .ripples circle { vector-effect: non-scaling-stroke; }
-@keyframes ripple-out { to { transform: scale(1.17); } }
+.infinity-arrow .ripples { display: block; flex: 1; min-width: 0; width: 0; height: 72px; color: var(--tx); }   /* drawn by assets/js/ripples.js */
 
 .duality {
   display: grid;
@@ -279,12 +272,19 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 .qol-strategy .qol-bar { animation-duration: 5.3s; }
 .qol-tactics .qol-bar { animation-duration: 3.7s; animation-delay: -2s; }
 .qol-operations .qol-bar { animation-duration: 4.4s; animation-delay: -3.1s; }
+/* the focus is Strategy and Operations; Tactics recedes */
+.qol-strategy text, .qol-operations text { fill: var(--tx); }
+.qol-tactics text, .qol-tactics .qol-track { opacity: 0.4; }
+.qol-tactics .qol-bar { opacity: 0.2; }
+.qol-note { max-width: 32em; }
+.qol-note .iam-list { margin-bottom: 1em; }
+.coin-fig { margin: 1.8em 0; max-width: 320px; }
+.coin { display: block; width: 100%; aspect-ratio: 320 / 220; border: 1px dotted var(--tx-2); color: var(--tx); background: var(--bg); }   /* drawn by assets/js/coin.js */
 @keyframes qol-flux { 0% { transform: scaleX(0.15); } 35% { transform: scaleX(0.8); } 60% { transform: scaleX(0.45); } 100% { transform: scaleX(1); } }
 
 /* Lo (the Hi / Lo switch): every drawing shows as a still image */
 .still .golden-spiral .zoom,
 .still .sierpinski .zoom,
-.still .infinity-arrow .ripples .wave,
 .still .qol-bar { animation: none; }
 .still .qol-strategy .qol-bar { transform: scaleX(0.8); }
 .still .qol-tactics .qol-bar { transform: scaleX(0.4); }
