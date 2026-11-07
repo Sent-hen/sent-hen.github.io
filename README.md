@@ -30,7 +30,10 @@ The rules for the site, then what each page is and where it lives. A static Jeky
 
 ### Look
 
-- Two themes: green by default for everyone, red and black from the switch (after Vagabond's cover). The switch is one square whose arrow flips, like a stock index.
+- Two themes: drafting green by default for everyone, red and black from the switch. The switch is one square whose arrow flips, like a stock index.
+- Colors follow [Flexoki](https://stephango.com/flexoki): its eight roles (`bg`, `bg-2`, `ui`, `ui-2`, `ui-3`, `tx-3`, `tx-2`, `tx`), cyan for links, exact palette values, and no opacity on accents.
+- One exception: Flexoki has no green like this, so the default theme's backgrounds and borders come from a green drafting graphic (page `#2B5B44`). Its text and accents are still Flexoki.
+- Red and black is Flexoki black with its red ramp, and its accents are Flexoki's dark-theme 400s.
 - A drafting sheet: cream line art on the page color, tiles framed in dots, dotted rules, dashed column dividers, small grids of squares in the corners. No arrows after labels.
 - Captions: Time is blocky uppercase. The banner, the tiramisu, and the formula are Gelasio italic, the only web font.
 - Every animation runs one way, 0 to 1. The Hi / Lo switch shows it all as still line art.

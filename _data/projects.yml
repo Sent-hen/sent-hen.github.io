@@ -115,7 +115,7 @@
   start: "2023-05"
   status: done
   domains: [Web]
-  summary: This site, a static Jekyll site on GitHub Pages that shows what I build
+  summary: This site, a static Jekyll site on GitHub Pages that shows what I build, in the <a href="https://stephango.com/flexoki">Flexoki</a> color scheme
   tags: [Jekyll, Liquid, HTML, CSS, JavaScript]
   cv_title: "Personal Website: sent-hen.github.io"
   cv:

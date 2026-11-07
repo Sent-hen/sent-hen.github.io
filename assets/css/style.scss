@@ -1,46 +1,49 @@
 ---
 ---
-/* Colors, fonts, and the column width. Green by default; red and black with data-theme="dark" */
+/* Colors, fonts, and the column width. Colors follow Flexoki (stephango.com/flexoki) and its mappings:
+   bg, bg-2 backgrounds; ui, ui-2, ui-3 borders; tx-3 faint, tx-2 muted, tx primary; cyan for links; no opacity on accents.
+   Default: Flexoki has no green like this, so backgrounds and borders come from a green drafting graphic; text and accents are Flexoki.
+   data-theme="dark": Flexoki black with its red ramp. */
 :root {
   --font-serif: "Gelasio", Georgia, "Times New Roman", serif;   /* the italic captions; Gelasio comes from Google Fonts (head.html) */
   --font-ui: -apple-system, BlinkMacSystemFont, "Inter", "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "Cascadia Code", "IBM Plex Mono", Menlo, Consolas, monospace;
   --wrap: 37em;
 
-  --bg: #2B5B44;
+  --bg: #2B5B44;       /* drafting green */
   --bg-2: #30624A;
-  --tx: #EEEADC;
-  --tx-2: #CBD8C8;
-  --tx-3: #7FA08D;
   --ui: #356B52;
   --ui-2: #41775D;
   --ui-3: #7FA08D;
-  --action: #9ADCC8;
-  --orange: #F4BD92;
-  --yellow: #E8CB6A;
-  --green: #C9E0A8;
-  --blue: #B4D5E8;
-  --purple: #D3CAEC;
-  --selection: rgba(238, 234, 220, 0.25);
+  --tx-3: #B7B5AC;     /* base-300 */
+  --tx-2: #E6E4D9;     /* base-100 */
+  --tx: #F2F0E5;       /* base-50, the nearest Flexoki value to the graphic's cream */
+  --action: #BFE8D9;   /* cyan-100: 400s are too dark to read on a colored page, so accents step up to 100 */
+  --orange: #FED3AF;   /* orange-100 */
+  --yellow: #F6E2A0;   /* yellow-100 */
+  --green: #DDE2B2;    /* green-100 */
+  --blue: #C6DDE8;     /* blue-100 */
+  --purple: #E2D9E9;   /* purple-100 */
+  --selection: #41775D;
   --cake-bg: var(--bg);
   --cake-ink: var(--tx);
 }
 :root[data-theme="dark"] {
-  --bg: #1C1818;
-  --bg-2: #221D1D;
-  --tx: #FF5247;
-  --tx-2: #F44B42;
-  --tx-3: #8F2A26;
-  --ui: #2E2626;
-  --ui-2: #3A2E2E;
-  --ui-3: #8F2A26;
-  --action: #F5C71E;
-  --orange: #F5A23A;
-  --yellow: #F5C71E;
-  --green: #F5C71E;
-  --blue: #F44B42;
-  --purple: #F44B42;
-  --selection: rgba(222, 36, 36, 0.4);
+  --bg: #100F0F;       /* black */
+  --bg-2: #1C1B1A;     /* base-950 */
+  --ui: #3E1715;       /* red-900 */
+  --ui-2: #551B18;     /* red-850 */
+  --ui-3: #6C201C;     /* red-800 */
+  --tx-3: #C03E35;     /* red-500 */
+  --tx-2: #E8705F;     /* red-300 */
+  --tx: #F89A8A;       /* red-200 */
+  --action: #3AA99F;   /* cyan-400: on black, accents are Flexoki's dark-theme 400s */
+  --orange: #DA702C;   /* orange-400 */
+  --yellow: #D0A215;   /* yellow-400 */
+  --green: #879A39;    /* green-400 */
+  --blue: #4385BE;     /* blue-400 */
+  --purple: #8B7EC8;   /* purple-400 */
+  --selection: #551B18; /* red-850 */
 }
 
 /* Base */
