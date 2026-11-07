@@ -15,7 +15,7 @@ description: "About Senthen Velmurugan"
   <figure class="cake">
     {% include cake.html %}
   </figure>
-  <p class="tile-caption tile-serif">Professional tiramisu connoisseur</p>
+  <p class="tile-caption tile-serif">professional tiramisu connoisseur</p>
   <script src="{{ '/assets/js/cake.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   <time class="clock" data-zone="America/Chicago"></time>
   {% include sierpinski.html %}

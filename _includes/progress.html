@@ -1,2 +1,2 @@
-{%- comment -%} Project status: `active` shows a green "In progress" tag, `done` a grey "Done" box. Usage: {% include progress.html value=p.status %} {%- endcomment -%}
-{%- if include.value == "done" -%}<span class="status-tag status-done">Done</span>{%- else -%}<span class="status-tag status-active">In progress</span>{%- endif -%}
+{%- comment -%} Project status: `active` shows "In progress", `done` shows "Done", in the same tag. Usage: {% include progress.html value=p.status %} {%- endcomment -%}
+{%- if include.value == "done" -%}<span class="status-tag">Done</span>{%- else -%}<span class="status-tag">In progress</span>{%- endif -%}

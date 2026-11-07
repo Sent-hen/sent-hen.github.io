@@ -4,13 +4,11 @@ permalink: /now/
 redirect_from: /output/
 description: "What Senthen Velmurugan is doing now: projects, resume, and CV"
 # The highlighted section at the top: groups in order, each a list of slugs from _data/projects.yml.
-# Projects listed under `star` get the strongest highlight.
 highlight:
   - group: Actively working on
     projects: [pid-digitizer]
   - group: Showcase
     projects: [dexpi-viewer, word2eq, campbell-woodworks]
-star: [pid-digitizer, dexpi-viewer]
 ---
 <h1>Now</h1>
 <p class="small open-to">Open to FDSE roles · Pacific Northwest / Texas preferred, open to relocation anywhere in the US</p>
@@ -20,12 +18,12 @@ star: [pid-digitizer, dexpi-viewer]
   <h2 class="hl-group">{{ g.group }}</h2>
   <ul class="entries">
   {% for slug in g.projects %}{% assign p = site.data.projects | where: "slug", slug | first %}{% if p %}
-    <li class="entry{% if page.star contains slug %} entry-star{% endif %}">
+    <li class="entry">
       <div class="entry-head">
         <span class="entry-title"><a href="{{ '/projects/' | relative_url }}#{{ p.slug }}">{{ p.title }}</a></span>
         <span class="entry-when">{{ p.start | replace: "-", " " }}</span>
       </div>
-      <div class="entry-sub">{% include progress.html value=p.status %}{% for d in p.domains %}{% assign dc = d | downcase | replace: "/", "-" | replace: " ", "-" %}<span class="dom dom-{{ dc }}">{{ d }}</span>{% unless forloop.last %} · {% endunless %}{% endfor %}</div>
+      <div class="entry-sub">{% include progress.html value=p.status %}<span class="dom">{{ p.domains | join: " · " }}</span></div>
       <div class="entry-desc"><p>{{ p.summary }}</p></div>
       {% include project-links.html p=p %}
     </li>

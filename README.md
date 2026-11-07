@@ -30,11 +30,10 @@ The rules for the site, then what each page is and where it lives. A static Jeky
 
 ### Look
 
-- Two themes: drafting green by default for everyone, red and black from the switch. The switch is one square whose arrow flips, like a stock index.
-- Colors follow [Flexoki](https://stephango.com/flexoki): its eight roles (`bg`, `bg-2`, `ui`, `ui-2`, `ui-3`, `tx-3`, `tx-2`, `tx`), cyan for links, exact palette values, and no opacity on accents.
-- One exception: Flexoki has no green like this, so the default theme's backgrounds and borders come from a green drafting graphic (page `#2B5B44`). Its text and accents are still Flexoki.
-- Red and black is Flexoki black with its red ramp, and its accents are Flexoki's dark-theme 400s.
-- A drafting sheet: cream line art on the page color, tiles framed in dots, dotted rules, dashed column dividers, small grids of squares in the corners. No arrows after labels.
+- Two themes, both dark and muted, never bright or cheery: moss by default for everyone, red from the switch. The switch is one square whose arrow flips, like a stock index.
+- Every color is an exact Flexoki value (see [Flexoki palette](#flexoki-palette)). The two themes use the same roles, and only the ramp changes.
+- No project stands out from another: the same colors and styles for all of them, with no highlights.
+- A drafting sheet: line art in the text color on the page color, tiles framed in dots, dotted rules, dashed column dividers, small grids of squares in the corners. No arrows after labels.
 - Captions: Time is blocky uppercase. The banner, the tiramisu, and the formula are Gelasio italic, the only web font.
 - Every animation runs one way, 0 to 1. The Hi / Lo switch shows it all as still line art.
 
@@ -116,7 +115,7 @@ Posters display about 300 px wide, so aim for at least 600 px wide; 1000 × 1500
 
 ## Now
 
-`now.html`. The work line, then a highlighted panel, then links to Projects, Resume, and CV. The panel's groups and its starred projects (a green rule and title) are slugs in the front matter:
+`now.html`. The work line, then a panel of projects, then links to Projects, Resume, and CV. The panel's groups are slugs in the front matter:
 
 ```yaml
 highlight:
@@ -124,7 +123,6 @@ highlight:
     projects: [pid-digitizer]
   - group: Showcase
     projects: [dexpi-viewer, word2eq, campbell-woodworks]
-star: [pid-digitizer, dexpi-viewer]
 ```
 
 ## Projects
@@ -177,6 +175,51 @@ bundle exec jekyll serve
 ```
 
 Open `http://localhost:4000`. Pushing to `main` publishes through GitHub Pages in about a minute.
+
+## Flexoki palette
+
+A reference for choosing colors, from [Flexoki](https://stephango.com/flexoki) by Steph Ango (MIT).
+
+### Backgrounds and text
+
+Eight roles carry every page. Flexoki's own light and dark themes are on the left; the two themes on this site are on the right.
+
+| Role | Used for | Flexoki light | Flexoki dark | Moss | Red |
+| --- | --- | --- | --- | --- | --- |
+| `bg` | Main background | paper | black | black | black |
+| `bg-2` | Secondary background | base-50 | base-950 | base-950 | base-950 |
+| `ui` | Borders | base-100 | base-900 | green-900 | red-900 |
+| `ui-2` | Hovered borders | base-150 | base-850 | green-850 | red-850 |
+| `ui-3` | Active borders | base-200 | base-800 | green-800 | red-800 |
+| `tx-3` | Faint text | base-300 | base-700 | green-700 | red-700 |
+| `tx-2` | Muted text | base-600 | base-500 | green-600 | red-600 |
+| `tx` | Primary text | black | base-200 | green-600 | red-600 |
+
+Accents use 600 on a light theme and 400 on a dark one. Base values can be blended with opacity; accents cannot, because that desaturates them.
+
+### Extended palette
+
+If you wish to use Flexoki for more complex applications beyond syntax highlighting and basic color schemes, the extended palette includes a complete set of values for every accent color from 50 to 950.
+
+Paper (`#FFFCF0`) and black (`#100F0F`) are special values that represent the lightest and darkest colors in the palette, equivalent to 0 and 1000.
+
+Flexoki emulates the feeling of pigment on paper by exponentially increasing intensity as colors get lighter or darker. This makes the colors feel vibrant and warm, like watercolor inks.
+
+| Stop | Base | Red | Orange | Yellow | Green | Cyan | Blue | Purple | Magenta |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 50 | `#F2F0E5` | `#FFE1D5` | `#FFE7CE` | `#FAEEC6` | `#EDEECF` | `#DDF1E4` | `#E1ECEB` | `#F0EAEC` | `#FEE4E5` |
+| 100 | `#E6E4D9` | `#FFCABB` | `#FED3AF` | `#F6E2A0` | `#DDE2B2` | `#BFE8D9` | `#C6DDE8` | `#E2D9E9` | `#FCCFDA` |
+| 150 | `#DAD8CE` | `#FDB2A2` | `#FCC192` | `#F1D67E` | `#CDD597` | `#A2DECE` | `#ABCFE2` | `#D3CAE6` | `#F9B9CF` |
+| 200 | `#CECDC3` | `#F89A8A` | `#F9AE77` | `#ECCB60` | `#BEC97E` | `#87D3C3` | `#92BFDB` | `#C4B9E0` | `#F4A4C2` |
+| 300 | `#B7B5AC` | `#E8705F` | `#EC8B49` | `#DFB431` | `#A0AF54` | `#5ABDAC` | `#66A0C8` | `#A699D0` | `#E47DA8` |
+| 400 | `#9F9D96` | `#D14D41` | `#DA702C` | `#D0A215` | `#879A39` | `#3AA99F` | `#4385BE` | `#8B7EC8` | `#CE5D97` |
+| 500 | `#878580` | `#C03E35` | `#CB6120` | `#BE9207` | `#768D21` | `#2F968D` | `#3171B2` | `#735EB5` | `#B74583` |
+| 600 | `#6F6E69` | `#AF3029` | `#BC5215` | `#AD8301` | `#66800B` | `#24837B` | `#205EA6` | `#5E409D` | `#A02F6F` |
+| 700 | `#575653` | `#942822` | `#9D4310` | `#8E6B01` | `#536907` | `#1C6C66` | `#1A4F8C` | `#4F3685` | `#87285E` |
+| 800 | `#403E3C` | `#6C201C` | `#71320D` | `#664D01` | `#3D4C07` | `#164F4A` | `#163B66` | `#3C2A62` | `#641F46` |
+| 850 | `#343331` | `#551B18` | `#59290D` | `#503D02` | `#313D07` | `#143F3C` | `#133051` | `#31234E` | `#4F1B39` |
+| 900 | `#282726` | `#3E1715` | `#40200D` | `#3A2D04` | `#252D09` | `#122F2C` | `#12253B` | `#261C39` | `#39172B` |
+| 950 | `#1C1B1A` | `#261312` | `#27180E` | `#241E08` | `#1A1E0C` | `#101F1D` | `#101A24` | `#1A1623` | `#24131D` |
 
 ## Credits
 
