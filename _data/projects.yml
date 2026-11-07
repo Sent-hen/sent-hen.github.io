@@ -120,7 +120,7 @@
   cv_title: "Personal Website: sent-hen.github.io"
   cv:
     - text: "Published a personal site with nothing to run or maintain as a static Jekyll site on GitHub Pages, where every list is one data file, so adding a project is a one-file change"
-    - text: "Drew its animations (0/1 rain, golden spiral, Sierpinski triangle, ripple) as generated SVG and plain JavaScript with no libraries, with a Hi/Lo switch for still line art"
+    - text: "Drew its animations (spinning coin, 0/1 rain, Sierpinski triangle, ripple) as generated SVG and plain JavaScript with no libraries, with a Hi/Lo switch for still line art"
   repo: https://github.com/Sent-hen/sent-hen.github.io
   bullets:
     - "A personal site should show what I make, with nothing to run or maintain"

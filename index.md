@@ -12,6 +12,8 @@ description: "About Senthen Velmurugan"
 
 <div class="intro">
   <div class="intro-side">
+  <canvas class="dot-coin" role="img" aria-label="A coin with a dot on one face, spinning faster until the dot seems always there"></canvas>
+  <script src="{{ '/assets/js/dot-coin.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   <figure class="cake">
     {% include cake.html %}
   </figure>
@@ -21,13 +23,11 @@ description: "About Senthen Velmurugan"
   {% include sierpinski.html %}
   <time class="clock clock-below" data-zone="UTC"></time>
   <p class="tile-caption">Time</p>
-  {% include golden-spiral.html %}
-  <p class="tile-caption tile-formula" aria-label="a plus b over a equals a over b"><span class="frac"><span>a + b</span><span>a</span></span> = <span class="frac"><span>a</span><span>b</span></span></p>
   <script src="{{ '/assets/js/clock.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   </div>
   <div class="intro-text">
-  <p class="infinity-arrow" aria-label="From zero to one"><span>0</span><canvas class="ripples" data-view="top"></canvas><span>1</span></p>
-  <p class="infinity-arrow" aria-hidden="true"><span>0</span><canvas class="ripples" data-view="side"></canvas><span>1</span></p>
+  <p class="infinity-arrow" aria-label="From zero to one"><canvas class="ripples" data-view="top"></canvas></p>
+  <p class="infinity-arrow" aria-hidden="true"><canvas class="ripples" data-view="side"></canvas></p>
   <script src="{{ '/assets/js/ripples.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   <div class="duality">
     <section>
@@ -48,7 +48,12 @@ description: "About Senthen Velmurugan"
         <li>systems engineering</li>
         <li><a href="{{ '/stuff/' | relative_url }}" class="blank-box" aria-label="A few of my favo(u)rite things"></a></li>
       </ul>
-      <p>I like good food and great conversations</p>
+      <p class="iam">I like&hellip;</p>
+      <ul class="iam-list">
+        <li>good food</li>
+        <li>great conversations</li>
+        <li>masterful storytelling</li>
+      </ul>
     </section>
   </div>
   <p class="muted small site-note">This is a site where I keep what I'm creating</p>

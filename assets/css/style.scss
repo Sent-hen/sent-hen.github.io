@@ -173,15 +173,6 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 .cake-art .tira-face { fill: var(--cake-bg); stroke: none; }   /* hides the back of the plate behind the slice */
 .cake-rain { display: block; }   /* sized in px by assets/js/cake.js, so it stays sharp */
 
-.golden-spiral { display: block; width: 160px; height: 160px; overflow: hidden; border: 1px dotted var(--tx-2); }
-.golden-spiral .zoom {
-  transform-box: view-box;
-  transform-origin: 80px 80px;
-  animation: golden-zoom 4s linear infinite;   /* keyframes in _includes/golden-spiral.html */
-}
-.golden-spiral .sq { fill: none; stroke: var(--tx); stroke-opacity: 0.55; stroke-width: 0.8; vector-effect: non-scaling-stroke; }
-.golden-spiral .arc { fill: none; stroke: var(--tx); stroke-width: 1.4; vector-effect: non-scaling-stroke; stroke-linecap: round; }
-
 .sierpinski { display: block; width: 160px; height: 160px; overflow: hidden; background: var(--bg); border: 1px dotted var(--tx-2); }
 .sierpinski .zoom {
   transform-box: view-box;
@@ -189,32 +180,20 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
   animation: sierpinski-zoom 3s linear infinite;   /* keyframes in _includes/sierpinski.html */
 }
 .sierpinski .sier-fill { fill: var(--tx); }
+.dot-coin { display: block; width: 160px; height: 160px; background: var(--bg); border: 1px dotted var(--tx-2); color: var(--tx); }   /* drawn by assets/js/dot-coin.js */
 
 .clock { display: block; width: 100%; white-space: nowrap; margin-bottom: -8px; text-align: center; font-size: 0.72em; color: var(--tx-2); font-variant-numeric: tabular-nums; }
 .clock-below { margin: -8px 0 0; }
 
-/* captions: uppercase by default (Time); italic serif for the tiramisu and the formula */
+/* captions: uppercase by default (Time); italic serif for the tiramisu */
 .tile-caption { width: 100%; overflow-wrap: break-word; margin: -8px 0 0; text-align: center; font-size: 0.7em; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tx-2); }
 .tile-serif { font-family: var(--font-serif); font-style: italic; font-size: 0.85em; letter-spacing: 0; text-transform: none; }
-.tile-formula { display: flex; align-items: center; justify-content: center; gap: 0.4em; margin-top: -4px;
-                font-family: var(--font-serif); font-style: italic; font-size: 0.85em;
-                letter-spacing: 0; text-transform: none; }
-.frac { display: inline-flex; flex-direction: column; align-items: center; line-height: 1.15; }
-.frac > span:first-child { padding: 0 0.2em 0.1em; border-bottom: 1px solid currentColor; }
-.frac > span:last-child { padding-top: 0.1em; }
 
 /* About: the right column */
 .intro-text { min-width: 0; align-self: stretch; padding-left: 20px; border-left: 1px dashed var(--ui-3); }
 .intro-text p:last-child { margin-bottom: 0; }
 
-.infinity-arrow {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 0 0 0.6em;
-  color: var(--tx-2);
-  font-variant-numeric: tabular-nums;
-}
+.infinity-arrow { display: flex; margin: 0 0 0.6em; }
 .infinity-arrow .ripples { display: block; flex: 1; min-width: 0; width: 0; height: 72px; color: var(--tx); }   /* drawn by assets/js/ripples.js */
 
 .duality {
@@ -259,12 +238,9 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 .qol-tactics .qol-bar { opacity: 0.2; }
 .qol-note { max-width: 32em; }
 .qol-note .iam-list { margin-bottom: 1em; }
-.coin-fig { margin: 1.8em 0; max-width: 320px; }
-.coin { display: block; width: 100%; aspect-ratio: 320 / 220; border: 1px dotted var(--tx-2); color: var(--tx); background: var(--bg); }   /* drawn by assets/js/coin.js */
 @keyframes qol-flux { 0% { transform: scaleX(0.15); } 35% { transform: scaleX(0.8); } 60% { transform: scaleX(0.45); } 100% { transform: scaleX(1); } }
 
 /* Lo (the Hi / Lo switch): every drawing shows as a still image */
-.still .golden-spiral .zoom,
 .still .sierpinski .zoom,
 .still .qol-bar { animation: none; }
 .still .qol-strategy .qol-bar { transform: scaleX(0.8); }
@@ -373,7 +349,7 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
   .intro { gap: 14px; }
   .intro-side { width: 96px; }
   .intro-text { padding-left: 14px; }
-  .cake, .golden-spiral, .sierpinski { width: 96px; height: 96px; }
+  .dot-coin, .cake, .sierpinski { width: 96px; height: 96px; }
   .clock { font-size: 0.55em; white-space: normal; }   /* the date, then the time and zone, in the 96px column */
   .tile-caption { font-size: 0.6em; }
   .iam-list { font-size: min(1em, 4vw); padding-left: 0.8em; }   /* each item stays on one line */

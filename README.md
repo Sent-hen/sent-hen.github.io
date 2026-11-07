@@ -34,7 +34,7 @@ The rules for the site, then what each page is and where it lives. A static Jeky
 - Every color is an exact Flexoki value (see [Flexoki palette](#flexoki-palette)). The two themes use the same roles, and only the ramp changes.
 - No project stands out from another: the same colors and styles for all of them, with no highlights.
 - A drafting sheet: line art in the text color on the page color, tiles framed in dots, dotted rules, dashed column dividers, small grids of squares in the corners. No arrows after labels.
-- Captions: Time is blocky uppercase. The banner, the tiramisu, and the formula are Gelasio italic, the only web font.
+- Captions: Time is blocky uppercase. The banner and the tiramisu are Gelasio italic, the only web font.
 - Every animation runs one way, 0 to 1. The Hi / Lo switch shows it all as still line art.
 
 ### A few of my favo(u)rite things
@@ -68,11 +68,11 @@ The layout is `_layouts/default.html`: `_includes/head.html`, `_includes/nav.htm
 | Element | What it is | Where |
 | --- | --- | --- |
 | Banner | The jumping spider, with "To cultivate a sense of curiosity" | `assets/img/jumping-spider.webp` |
+| Dot coin | A circle with a dot on one face and the other face blank, spinning about its upright axis. It starts slow enough to tell the faces apart, then speeds up until the dot looks like it's always there. It keeps time with the 0 → 1 ripple: it spins up over the ball's 8-second trip, reaches the steady dot as the ball reaches 1, holds it through the ball's 3-second rest, and both start again together. Lo shows it face on | `assets/js/dot-coin.js` |
 | Tiramisu | A slice in 3/4 view on a level plate, an impossible perspective on purpose. Hi draws the slice and plate as falling 0s and 1s, 0 at the top and 1 at the bottom. Lo, or no JavaScript, shows the line drawing | `_includes/cake.html`, `assets/js/cake.js` |
 | Clocks | `YYYY-MM-DD HH:MM SS` plus the zone: Dallas-Fort Worth (CST or CDT) above the triangle, UTC below it; each names its zone in `data-zone` | `assets/js/clock.js` |
 | Sierpinski triangle | Pointing down, zooming forever into its bottom point, after [lutanho.net](https://www.lutanho.net/fractal/sierpa.html) | `_includes/sierpinski.html` |
-| Golden spiral | Fibonacci squares growing out of the eye, with the formula (a + b) / a = a / b as its caption | `_includes/golden-spiral.html` |
-| 0 → 1 ripple | The Doppler effect: a ball travels from 0 to 1, dropping ripples that spread out from where it was, so rings pack together ahead of it and stretch apart behind it. The trip is a crescendo with 0 as its source: ripples and ball start quiet at 0 and build to 1, then it starts again from 0 | `assets/js/ripples.js` |
+| 0 → 1 ripple | The Doppler effect: a ball travels from 0 to 1, dropping ripples that spread out from where it was, so rings pack together ahead of it and stretch apart behind it. The trip is a crescendo with 0 as its source: ripples and ball start quiet at 0 and build to 1, then it rests at 1 and starts again from 0. It drops a ripple each time the coin finishes a turn, so ripples start far apart and bunch up as the coin speeds up. Each ring fades out by the time it spreads back to 0 | `assets/js/ripples.js` |
 | Ripple, side view | The same ball and ripples edge-on, as a wave on a line, with a crest wherever a ring is | `assets/js/ripples.js` |
 | Who I am | My name in Tamil, English, and pronunciation | `index.md` |
 | Who am I | What I do, what I'm currently mastering (the empty box opens A few of my favo(u)rite things), and what I like | `index.md` |
@@ -81,11 +81,11 @@ To change the rain, edit `CELL` (digit size) and `SPEED` (rows per second) in `c
 
 ## Quality of Life
 
-`quality-of-life.html`, at `/quality-of-life/`. A graph of three dashed tracks, Strategy, Tactics, Operations, whose bars are always in flux, each on its own rhythm. The focus is on Strategy and Operations, and Tactics recedes. A written note follows, in the page, ending on a coin that flips and lands exactly on its edge (`assets/js/coin.js`). Lo shows it standing on its edge.
+`quality-of-life.html`, at `/quality-of-life/`. A graph of three dashed tracks, Strategy, Tactics, Operations, whose bars are always in flux, each on its own rhythm. The focus is on Strategy and Operations, and Tactics recedes. A written note follows, in the page.
 
 ## A few of my favo(u)rite things
 
-`stuff.html`, `_data/stuff.yml`, at `/stuff/`. A photo captioned "Taste?", a rule, a plain list of things I like doing written in the page, and a rule. Then each category (Cinema, Music, Games, Literature, Graphic Novels) as rows of paired posters, with a `/` between the two in a pair. There are no titles on the page: below each poster is a `·`, and hovering or tapping turns it into `title · lead · year`, centered. The lead is the director, artist, author, or band. Music shows albums; Blue Monday was a single, so it keeps its own name and floppy-disk sleeve.
+`stuff.html`, `_data/stuff.yml`, at `/stuff/`. The title, A few of my favo(u)rite things, then a photo captioned "Is this tasteful?", a rule, a plain list of things I like doing written in the page, and a rule. Then each category (Cinema, Music, Games, Literature, Graphic Novels) as rows of paired posters, with a `/` between the two in a pair. There are no titles on the page: below each poster is a `·`, and hovering or tapping turns it into `title · lead · year`, centered. The lead is the director, artist, author, or band. Music shows albums; Blue Monday was a single, so it keeps its own name and floppy-disk sleeve.
 
 Only Dark Souls II shifts between two covers. A poster with `also:` fades through its images, one every 6 seconds (`assets/js/stuff.js`), pausing while hovered or tapped; Lo holds the first.
 
