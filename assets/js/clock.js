@@ -1,5 +1,5 @@
 // The clocks above and below the triangle on the About page, as YYYY-MM-DD HH:MM SS ZONE, ticking every second.
-// Each <time> names its zone in data-zone: Dallas-Fort Worth above (CST or CDT, whichever is in effect), UTC below.
+// Each <time> names its zone in data-zone: UTC, the global time, above; Dallas-Fort Worth below (CST or CDT, whichever is in effect).
 (function () {
   var els = document.querySelectorAll('.clock');
   if (!els.length) return;

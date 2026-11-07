@@ -7,7 +7,7 @@ description: "About Senthen Velmurugan"
 {% comment %} Banner: jumping spider photo, a purchased stock license. Credit is in README.md under "Credits". {% endcomment %}
 <figure class="banner-fig">
   <img class="banner" src="{{ '/assets/img/jumping-spider.webp' | relative_url }}" alt="A jumping spider on a green leaf, one leg raised">
-  <figcaption class="banner-caption">To cultivate a sense of humor and curiosity</figcaption>
+  <figcaption class="banner-caption">To cultivate a sense of absurdity</figcaption>
 </figure>
 
 <div class="intro">
@@ -19,9 +19,9 @@ description: "About Senthen Velmurugan"
   </figure>
   <p class="tile-caption tile-serif">professional tiramisu connoisseur</p>
   <script src="{{ '/assets/js/cake.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
-  <time class="clock" data-zone="America/Chicago"></time>
+  <time class="clock" data-zone="UTC"></time>
   {% include sierpinski.html %}
-  <time class="clock clock-below" data-zone="UTC"></time>
+  <time class="clock clock-below" data-zone="America/Chicago"></time>
   <p class="tile-caption">Time</p>
   <script src="{{ '/assets/js/clock.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   </div>

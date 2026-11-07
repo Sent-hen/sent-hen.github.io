@@ -21,6 +21,7 @@
   --action: #3AA99F;   /* cyan-400: on black, accents are Flexoki's dark-theme 400s */
   --green: #879A39;    /* green-400 */
   --selection: #313D07; /* green-850 */
+  --flash: #DDE2B2;    /* green-100: the bright flash on the About drawings' way back down */
   --cake-bg: var(--bg);
   --cake-ink: var(--tx);
 }
@@ -36,6 +37,7 @@
   --action: #3AA99F;   /* cyan-400: on black, accents are Flexoki's dark-theme 400s */
   --green: #879A39;    /* green-400 */
   --selection: #551B18; /* red-850 */
+  --flash: #FFCABB;    /* red-100 */
 }
 
 /* Base */
@@ -195,6 +197,7 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 
 .infinity-arrow { display: flex; margin: 0 0 0.6em; }
 .infinity-arrow .ripples { display: block; flex: 1; min-width: 0; width: 0; height: 72px; color: var(--tx); }   /* drawn by assets/js/ripples.js */
+.infinity-arrow .ripples[data-view="side"] { height: 112px; }   /* tall enough for the mountain's climb and the crests on it */
 
 .duality {
   display: grid;
@@ -228,24 +231,29 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 .qol { display: block; width: 100%; padding: 16px; border: 1px dotted var(--tx-2); }
 .qol text { fill: var(--tx-2); font-family: var(--font-ui); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
 .qol-track { fill: none; stroke: var(--tx-2); stroke-width: 1; stroke-dasharray: 2 3; }
-.qol-bar { fill: var(--tx); transform-box: fill-box; transform-origin: left center; animation: qol-flux ease-in-out infinite alternate both; }
+.qol-bar { fill: var(--tx); transform-box: fill-box; transform-origin: left center; animation: qol-high ease-in-out infinite alternate both; }
 .qol-strategy .qol-bar { animation-duration: 5.3s; }
-.qol-tactics .qol-bar { animation-duration: 3.7s; animation-delay: -2s; }
+.qol-tactics .qol-bar { animation-name: qol-low; animation-duration: 3.7s; animation-delay: -2s; }
 .qol-operations .qol-bar { animation-duration: 4.4s; animation-delay: -3.1s; }
 /* the focus is Strategy and Operations; Tactics recedes */
 .qol-strategy text, .qol-operations text { fill: var(--tx); }
 .qol-tactics text, .qol-tactics .qol-track { opacity: 0.4; }
 .qol-tactics .qol-bar { opacity: 0.2; }
+.qol-node, .qol-link { fill: none; stroke: var(--tx-2); stroke-width: 1; }
+.qol-head { fill: var(--tx-2); }
+.qol-flow .qol-main { fill: var(--tx); }
 .qol-note { max-width: 32em; }
 .qol-note .iam-list { margin-bottom: 1em; }
-@keyframes qol-flux { 0% { transform: scaleX(0.15); } 35% { transform: scaleX(0.8); } 60% { transform: scaleX(0.45); } 100% { transform: scaleX(1); } }
+/* Strategy and Operations held near full, Tactics kept near empty; each still drifts a little on its own rhythm */
+@keyframes qol-high { 0% { transform: scaleX(0.86); } 40% { transform: scaleX(0.97); } 70% { transform: scaleX(0.9); } 100% { transform: scaleX(1); } }
+@keyframes qol-low { 0% { transform: scaleX(0.04); } 40% { transform: scaleX(0.12); } 70% { transform: scaleX(0.07); } 100% { transform: scaleX(0.15); } }
 
 /* Lo (the Hi / Lo switch): every drawing shows as a still image */
 .still .sierpinski .zoom,
 .still .qol-bar { animation: none; }
-.still .qol-strategy .qol-bar { transform: scaleX(0.8); }
-.still .qol-tactics .qol-bar { transform: scaleX(0.4); }
-.still .qol-operations .qol-bar { transform: scaleX(0.6); }
+.still .qol-strategy .qol-bar { transform: scaleX(0.96); }
+.still .qol-tactics .qol-bar { transform: scaleX(0.08); }
+.still .qol-operations .qol-bar { transform: scaleX(0.92); }
 
 /* Stuff: each category is two pairs: two posters with a slash between them. Below each, a dot, which becomes
    title · creator · year on hover or tap. The hidden text keeps its space, so nothing moves. */

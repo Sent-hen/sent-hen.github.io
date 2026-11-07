@@ -4,8 +4,12 @@
 // the dot looks like it is always there. Each frame is a short exposure, the way an eye or a camera sees a spinning
 // coin: as the spin speeds up, one frame covers more of a turn, and at full speed a whole turn, so both faces
 // blur together into one steady circle with a dot. Then it starts again, slow (0 → 1).
-// It keeps time with the ball in the 0 → 1 drawings (assets/js/ripples.js): the coin spins up while the ball
-// travels, reaches the steady dot as the ball reaches 1, and holds it while the ball rests; both restart together.
+// It keeps time with the ball in the 0 → 1 drawings (assets/js/ripples.js): the coin spins up while the ball is
+// pushed up (the uptime), reaches the steady dot as the ball reaches 1, and holds it the whole time the ball rolls back
+// down (the downtime). It starts again, slow, only when the ball is back at 0.
+// A ring around the coin is its speed gauge: it fills as the coin spins up and closes into a full circle at top speed,
+// staying until the ball is back at 0. While the ball rolls back, the coin and the gauge flash with it, like a stamina
+// bar that needs rest (stamina() and ink() below, which ripples.js uses too).
 // Lo (the `still` class on the page) holds the coin face on, dot showing.
 (function () {
   var canvas = document.querySelector('canvas.dot-coin');
@@ -14,12 +18,19 @@
   var SLOW = 0.25;      // turns per second at the start
   var FAST = 14;        // turns per second at full speed
   var RAMP = 8;         // seconds to get from SLOW to FAST: the ball's TRIP in ripples.js
-  var HOLD = 3;         // seconds at full speed: the ball's REST in ripples.js
-  var FADE = 0.5;       // seconds to fade out at the end and back in at the start
+  var HOLD = 3;         // seconds at full speed: the ball's DOWN in ripples.js
+  var FADE = 0.4;       // seconds to fade back in as each cycle starts
   var CYCLE = RAMP + HOLD;
   var EXPOSURE = 1 / FAST; // one frame's exposure: a whole turn at full speed, a sliver of one when slow
   var SAMPLES = 160;    // poses blended into one frame at full speed; enough that the blur is smooth, not banded
   var RING = 0.9;       // inside of the ring, as a fraction of the coin's radius: a ring a tenth as thick as the radius
+  var GAUGE = 1.24;     // the speed gauge's radius, as a multiple of the coin's
+  var BLINK_FAST = 4;   // flashes per second as the ball starts rolling back, spent
+  var BLINK_SLOW = 1.2; // flashes per second as it reaches 0, recovered
+  var SHARP = 8;        // how hard each flash snaps between bright and dim; higher spends less time on the ink between
+  var LEAVE = 0.12;     // seconds after the roll back starts before the flashing is at full swing
+  var SETTLE = 0.35;    // seconds before the ball is back at 0 that the flashing settles onto the ink
+  var DIM = 0.15;       // how faint the dim side of a flash is, as a share of the ink
 
   var root = document.documentElement;
   var GROWTH = Math.log(FAST / SLOW);
@@ -39,14 +50,48 @@
     return list;
   })();
 
+  // The flash at time t (in seconds, any cycle), from -1 (dim) through 0 (the ink itself) to 1 (bright): 0 while the
+  // ball climbs. While it rolls back the coin, the ball and the mountain flash like a stamina bar that needs rest,
+  // snapping between bright and dim with little time on the ink between, fast at first and slowing down. They leave the
+  // ink almost at once and come back to it only just before the ball is at 0.
+  function stamina(t) {
+    var s = ((t % CYCLE) + CYCLE) % CYCLE;
+    if (s < RAMP) return 0;
+    var d = s - RAMP;
+    var flashes = BLINK_FAST * d - (BLINK_FAST - BLINK_SLOW) * d * d / (2 * HOLD);   // flashes so far, slowing evenly
+    var swing = Math.tanh(SHARP * Math.cos(flashes * 2 * Math.PI)) / Math.tanh(SHARP);
+    return swing * Math.min(1, d / LEAVE, (HOLD - d) / SETTLE);
+  }
+  window.zeroToOneStamina = stamina;
+
+  // What to draw with for a flash value from stamina(), on an element whose color is the ink: toward the theme's
+  // --flash color as it goes bright, and toward faint as it goes dim. Returns a color and an opacity.
+  function rgb(s) {
+    s = s.trim();
+    if (s.charAt(0) === '#') return [1, 3, 5].map(function (i) { return parseInt(s.substr(i, 2), 16); });
+    return s.match(/[\d.]+/g).slice(0, 3).map(Number);
+  }
+  function ink(el, v) {
+    var cs = getComputedStyle(el), base = cs.color, flash = cs.getPropertyValue('--flash');
+    if (v > 0 && flash) {
+      var a = rgb(base), b = rgb(flash);
+      return { color: 'rgb(' + a.map(function (x, i) { return Math.round(x + (b[i] - x) * v); }).join(',') + ')', alpha: 1 };
+    }
+    return { color: base, alpha: 1 + Math.min(0, v) * (1 - DIM) };
+  }
+  window.zeroToOneInk = ink;
+
   // Sharp at the tile's size on any screen; returns the drawing context, set to CSS pixels.
   function fit() {
-    var w = canvas.clientWidth, h = canvas.clientHeight, dpr = window.devicePixelRatio || 1;
+    var box = canvas.getBoundingClientRect(), w = box.width, h = box.height, dpr = window.devicePixelRatio || 1;
     var pw = Math.round(w * dpr), ph = Math.round(h * dpr);
     if (canvas.width !== pw || canvas.height !== ph) { canvas.width = pw; canvas.height = ph; }
     var ctx = canvas.getContext('2d');
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.clearRect(0, 0, w, h);
+    // Clear every device pixel. Clearing in CSS pixels can miss the last column or row when the size rounds up, which
+    // Chrome then keeps from frame to frame as a line along the edge.
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, pw, ph);
+    ctx.setTransform(pw / w, 0, 0, ph / h, 0, 0);
     ctx.strokeStyle = ctx.fillStyle = getComputedStyle(canvas).color;
     ctx.lineWidth = 1;
     return { ctx: ctx, w: w, h: h };
@@ -71,10 +116,18 @@
   function draw(t) {
     var f = fit();
     var n = Math.max(1, Math.ceil(SAMPLES * speed(t) / FAST));
-    var fade = Math.min(1, t / FADE, (CYCLE - t) / FADE);
+    var fade = Math.min(1, t / FADE), k = ink(canvas, stamina(t)), light = k.alpha;
+    f.ctx.strokeStyle = f.ctx.fillStyle = k.color;
     // n poses spread across the exposure, each faint enough that what every pose shares builds to full ink
-    f.ctx.globalAlpha = Math.max(0, fade) * (n === 1 ? 1 : Math.min(1, 2.5 / n));
+    f.ctx.globalAlpha = Math.max(0, fade) * light * (n === 1 ? 1 : Math.min(1, 2.5 / n));
     for (var i = 0; i < n; i++) pose(f, turns(Math.max(0, t - EXPOSURE * i / n)));
+    // The speed gauge: an arc from the top, clockwise, as far round as the coin is toward top speed; a full circle at it.
+    var R = Math.min(f.w, f.h) * 0.34, share = Math.min(1, t / RAMP);
+    f.ctx.globalAlpha = Math.max(0, fade) * light;
+    f.ctx.lineWidth = 1.5;
+    f.ctx.beginPath();
+    f.ctx.arc(f.w / 2, f.h / 2, R * GAUGE, -Math.PI / 2, -Math.PI / 2 + share * 2 * Math.PI);
+    f.ctx.stroke();
   }
 
   function still() { var f = fit(); f.ctx.globalAlpha = 1; pose(f, 0); }

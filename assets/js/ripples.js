@@ -1,52 +1,67 @@
-// The two 0 → 1 drawings on the About page: the Doppler effect. A ball travels from 0 to 1, rests there, then starts
-// again at 0. It keeps time with the coin under the tiramisu (assets/js/dot-coin.js): both read the page's clock with
-// the same TRIP and REST, so the coin spins up while the ball travels and both rest together when it reaches 1.
+// The two 0 → 1 drawings on the About page: the Doppler effect on Sisyphus's mountain. The ball is the rock: it is
+// pushed up from 0 to 1 (the uptime), growing with the effort, then rolls back down to 0 (the downtime) and the cycle
+// starts anew. Going down there are no ripples, only the ball: self-reflection. Spent, the ball and the mountain flash
+// like a stamina bar that needs rest, snapping between bright and dim, fast at the top and slower as they recover, and
+// back on the ink by the time the ball is at 0.
+// It keeps time with the coin under the tiramisu (assets/js/dot-coin.js): both read the page's clock with the same
+// TRIP and DOWN, so the coin spins up while the ball climbs and holds its steady dot while the ball rolls back.
 // It drops a ripple at the spot it has reached each time the coin finishes a turn, so ripples start far apart and come
 // faster as the coin speeds up. Each ripple is a circle around that spot, spreading
 // faster than the ball and fading as it goes, so rings pack together ahead of the ball and stretch apart behind it.
 // A ring has faded out completely by the time it spreads back to 0, so the trail behind the ball fades into the 0.
 // The trip is a crescendo with 0 as its source: ripples and ball start quiet at 0 and build all the way to 1.
-// The top drawing shows the rings from above. The side drawing shows the same rings edge-on, with a crest on each.
+// The top drawing shows the rings from above, on the flat. The side drawing shows the mountain: the same rings edge-on,
+// with a crest on each, on a slope that starts nearly flat and curves up steeper and steeper, about 1 up for 6 across.
 // Lo (the `still` class on the page) holds one frame.
 (function () {
   var canvases = document.querySelectorAll('canvas.ripples');
   if (!canvases.length || !canvases[0].getContext) return;
 
   var TRIP = 8;           // seconds for the ball to go from 0 to 1: slow enough to follow. Same as in dot-coin.js
-  var REST = 3;           // seconds the ball rests at 1 before starting again. Same as in dot-coin.js
-  var CYCLE = TRIP + REST;
+  var DOWN = 3;           // seconds for the ball to roll back from 1 to 0. Same as in dot-coin.js
+  var CLEAR = 0.6;        // seconds for the ripples to clear once the ball starts rolling back
+  var CYCLE = TRIP + DOWN;
   // When the ball drops each ripple, in seconds into the trip: each time the coin finishes a turn (from dot-coin.js,
   // which loads first), or evenly if the coin isn't on the page.
   var DROPS = window.coinTurnTimes || Array.apply(null, Array(16)).map(function (_, j) { return j * TRIP / 16; });
   var SPEED = 1.5;        // ripple speed, as a multiple of the ball's speed; above 1, so rings stay ahead of the ball
-  var LIFE = TRIP * 0.5;  // seconds until a ripple has faded out; the last ones clear during the rest
+  var LIFE = TRIP * 0.5;  // seconds until a ripple has faded out
   var STILL = TRIP * 0.9; // the moment Lo shows: the ball near 1, deep in the crescendo
   var QUIET = 0.1;        // how strong a ripple is at 0; at 1 it is full strength
   var HEIGHT = 20;        // the side wave's height at full strength, in CSS pixels
   var CEILING = 32;       // the side wave levels off below this, in CSS pixels, however many crests overlap
   var WIDTH = 7;          // how wide each crest is, in CSS pixels
+  var SLOPE = 1 / 6;      // how high the mountain climbs from 0 to 1, as a share of its width: 2 up for 12 across
+  var FOOT = 8;           // space below the foot of the mountain, in CSS pixels, so the ball and the dips stay in view
 
   var root = document.documentElement;
 
   // How loud the crescendo is at a point on the way from 0 (0) to 1 (1).
   function loudness(along) { return QUIET + (1 - QUIET) * along; }
 
-  // Where the ball is at time t, from 0 to 1: travelling for TRIP seconds, then resting at 1.
-  function at(t) { return Math.min(1, (t % CYCLE) / TRIP); }
+  // Where the ball is at time t, from 0 to 1: pushed up steadily for TRIP seconds, then rolling back down for DOWN
+  // seconds, slow at the top and faster and faster, as things fall.
+  function at(t) {
+    var s = t % CYCLE;
+    if (s < TRIP) return s / TRIP;
+    var u = (s - TRIP) / DOWN;
+    return 1 - u * u;
+  }
 
   // Each ripple still alive at time t: where it started, how far it has spread, how strong it still is.
-  // Ripples are dropped only while the ball travels, so the rest is quiet.
+  // Ripples are dropped only on the way up. Once the ball rolls back they clear within CLEAR seconds, and none are
+  // left when the next climb starts.
   function ripples(t, w) {
-    var speed = w / TRIP * SPEED, list = [], c = Math.floor(t / CYCLE);
-    for (var cc = c; cc >= Math.max(0, c - 1); cc--) {
-      for (var j = 0; j < DROPS.length; j++) {
-        var age = t - (cc * CYCLE + DROPS[j]);
-        if (age < 0 || age >= LIFE) continue;
-        var left = 1 - age / LIFE, along = DROPS[j] / TRIP;
-        var x = along * w, r = speed * age;
-        var back = x > 0 ? Math.max(0, 1 - r / x) : 0;   // 1 as it starts, 0 once it has spread back to 0
-        list.push({ x: x, r: r, strength: left * left * loudness(along) * back });
-      }
+    var speed = w / TRIP * SPEED, list = [], c = Math.floor(t / CYCLE), s = t - c * CYCLE;
+    var quiet = s < TRIP ? 1 : Math.max(0, 1 - (s - TRIP) / CLEAR);
+    if (!quiet) return list;
+    for (var j = 0; j < DROPS.length; j++) {
+      var age = s - DROPS[j];
+      if (age < 0 || age >= LIFE) continue;
+      var left = 1 - age / LIFE, along = DROPS[j] / TRIP;
+      var x = along * w, r = speed * age;
+      var back = x > 0 ? Math.max(0, 1 - r / x) : 0;   // 1 as it starts, 0 once it has spread back to 0
+      list.push({ x: x, r: r, strength: left * left * loudness(along) * back * quiet });
     }
     return list;
   }
@@ -59,19 +74,27 @@
 
   // Sharp at the tile's size on any screen; returns the drawing context, set to CSS pixels.
   function fit(canvas) {
-    var w = canvas.clientWidth, h = canvas.clientHeight, dpr = window.devicePixelRatio || 1;
+    var box = canvas.getBoundingClientRect(), w = box.width, h = box.height, dpr = window.devicePixelRatio || 1;
     var pw = Math.round(w * dpr), ph = Math.round(h * dpr);
     if (canvas.width !== pw || canvas.height !== ph) { canvas.width = pw; canvas.height = ph; }
     var ctx = canvas.getContext('2d');
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.clearRect(0, 0, w, h);
+    // Clear every device pixel. Clearing in CSS pixels can miss the last column or row when the size rounds up, which
+    // Chrome then keeps from frame to frame as a line along the edge.
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, pw, ph);
+    ctx.setTransform(pw / w, 0, 0, ph / h, 0, 0);
     ctx.strokeStyle = ctx.fillStyle = getComputedStyle(canvas).color;
     ctx.lineWidth = 0.8;
     return { ctx: ctx, w: w, h: h };
   }
 
-  function ball(ctx, x, y, along) {
-    ctx.globalAlpha = 1;
+  // The ball's and the mountain's flash at time t and the color for it: the coin's (dot-coin.js, which loads first), so
+  // all three flash together while the ball rolls back. Plain ink if the coin isn't on the page.
+  var stamina = window.zeroToOneStamina || function () { return 0; };
+  var ink = window.zeroToOneInk || function (el) { return { color: getComputedStyle(el).color, alpha: 1 }; };
+
+  function ball(ctx, x, y, along, light) {
+    ctx.globalAlpha = light;
     ctx.beginPath();
     ctx.arc(x, y, 1.5 + 2.5 * loudness(along), 0, Math.PI * 2);
     ctx.fill();
@@ -86,24 +109,31 @@
       f.ctx.stroke();
     });
     var along = at(t);
-    ball(f.ctx, along * f.w, mid, along);
+    var k = ink(canvas, stamina(t));
+    f.ctx.fillStyle = k.color;
+    ball(f.ctx, along * f.w, mid, along, k.alpha);
   }
 
   function drawSide(canvas, t) {
-    var f = fit(canvas), mid = f.h / 2, list = ripples(t, f.w);
+    var f = fit(canvas), list = ripples(t, f.w);
+    // The mountain: from its foot at the bottom left it curves up, steeper and steeper, leaving room for the crests.
+    var rise = Math.min(f.w * SLOPE, f.h - FOOT - CEILING);
+    function slope(x) { var u = x / f.w; return f.h - FOOT - rise * u * u; }
     function height(x) {
       var y = 0;
       list.forEach(function (r) {
         y += r.strength * (crest(x - r.x - r.r) + crest(x - r.x + r.r));
       });
-      return mid - CEILING * Math.tanh(y * HEIGHT / CEILING);
+      return slope(x) - CEILING * Math.tanh(y * HEIGHT / CEILING);
     }
-    f.ctx.globalAlpha = 1;
+    var k = ink(canvas, stamina(t)), light = k.alpha;
+    f.ctx.strokeStyle = f.ctx.fillStyle = k.color;
+    f.ctx.globalAlpha = light;
     f.ctx.beginPath();
     for (var x = 0; x <= f.w; x += 1) f.ctx[x ? 'lineTo' : 'moveTo'](x, height(x));
     f.ctx.stroke();
     var along = at(t);
-    ball(f.ctx, along * f.w, height(along * f.w), along);
+    ball(f.ctx, along * f.w, height(along * f.w), along, light);
   }
 
   function draw(t) {

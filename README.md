@@ -15,7 +15,7 @@ The rules for the site, then what each page is and where it lives. A static Jeky
 
 - The line about work is the same everywhere: **Open to FDSE roles · Pacific Northwest / Texas preferred, open to relocation anywhere in the US**.
 - Only `status: active` means I'm working on it now. Today that is the P&ID Digitizer alone.
-- Project dates on the web are `YYYY MM`. The clocks are `YYYY-MM-DD HH:MM SS` plus the zone: Dallas-Fort Worth above the triangle, UTC below.
+- Project dates on the web are `YYYY MM`. The clocks are `YYYY-MM-DD HH:MM SS` plus the zone: UTC, the global time, above the triangle, and Dallas-Fort Worth, my own, below.
 
 ### Resume and CV
 
@@ -67,12 +67,12 @@ The layout is `_layouts/default.html`: `_includes/head.html`, `_includes/nav.htm
 
 | Element | What it is | Where |
 | --- | --- | --- |
-| Banner | The jumping spider, with "To cultivate a sense of curiosity" | `assets/img/jumping-spider.webp` |
-| Dot coin | A circle with a dot on one face and the other face blank, spinning about its upright axis. It starts slow enough to tell the faces apart, then speeds up until the dot looks like it's always there. It keeps time with the 0 → 1 ripple: it spins up over the ball's 8-second trip, reaches the steady dot as the ball reaches 1, holds it through the ball's 3-second rest, and both start again together. Lo shows it face on | `assets/js/dot-coin.js` |
+| Banner | The jumping spider, with "To cultivate a sense of absurdity" | `assets/img/jumping-spider.webp` |
+| Dot coin | A circle with a dot on one face and the other face blank, spinning about its upright axis. It starts slow enough to tell the faces apart, then speeds up until the dot looks like it's always there. It keeps time with the 0 → 1 ripple: it spins up over the ball's 8-second climb, reaches the steady dot as the ball reaches 1, and holds it through the ball's 3-second roll back. A ring around it is a speed gauge: it fills as the coin spins up and closes into a full circle at top speed, staying until the ball is back at 0. While the ball rolls back, the coin and the gauge flash with the ball and the mountain, like a stamina bar that needs rest. It starts again only when the ball is back at 0. Lo shows it face on | `assets/js/dot-coin.js` |
 | Tiramisu | A slice in 3/4 view on a level plate, an impossible perspective on purpose. Hi draws the slice and plate as falling 0s and 1s, 0 at the top and 1 at the bottom. Lo, or no JavaScript, shows the line drawing | `_includes/cake.html`, `assets/js/cake.js` |
-| Clocks | `YYYY-MM-DD HH:MM SS` plus the zone: Dallas-Fort Worth (CST or CDT) above the triangle, UTC below it; each names its zone in `data-zone` | `assets/js/clock.js` |
+| Clocks | `YYYY-MM-DD HH:MM SS` plus the zone: UTC, the global time, above the triangle, and Dallas-Fort Worth (CST or CDT), my own, below it; each names its zone in `data-zone` | `assets/js/clock.js` |
 | Sierpinski triangle | Pointing down, zooming forever into its bottom point, after [lutanho.net](https://www.lutanho.net/fractal/sierpa.html) | `_includes/sierpinski.html` |
-| 0 → 1 ripple | The Doppler effect: a ball travels from 0 to 1, dropping ripples that spread out from where it was, so rings pack together ahead of it and stretch apart behind it. The trip is a crescendo with 0 as its source: ripples and ball start quiet at 0 and build to 1, then it rests at 1 and starts again from 0. It drops a ripple each time the coin finishes a turn, so ripples start far apart and bunch up as the coin speeds up. Each ring fades out by the time it spreads back to 0 | `assets/js/ripples.js` |
+| 0 → 1 ripple | The Doppler effect on Sisyphus's mountain. The ball is the rock: it is pushed from 0 to 1 up the mountain (the uptime), which the side view draws as a slope that starts nearly flat and curves up steeper and steeper, about 1 up for 6 across, growing with the effort, and dropping a ripple each time the coin finishes a turn, so ripples start far apart and bunch up as the coin speeds up. Rings pack together ahead of the ball and stretch apart behind it, and each fades out by the time it spreads back to 0. Then the ball rolls back down to 0 (the downtime), slow at the top and faster and faster. Going down there are no ripples, only the ball. Spent, the ball and the mountain flash like a stamina bar that needs rest: they snap between a bright flash (`--flash`, the theme's 100 value) and nearly invisible, with little time on their usual color between, fast at the top and slower as they recover, and back on their usual color just as the ball reaches 0, and the cycle starts anew | `assets/js/ripples.js` |
 | Ripple, side view | The same ball and ripples edge-on, as a wave on a line, with a crest wherever a ring is | `assets/js/ripples.js` |
 | Who I am | My name in Tamil, English, and pronunciation | `index.md` |
 | Who am I | What I do, what I'm currently mastering (the empty box opens A few of my favo(u)rite things), and what I like | `index.md` |
@@ -81,7 +81,7 @@ To change the rain, edit `CELL` (digit size) and `SPEED` (rows per second) in `c
 
 ## Quality of Life
 
-`quality-of-life.html`, at `/quality-of-life/`. A graph of three dashed tracks, Strategy, Tactics, Operations, whose bars are always in flux, each on its own rhythm. The focus is on Strategy and Operations, and Tactics recedes. A written note follows, in the page.
+`quality-of-life.html`, at `/quality-of-life/`. First a loop drawn as line art, each box a word, a slash, and a word: Conflict / Problem leads to Resolution / Solution, then Reflection / Illusion, which feeds back into Conflict. Then a graph of three dashed tracks, Strategy, Tactics, Operations, with short-term tactics minimized and strategy and operations maximized: the Strategy and Operations bars stay near full and the Tactics bar near empty, each drifting a little on its own rhythm. Below them, seven pairs of opposites (Freedom and Security through Light and Dark), a rule, four escapes (Nirvana, Samsara, Moksha, Rebirth), and one line on the easier way: living through others.
 
 ## A few of my favo(u)rite things
 
