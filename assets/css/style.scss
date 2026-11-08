@@ -228,6 +228,7 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 .blank-box:hover { border-color: var(--tx); }
 .site-note { margin: 0; }
 .open-to { margin: 0.4em 0 0; color: var(--tx-2); }
+.retired { margin: 0.4em 0 0; }
 
 /* Quality of life: line art in a dotted frame, in the theme's colors */
 .qol-fig { margin: 1.8em 0; max-width: 480px; }
