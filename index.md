@@ -61,7 +61,7 @@ description: "About Senthen Velmurugan"
       </ul>
     </section>
   </div>
-  <p class="muted small site-note">This is a site where I keep what I'm creating</p>
+  <p class="muted small site-note">Entrepreneur</p>
   <p class="small open-to">Open to FDSE roles · Pacific Northwest / Texas preferred, open to relocation anywhere in the US</p>
   <p class="muted small retired">Retired circa 2000</p>
   </div>
