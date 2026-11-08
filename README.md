@@ -30,8 +30,8 @@ The rules for the site, then what each page is and where it lives. A static Jeky
 
 ### Look
 
-- Two themes, both dark and muted, never bright or cheery: moss by default for everyone, red from the switch. The switch is one square whose arrow flips, like a stock index.
-- Every color is an exact Flexoki value (see [Flexoki palette](#flexoki-palette)). The two themes use the same roles, and only the ramp changes.
+- Two themes, both muted, never bright or cheery: green by default for everyone, red from the switch. The switch is one square whose arrow flips, like a stock index.
+- Green is a drafting sheet: cream line art (`#ECE9DC`) on forest green (`#2B5A45`), with the in-between roles as the cream laid over the green. Red is exact Flexoki values (see [Flexoki palette](#flexoki-palette)). Both use the same roles.
 - No project stands out from another: the same colors and styles for all of them, with no highlights.
 - A drafting sheet: line art in the text color on the page color, tiles framed in dots, dotted rules, dashed column dividers, small grids of squares in the corners. No arrows after labels.
 - Captions: Time is blocky uppercase. The banner and the tiramisu are Gelasio italic, the only web font.
@@ -67,7 +67,7 @@ The layout is `_layouts/default.html`: `_includes/head.html`, `_includes/nav.htm
 
 | Element | What it is | Where |
 | --- | --- | --- |
-| Banner | The jumping spider, with "To cultivate a sense of absurdity" | `assets/img/jumping-spider.webp` |
+| Banner | The jumping spider, with "To cultivate a sense of delight" | `assets/img/jumping-spider.webp` |
 | Dot coin | A circle with a dot on one face and the other face blank, spinning about its upright axis. It starts slow enough to tell the faces apart, then speeds up until the dot looks like it's always there. It keeps time with the 0 → 1 ripple: it spins up over the ball's 8-second climb, reaches the steady dot as the ball reaches 1, and holds it through the ball's 3-second roll back. A ring around it is a speed gauge: it fills as the coin spins up and closes into a full circle at top speed, staying until the ball is back at 0. While the ball rolls back, the coin and the gauge flash with the ball and the mountain, like a stamina bar that needs rest. It starts again only when the ball is back at 0. Lo shows it face on | `assets/js/dot-coin.js` |
 | Tiramisu | A slice in 3/4 view on a level plate, an impossible perspective on purpose. Hi draws the slice and plate as falling 0s and 1s, 0 at the top and 1 at the bottom. Lo, or no JavaScript, shows the line drawing | `_includes/cake.html`, `assets/js/cake.js` |
 | Clocks | `YYYY-MM-DD HH:MM SS` plus the zone: UTC, the global time, above the triangle, and Dallas-Fort Worth (CST or CDT), my own, below it; each names its zone in `data-zone` | `assets/js/clock.js` |
@@ -184,16 +184,16 @@ A reference for choosing colors, from [Flexoki](https://stephango.com/flexoki) b
 
 Eight roles carry every page. Flexoki's own light and dark themes are on the left; the two themes on this site are on the right.
 
-| Role | Used for | Flexoki light | Flexoki dark | Moss | Red |
+| Role | Used for | Flexoki light | Flexoki dark | Green | Red |
 | --- | --- | --- | --- | --- | --- |
-| `bg` | Main background | paper | black | black | black |
-| `bg-2` | Secondary background | base-50 | base-950 | base-950 | base-950 |
-| `ui` | Borders | base-100 | base-900 | green-900 | red-900 |
-| `ui-2` | Hovered borders | base-150 | base-850 | green-850 | red-850 |
-| `ui-3` | Active borders | base-200 | base-800 | green-800 | red-800 |
-| `tx-3` | Faint text | base-300 | base-700 | green-700 | red-700 |
-| `tx-2` | Muted text | base-600 | base-500 | green-600 | red-600 |
-| `tx` | Primary text | black | base-200 | green-600 | red-600 |
+| `bg` | Main background | paper | black | `#2B5A45` | black |
+| `bg-2` | Secondary background | base-50 | base-950 | cream 6% | base-950 |
+| `ui` | Borders | base-100 | base-900 | cream 15% | red-900 |
+| `ui-2` | Hovered borders | base-150 | base-850 | cream 22% | red-850 |
+| `ui-3` | Active borders | base-200 | base-800 | cream 30% | red-800 |
+| `tx-3` | Faint text | base-300 | base-700 | cream 55% | red-700 |
+| `tx-2` | Muted text | base-600 | base-500 | cream 80% | red-600 |
+| `tx` | Primary text | black | base-200 | `#ECE9DC` | red-600 |
 
 Accents use 600 on a light theme and 400 on a dark one. Base values can be blended with opacity; accents cannot, because that desaturates them.
 
