@@ -30,7 +30,7 @@ description: "About Senthen Velmurugan"
   <p class="infinity-arrow" aria-hidden="true"><canvas class="ripples" data-view="side"></canvas></p>
   <script src="{{ '/assets/js/ripples.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   <div class="creed">
-    <p>Truth alone triumphs</p>
+    <p>Truth alone prevails</p>
     <p lang="sa" class="creed-src">सत्यमेव जयते</p>
     <p>love is wise; hatred is foolish</p>
   </div>
