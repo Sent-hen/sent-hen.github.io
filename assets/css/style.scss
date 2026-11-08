@@ -236,16 +236,10 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 .qol-node, .qol-link { fill: none; stroke: var(--tx-2); stroke-width: 1; }
 .qol-head { fill: var(--tx-2); }
 .qol-flow .qol-main { fill: var(--tx); }
-.qol-note { max-width: 32em; }
-.qol-note .iam-list { margin-bottom: 1em; }
-/* the pairs in a square bracket, with Time to its right */
-.qol-bracket { display: flex; align-items: center; gap: 0.6em; margin-bottom: 1em; }
-.qol-note .qol-bracket .iam-list { margin-bottom: 0; }
 /* the main note, above everything on the page */
 .qol-creed { margin: 0 0 1.8em; color: var(--tx); font-family: var(--font-serif); font-style: italic; }
 .qol-creed p { margin: 0 0 0.3em; }
-.qol-brace { align-self: stretch; width: 0.5em; border: 1px solid var(--tx-2); border-left: 0; }
-.qol-time { color: var(--tx); }
+.qol-creed .qol-creed-src { color: var(--tx-2); }
 /* Strategy / Operations / Tactics: intent down, feedback back up (dashed); Operations, the hinge, in the full ink */
 .sot-layer { fill: var(--bg-2); stroke: var(--tx-2); stroke-width: 1; }
 .sot-hinge { stroke: var(--tx); stroke-width: 2; }
