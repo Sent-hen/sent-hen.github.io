@@ -30,7 +30,7 @@ The rules for the site, then what each page is and where it lives. A static Jeky
 
 ### Look
 
-- Two themes, both muted, never bright or cheery: green by default for everyone, red from the switch. The switch is one square whose arrow flips, like a stock index.
+- Two themes, both muted, never bright or cheery: green by default for everyone, red from the switch. Green is open ended and wishy-washy (titles end with a `+`); red and black is deterministic, as far as I know how to make it. The switch is one square whose arrow flips, like a stock index.
 - Green is a drafting sheet: cream line art (`#ECE9DC`) on forest green (`#2B5A45`), with the in-between roles as the cream laid over the green. Red is exact Flexoki values (see [Flexoki palette](#flexoki-palette)). Both use the same roles.
 - No project stands out from another: the same colors and styles for all of them, with no highlights.
 - A drafting sheet: line art in the text color on the page color, tiles framed in dots, dotted rules, dashed column dividers, small grids of squares in the corners. No arrows after labels.
@@ -85,7 +85,7 @@ To change the rain, edit `CELL` (digit size) and `SPEED` (rows per second) in `c
 
 ## A few of my favo(u)rite things
 
-`stuff.html`, `_data/stuff.yml`, at `/stuff/`. The title, A few of my favo(u)rite things, then a photo captioned "Is this tasteful?", a rule, my favorite actions written in the page (Tea, Walking/Driving, Penmanship/Typing, Cooking/Eating), titled Mind + Eyes + Ears + in green and Actions in red, and a rule. Then each category as rows of paired posters, with a `/` between the two in a pair. There are no titles on the page: below each poster is a `·`, and hovering or tapping turns it into `title · lead · year`, centered. The lead is the director, artist, author, or band. Each category is titled by the senses it takes in the green theme and by its name in the red theme. Mind is in every one, so the senses can repeat between categories, but the names cannot: Cinema is Mind + Eyes + Ears, Music is Mind + Ears, Games is Mind + Eyes + Ears + Hands, and Literature and Graphic Novels are both Mind + Eyes. Music shows albums; Blue Monday was a single, so it keeps its own name and floppy-disk sleeve.
+`stuff.html`, `_data/stuff.yml`, at `/stuff/`. The title, A few of my favo(u)rite things, then a photo captioned "Is this tasteful?", a rule, my favorite actions written in the page (Tea, Walking/Driving, Penmanship/Typing, Cooking/Eating), titled Mind + Eyes + Ears + in green and Actions in red, and a rule. Then each category as rows of paired posters, with a `/` between the two in a pair. There are no titles on the page: below each poster is a `·`, and hovering or tapping turns it into `title · lead · year`, centered. The lead is the director, artist, author, or band. Each category is titled by the senses it takes in the green theme and by its name in the red theme. Green is open ended: every title starts from Mind and ends with a `+`, and titles can repeat. Red is deterministic, as far as I know how to make it: one name per category, never repeated. Cinema is Mind + Eyes + Ears +, Music is Mind + Ears +, Games is Mind + Eyes + Ears + Hands +, and Literature and Graphic Novels are both Mind + Eyes +. Music shows albums; Blue Monday was a single, so it keeps its own name and floppy-disk sleeve.
 
 Only Dark Souls II shifts between two covers. A poster with `also:` fades through its images, one every 6 seconds (`assets/js/stuff.js`), pausing while hovered or tapped; Lo holds the first.
 
