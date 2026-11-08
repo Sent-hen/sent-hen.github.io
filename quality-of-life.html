@@ -1,78 +1,106 @@
 ---
 title: Quality of Life
 permalink: /quality-of-life/
-description: "Senthen Velmurugan on quality of life: strategy, tactics, and operations, all in flux"
+description: "Senthen Velmurugan on quality of life: strategy, operations, and tactics"
 ---
 <p class="small"><a href="{{ '/' | relative_url }}" class="muted">&larr; About</a></p>
 <h1>Quality of Life</h1>
 
+<div class="qol-creed">
+  <p>By the power of truth, I, while living, have conquered the universe</p>
+  <p>Quality of life is an oxymoron</p>
+  <p>Therefore I wish for a cycle of pleasant suffering,</p>
+  <p>If we assume that our lives are preordained, we are free</p>
+</div>
+
 {% comment %} The loop: a conflict is resolved, the resolution is reflected on, and reflection feeds the next conflict. {% endcomment %}
 <figure class="qol-fig">
-  <svg class="qol qol-flow" viewBox="-1 0 322 114" role="img" aria-label="A loop: conflict, or problem, leads to resolution, or solution, which leads to reflection, or illusion, which feeds back into conflict">
+  <svg class="qol qol-flow" viewBox="-1 0 322 144" role="img" aria-label="A loop: conflict, or problem, or data, leads to resolution, or solution, or logic, which leads to reflection, or illusion, or action, which feeds back into conflict">
     <defs>
       <marker id="qol-head" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path class="qol-head" d="M0 0 L8 4 L0 8 Z"/></marker>
     </defs>
-    <rect class="qol-node" x="0" y="8" width="92" height="58"/>
+    <rect class="qol-node" x="0" y="8" width="92" height="88"/>
     <text class="qol-main" x="46" y="25" text-anchor="middle">Conflict</text>
     <text x="46" y="40" text-anchor="middle">/</text>
     <text x="46" y="55" text-anchor="middle">Problem</text>
-    <rect class="qol-node" x="114" y="8" width="92" height="58"/>
+    <text x="46" y="70" text-anchor="middle">/</text>
+    <text x="46" y="85" text-anchor="middle">Data</text>
+    <rect class="qol-node" x="114" y="8" width="92" height="88"/>
     <text class="qol-main" x="160" y="25" text-anchor="middle">Resolution</text>
     <text x="160" y="40" text-anchor="middle">/</text>
     <text x="160" y="55" text-anchor="middle">Solution</text>
-    <rect class="qol-node" x="228" y="8" width="92" height="58"/>
+    <text x="160" y="70" text-anchor="middle">/</text>
+    <text x="160" y="85" text-anchor="middle">Logic</text>
+    <rect class="qol-node" x="228" y="8" width="92" height="88"/>
     <text class="qol-main" x="274" y="25" text-anchor="middle">Reflection</text>
     <text x="274" y="40" text-anchor="middle">/</text>
     <text x="274" y="55" text-anchor="middle">Illusion</text>
-    <path class="qol-link" d="M92 37 H113" marker-end="url(#qol-head)"/>
-    <path class="qol-link" d="M206 37 H227" marker-end="url(#qol-head)"/>
-    <path class="qol-link" d="M274 66 V100 H46 V67" marker-end="url(#qol-head)"/>
+    <text x="274" y="70" text-anchor="middle">/</text>
+    <text x="274" y="85" text-anchor="middle">Action</text>
+    <path class="qol-link" d="M92 52 H113" marker-end="url(#qol-head)"/>
+    <path class="qol-link" d="M206 52 H227" marker-end="url(#qol-head)"/>
+    <path class="qol-link" d="M274 96 V130 H46 V97" marker-end="url(#qol-head)"/>
   </svg>
 </figure>
 
 {% comment %}
-  Three tracks, Strategy, Tactics, Operations, drawn as line art. Short-term tactics are minimized and strategy and
-  operations maximized: their bars stay near full and the Tactics bar near empty, each drifting a little on its own
-  rhythm. Timing is in style.scss (.qol).
+  Strategy, Operations, Tactics, stacked: intent flows down, feedback flows back up (dashed). Operations is the hinge,
+  in the full ink with a heavier frame. Colors are the theme's, so it fits both themes; styles are in style.scss (.sot).
 {% endcomment %}
-<figure class="qol-fig">
-  <svg class="qol" viewBox="0 0 320 132" role="img" aria-label="Strategy and Operations near full, Tactics near empty">
-    <g class="qol-strategy">
-      <text x="0" y="26">Strategy</text>
-      <rect class="qol-track" x="104" y="13" width="212" height="18"/>
-      <rect class="qol-bar" x="104" y="13" width="212" height="18"/>
-    </g>
-    <g class="qol-tactics">
-      <text x="0" y="70">Tactics</text>
-      <rect class="qol-track" x="104" y="57" width="212" height="18"/>
-      <rect class="qol-bar" x="104" y="57" width="212" height="18"/>
-    </g>
-    <g class="qol-operations">
-      <text x="0" y="114">Operations</text>
-      <rect class="qol-track" x="104" y="101" width="212" height="18"/>
-      <rect class="qol-bar" x="104" y="101" width="212" height="18"/>
-    </g>
+<figure class="qol-fig sot">
+  <svg class="qol" viewBox="150 10 380 320" role="img" aria-labelledby="sot-title">
+    <title id="sot-title">Strategy sets intent, operations connects it, tactics meets reality; feedback flows back up.</title>
+    <defs>
+      <marker id="sot-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path class="sot-head" d="M2 1L8 5L2 9"/>
+      </marker>
+    </defs>
+    <rect class="sot-layer" x="160" y="20" width="360" height="64" rx="6"/>
+    <text class="sot-name" x="340" y="46">Strategy</text>
+    <text class="sot-note" x="340" y="68">why and where · years</text>
+    <rect class="sot-layer sot-hinge" x="160" y="138" width="360" height="64" rx="6"/>
+    <text class="sot-name" x="340" y="164">Operations</text>
+    <text class="sot-note" x="340" y="186">how it connects · months</text>
+    <rect class="sot-layer" x="160" y="256" width="360" height="64" rx="6"/>
+    <text class="sot-name" x="340" y="282">Tactics</text>
+    <text class="sot-note" x="340" y="304">what wins now · hours</text>
+    <line class="sot-flow" x1="300" y1="86" x2="300" y2="134" marker-end="url(#sot-arrow)"/>
+    <line class="sot-flow" x1="300" y1="204" x2="300" y2="252" marker-end="url(#sot-arrow)"/>
+    <line class="sot-flow sot-back" x1="380" y1="134" x2="380" y2="88" marker-end="url(#sot-arrow)"/>
+    <line class="sot-flow sot-back" x1="380" y1="252" x2="380" y2="206" marker-end="url(#sot-arrow)"/>
+    <text class="sot-side" x="290" y="114" text-anchor="end">intent</text>
+    <text class="sot-side" x="290" y="232" text-anchor="end">intent</text>
+    <text class="sot-side" x="390" y="114" text-anchor="start">feedback</text>
+    <text class="sot-side" x="390" y="232" text-anchor="start">feedback</text>
   </svg>
 </figure>
 
 <div class="qol-note">
-  <ul class="iam-list">
-    <li>Freedom and Security</li>
-    <li>Money and Time</li>
-    <li>Order and Chaos</li>
-    <li>War and Peace</li>
-    <li>Heat and Cold</li>
-    <li>Life and Death</li>
-    <li>Light and Dark</li>
-  </ul>
+  {% comment %} The pairs, held in a square bracket on the right: all of them are time. {% endcomment %}
+  <div class="qol-bracket">
+    <ul class="iam-list">
+      <li>Freedom and Security</li>
+      <li>Chaos and Order</li>
+      <li>War and Peace</li>
+      <li>Heat and Cold</li>
+      <li>Life and Death</li>
+      <li>Light and Dark</li>
+    </ul>
+    <span class="qol-brace" aria-hidden="true"></span>
+    <span class="qol-time">Time</span>
+  </div>
 
   <hr>
 
-  <ul class="iam-list">
-    <li>Nirvana</li>
-    <li>Samsara</li>
-    <li>Moksha</li>
-    <li>Rebirth</li>
-  </ul>
-  <p>An easier way: living through others vicariously, seeing them go through the same process of understanding the truth.</p>
+  {% comment %} The four escapes, held in a square bracket: timeless. {% endcomment %}
+  <div class="qol-bracket">
+    <ul class="iam-list">
+      <li>Nirvana</li>
+      <li>Samsara</li>
+      <li>Moksha</li>
+      <li>Rebirth</li>
+    </ul>
+    <span class="qol-brace" aria-hidden="true"></span>
+    <span class="qol-time">Timeless</span>
+  </div>
 </div>

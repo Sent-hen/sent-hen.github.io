@@ -7,23 +7,23 @@ description: "About Senthen Velmurugan"
 {% comment %} Banner: jumping spider photo, a purchased stock license. Credit is in README.md under "Credits". {% endcomment %}
 <figure class="banner-fig">
   <img class="banner" src="{{ '/assets/img/jumping-spider.webp' | relative_url }}" alt="A jumping spider on a green leaf, one leg raised">
-  <figcaption class="banner-caption">To cultivate a sense of delight</figcaption>
+  <figcaption class="banner-caption">To cultivate a sense of <span class="for-green">curiosity</span><span class="for-red">delight</span></figcaption>
 </figure>
 
 <div class="intro">
   <div class="intro-side">
   <canvas class="dot-coin" role="img" aria-label="A coin with a dot on one face, spinning faster until the dot seems always there"></canvas>
   <script src="{{ '/assets/js/dot-coin.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
-  <figure class="cake">
-    {% include cake.html %}
-  </figure>
-  <p class="tile-caption tile-serif">professional tiramisu connoisseur</p>
-  <script src="{{ '/assets/js/cake.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   <time class="clock" data-zone="UTC"></time>
   {% include sierpinski.html %}
   <time class="clock clock-below" data-zone="America/Chicago"></time>
   <p class="tile-caption">Time</p>
   <script src="{{ '/assets/js/clock.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+  <figure class="cake">
+    {% include cake.html %}
+  </figure>
+  <p class="tile-caption tile-serif">professional tiramisu connoisseur</p>
+  <script src="{{ '/assets/js/cake.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   </div>
   <div class="intro-text">
   <p class="infinity-arrow" aria-label="From zero to one"><canvas class="ripples" data-view="top"></canvas></p>
