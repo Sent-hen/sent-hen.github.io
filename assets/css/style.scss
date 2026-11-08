@@ -260,7 +260,8 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 .showcase { margin: 0 0 2.4em; }
 /* Stuff: Data, the heading over all the categories */
 .group-label { font-size: 0.95em; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--tx); margin: 0 0 1.2em; }
-.showcase-label { font-size: 0.75em; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tx-2); margin: 0 0 0.6em; }
+.showcase-label { font-size: 0.75em; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tx-2); margin: 0; }
+.showcase-sub { font-size: 0.7em; letter-spacing: 0.04em; color: var(--tx-3); margin: 0.15em 0 0.7em; }
 .covers { list-style: none; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); column-gap: 10px; margin: 0 0 0.8em; padding: 0; }
 .covers li { display: contents; }
 .covers li:first-child > * { grid-column: 1; }
