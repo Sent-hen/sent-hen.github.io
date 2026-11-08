@@ -29,6 +29,12 @@ description: "About Senthen Velmurugan"
   <p class="infinity-arrow" aria-label="From zero to one"><canvas class="ripples" data-view="top"></canvas></p>
   <p class="infinity-arrow" aria-hidden="true"><canvas class="ripples" data-view="side"></canvas></p>
   <script src="{{ '/assets/js/ripples.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+  <div class="creed">
+    <p>Truth alone triumphs</p>
+    <p class="creed-src"><span lang="sa-Latn">Satyameva Jayate</span>, Mundaka Upanishad 3.1.6</p>
+    <p>love is wise; hatred is foolish</p>
+    <p class="creed-src">Bertrand Russell, Face to Face</p>
+  </div>
   <div class="duality">
     <section>
       <p class="label">Who I am</p>
