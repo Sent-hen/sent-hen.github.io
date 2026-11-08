@@ -31,9 +31,8 @@ description: "About Senthen Velmurugan"
   <script src="{{ '/assets/js/ripples.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   <div class="creed">
     <p>Truth alone triumphs</p>
-    <p class="creed-src"><span lang="sa-Latn">Satyameva Jayate</span>, Mundaka Upanishad 3.1.6</p>
+    <p lang="sa" class="creed-src">सत्यमेव जयते</p>
     <p>love is wise; hatred is foolish</p>
-    <p class="creed-src">Bertrand Russell, Face to Face</p>
   </div>
   <div class="duality">
     <section>

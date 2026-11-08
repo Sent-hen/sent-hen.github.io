@@ -1,15 +1,15 @@
 # Stuff (/stuff/). Every category is rows of pairs: 1 / 2, then 3 / 4, and so on, in the order written here: oldest to newest, by release date.
 # art:    the poster or cover, in assets/img/stuff/
 # also:   more posters this one fades through in turn; each can have its own title, creator, and year
-# senses: the senses it takes, always starting from Mind and ending open with a +; the green theme shows these (open ended),
-#         the red theme shows the label (deterministic: one name per category, never repeated)
+# label:  the category's name, shown in the red theme (deterministic: one name per category, never repeated);
+#         the green theme titles every category Mind + Matter
 # square: true for a category with square covers (the rest are 2:3 posters)
 # creator: the lead: director, artist, author, or band. Hover shows title · creator · year under the poster.
 
 - label: Cinema
-  senses: Mind + Eyes + Ears +
   items:
     - { title: "The Truman Show", creator: "Peter Weir", year: 1998, art: the-truman-show.jpg }
+    - { title: "Anbe Sivam", creator: "Sundar C", year: 2003, art: anbe-sivam.jpg }
     - { title: "V for Vendetta", creator: "James McTeigue", year: 2005, art: v-for-vendetta-film.jpg }
     - { title: "Children of Men", creator: "Alfonso Cuarón", year: 2006, art: children-of-men.jpg }
     - { title: "The Fall", creator: "Tarsem Singh", year: 2006, art: the-fall-ornate.jpg }
@@ -17,7 +17,6 @@
     - { title: "WALL-E", creator: "Andrew Stanton", year: 2008, art: wall-e.jpg }
 
 - label: Music
-  senses: Mind + Ears +
   square: true
   items:                    # albums; Blue Monday was a single, so it keeps its own name and sleeve
     - { title: "In the Court of the Crimson King", creator: "King Crimson", year: 1969, art: in-the-court-of-the-crimson-king.jpg }
@@ -33,7 +32,6 @@
     - { title: "The New Abnormal", creator: "The Strokes", year: 2020, art: the-new-abnormal.jpg }
 
 - label: Games
-  senses: Mind + Eyes + Ears + Hands +
   items:                    # Project Zomboid has no single lead, so it credits the studio; its year is its 2013 early access
     - { title: "BioShock", creator: "Ken Levine", year: 2007, art: bioshock.jpg }
     - { title: "Team Fortress 2", creator: "Robin Walker", year: 2007, art: team-fortress-2.jpg }
@@ -50,7 +48,6 @@
     - { title: "Dead Space", creator: "Roman Campos-Oriola", year: 2023, art: dead-space.jpg }
 
 - label: Literature
-  senses: Mind + Eyes +
   items:                    # Lord of the Rings, Hitchhiker's, and Stormlight stand for their whole series; the year is the first book, and Stormlight's cover is The Way of Kings
     - { title: "The Lord of the Rings", creator: "J.R.R. Tolkien", year: 1954, art: the-lord-of-the-rings.jpg }
     - { title: "Dune", creator: "Frank Herbert", year: 1965, art: dune.jpg }
@@ -60,7 +57,6 @@
     - { title: "The Stormlight Archive", creator: "Brandon Sanderson", year: 2010, art: stormlight-archive.jpg }
 
 - label: Graphic Novels
-  senses: Mind + Eyes +
   items:                    # creator is the artist; the year is when it began
     - { title: "V for Vendetta", creator: "David Lloyd", year: 1982, art: v-for-vendetta.jpg }
     - { title: "Watchmen", creator: "Dave Gibbons", year: 1986, art: watchmen.jpg }
