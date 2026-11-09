@@ -1,4 +1,4 @@
-// The coin under the tiramisu, after the cover of Rick Rubin's The Creative Act: a thick ring with a dot in the
+// The coin under Time, after the cover of Rick Rubin's The Creative Act: a thick ring with a dot in the
 // middle on the front, the same ring with nothing in it on the back, spinning
 // about its vertical axis. It starts slow enough to tell the dot face from the blank one, then speeds up until
 // the dot looks like it is always there. Each frame is a short exposure, the way an eye or a camera sees a spinning

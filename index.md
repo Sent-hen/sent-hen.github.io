@@ -12,18 +12,18 @@ description: "About Senthen Velmurugan"
 
 <div class="intro">
   <div class="intro-side">
-  <canvas class="dot-coin" role="img" aria-label="A coin with a dot on one face, spinning faster until the dot seems always there"></canvas>
-  <script src="{{ '/assets/js/dot-coin.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
-  <time class="clock" data-zone="UTC"></time>
-  {% include sierpinski.html %}
-  <time class="clock clock-below" data-zone="America/Chicago"></time>
-  <p class="tile-caption">Time</p>
-  <script src="{{ '/assets/js/clock.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   <figure class="cake">
     {% include cake.html %}
   </figure>
   <p class="tile-caption tile-serif">professional tiramisu connoisseur</p>
   <script src="{{ '/assets/js/cake.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+  <time class="clock" data-zone="UTC"></time>
+  {% include sierpinski.html %}
+  <time class="clock clock-below" data-zone="America/Chicago"></time>
+  <p class="tile-caption">Time</p>
+  <script src="{{ '/assets/js/clock.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+  <canvas class="dot-coin" role="img" aria-label="A coin with a dot on one face, spinning faster until the dot seems always there"></canvas>
+  <script src="{{ '/assets/js/dot-coin.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   </div>
   <div class="intro-text">
   <p class="infinity-arrow" aria-label="From zero to one"><canvas class="ripples" data-view="top"></canvas></p>
@@ -64,8 +64,8 @@ description: "About Senthen Velmurugan"
       <p>Someone who uses technology to increase <a href="{{ '/quality-of-life/' | relative_url }}">Quality of Life</a>.</p>
       <p class="iam">Pursuing mastery of&hellip;</p>
       <ul class="iam-list">
-        <li>systems</li>
-        <li>architecture</li>
+        <li>system architecture</li>
+        <li>strength training</li>
         <li><a href="{{ '/stuff/' | relative_url }}" class="blank-box" aria-label="A few of my favo(u)rite things"></a></li>
       </ul>
       <p class="iam">I like&hellip;</p>

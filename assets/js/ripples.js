@@ -3,7 +3,7 @@
 // starts anew. Going down there are no ripples, only the ball: self-reflection. Spent, the ball and the mountain flash
 // like a stamina bar that needs rest, snapping between bright and dim, fast at the top and slower as they recover, and
 // back on the ink by the time the ball is at 0.
-// It keeps time with the coin under the tiramisu (assets/js/dot-coin.js): both read the page's clock with the same
+// It keeps time with the coin under Time (assets/js/dot-coin.js): both read the page's clock with the same
 // TRIP and DOWN, so the coin spins up while the ball climbs and holds its steady dot while the ball rolls back.
 // It drops a ripple at the spot it has reached each time the coin finishes a turn, so ripples start far apart and come
 // faster as the coin speeds up. Each ripple is a circle around that spot, spreading
@@ -12,8 +12,10 @@
 // The trip is a crescendo with 0 as its source: ripples and ball start quiet at 0 and build all the way to 1.
 // The top drawing shows the rings from above, on the flat. The side drawing shows the mountain: the same rings edge-on,
 // with a crest on each, on a slope that starts nearly flat and curves up steeper and steeper, about 1 up for 6 across.
-// The count: a small 1 2 3 at the top left of the top drawing and a b c at the bottom right of the side one, under the summit. Each phase, up or
-// down, lights the next one in turn, so the count runs 1 2 3 1 2 3 over a cycle that has only two phases: up, down, up
+// In the corners, faint like a background, a pair with an arrow between: 0 → 1 at the top left and Y → Z at the bottom
+// right of the top drawing, A → B at the top left and 1 → 0 at the bottom right of the side one. Going up every arrow
+// points right; going down it flips to point left. The mark the arrow points at is lit, lighting up over BLINK seconds
+// as its phase starts, and each rest belongs to the move before it.
 // reads as three. An illusion, and the cheapest one: one modulo on the clock the ball already keeps.
 // Lo (the `still` class on the page) holds one frame.
 (function () {
@@ -38,8 +40,9 @@
   var WIDTH = 7;          // how wide each crest is, in CSS pixels
   var SLOPE = 1 / 6;      // how high the mountain climbs from 0 to 1, as a share of its width: 2 up for 12 across
   var FOOT = 8;           // space below the foot of the mountain, in CSS pixels, so the ball and the dips stay in view
-  var BLINK = 0.25;       // seconds for the next one in the count to light up as its phase starts
-  var UNLIT = 0.25;       // how faint the count's other two are, as a share of the ink
+  var BLINK = 0.25;       // seconds for a corner mark to light up as its phase starts
+  var UNLIT = 0.25;       // how faint the unlit corner mark is, as a share of the ink
+  var GAP = 11;           // CSS pixels from one corner glyph to the next
   var root = document.documentElement;
   var FONT = '10px ' + (getComputedStyle(root).getPropertyValue('--font-ui').trim() || 'sans-serif');
 
@@ -109,23 +112,28 @@
     ctx.fill();
   }
 
-  // Which of the three is lit at time t, and how far it has lit up: every phase, up or down, moves the count on by one.
+  // Whether the ball is going up at time t, and how far that phase's mark has lit up.
   function beat(t) {
     var c = Math.floor(t / CYCLE), s = t - c * CYCLE, up = s < TRIP + TOP;   // each rest belongs to the move before it
-    return { n: (2 * c + (up ? 0 : 1)) % 3, on: Math.min(1, (up ? s : s - TRIP - TOP) / BLINK) };
+    return { up: up, on: Math.min(1, (up ? s : s - TRIP - TOP) / BLINK) };
   }
 
-  // The count, in the page's own ink and UI font, from (x, y): the lit one in full, the other two faint.
-  function count(f, marks, x, y, t) {
-    var b = beat(t);
+  // A corner, in the page's own ink and UI font, from (x, y): two marks with an arrow between that points right going
+  // up and left going down. The arrow and the mark it points at light up; the other mark stays faint.
+  function corner(f, marks, x, y, t) {
+    var b = beat(t), lit = b.up ? 1 : 0, on = UNLIT + (1 - UNLIT) * b.on;
     f.ctx.font = FONT;
     f.ctx.textBaseline = 'alphabetic';
+    f.ctx.textAlign = 'center';
     f.ctx.fillStyle = getComputedStyle(f.ctx.canvas).color;
-    for (var i = 0; i < 3; i++) {
-      f.ctx.globalAlpha = i === b.n ? UNLIT + (1 - UNLIT) * b.on : UNLIT;
-      f.ctx.fillText(marks[i], x + i * 11, y);
-    }
+    f.ctx.globalAlpha = lit === 0 ? on : UNLIT;
+    f.ctx.fillText(marks[0], x, y);
+    f.ctx.globalAlpha = on;
+    f.ctx.fillText(b.up ? '→' : '←', x + GAP, y);
+    f.ctx.globalAlpha = lit === 1 ? on : UNLIT;
+    f.ctx.fillText(marks[1], x + 2 * GAP, y);
     f.ctx.globalAlpha = 1;
+    f.ctx.textAlign = 'start';
   }
 
   function drawTop(canvas, t) {
@@ -140,7 +148,8 @@
     var k = ink(canvas, stamina(t));
     f.ctx.fillStyle = k.color;
     ball(f.ctx, along * f.w, mid, along, k.alpha);
-    count(f, '123', 1, 11, t);
+    corner(f, '01', 4, 11, t);                          // top left
+    corner(f, 'YZ', f.w - 4 - 2 * GAP, f.h - 3, t);     // bottom right
   }
 
   function drawSide(canvas, t) {
@@ -163,7 +172,8 @@
     f.ctx.stroke();
     var along = at(t);
     ball(f.ctx, along * f.w, height(along * f.w), along, light);
-    count(f, 'abc', f.w - 28, f.h - 3, t);   // under the summit, inside the mountain
+    corner(f, 'AB', 4, 11, t);                          // top left
+    corner(f, '10', f.w - 4 - 2 * GAP, f.h - 3, t);     // bottom right, under the summit, inside the mountain
   }
 
   function draw(t) {
