@@ -242,6 +242,13 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 .creed p { margin: 0 0 0.3em; }
 .creed .creed-src { color: var(--tx-2); margin-bottom: 0.9em; }
 .creed .creed-src:last-child { margin-bottom: 0; }
+.verse p { line-height: 1.6; margin-bottom: 0.9em; }
+.sources { margin-top: 2em; padding-top: 0.8em; border-top: 1px solid var(--ui); }
+.sources p { margin: 0 0 0.3em; }
+.sources ul { margin: 0; padding-left: 1.2em; }
+.sources li { margin: 0.15em 0; }
+.sources a { color: inherit; }
+.creed-hl { background: var(--ui); color: var(--tx); padding: 0 0.2em; border-radius: 2px; }
 /* Strategy / Operations / Tactics: intent down, feedback back up (dashed); Operations, the hinge, in the full ink */
 .sot-layer { fill: var(--bg-2); stroke: var(--tx-2); stroke-width: 1; }
 .sot-hinge { stroke: var(--tx); stroke-width: 2; }
@@ -262,6 +269,7 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 /* Stuff: Data, the heading over all the categories */
 .group-label { font-size: 0.95em; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--tx); margin: 0 0 1.2em; }
 .showcase-label { font-size: 0.75em; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tx-2); margin: 0; }
+.action-eq { padding-left: 5.1em; color: var(--tx-2); }
 .showcase-sub { font-size: 0.7em; letter-spacing: 0.04em; color: var(--tx-3); margin: 0.15em 0 0.7em; }
 .covers { list-style: none; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); column-gap: 10px; margin: 0 0 0.8em; padding: 0; }
 .covers li { display: contents; }

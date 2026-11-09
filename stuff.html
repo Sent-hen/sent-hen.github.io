@@ -7,21 +7,29 @@ description: "A few of my favo(u)rite things, by Senthen Velmurugan."
 
 <figure class="banner-fig">
   <img class="banner" width="2000" height="1333" src="{{ '/assets/img/everyday-carry.jpg' | relative_url }}" alt="Everyday carry on a cardboard box: a leather wallet, a folding knife, a phone, a G-Shock watch, and brass pens, clip, and lighter on a suede tray">
-  <figcaption class="banner-caption">Stuff?</figcaption>
+  <figcaption class="banner-caption">Can you hear the music?</figcaption>
 </figure>
 
 <hr>
 
-<!-- Favorite actions, one <li> per thing, in this order. Titled like the categories below: the name, with Mind + Matter as its subtitle. -->
+<!-- Favorite actions, in this order: headed Action, the same as Data below, with Mind + Matter under it in both themes. One <ul> per group. -->
+<h2 class="group-label">Action</h2>
 <section class="showcase">
-  <h2 class="showcase-label">Action</h2>
-  <p class="showcase-sub">Mind + Matter</p>
+  <h3 class="showcase-label">Mind + Matter</h3>
   <ul class="iam-list">
-    <li>Tea</li>
-    <li>Walking/Driving</li>
-    <li>Penmanship/Typing</li>
-    <li>Cooking/Eating</li>
-    <li>Music</li>
+    <li>Listening to the symphony</li>
+  </ul>
+  <ul class="iam-list">
+    <li>Consumption &amp; Creation</li>
+    <li>Creation &amp; Consumption</li>
+    <li class="action-eq">=</li>
+    <li>Tea &amp; Illusions</li>
+  </ul>
+  <ul class="iam-list">
+    <li>Walking &amp; Thinking</li>
+    <li>Writing &amp; Thinking</li>
+    <li>Typing &amp; Thinking</li>
+    <li>Cooking &amp; Eating</li>
   </ul>
 </section>
 
@@ -32,8 +40,8 @@ description: "A few of my favo(u)rite things, by Senthen Velmurugan."
 
 {% for c in site.data.stuff %}
 <section class="showcase">
-  <h2 class="showcase-label">{{ c.label }}</h2>
-  <p class="showcase-sub">Mind + Matter</p>
+  {% comment %} Green is open ended: every category is Mind + Matter. Red is deterministic: it names the category. {% endcomment %}
+  <h3 class="showcase-label"><span class="for-green">Mind + Matter</span><span class="for-red">{{ c.label }}</span></h3>
   {% for n in (0..9) %}{% assign from = n | times: 2 %}{% assign pair = c.items | slice: from, 2 %}{% if pair.size > 0 %}
   <ul class="covers{% if c.square %} covers-square{% endif %}">
     {% for it in pair %}<li{% if it.also %} class="has-alt"{% endif %}><div class="cover-stack" tabindex="0"><img src="{{ '/assets/img/stuff/' | append: it.art | relative_url }}" loading="lazy" alt="{{ it.title | escape }}, {{ it.creator | escape }}">{% for a in it.also %}<img src="{{ '/assets/img/stuff/' | append: a.art | relative_url }}" loading="lazy" alt="{{ a.title | default: it.title | escape }}, {{ a.creator | default: it.creator | escape }}">{% endfor %}</div><p class="cover-note"><span class="cover-dot">·</span><span class="cover-meta on">{{ it.title | escape }} · {{ it.creator | escape }} · {{ it.year }}</span>{% for a in it.also %}<span class="cover-meta">{{ a.title | default: it.title | escape }} · {{ a.creator | default: it.creator | escape }} · {{ a.year | default: it.year }}</span>{% endfor %}</p></li>

@@ -18,7 +18,11 @@
   var SLOW = 0.25;      // turns per second at the start
   var FAST = 14;        // turns per second at full speed
   var RAMP = 8;         // seconds to get from SLOW to FAST: the ball's TRIP in ripples.js
-  var HOLD = 3;         // seconds at full speed: the ball's DOWN in ripples.js
+  var TOP = 1.2;        // seconds the ball rests at the summit: TOP in ripples.js
+  var ROLL = 3;         // seconds the ball rolls back: DOWN in ripples.js
+  var BOTTOM = 1.2;     // seconds the ball rests at the foot: BOTTOM in ripples.js
+  var HOLD = TOP + ROLL + BOTTOM; // seconds at full speed: from the summit until the next push
+  var SPENT = TOP + ROLL;         // seconds of flashing: resting at the summit and rolling back; calm at the foot
   var FADE = 0.4;       // seconds to fade back in as each cycle starts
   var CYCLE = RAMP + HOLD;
   var EXPOSURE = 1 / FAST; // one frame's exposure: a whole turn at full speed, a sliver of one when slow
@@ -56,11 +60,11 @@
   // ink almost at once and come back to it only just before the ball is at 0.
   function stamina(t) {
     var s = ((t % CYCLE) + CYCLE) % CYCLE;
-    if (s < RAMP) return 0;
+    if (s < RAMP || s >= RAMP + SPENT) return 0;
     var d = s - RAMP;
-    var flashes = BLINK_FAST * d - (BLINK_FAST - BLINK_SLOW) * d * d / (2 * HOLD);   // flashes so far, slowing evenly
+    var flashes = BLINK_FAST * d - (BLINK_FAST - BLINK_SLOW) * d * d / (2 * SPENT);   // flashes so far, slowing evenly
     var swing = Math.tanh(SHARP * Math.cos(flashes * 2 * Math.PI)) / Math.tanh(SHARP);
-    return swing * Math.min(1, d / LEAVE, (HOLD - d) / SETTLE);
+    return swing * Math.min(1, d / LEAVE, (SPENT - d) / SETTLE);
   }
   window.zeroToOneStamina = stamina;
 

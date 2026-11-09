@@ -1,13 +1,14 @@
 # Stuff (/stuff/). Every category is rows of pairs: 1 / 2, then 3 / 4, and so on, in the order written here: oldest to newest, by release date.
 # art:    the poster or cover, in assets/img/stuff/
 # also:   more posters this one fades through in turn; each can have its own title, creator, and year
-# label:  the category's name, its heading; Mind + Matter is the subtitle under every one, in both themes
+# label:  the category's name: its heading on red; on green every heading reads Mind + Matter instead
 # square: true for a category with square covers (the rest are 2:3 posters)
 # creator: the lead: director, artist, author, or band. Hover shows title · creator · year under the poster.
 
 - label: Cinema
   items:
     - { title: "Lawrence of Arabia", creator: "David Lean", year: 1962, art: lawrence-of-arabia.jpg }
+    - { title: "The Good, the Bad and the Ugly", creator: "Sergio Leone", year: 1966, art: the-good-the-bad-and-the-ugly.jpg }
     - { title: "The Truman Show", creator: "Peter Weir", year: 1998, art: the-truman-show.jpg }
     - { title: "Anbe Sivam", creator: "Sundar C", year: 2003, art: anbe-sivam.jpg }
     - { title: "V for Vendetta", creator: "James McTeigue", year: 2005, art: v-for-vendetta-film.jpg }

@@ -12,6 +12,9 @@
 // The trip is a crescendo with 0 as its source: ripples and ball start quiet at 0 and build all the way to 1.
 // The top drawing shows the rings from above, on the flat. The side drawing shows the mountain: the same rings edge-on,
 // with a crest on each, on a slope that starts nearly flat and curves up steeper and steeper, about 1 up for 6 across.
+// The count: a small 1 2 3 at the top left of the top drawing and a b c at the bottom right of the side one, under the summit. Each phase, up or
+// down, lights the next one in turn, so the count runs 1 2 3 1 2 3 over a cycle that has only two phases: up, down, up
+// reads as three. An illusion, and the cheapest one: one modulo on the clock the ball already keeps.
 // Lo (the `still` class on the page) holds one frame.
 (function () {
   var canvases = document.querySelectorAll('canvas.ripples');
@@ -19,8 +22,10 @@
 
   var TRIP = 8;           // seconds for the ball to go from 0 to 1: slow enough to follow. Same as in dot-coin.js
   var DOWN = 3;           // seconds for the ball to roll back from 1 to 0. Same as in dot-coin.js
+  var TOP = 1.2;          // seconds the ball rests at the summit before it rolls back. Same as in dot-coin.js
+  var BOTTOM = 1.2;       // seconds the ball rests at the foot before it is pushed up again. Same as in dot-coin.js
   var CLEAR = 0.6;        // seconds for the ripples to clear once the ball starts rolling back
-  var CYCLE = TRIP + DOWN;
+  var CYCLE = TRIP + TOP + DOWN + BOTTOM;
   // When the ball drops each ripple, in seconds into the trip: each time the coin finishes a turn (from dot-coin.js,
   // which loads first), or evenly if the coin isn't on the page.
   var DROPS = window.coinTurnTimes || Array.apply(null, Array(16)).map(function (_, j) { return j * TRIP / 16; });
@@ -33,19 +38,23 @@
   var WIDTH = 7;          // how wide each crest is, in CSS pixels
   var SLOPE = 1 / 6;      // how high the mountain climbs from 0 to 1, as a share of its width: 2 up for 12 across
   var FOOT = 8;           // space below the foot of the mountain, in CSS pixels, so the ball and the dips stay in view
-
+  var BLINK = 0.25;       // seconds for the next one in the count to light up as its phase starts
+  var UNLIT = 0.25;       // how faint the count's other two are, as a share of the ink
   var root = document.documentElement;
+  var FONT = '10px ' + (getComputedStyle(root).getPropertyValue('--font-ui').trim() || 'sans-serif');
 
   // How loud the crescendo is at a point on the way from 0 (0) to 1 (1).
   function loudness(along) { return QUIET + (1 - QUIET) * along; }
 
-  // Where the ball is at time t, from 0 to 1: pushed up steadily for TRIP seconds, then rolling back down for DOWN
-  // seconds, slow at the top and faster and faster, as things fall.
+  // Where the ball is at time t, from 0 to 1: pushed up steadily for TRIP seconds, a moment's rest at the summit, then
+  // rolling back down for DOWN seconds, slow at the top and faster and faster, as things fall, and a moment's rest at
+  // the foot before the next push.
   function at(t) {
     var s = t % CYCLE;
     if (s < TRIP) return s / TRIP;
-    var u = (s - TRIP) / DOWN;
-    return 1 - u * u;
+    if (s < TRIP + TOP) return 1;
+    var u = (s - TRIP - TOP) / DOWN;
+    return u < 1 ? 1 - u * u : 0;
   }
 
   // Each ripple still alive at time t: where it started, how far it has spread, how strong it still is.
@@ -100,6 +109,25 @@
     ctx.fill();
   }
 
+  // Which of the three is lit at time t, and how far it has lit up: every phase, up or down, moves the count on by one.
+  function beat(t) {
+    var c = Math.floor(t / CYCLE), s = t - c * CYCLE, up = s < TRIP + TOP;   // each rest belongs to the move before it
+    return { n: (2 * c + (up ? 0 : 1)) % 3, on: Math.min(1, (up ? s : s - TRIP - TOP) / BLINK) };
+  }
+
+  // The count, in the page's own ink and UI font, from (x, y): the lit one in full, the other two faint.
+  function count(f, marks, x, y, t) {
+    var b = beat(t);
+    f.ctx.font = FONT;
+    f.ctx.textBaseline = 'alphabetic';
+    f.ctx.fillStyle = getComputedStyle(f.ctx.canvas).color;
+    for (var i = 0; i < 3; i++) {
+      f.ctx.globalAlpha = i === b.n ? UNLIT + (1 - UNLIT) * b.on : UNLIT;
+      f.ctx.fillText(marks[i], x + i * 11, y);
+    }
+    f.ctx.globalAlpha = 1;
+  }
+
   function drawTop(canvas, t) {
     var f = fit(canvas), mid = f.h / 2;
     ripples(t, f.w).forEach(function (r) {
@@ -112,6 +140,7 @@
     var k = ink(canvas, stamina(t));
     f.ctx.fillStyle = k.color;
     ball(f.ctx, along * f.w, mid, along, k.alpha);
+    count(f, '123', 1, 11, t);
   }
 
   function drawSide(canvas, t) {
@@ -134,6 +163,7 @@
     f.ctx.stroke();
     var along = at(t);
     ball(f.ctx, along * f.w, height(along * f.w), along, light);
+    count(f, 'abc', f.w - 28, f.h - 3, t);   // under the summit, inside the mountain
   }
 
   function draw(t) {
