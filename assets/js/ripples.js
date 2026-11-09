@@ -3,7 +3,7 @@
 // starts anew. Going down there are no ripples, only the ball: self-reflection. Spent, the ball and the mountain flash
 // like a stamina bar that needs rest, snapping between bright and dim, fast at the top and slower as they recover, and
 // back on the ink by the time the ball is at 0.
-// It keeps time with the coin under Time (assets/js/dot-coin.js): both read the page's clock with the same
+// It keeps time with the coin above the tiramisu (assets/js/dot-coin.js): both read the page's clock with the same
 // TRIP and DOWN, so the coin spins up while the ball climbs and holds its steady dot while the ball rolls back.
 // It drops a ripple at the spot it has reached each time the coin finishes a turn, so ripples start far apart and come
 // faster as the coin speeds up. Each ripple is a circle around that spot, spreading

@@ -12,6 +12,8 @@ description: "About Senthen Velmurugan"
 
 <div class="intro">
   <div class="intro-side">
+  <canvas class="dot-coin" role="img" aria-label="A coin with a dot on one face, spinning faster until the dot seems always there"></canvas>
+  <script src="{{ '/assets/js/dot-coin.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   <figure class="cake">
     {% include cake.html %}
   </figure>
@@ -22,8 +24,6 @@ description: "About Senthen Velmurugan"
   <time class="clock clock-below" data-zone="America/Chicago"></time>
   <p class="tile-caption">Time</p>
   <script src="{{ '/assets/js/clock.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
-  <canvas class="dot-coin" role="img" aria-label="A coin with a dot on one face, spinning faster until the dot seems always there"></canvas>
-  <script src="{{ '/assets/js/dot-coin.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   </div>
   <div class="intro-text">
   <p class="infinity-arrow" aria-label="From zero to one"><canvas class="ripples" data-view="top"></canvas></p>
@@ -34,7 +34,7 @@ description: "About Senthen Velmurugan"
     Bertrand Russell on Face to Face.
   {% endcomment %}
   <div class="creed verse">
-    <p><b>Truth Alone Prevails (Triumphs); not falsehood.</b><br>
+    <p><b>Truth alone triumphs; not falsehood.</b><br>
     Through truth the divine path is spread out<br>
     by which the sages whose desires have been completely fulfilled,<br>
     reach to where is that supreme treasure of Truth.</p>
