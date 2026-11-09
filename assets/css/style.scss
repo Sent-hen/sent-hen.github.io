@@ -243,12 +243,8 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 .creed .creed-src { color: var(--tx-2); margin-bottom: 0.9em; }
 .creed .creed-src:last-child { margin-bottom: 0; }
 .verse p { line-height: 1.6; margin-bottom: 0.9em; }
-.sources { margin-top: 2em; padding-top: 0.8em; border-top: 1px solid var(--ui); }
-.sources p { margin: 0 0 0.3em; }
-.sources ul { margin: 0; padding-left: 1.2em; }
-.sources li { margin: 0.15em 0; }
-.sources a { color: inherit; }
-.creed-hl { background: var(--ui); color: var(--tx); padding: 0 0.2em; border-radius: 2px; }
+.quote { margin-left: 0; padding: 0; border: 0; }
+.quote p { margin-bottom: 0.8em; line-height: 1.6; }
 /* Strategy / Operations / Tactics: intent down, feedback back up (dashed); Operations, the hinge, in the full ink */
 .sot-layer { fill: var(--bg-2); stroke: var(--tx-2); stroke-width: 1; }
 .sot-hinge { stroke: var(--tx); stroke-width: 2; }
