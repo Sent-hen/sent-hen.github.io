@@ -34,7 +34,7 @@ description: "About Senthen Velmurugan"
     Bertrand Russell on Face to Face.
   {% endcomment %}
   <div class="creed verse">
-    <p><b>Truth Alone Prevails; not falsehood.</b><br>
+    <p><b>Truth Alone Prevails (Triumphs); not falsehood.</b><br>
     Through truth the divine path is spread out<br>
     by which the sages whose desires have been completely fulfilled,<br>
     reach to where is that supreme treasure of Truth.</p>
