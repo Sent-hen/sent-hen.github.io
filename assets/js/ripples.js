@@ -24,8 +24,8 @@
 
   var TRIP = 8;           // seconds for the ball to go from 0 to 1: slow enough to follow. Same as in dot-coin.js
   var DOWN = 3;           // seconds for the ball to roll back from 1 to 0. Same as in dot-coin.js
-  var TOP = 1.2;          // seconds the ball rests at the summit before it rolls back. Same as in dot-coin.js
-  var BOTTOM = 1.2;       // seconds the ball rests at the foot before it is pushed up again. Same as in dot-coin.js
+  var TOP = 0;            // seconds the ball rests at the summit before it rolls back: none. Same as in dot-coin.js
+  var BOTTOM = 0;         // seconds the ball rests at the foot before it is pushed up again: none. Same as in dot-coin.js
   var CLEAR = 0.6;        // seconds for the ripples to clear once the ball starts rolling back
   var CYCLE = TRIP + TOP + DOWN + BOTTOM;
   // When the ball drops each ripple, in seconds into the trip: each time the coin finishes a turn (from dot-coin.js,

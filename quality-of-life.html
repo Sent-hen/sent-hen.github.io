@@ -12,54 +12,9 @@ description: "Senthen Velmurugan on quality of life: strategy, operations, and t
 </div>
 
 {% comment %}
-  Problem / Data / Conflict / Software / Mind and Solution / Action / Resolution / Hardware / Body loop into each other.
-  Illusion / Logic / Reflection / Wetware / Spirit stands apart, in a box of its own, and a square bracket below holds all three.
-{% endcomment %}
-<figure class="qol-fig">
-  <svg class="qol qol-flow" viewBox="-1 0 340 200" role="img" aria-label="Problem, or data, or conflict, or software, or mind, and solution, or action, or resolution, or hardware, or body, loop into each other. Illusion, or logic, or reflection, or wetware, or spirit, stands apart in a box of its own. A square bracket below holds all three.">
-    <defs>
-      <marker id="qol-head" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path class="qol-head" d="M0 0 L8 4 L0 8 Z"/></marker>
-    </defs>
-    <rect class="qol-node" x="0" y="8" width="92" height="148"/>
-    <text class="qol-main" x="46" y="25" text-anchor="middle">Problem</text>
-    <text x="46" y="40" text-anchor="middle">/</text>
-    <text x="46" y="55" text-anchor="middle">Data</text>
-    <text x="46" y="70" text-anchor="middle">/</text>
-    <text x="46" y="85" text-anchor="middle">Conflict</text>
-    <text x="46" y="100" text-anchor="middle">/</text>
-    <text x="46" y="115" text-anchor="middle">Software</text>
-    <text x="46" y="130" text-anchor="middle">/</text>
-    <text x="46" y="145" text-anchor="middle">Mind</text>
-    <rect class="qol-node" x="114" y="8" width="92" height="148"/>
-    <text class="qol-main" x="160" y="25" text-anchor="middle">Solution</text>
-    <text x="160" y="40" text-anchor="middle">/</text>
-    <text x="160" y="55" text-anchor="middle">Action</text>
-    <text x="160" y="70" text-anchor="middle">/</text>
-    <text x="160" y="85" text-anchor="middle">Resolution</text>
-    <text x="160" y="100" text-anchor="middle">/</text>
-    <text x="160" y="115" text-anchor="middle">Hardware</text>
-    <text x="160" y="130" text-anchor="middle">/</text>
-    <text x="160" y="145" text-anchor="middle">Body</text>
-    <rect class="qol-node" x="234" y="2" width="104" height="160"/>
-    <rect class="qol-node" x="240" y="8" width="92" height="148"/>
-    <text class="qol-main" x="286" y="25" text-anchor="middle">Illusion</text>
-    <text x="286" y="40" text-anchor="middle">/</text>
-    <text x="286" y="55" text-anchor="middle">Logic</text>
-    <text x="286" y="70" text-anchor="middle">/</text>
-    <text x="286" y="85" text-anchor="middle">Reflection</text>
-    <text x="286" y="100" text-anchor="middle">/</text>
-    <text x="286" y="115" text-anchor="middle">Wetware</text>
-    <text x="286" y="130" text-anchor="middle">/</text>
-    <text x="286" y="145" text-anchor="middle">Spirit</text>
-    <path class="qol-link" d="M92 82 H113" marker-end="url(#qol-head)"/>
-    <path class="qol-link" d="M160 156 V174 H46 V157" marker-end="url(#qol-head)"/>
-    <path class="qol-link" d="M0 186 V196 H338 V186"/>
-  </svg>
-</figure>
-
-{% comment %}
-  Strategy, Operations, Tactics, stacked: intent flows down, feedback flows back up (dashed). Operations is the hinge,
-  in the full ink with a heavier frame. Colors are the theme's, so it fits both themes; styles are in style.scss (.sot).
+  Strategy, Operations, Tactics, stacked: intent flows down, feedback flows back up (dashed). Every frame is the same.
+  On green only Strategy and Operations show; Tactics, and the links into it, are all but invisible. On red, Tactics
+  shows in full. The box keeps its size either way. Styles are in style.scss (.sot).
 {% endcomment %}
 <figure class="qol-fig sot">
   <svg class="qol" viewBox="150 10 380 320" role="img" aria-labelledby="sot-title">
@@ -71,20 +26,113 @@ description: "Senthen Velmurugan on quality of life: strategy, operations, and t
     </defs>
     <rect class="sot-layer" x="160" y="20" width="360" height="64" rx="6"/>
     <text class="sot-name" x="340" y="46">Strategy</text>
-    <text class="sot-note" x="340" y="68">why and where · years</text>
-    <rect class="sot-layer sot-hinge" x="160" y="138" width="360" height="64" rx="6"/>
+    <text class="sot-note" x="340" y="68">why and where</text>
+    <rect class="sot-layer" x="160" y="138" width="360" height="64" rx="6"/>
     <text class="sot-name" x="340" y="164">Operations</text>
-    <text class="sot-note" x="340" y="186">how it connects · months</text>
-    <rect class="sot-layer" x="160" y="256" width="360" height="64" rx="6"/>
-    <text class="sot-name" x="340" y="282">Tactics</text>
-    <text class="sot-note" x="340" y="304">what wins now · hours</text>
+    <text class="sot-note" x="340" y="186">how it connects</text>
     <line class="sot-flow" x1="300" y1="86" x2="300" y2="134" marker-end="url(#sot-arrow)"/>
-    <line class="sot-flow" x1="300" y1="204" x2="300" y2="252" marker-end="url(#sot-arrow)"/>
     <line class="sot-flow sot-back" x1="380" y1="134" x2="380" y2="88" marker-end="url(#sot-arrow)"/>
-    <line class="sot-flow sot-back" x1="380" y1="252" x2="380" y2="206" marker-end="url(#sot-arrow)"/>
     <text class="sot-side" x="290" y="114" text-anchor="end">intent</text>
-    <text class="sot-side" x="290" y="232" text-anchor="end">intent</text>
     <text class="sot-side" x="390" y="114" text-anchor="start">feedback</text>
-    <text class="sot-side" x="390" y="232" text-anchor="start">feedback</text>
+    <g class="sot-tactics">
+      <rect class="sot-layer" x="160" y="256" width="360" height="64" rx="6"/>
+      <text class="sot-name" x="340" y="282">Tactics</text>
+      <text class="sot-note" x="340" y="304">what wins now</text>
+      <line class="sot-flow" x1="300" y1="204" x2="300" y2="252" marker-end="url(#sot-arrow)"/>
+      <line class="sot-flow sot-back" x1="380" y1="252" x2="380" y2="206" marker-end="url(#sot-arrow)"/>
+      <text class="sot-side" x="290" y="232" text-anchor="end">intent</text>
+      <text class="sot-side" x="390" y="232" text-anchor="start">feedback</text>
+    </g>
   </svg>
 </figure>
+
+{% comment %}
+  Two drawings, one per theme. Green: Illusion / Logic / Reflection / Middleware / Spirit stands on the left in a box of
+  its own, and a square bracket opens out of it to the right, holding the loop, where Problem / Data / Conflict /
+  Software / Mind and Solution / Action / Resolution / Hardware / Matter loop into each other. Red: the Illusion box is
+  pushed in between, Problem → Illusion → Solution, and back round to Problem.
+{% endcomment %}
+<figure class="qol-fig qol-green">
+  <svg class="qol qol-flow" viewBox="-1 -12 345 210" role="img" aria-label="Illusion, or logic, or reflection, or middleware, or spirit, stands on the left in a box of its own. A square bracket opens out of it to the right, holding the loop: problem, or data, or conflict, or software, or mind, and solution, or action, or resolution, or hardware, or matter, loop into each other.">
+    <defs>
+      <marker id="qol-head" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path class="qol-head" d="M0 0 L8 4 L0 8 Z"/></marker>
+    </defs>
+    <path class="qol-node" d="M0 -12 V198 M104 -12 V198 M6 -12 V198 M98 -12 V198"/>   <!-- Illusion: only the sides of its two frames, top to bottom of the figure -->
+    <text class="qol-main" x="52" y="25" text-anchor="middle">Illusion</text>
+    <text x="52" y="40" text-anchor="middle">/</text>
+    <text x="52" y="55" text-anchor="middle">Logic</text>
+    <text x="52" y="70" text-anchor="middle">/</text>
+    <text x="52" y="85" text-anchor="middle">Reflection</text>
+    <text x="52" y="100" text-anchor="middle">/</text>
+    <text x="52" y="115" text-anchor="middle">Middleware</text>
+    <text x="52" y="130" text-anchor="middle">/</text>
+    <text x="52" y="145" text-anchor="middle">Spirit</text>
+    <rect class="qol-node" x="136" y="8" width="92" height="148"/>
+    <text class="qol-main" x="182" y="25" text-anchor="middle">Problem</text>
+    <text x="182" y="40" text-anchor="middle">/</text>
+    <text x="182" y="55" text-anchor="middle">Data</text>
+    <text x="182" y="70" text-anchor="middle">/</text>
+    <text x="182" y="85" text-anchor="middle">Conflict</text>
+    <text x="182" y="100" text-anchor="middle">/</text>
+    <text x="182" y="115" text-anchor="middle">Software</text>
+    <text x="182" y="130" text-anchor="middle">/</text>
+    <text x="182" y="145" text-anchor="middle">Mind</text>
+    <rect class="qol-node" x="250" y="8" width="92" height="148"/>
+    <text class="qol-main" x="296" y="25" text-anchor="middle">Solution</text>
+    <text x="296" y="40" text-anchor="middle">/</text>
+    <text x="296" y="55" text-anchor="middle">Action</text>
+    <text x="296" y="70" text-anchor="middle">/</text>
+    <text x="296" y="85" text-anchor="middle">Resolution</text>
+    <text x="296" y="100" text-anchor="middle">/</text>
+    <text x="296" y="115" text-anchor="middle">Hardware</text>
+    <text x="296" y="130" text-anchor="middle">/</text>
+    <text x="296" y="145" text-anchor="middle">Matter</text>
+    <path class="qol-link" d="M126 2 H118 V182 H126"/>
+    <path class="qol-link" d="M228 82 H249" marker-end="url(#qol-head)"/>
+    <path class="qol-link" d="M296 156 V174 H182 V157" marker-end="url(#qol-head)"/>
+  </svg>
+</figure>
+<figure class="qol-fig qol-red">
+  <svg class="qol qol-flow" viewBox="-1 -12 346 204" role="img" aria-label="Problem, or data, or conflict, or software, or mind, leads to illusion, or logic, or reflection, or middleware, or spirit, in a box of its own, which leads to solution, or action, or resolution, or hardware, or matter, which loops back to the problem.">
+    <defs>
+      <marker id="qol-head-red" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path class="qol-head" d="M0 0 L8 4 L0 8 Z"/></marker>
+    </defs>
+    <rect class="qol-node" x="0" y="8" width="92" height="148"/>
+    <text class="qol-main" x="46" y="25" text-anchor="middle">Problem</text>
+    <text x="46" y="40" text-anchor="middle">/</text>
+    <text x="46" y="55" text-anchor="middle">Data</text>
+    <text x="46" y="70" text-anchor="middle">/</text>
+    <text x="46" y="85" text-anchor="middle">Conflict</text>
+    <text x="46" y="100" text-anchor="middle">/</text>
+    <text x="46" y="115" text-anchor="middle">Software</text>
+    <text x="46" y="130" text-anchor="middle">/</text>
+    <text x="46" y="145" text-anchor="middle">Mind</text>
+    <path class="qol-node" d="M120 -12 V192 M224 -12 V192 M126 -12 V192 M218 -12 V192"/>   <!-- Illusion: only the sides of its two frames, top to bottom of the figure -->
+    <text class="qol-main" x="172" y="25" text-anchor="middle">Illusion</text>
+    <text x="172" y="40" text-anchor="middle">/</text>
+    <text x="172" y="55" text-anchor="middle">Logic</text>
+    <text x="172" y="70" text-anchor="middle">/</text>
+    <text x="172" y="85" text-anchor="middle">Reflection</text>
+    <text x="172" y="100" text-anchor="middle">/</text>
+    <text x="172" y="115" text-anchor="middle">Middleware</text>
+    <text x="172" y="130" text-anchor="middle">/</text>
+    <text x="172" y="145" text-anchor="middle">Spirit</text>
+    <rect class="qol-node" x="252" y="8" width="92" height="148"/>
+    <text class="qol-main" x="298" y="25" text-anchor="middle">Solution</text>
+    <text x="298" y="40" text-anchor="middle">/</text>
+    <text x="298" y="55" text-anchor="middle">Action</text>
+    <text x="298" y="70" text-anchor="middle">/</text>
+    <text x="298" y="85" text-anchor="middle">Resolution</text>
+    <text x="298" y="100" text-anchor="middle">/</text>
+    <text x="298" y="115" text-anchor="middle">Hardware</text>
+    <text x="298" y="130" text-anchor="middle">/</text>
+    <text x="298" y="145" text-anchor="middle">Matter</text>
+    <path class="qol-link" d="M92 82 H119" marker-end="url(#qol-head-red)"/>
+    <path class="qol-link" d="M224 82 H251" marker-end="url(#qol-head-red)"/>
+    <path class="qol-link" d="M298 156 V174 H46 V157" marker-end="url(#qol-head-red)"/>
+  </svg>
+</figure>
+
+<p class="qol-frac">&frac13; OR ~33.33%</p>
+<p class="qol-frac">/</p>
+<p class="qol-frac">&frac14; OR 25.00%</p>

@@ -2,7 +2,7 @@
   <span class="site-name">Senthen Velmurugan</span>
   <span class="nav-links">
     {% comment %} Each link is Label:/url/:/other/sections/ it also covers (highlighted when you are anywhere inside). {% endcomment %}
-    {% assign links = "About:/:/quality-of-life/:/stuff/,Now:/now/:/projects/:/cv/:/resume/" | split: "," %}
+    {% assign links = "About:/:/quality-of-life/:/stuff/,Now:/now/:/projects/:/experiments/:/cv/:/resume/" | split: "," %}
     {% for l in links %}{% assign p = l | split: ":" %}{% assign current = false %}
       {% for prefix in p offset: 1 %}{% if prefix == "/" %}{% if page.url == "/" %}{% assign current = true %}{% endif %}{% else %}{% assign n = prefix | size %}{% assign head = page.url | slice: 0, n %}{% if head == prefix %}{% assign current = true %}{% endif %}{% endif %}{% endfor %}
     <a href="{{ p[1] | relative_url }}"{% if current %} aria-current="page"{% endif %}>{{ p[0] }}</a>

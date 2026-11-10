@@ -8,12 +8,12 @@ The rules for the site, then what each page is and where it lives. A static Jeky
 
 - **About** (`/`) is the main page. **Now** (`/now/`) is what I'm doing and what I've made. They are the only two links in the nav.
 - My name in the nav is plain text, not a link.
-- Projects, Resume, and CV are reached from Now. A few of my favo(u)rite things (`/stuff/`) and Quality of Life (`/quality-of-life/`) are reached from About.
-- Old links keep working: `/about/`, `/output/`, `/experiments/`, and `/experience/` redirect.
+- Projects, Experiments, Resume, and CV are reached from Now. A few of my favo(u)rite things (`/stuff/`) and Quality of Life (`/quality-of-life/`) are reached from About.
+- Old links keep working: `/about/`, `/output/`, and `/experience/` redirect.
 
 ### Words
 
-- The line about work is the same everywhere: **Open to FDSE roles · Pacific Northwest / Texas preferred, open to relocation anywhere in the US**.
+- The line about work is the same everywhere: **Open to tech roles · Texas preferred, open to relocation anywhere in the US**.
 - Only `status: active` means I'm working on it now. Today that is the P&ID Digitizer alone.
 - Project dates on the web are `YYYY MM`. The clocks are `YYYY-MM-DD HH:MM SS` plus the zone: UTC, the global time, above the triangle, and Dallas-Fort Worth, my own, below.
 
@@ -54,7 +54,7 @@ The layout is `_layouts/default.html`: `_includes/head.html`, `_includes/nav.htm
 - **Nav.** Each entry in `nav.html` is `Label:/url/`, then any other sections it should highlight for. `/` matches only the main page.
 
   ```liquid
-  {% assign links = "About:/:/quality-of-life/:/stuff/,Now:/now/:/projects/:/cv/:/resume/" | split: "," %}
+  {% assign links = "About:/:/quality-of-life/:/stuff/,Now:/now/:/projects/:/experiments/:/cv/:/resume/" | split: "," %}
   ```
 
 - **Color switch.** The choice is remembered in `localStorage` (`theme-choice`). `head.html` applies it before the page paints, and `footer.html` handles the click. Red only comes from `data-theme="dark"`.
@@ -68,27 +68,27 @@ The layout is `_layouts/default.html`: `_includes/head.html`, `_includes/nav.htm
 | Element | What it is | Where |
 | --- | --- | --- |
 | Banner | The jumping spider, with "To cultivate a sense of curiosity" in green and "To cultivate a sense of delight" in red | `assets/img/jumping-spider.webp` |
-| Dot coin | A circle with a dot on one face and the other face blank, spinning about its upright axis. It starts slow enough to tell the faces apart, then speeds up until the dot looks like it's always there. It keeps time with the 0 → 1 ripple: it spins up over the ball's 8-second climb, reaches the steady dot as the ball reaches 1, and holds it through the ball's rest at the summit, its 3-second roll back and its rest at the foot. A ring around it is a speed gauge: it fills as the coin spins up and closes into a full circle at top speed, staying until the ball is back at 0. While the ball rolls back, the coin and the gauge flash with the ball and the mountain, like a stamina bar that needs rest. It starts again only when the ball is back at 0. Lo shows it face on | `assets/js/dot-coin.js` |
+| Dot coin | A circle with a dot on one face and the other face blank, spinning about its upright axis. It starts slow enough to tell the faces apart, then speeds up until the dot looks like it's always there. It keeps time with the 0 → 1 ripple: it spins up over the ball's 8-second climb, reaches the steady dot as the ball reaches 1, and holds it through the ball's 3-second roll back. A ring around it is a speed gauge: it fills as the coin spins up and closes into a full circle at top speed, staying until the ball is back at 0. While the ball rolls back, the coin and the gauge flash with the ball and the mountain, like a stamina bar that needs rest. It starts again only when the ball is back at 0. Lo shows it face on | `assets/js/dot-coin.js` |
 | Tiramisu | A slice in 3/4 view on a level plate, an impossible perspective on purpose. Hi draws the slice and plate as falling 0s and 1s, 0 at the top and 1 at the bottom. Lo, or no JavaScript, shows the line drawing | `_includes/cake.html`, `assets/js/cake.js` |
 | Clocks | `YYYY-MM-DD HH:MM SS` plus the zone: UTC, the global time, above the triangle, and Dallas-Fort Worth (CST or CDT), my own, below it; each names its zone in `data-zone` | `assets/js/clock.js` |
 | Sierpinski triangle | Pointing down, zooming forever into its bottom point, after [lutanho.net](https://www.lutanho.net/fractal/sierpa.html) | `_includes/sierpinski.html` |
-| 0 → 1 ripple | The Doppler effect on Sisyphus's mountain. The ball is the rock: it is pushed from 0 to 1 up the mountain (the uptime), which the side view draws as a slope that starts nearly flat and curves up steeper and steeper, about 1 up for 6 across, growing with the effort, and dropping a ripple each time the coin finishes a turn, so ripples start far apart and bunch up as the coin speeds up. Rings pack together ahead of the ball and stretch apart behind it, and each fades out by the time it spreads back to 0. Then it rests a moment at the summit, rolls back down to 0 (the downtime), slow at the top and faster and faster, and rests a moment at the foot before the next push. In the corners, faint like a background, in the page's ink and UI font, a pair with an arrow between: 0 → 1 at the top left and Y → Z at the bottom right of the top drawing, A → B at the top left and 1 → 0 at the bottom right of the side one, under the summit. Going up every arrow points right; going down it flips to point left. The arrow and the mark it points at light up, fading in over a quarter second as each phase starts. Going down there are no ripples, only the ball. Spent, the ball and the mountain flash like a stamina bar that needs rest: they snap between a bright flash (`--flash`, the theme's 100 value) and nearly invisible, with little time on their usual color between, fast at the top and slower as they recover, and back on their usual color just as the ball reaches 0, and the cycle starts anew | `assets/js/ripples.js` |
+| 0 → 1 ripple | The Doppler effect on Sisyphus's mountain. The ball is the rock: it is pushed from 0 to 1 up the mountain (the uptime), which the side view draws as a slope that starts nearly flat and curves up steeper and steeper, about 1 up for 6 across, growing with the effort, and dropping a ripple each time the coin finishes a turn, so ripples start far apart and bunch up as the coin speeds up. Rings pack together ahead of the ball and stretch apart behind it, and each fades out by the time it spreads back to 0. Then it rolls straight back down to 0 (the downtime), slow at the top and faster and faster, and is pushed up again at once, with no rest at either end. In the corners, faint like a background, in the page's ink and UI font, a pair with an arrow between: 0 → 1 at the top left and Y → Z at the bottom right of the top drawing, A → B at the top left and 1 → 0 at the bottom right of the side one, under the summit. Going up every arrow points right; going down it flips to point left. The arrow and the mark it points at light up, fading in over a quarter second as each phase starts. Going down there are no ripples, only the ball. Spent, the ball and the mountain flash like a stamina bar that needs rest: they snap between a bright flash (`--flash`, the theme's 100 value) and nearly invisible, with little time on their usual color between, fast at the top and slower as they recover, and back on their usual color just as the ball reaches 0, and the cycle starts anew | `assets/js/ripples.js` |
 | Ripple, side view | The same ball and ripples edge-on, as a wave on a line, with a crest wherever a ring is | `assets/js/ripples.js` |
-| Verse | Below the Sisyphus drawings, above Who I am and Who am I, in italics, with no attribution: Mundaka Upanishad 3.1.6 in English ("Truth alone triumphs; not falsehood." through "that supreme treasure of Truth."), then the transliteration and the original Devanagari in the muted color. The first line is bold in each | `index.md` |
+| Verse | Below the Sisyphus drawings, above Who I am and Who am I, in italics, with no attribution: Mundaka Upanishad 3.1.6 in English ("Truth alone prevails; not falsehood." on green, "triumphs" on red, through "that supreme treasure of Truth."), then the transliteration and the original Devanagari in the muted color. The first line is bold in each | `index.md` |
 | Quote | Below the verse, in the same italics, with no attribution: the moral half of Bertrand Russell's two things from Face to Face (the verse already says the intellectual half), from "The moral thing I should wish to say" to "human life on this planet.", with "Love is wise. Hatred is foolish." in bold | `index.md` |
 | Retired | "Retired circa 2000", the last line of the page | `index.md` |
 | Who I am | My name in Tamil, English, and pronunciation | `index.md` |
-| Who am I | What I do, what I'm pursuing mastery of (system architecture, strength training, and an empty dotted box that opens A few of my favo(u)rite things), and what I like | `index.md` |
+| Who am I | What I do, what I'm mastering (systems engineering, physical training, and the illusion box, an empty dotted box that opens A few of my favo(u)rite things), and what I like | `index.md` |
 
 To change the rain, edit `CELL` (digit size) and `SPEED` (rows per second) in `cake.js`. The files keep the old "cake" names.
 
 ## Quality of Life
 
-`quality-of-life.html`, at `/quality-of-life/`. First a note in italics, "By the power of truth, I, while living, have conquered the universe", with the original Latin below it, "Vi veri veniversum vivus vici". Then three boxes drawn as line art, each five words split by slashes: Problem / Data / Conflict / Software / Mind and Solution / Action / Resolution / Hardware / Body loop into each other, Illusion / Logic / Reflection / Wetware / Spirit stands apart inside a second box, and a square bracket below holds all three. Then Strategy, Operations, and Tactics stacked as three boxes, intent flowing down and feedback flowing back up, with Operations as the hinge in the full ink. It uses the theme's colors, so it fits both themes.
+`quality-of-life.html`, at `/quality-of-life/`. First a note in italics, "By the power of truth, I, while living, have conquered the universe", with the original Latin below it, "Vi veri veniversum vivus vici". Then Strategy, Operations, and Tactics stacked as three boxes with the same frames, intent flowing down and feedback flowing back up. On green only Strategy and Operations show, and Tactics is all but invisible; on red, Tactics shows in full. The box is the same size in both. Below it, three boxes drawn as line art, each five words split by slashes. On green, Illusion / Logic / Reflection / Middleware / Spirit stands on the left between two pairs of side lines that run the full height of the dotted frame, with no top or bottom, and a square bracket opens out of it to the right, holding the loop, where Problem / Data / Conflict / Software / Mind and Solution / Action / Resolution / Hardware / Matter loop into each other. On red, Illusion, framed the same way, is pushed in between: Problem → Illusion → Solution, and back round to Problem. Below it all, centered on three lines: ⅓ OR ~33.33%, then /, then ¼ OR 25.00%.
 
 ## A few of my favo(u)rite things
 
-`stuff.html`, `_data/stuff.yml`, at `/stuff/`. The title, A few of my favo(u)rite things, then a photo captioned "Can you hear the music?", a rule, then the heading Action (styled like Data) with Mind + Matter under it in both themes, and my favorite actions written in the page in three groups: Listening to the symphony; Consumption & Creation, Creation & Consumption, =, Tea & Illusions; and Walking & Thinking, Writing & Thinking, Typing & Thinking, Cooking & Eating. Then a rule. Then the heading Data, and below it each category as rows of paired posters, with a `/` between the two in a pair. There are no titles on the page: below each poster is a `·`, and hovering or tapping turns it into `title · lead · year`, centered. The lead is the director, artist, author, or band. On green every category is headed Mind + Matter (open ended); on red each is headed by its own name, Cinema, Music, and so on (deterministic). Music shows albums; Blue Monday was a single, so it keeps its own name and floppy-disk sleeve.
+`stuff.html`, `_data/stuff.yml`, at `/stuff/`. The title, A few of my favo(u)rite things, then a photo captioned "Can you hear the music?", a rule, then the heading Action (styled like Data) with Mind + Matter under it in both themes, and my favorite actions written in the page in three groups: Listening to the symphony; Consumption & Creation, Creation & Consumption, =, Tea & Illusions; and Walking & Thinking, Writing & Thinking, Typing & Thinking, Cooking & Eating. Then a rule. Then the heading Data, and below it each category as rows of paired posters, with a `/` between the two in a pair. There are no titles on the page: below each poster is a `·`, and hovering or tapping turns it into `title · lead · year`, centered. The lead is the director, artist, author, or band. Every category is headed by its name = Mind + Matter (Cinema = Mind + Matter, Music = Mind + Matter, and so on), the same in both themes. Music shows albums; Blue Monday was a single, so it keeps its own name and floppy-disk sleeve.
 
 Only Dark Souls II shifts between two covers. A poster with `also:` fades through its images, one every 6 seconds (`assets/js/stuff.js`), pausing while hovered or tapped; Lo holds the first.
 
@@ -118,7 +118,7 @@ Posters display about 300 px wide, so aim for at least 600 px wide; 1000 × 1500
 
 ## Now
 
-`now.html`. The work line, then a panel of projects, then links to Projects, Resume, and CV. The panel's groups are slugs in the front matter:
+`now.html`. The work line, then a panel of projects, then links to Projects / Experiments, a rule, and Resume / CV. The panel's groups are slugs in the front matter:
 
 ```yaml
 highlight:
@@ -127,6 +127,10 @@ highlight:
   - group: Showcase
     projects: [dexpi-viewer, word2eq, campbell-woodworks]
 ```
+
+## Experiments
+
+`experiments.html`, at `/experiments/`. For now just the heading The Human Experiment.
 
 ## Projects
 

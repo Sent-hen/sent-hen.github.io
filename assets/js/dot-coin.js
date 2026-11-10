@@ -18,9 +18,9 @@
   var SLOW = 0.25;      // turns per second at the start
   var FAST = 14;        // turns per second at full speed
   var RAMP = 8;         // seconds to get from SLOW to FAST: the ball's TRIP in ripples.js
-  var TOP = 1.2;        // seconds the ball rests at the summit: TOP in ripples.js
+  var TOP = 0;          // seconds the ball rests at the summit: TOP in ripples.js
   var ROLL = 3;         // seconds the ball rolls back: DOWN in ripples.js
-  var BOTTOM = 1.2;     // seconds the ball rests at the foot: BOTTOM in ripples.js
+  var BOTTOM = 0;       // seconds the ball rests at the foot: BOTTOM in ripples.js
   var HOLD = TOP + ROLL + BOTTOM; // seconds at full speed: from the summit until the next push
   var SPENT = TOP + ROLL;         // seconds of flashing: resting at the summit and rolling back; calm at the foot
   var FADE = 0.4;       // seconds to fade back in as each cycle starts

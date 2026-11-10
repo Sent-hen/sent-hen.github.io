@@ -2,7 +2,7 @@
 title: Now
 permalink: /now/
 redirect_from: /output/
-description: "What Senthen Velmurugan is doing now: projects, resume, and CV"
+description: "What Senthen Velmurugan is doing now: projects, experiments, resume, and CV"
 # The highlighted section at the top: groups in order, each a list of slugs from _data/projects.yml.
 highlight:
   - group: Actively working on
@@ -11,7 +11,7 @@ highlight:
     projects: [dexpi-viewer, word2eq, campbell-woodworks]
 ---
 <h1>Now</h1>
-<p class="small open-to">Open to FDSE roles · Pacific Northwest / Texas preferred, open to relocation anywhere in the US</p>
+<p class="small open-to">Open to tech roles · Texas preferred, open to relocation anywhere in the US</p>
 
 <section class="highlight" aria-label="Highlighted projects">
 {% for g in page.highlight %}
@@ -34,9 +34,11 @@ highlight:
 
 <hr>
 
-{% comment %} Then the categories: Projects, a rule, then Resume / CV as a pair. {% endcomment %}
+{% comment %} Then the categories: Projects / Experiments as a pair, a rule, then Resume / CV as a pair. {% endcomment %}
 <div class="now-links">
   <a href="{{ '/projects/' | relative_url }}">Projects</a>
+  <span class="now-slash">/</span>
+  <a href="{{ '/experiments/' | relative_url }}">Experiments</a>
 </div>
 
 <hr>

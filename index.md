@@ -34,7 +34,7 @@ description: "About Senthen Velmurugan"
     Bertrand Russell on Face to Face.
   {% endcomment %}
   <div class="creed verse">
-    <p><b>Truth alone triumphs; not falsehood.</b><br>
+    <p><b>Truth alone <span class="for-green">prevails</span><span class="for-red">triumphs</span>; not falsehood.</b><br>
     Through truth the divine path is spread out<br>
     by which the sages whose desires have been completely fulfilled,<br>
     reach to where is that supreme treasure of Truth.</p>
@@ -61,11 +61,11 @@ description: "About Senthen Velmurugan"
     </section>
     <section>
       <p class="label">Who am I</p>
-      <p>Someone who uses technology to increase <a href="{{ '/quality-of-life/' | relative_url }}">Quality of Life</a>.</p>
-      <p class="iam">Pursuing mastery of&hellip;</p>
+      <p>Someone who uses technology to improve locally and globally the <a href="{{ '/quality-of-life/' | relative_url }}">Quality of Life</a>.</p>
+      <p class="iam">Mastering&hellip;</p>
       <ul class="iam-list">
-        <li>system architecture</li>
-        <li>strength training</li>
+        <li>systems engineering</li>
+        <li>physical training</li>
         <li><a href="{{ '/stuff/' | relative_url }}" class="blank-box" aria-label="A few of my favo(u)rite things"></a></li>
       </ul>
       <p class="iam">I like&hellip;</p>
@@ -76,8 +76,7 @@ description: "About Senthen Velmurugan"
       </ul>
     </section>
   </div>
-  <p class="muted small site-note">Entrepreneur</p>
-  <p class="small open-to">Open to FDSE roles · Pacific Northwest / Texas preferred, open to relocation anywhere in the US</p>
+  <p class="small open-to">Open to tech roles · Texas preferred, open to relocation anywhere in the US</p>
   <p class="muted small retired">Retired circa 2000</p>
   </div>
 </div>

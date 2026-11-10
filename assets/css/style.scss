@@ -156,6 +156,9 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 /* the caption's last words follow the theme: curiosity in green, delight in red */
 .for-red, :root[data-theme="dark"] .for-green { display: none; }
 :root[data-theme="dark"] .for-red { display: inline; }
+/* The Quality of Life loop is drawn once per theme */
+.qol-red, :root[data-theme="dark"] .qol-green { display: none; }
+:root[data-theme="dark"] .qol-red { display: block; }
 .banner-caption { margin-top: 8px; color: var(--tx-2); text-align: center; font-family: var(--font-serif); font-style: italic; font-size: 0.95em; }
 
 /* About: the left column of tiles, each framed in dots */
@@ -237,6 +240,8 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 .qol-node, .qol-link { fill: none; stroke: var(--tx-2); stroke-width: 1; }
 .qol-head { fill: var(--tx-2); }
 .qol-flow .qol-main { fill: var(--tx); }
+/* The loop keeps its top and bottom margin inside the drawing, so Illusion's side lines can run to the dotted frame */
+.qol-flow { padding-top: 0; padding-bottom: 0; }
 /* The italic notes: on About above Who I am / Who am I, and atop Quality of Life */
 .creed { margin: 0 0 1.8em; color: var(--tx); font-family: var(--font-serif); font-style: italic; }
 .creed p { margin: 0 0 0.3em; }
@@ -245,9 +250,11 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 .verse p { line-height: 1.6; margin-bottom: 0.9em; }
 .quote { margin-left: 0; padding: 0; border: 0; }
 .quote p { margin-bottom: 0.8em; line-height: 1.6; }
-/* Strategy / Operations / Tactics: intent down, feedback back up (dashed); Operations, the hinge, in the full ink */
+/* Strategy / Operations / Tactics: intent down, feedback back up (dashed); every frame the same */
 .sot-layer { fill: var(--bg-2); stroke: var(--tx-2); stroke-width: 1; }
-.sot-hinge { stroke: var(--tx); stroke-width: 2; }
+/* Tactics: all but invisible on green, in full on red */
+.sot-tactics { opacity: 0.08; }
+:root[data-theme="dark"] .sot-tactics { opacity: 1; }
 .qol .sot-name, .qol .sot-note { text-anchor: middle; dominant-baseline: central; }
 .qol .sot-side { dominant-baseline: central; }
 .qol .sot-name { fill: var(--tx); font-size: 15px; }
@@ -323,6 +330,8 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 }
 .now-links { display: flex; flex-direction: column; align-items: flex-start; gap: 0.1em; margin: 0 0 1.2em; }
 .now-slash { color: var(--tx-3); }
+/* The fractions line at the foot of Quality of Life */
+.qol-frac { margin: 0; text-align: center; color: var(--tx-2); }
 
 /* Projects: the timeline, date on the left (YYYY MM), project on the right */
 .timeline { list-style: none; margin: 0; padding: 0; }
