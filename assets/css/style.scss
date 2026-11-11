@@ -90,21 +90,6 @@ code {
 .nav-links a:hover,
 .nav-links a[aria-current="page"] { color: var(--tx); }
 
-.motion-toggle {
-  display: inline-flex;
-  flex-shrink: 0;
-  padding: 1px;
-  border: 1px dotted var(--ui-3);
-  background: none;
-  font: inherit;
-  font-size: 0.7em;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-.motion-toggle span { padding: 1px 5px; color: var(--tx-2); }
-.motion-toggle[aria-checked="true"] .motion-hi,
-.motion-toggle[aria-checked="false"] .motion-lo { background: var(--tx); color: var(--bg); }
 
 /* one square holding one arrow, like a stock index: a green up arrow, or a red down arrow; it flips in place */
 .theme-toggle {
@@ -223,11 +208,16 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 .iam-list li { margin: 0; white-space: nowrap; }
 .blank-box {   /* opens /stuff/ */
   display: inline-block;
-  width: 4em;
-  height: 1.1em;
+  min-width: 4em;
+  padding: 0 0.4em;
+  line-height: 1.3;
+  text-align: center;
   vertical-align: middle;
+  color: inherit;
+  text-decoration: none;
   border: 1px dotted var(--tx-2);
 }
+.blank-box:empty { height: 1.3em; }
 .blank-box:hover { border-color: var(--tx); }
 .site-note { margin: 0; }
 .open-to { margin: 0.4em 0 0; color: var(--tx-2); }
@@ -235,6 +225,7 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 
 /* Quality of life: line art in a dotted frame, in the theme's colors */
 .qol-fig { margin: 1.8em 0; max-width: 480px; }
+.qol-sub { margin: -0.4em 0 1.2em; }
 .qol { display: block; width: 100%; padding: 16px; border: 1px dotted var(--tx-2); }
 .qol text { fill: var(--tx-2); font-family: var(--font-ui); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
 .qol-node, .qol-link { fill: none; stroke: var(--tx-2); stroke-width: 1; }
@@ -272,7 +263,6 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 /* Stuff: Data, the heading over all the categories */
 .group-label { font-size: 0.95em; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--tx); margin: 0 0 1.2em; }
 .showcase-label { font-size: 0.75em; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tx-2); margin: 0; }
-.action-eq { padding-left: 5.1em; color: var(--tx-2); }
 .showcase-sub { font-size: 0.7em; letter-spacing: 0.04em; color: var(--tx-3); margin: 0.15em 0 0.7em; }
 .covers { list-style: none; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); column-gap: 10px; margin: 0 0 0.8em; padding: 0; }
 .covers li { display: contents; }
@@ -331,7 +321,16 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 .now-links { display: flex; flex-direction: column; align-items: flex-start; gap: 0.1em; margin: 0 0 1.2em; }
 .now-slash { color: var(--tx-3); }
 /* The fractions line at the foot of Quality of Life */
+.qol-fracs { margin: 0 0 1.8em; max-width: 480px; }
+.qol-frac-run { white-space: nowrap; overflow: hidden; }   /* once the 3s outgrow the line it starts at the left and the rest runs off the right */
 .qol-frac { margin: 0; text-align: center; color: var(--tx-2); }
+.iam-why { color: var(--tx-2); }
+/* An unmarked link: the first line and the &, one link to /stuff/, looking like plain text */
+.quiet-link { display: inline-flex; flex-direction: column; align-items: flex-start; color: inherit; text-decoration: none; }
+.iam-gap { display: inline-block; width: 4em; }   /* the empty space inside [ ] */   /* the why in brackets after each */
+/* Whole blocks per theme */
+.only-red, :root[data-theme="dark"] .only-green { display: none; }
+:root[data-theme="dark"] .only-red { display: block; }
 
 /* Projects: the timeline, date on the left (YYYY MM), project on the right */
 .timeline { list-style: none; margin: 0; padding: 0; }

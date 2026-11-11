@@ -17,18 +17,10 @@
     btn.addEventListener('click', function () {
       var next = isDark() ? 'light' : 'dark';
       root.setAttribute('data-theme', next);
+      // red is still; green moves, unless a reduced-motion setting asks for still
+      var calm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+      root.classList.toggle('still', next === 'dark' || calm);
       try { localStorage.setItem('theme-choice', next); } catch (e) {}
-      sync();
-    });
-    sync();
-  })();
-  (function () {
-    // Hi / Lo: adds or removes the `still` class on the page and remembers the choice.
-    var root = document.documentElement, btn = document.getElementById('motion-toggle');
-    function sync() { btn.setAttribute('aria-checked', root.classList.contains('still') ? 'false' : 'true'); }
-    btn.addEventListener('click', function () {
-      var lo = root.classList.toggle('still');
-      try { localStorage.setItem('motion-choice', lo ? 'lo' : 'hi'); } catch (e) {}
       sync();
     });
     sync();

@@ -10,7 +10,8 @@
 // A ring around the coin is its speed gauge: it fills as the coin spins up and closes into a full circle at top speed,
 // staying until the ball is back at 0. While the ball rolls back, the coin and the gauge flash with it, like a stamina
 // bar that needs rest (stamina() and ink() below, which ripples.js uses too).
-// Lo (the `still` class on the page) holds the coin face on, dot showing.
+// Red (the `still` class on the page) lands the coin face on. It lands dot up exactly 1 time in 4, 25%, and blank
+// side up the other 3: not by chance but by count, kept in the browser (`coin-landings`), so every fourth landing is the dot.
 (function () {
   var canvas = document.querySelector('canvas.dot-coin');
   if (!canvas || !canvas.getContext) return;
@@ -134,17 +135,25 @@
     f.ctx.stroke();
   }
 
-  function still() { var f = fit(); f.ctx.globalAlpha = 1; pose(f, 0); }
+  // Which face it lands on: a count of landings, so the dot comes up on exactly every fourth.
+  var face = 0;
+  function land() {
+    var n = 0;
+    try { n = parseInt(localStorage.getItem('coin-landings'), 10) || 0; } catch (e) {}
+    face = n % 4 === 3 ? 0 : 0.5;   // turn 0 shows the dot; half a turn shows the blank face
+    try { localStorage.setItem('coin-landings', String(n + 1)); } catch (e) {}
+  }
+  function still() { var f = fit(); f.ctx.globalAlpha = 1; pose(f, face); }
 
   // The page's clock, not a start time of its own, so the coin and the ball stay in step.
-  var running = false;
+  var running = null;   // null until the first apply, so a page that opens on red lands too
   function frame(now) {
     if (!running) return;
     draw((now / 1000) % CYCLE);
     requestAnimationFrame(frame);
   }
   function apply() {
-    if (root.classList.contains('still')) { running = false; still(); }
+    if (root.classList.contains('still')) { if (running !== false) land(); running = false; still(); }
     else if (!running) { running = true; requestAnimationFrame(frame); }
   }
   new MutationObserver(apply).observe(root, { attributes: true, attributeFilter: ['class', 'data-theme'] });

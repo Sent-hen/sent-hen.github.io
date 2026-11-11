@@ -13,18 +13,12 @@
       try { t = localStorage.getItem('theme-choice'); } catch (e) {}
       document.documentElement.setAttribute('data-theme', t === 'dark' ? 'dark' : 'light');
     })();
-    // Hi (animated) or Lo (still line art), from the Hi / Lo switch in the nav, remembered. Until someone
-    // picks, a low-end device or a reduced-motion setting starts on Lo; everyone else on Hi.
+    // Green moves; red is still (the `still` class on the page): every animation holds one frame as line art.
+    // A reduced-motion setting keeps it still on green too. footer.html keeps this in step with the switch.
     (function () {
-      var m;
-      try { m = localStorage.getItem('motion-choice'); } catch (e) {}
-      if (m !== 'hi' && m !== 'lo') {
-        var weak = (navigator.deviceMemory && navigator.deviceMemory <= 2) ||
-                   (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2);
-        var calm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-        m = weak || calm ? 'lo' : 'hi';
-      }
-      if (m === 'lo') document.documentElement.classList.add('still');
+      var root = document.documentElement;
+      var calm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (calm || root.getAttribute('data-theme') === 'dark') root.classList.add('still');
     })();
   </script>
 

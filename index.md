@@ -17,7 +17,7 @@ description: "About Senthen Velmurugan"
   <figure class="cake">
     {% include cake.html %}
   </figure>
-  <p class="tile-caption tile-serif">professional tiramisu connoisseur</p>
+  <p class="tile-caption tile-serif">Tira Mi Su</p>
   <script src="{{ '/assets/js/cake.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   <time class="clock" data-zone="UTC"></time>
   {% include sierpinski.html %}
@@ -29,26 +29,13 @@ description: "About Senthen Velmurugan"
   <p class="infinity-arrow" aria-label="From zero to one"><canvas class="ripples" data-view="top"></canvas></p>
   <p class="infinity-arrow" aria-hidden="true"><canvas class="ripples" data-view="side"></canvas></p>
   <script src="{{ '/assets/js/ripples.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
-  {% comment %}
-    Mundaka Upanishad 3.1.6 in English, the transliteration, then the original, and
-    Bertrand Russell on Face to Face.
-  {% endcomment %}
+  {% comment %} Two mottos, each in English then the original: Sanskrit (Mundaka Upanishad 3.1.6), then Latin. {% endcomment %}
   <div class="creed verse">
-    <p><b>Truth alone <span class="for-green">prevails</span><span class="for-red">triumphs</span>; not falsehood.</b><br>
-    Through truth the divine path is spread out<br>
-    by which the sages whose desires have been completely fulfilled,<br>
-    reach to where is that supreme treasure of Truth.</p>
-    <p lang="sa-Latn" class="creed-src"><b>satyameva jayate nānṛtaṃ</b><br>
-    satyena panthā vitato devayānaḥ<br>
-    yenākramantyṛṣayo hyāptakāmā<br>
-    yatra tat satyasya paramaṃ nidhānam</p>
-    <p lang="sa" class="creed-src"><b>सत्यमेव जयते नानृतं</b> सत्येन पन्था विततो देवयानः।<br>
-    येनाक्रमन्त्यृषयो ह्याप्तकामा यत्र तत् सत्यस्य परमं निधानम्॥</p>
+    <p>Truth Alone Triumphs [Prevails]</p>
+    <p lang="sa">सत्यमेव जयते</p>
+    <p>Truth Conquers [Prevails]</p>
+    <p lang="la">Veritas vincit</p>
   </div>
-  <blockquote class="creed quote">
-    <p>The moral thing I should wish to say to them is very simple. I should say, <b>&ldquo;Love is wise. Hatred is foolish.&rdquo;</b> In this world, which is getting more and more closely interconnected, we have to learn to tolerate each other.</p>
-    <p>We have to learn to put up with the fact that some people say things that we don&rsquo;t like. We can only live together in that way. And if we are to live together and not die together, we must learn a kind of charity and a kind of tolerance, which is absolutely vital to the continuation of human life on this planet.</p>
-  </blockquote>
   <div class="duality">
     <section>
       <p class="label">Who I am</p>
@@ -61,19 +48,25 @@ description: "About Senthen Velmurugan"
     </section>
     <section>
       <p class="label">Who am I</p>
-      <p>Someone who uses technology to improve locally and globally the <a href="{{ '/quality-of-life/' | relative_url }}">Quality of Life</a>.</p>
-      <p class="iam">Mastering&hellip;</p>
-      <ul class="iam-list">
-        <li>systems engineering</li>
-        <li>physical training</li>
-        <li><a href="{{ '/stuff/' | relative_url }}" class="blank-box" aria-label="A few of my favo(u)rite things"></a></li>
+      <p class="iam">I&hellip;</p>
+      {% comment %}
+        Green: an empty bracket, then & Trade with an empty bracket. Red: Create with an empty bracket, then & Trade
+        [MONEY + TIME]. From the first line through the & is one unmarked link to /stuff/.
+      {% endcomment %}
+      <ul class="iam-list only-green">
+        <li><a href="{{ '/stuff/' | relative_url }}" class="quiet-link" title="A few of my favo(u)rite things"><span class="iam-why">[<span class="iam-gap"></span>]</span><span>&amp;</span></a></li>
+        <li>Trade <span class="iam-why">[<span class="iam-gap"></span>]</span></li>
       </ul>
-      <p class="iam">I like&hellip;</p>
+      <ul class="iam-list only-red">
+        <li><a href="{{ '/stuff/' | relative_url }}" class="quiet-link" title="A few of my favo(u)rite things"><span>Create <span class="iam-why">[<span class="iam-gap"></span>]</span></span><span>&amp;</span></a></li>
+        <li>Trade <span class="iam-why">[MONEY + TIME]</span></li>
+      </ul>
+      <p class="iam">I love&hellip;</p>
       <ul class="iam-list">
         <li>good food</li>
-        <li>great conversations</li>
-        <li>masterful storytelling</li>
+        <li>great dialogue</li>
       </ul>
+      <p>Someone who uses technology to improve locally and globally the <a href="{{ '/quality-of-life/' | relative_url }}">Quality of Life</a>.</p>
     </section>
   </div>
   <p class="small open-to">Open to tech roles · Texas preferred, open to relocation anywhere in the US</p>

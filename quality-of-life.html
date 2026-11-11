@@ -5,10 +5,21 @@ description: "Senthen Velmurugan on quality of life: strategy, operations, and t
 ---
 <p class="small"><a href="{{ '/' | relative_url }}" class="muted">&larr; About</a></p>
 <h1>Quality of Life</h1>
+<p class="muted qol-sub">an oxymoron</p>
 
 <div class="creed">
   <p>By the power of truth, I, while living, have conquered the universe</p>
   <p lang="la" class="creed-src">Vi veri veniversum vivus vici</p>
+</div>
+
+{% comment %}
+  On green the 3s of 33.33 keep coming, one at a time, until they push "% or 25%" off the right edge; on red it holds
+  still at ~33.33% or 25%, both in view.
+{% endcomment %}
+<div class="qol-fracs">
+  <p class="qol-frac qol-frac-run"><span class="for-green">~33.33<span class="qol-threes"></span>% or 25%</span><span class="for-red">~33.33% or 25%</span></p>
+  <p class="qol-frac">/</p>
+  <p class="qol-frac">&frac13; or &frac14;</p>
 </div>
 
 {% comment %}
@@ -133,6 +144,15 @@ description: "Senthen Velmurugan on quality of life: strategy, operations, and t
   </svg>
 </figure>
 
-<p class="qol-frac">&frac13; OR ~33.33%</p>
-<p class="qol-frac">/</p>
-<p class="qol-frac">&frac14; OR 25.00%</p>
+<script>
+  // The 3s of 33.33 on green: one more every 120 ms, up to 400, which is well past the edge on any screen.
+  (function () {
+    var threes = document.querySelector('.qol-threes'), root = document.documentElement;
+    if (!threes) return;
+    var timer = setInterval(function () {
+      if (root.classList.contains('still')) return;
+      threes.textContent += '3';
+      if (threes.textContent.length >= 400) clearInterval(timer);
+    }, 120);
+  })();
+</script>

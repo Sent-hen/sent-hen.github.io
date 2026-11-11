@@ -17,7 +17,7 @@
 // points right; going down it flips to point left. The mark the arrow points at is lit, lighting up over BLINK seconds
 // as its phase starts, and each rest belongs to the move before it.
 // reads as three. An illusion, and the cheapest one: one modulo on the clock the ball already keeps.
-// Lo (the `still` class on the page) holds one frame.
+// Red (the `still` class on the page) holds one frame.
 (function () {
   var canvases = document.querySelectorAll('canvas.ripples');
   if (!canvases.length || !canvases[0].getContext) return;
@@ -33,7 +33,7 @@
   var DROPS = window.coinTurnTimes || Array.apply(null, Array(16)).map(function (_, j) { return j * TRIP / 16; });
   var SPEED = 1.5;        // ripple speed, as a multiple of the ball's speed; above 1, so rings stay ahead of the ball
   var LIFE = TRIP * 0.5;  // seconds until a ripple has faded out
-  var STILL = TRIP * 0.9; // the moment Lo shows: the ball near 1, deep in the crescendo
+  var STILL = TRIP * 0.9; // the moment red shows: the ball near 1, deep in the crescendo
   var QUIET = 0.1;        // how strong a ripple is at 0; at 1 it is full strength
   var HEIGHT = 20;        // the side wave's height at full strength, in CSS pixels
   var CEILING = 32;       // the side wave levels off below this, in CSS pixels, however many crests overlap

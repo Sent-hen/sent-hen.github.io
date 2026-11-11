@@ -1,7 +1,7 @@
-// The tiramisu as 0/1 rain (Hi). Columns of digits stream down the tile; a digit is bright only where the
+// The tiramisu as 0/1 rain (green). Columns of digits stream down the tile; a digit is bright only where the
 // slice and plate are (the .tira-solid copy in _includes/cake.html): the slice bright, the plate dim.
 // Digits are 0 at the top and 1 at the bottom, mixing in the middle; the rain falls, 0 → 1.
-// Lo (the `still` class on the page) shows the line drawing instead and stops the loop.
+// Red (the `still` class on the page) shows the line drawing instead and stops the loop.
 // The canvas is rebuilt whenever the tile's size or the screen's pixel density changes (browser zoom,
 // moving to another screen), so the digits are always drawn at full resolution.
 (function () {
@@ -109,7 +109,7 @@
     requestAnimationFrame(frame);
   }
 
-  // Hi shows the rain; Lo shows the line drawing.
+  // Green shows the rain; red shows the line drawing.
   function apply() {
     var still = root.classList.contains('still');
     svg.style.display = still ? '' : 'none';

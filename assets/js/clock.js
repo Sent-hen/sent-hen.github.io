@@ -1,5 +1,6 @@
 // The clocks above and below the triangle on the About page, as YYYY-MM-DD HH:MM SS ZONE, ticking every second.
 // Each <time> names its zone in data-zone: UTC, the global time, above; Dallas-Fort Worth below (CST or CDT, whichever is in effect).
+// They keep ticking on red too.
 (function () {
   var els = document.querySelectorAll('.clock');
   if (!els.length) return;
@@ -9,14 +10,17 @@
       year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'
     });
   });
-  function tick() {
-    var d = new Date();
+  function show(d) {
     for (var i = 0; i < els.length; i++) {
       var p = {};
       formats[i].formatToParts(d).forEach(function (part) { p[part.type] = part.value; });
       els[i].textContent = p.year + '-' + p.month + '-' + p.day + ' ' + p.hour + ':' + p.minute + ' ' + p.second + ' ' + p.timeZoneName;
       els[i].setAttribute('datetime', d.toISOString());
     }
+  }
+  function tick() {
+    var d = new Date();
+    show(d);
     setTimeout(tick, 1000 - d.getMilliseconds());
   }
   tick();
