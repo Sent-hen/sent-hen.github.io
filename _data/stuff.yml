@@ -12,10 +12,12 @@
     - { title: "The Truman Show", creator: "Peter Weir", year: 1998, art: the-truman-show.jpg }
     - { title: "Anbe Sivam", creator: "Sundar C", year: 2003, art: anbe-sivam.jpg }
     - { title: "V for Vendetta", creator: "James McTeigue", year: 2005, art: v-for-vendetta-film.jpg }
+    - { title: "Pan's Labyrinth", creator: "Guillermo del Toro", year: 2006, art: pans-labyrinth.jpg }
     - { title: "Children of Men", creator: "Alfonso Cuarón", year: 2006, art: children-of-men.jpg }
     - { title: "The Fall", creator: "Tarsem Singh", year: 2006, art: the-fall-ornate.jpg }
     - { title: "Ratatouille", creator: "Brad Bird", year: 2007, art: ratatouille.jpg }
     - { title: "WALL-E", creator: "Andrew Stanton", year: 2008, art: wall-e.jpg }
+    - { title: "Megamind", creator: "Tom McGrath", year: 2010, art: megamind.jpg }
 
 - label: Music
   square: true
