@@ -173,6 +173,7 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
   animation: sierpinski-zoom 3s linear infinite;   /* keyframes in _includes/sierpinski.html */
 }
 .sierpinski .sier-fill { fill: var(--tx); }
+.compass { display: block; width: 160px; height: 160px; margin-bottom: 8px; background: var(--bg); border: 1px dotted var(--tx-2); color: var(--tx); }   /* drawn by assets/js/compass.js */
 .dot-coin { display: block; width: 160px; height: 160px; background: var(--bg); border: 1px dotted var(--tx-2); color: var(--tx); }   /* drawn by assets/js/dot-coin.js */
 
 .clock { display: block; width: 100%; white-space: nowrap; margin-bottom: -8px; text-align: center; font-size: 0.72em; color: var(--tx-2); font-variant-numeric: tabular-nums; }
@@ -325,6 +326,9 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 .qol-frac-run { white-space: nowrap; overflow: hidden; }   /* once the 3s outgrow the line it starts at the left and the rest runs off the right */
 .qol-frac { margin: 0; text-align: center; color: var(--tx-2); }
 .iam-why { color: var(--tx-2); }
+/* [Prevails] after each motto fades away when the coin says so (assets/js/dot-coin.js) */
+.prevails { transition: opacity 2.5s ease; }
+:root[data-prevails="gone"] .prevails { opacity: 0; }
 /* An unmarked link: the first line and the &, one link to /stuff/, looking like plain text */
 .quiet-link { display: inline-flex; flex-direction: column; align-items: flex-start; color: inherit; text-decoration: none; }
 .iam-gap { display: inline-block; width: 4em; }   /* the empty space inside [ ] */   /* the why in brackets after each */
@@ -373,7 +377,7 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
   .intro { gap: 14px; }
   .intro-side { width: 96px; }
   .intro-text { padding-left: 14px; }
-  .dot-coin, .cake, .sierpinski { width: 96px; height: 96px; }
+  .dot-coin, .cake, .sierpinski, .compass { width: 96px; height: 96px; }
   .clock { font-size: 0.55em; white-space: normal; }   /* the date, then the time and zone, in the 96px column */
   .tile-caption { font-size: 0.6em; }
   .iam-list { font-size: min(1em, 4vw); padding-left: 0.8em; }   /* each item stays on one line */

@@ -10,8 +10,9 @@
 // A ring around the coin is its speed gauge: it fills as the coin spins up and closes into a full circle at top speed,
 // staying until the ball is back at 0. While the ball rolls back, the coin and the gauge flash with it, like a stamina
 // bar that needs rest (stamina() and ink() below, which ripples.js uses too).
-// Red (the `still` class on the page) lands the coin face on. It lands dot up exactly 1 time in 4, 25%, and blank
-// side up the other 3: not by chance but by count, kept in the browser (`coin-landings`), so every fourth landing is the dot.
+// Red (the `still` class on the page) lands the coin face on, by chance: dot up 1 time in 3, blank side up otherwise.
+// When it lands dot up, a second toss, 50/50, decides whether [Prevails] fades from both mottos (data-prevails="gone"
+// on the page); so it fades 1 time in 6. Green brings it back.
 (function () {
   var canvas = document.querySelector('canvas.dot-coin');
   if (!canvas || !canvas.getContext) return;
@@ -135,13 +136,13 @@
     f.ctx.stroke();
   }
 
-  // Which face it lands on: a count of landings, so the dot comes up on exactly every fourth.
+  // Which face it lands on, and whether [Prevails] goes with it.
   var face = 0;
   function land() {
-    var n = 0;
-    try { n = parseInt(localStorage.getItem('coin-landings'), 10) || 0; } catch (e) {}
-    face = n % 4 === 3 ? 0 : 0.5;   // turn 0 shows the dot; half a turn shows the blank face
-    try { localStorage.setItem('coin-landings', String(n + 1)); } catch (e) {}
+    var heads = Math.random() < 1 / 3;
+    face = heads ? 0 : 0.5;   // turn 0 shows the dot; half a turn shows the blank face
+    if (heads && Math.random() < 0.5) root.setAttribute('data-prevails', 'gone');
+    else root.removeAttribute('data-prevails');
   }
   function still() { var f = fit(); f.ctx.globalAlpha = 1; pose(f, face); }
 
@@ -154,7 +155,7 @@
   }
   function apply() {
     if (root.classList.contains('still')) { if (running !== false) land(); running = false; still(); }
-    else if (!running) { running = true; requestAnimationFrame(frame); }
+    else { root.removeAttribute('data-prevails'); if (!running) { running = true; requestAnimationFrame(frame); } }
   }
   new MutationObserver(apply).observe(root, { attributes: true, attributeFilter: ['class', 'data-theme'] });
   window.addEventListener('resize', function () { if (!running) still(); });

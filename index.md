@@ -19,6 +19,8 @@ description: "About Senthen Velmurugan"
   </figure>
   <p class="tile-caption tile-serif">Tiramisù</p>
   <script src="{{ '/assets/js/cake.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+  <canvas class="compass" role="img" aria-label="A compass star, N E S W and NE SE SW NW, extruded into a drum and spinning"></canvas>
+  <script src="{{ '/assets/js/compass.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   <time class="clock" data-zone="UTC"></time>
   {% include sierpinski.html %}
   <time class="clock clock-below" data-zone="America/Chicago"></time>
@@ -31,9 +33,9 @@ description: "About Senthen Velmurugan"
   <script src="{{ '/assets/js/ripples.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   {% comment %} Two mottos, each in English then the original: Sanskrit (Mundaka Upanishad 3.1.6), then Latin. {% endcomment %}
   <div class="creed verse">
-    <p>Truth Alone Triumphs [Prevails]</p>
+    <p>Truth Alone Triumphs <span class="prevails">[Prevails]</span></p>
     <p lang="sa">सत्यमेव जयते</p>
-    <p>Truth Conquers [Prevails]</p>
+    <p>Truth Conquers <span class="prevails">[Prevails]</span></p>
     <p lang="la">Veritas vincit</p>
   </div>
   <div class="duality">
