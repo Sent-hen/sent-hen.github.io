@@ -1,24 +1,6 @@
-// The two 0 → 1 drawings on the About page: the Doppler effect on Sisyphus's mountain. The ball is the rock: it is
-// pushed up from 0 to 1 (the uptime), growing with the effort, then rolls back down to 0 (the downtime) and the cycle
-// starts anew. Going down there are no ripples, only the ball: self-reflection. Spent, the ball and the mountain flash
-// like a stamina bar that needs rest, snapping between bright and dim, fast at the top and slower as they recover, and
-// back on the ink by the time the ball is at 0.
-// It keeps time with the coin above the tiramisu (assets/js/dot-coin.js): both read the page's clock with the same
-// TRIP and DOWN, so the coin spins up while the ball climbs and holds its steady dot while the ball rolls back.
-// It drops a ripple at the spot it has reached each time the coin finishes a turn, so ripples start far apart and come
-// faster as the coin speeds up. Each ripple is a circle around that spot, spreading
-// faster than the ball and fading as it goes, so rings pack together ahead of the ball and stretch apart behind it.
-// A ring has faded out completely by the time it spreads back to 0, so the trail behind the ball fades into the 0.
-// The trip is a crescendo with 0 as its source: ripples and ball start quiet at 0 and build all the way to 1.
-// The top drawing shows the rings from above, on the flat. The side drawing shows the mountain: the same rings edge-on,
-// with a crest on each, on a slope that starts nearly flat and curves up steeper and steeper, about 1 up for 6 across.
-// In the corners, faint like a background, a pair with an arrow between: 0 → 1 at the top left and Y → Z at the bottom
-// right of the top drawing, A → B at the top left and 1 → 0 at the bottom right of the side one. Going up every arrow
-// points right; going down it flips to point left. The mark the arrow points at is lit, lighting up over BLINK seconds
-// as its phase starts, and each rest belongs to the move before it.
-// reads as three. An illusion, and the cheapest one: one modulo on the clock the ball already keeps.
-// It keeps moving on red. When the coin has lost its dot (data-coin="blank" on the page, from dot-coin.js), there are
-// no ripples, only the ball. Only a reduced-motion setting holds one frame.
+// The two 0 → 1 drawings: Sisyphus's ball pushed up to 1 dropping a ripple per coin turn (Doppler), then rolling back
+// to 0 while it flashes with the coin. Corner marks flip their arrows with the phase. Only reduced motion holds a
+// frame. See README.
 (function () {
   var canvases = document.querySelectorAll('canvas.ripples');
   if (!canvases.length || !canvases[0].getContext) return;
@@ -66,7 +48,6 @@
   // left when the next climb starts.
   function ripples(t, w) {
     var speed = w / TRIP * SPEED, list = [], c = Math.floor(t / CYCLE), s = t - c * CYCLE;
-    if (root.getAttribute('data-coin') === 'blank') return list;   // no dot, no ripples
     var quiet = s < TRIP ? 1 : Math.max(0, 1 - (s - TRIP) / CLEAR);
     if (!quiet) return list;
     for (var j = 0; j < DROPS.length; j++) {
@@ -194,7 +175,7 @@
     if (calm.matches) { running = false; draw(STILL); }
     else if (!running) { running = true; requestAnimationFrame(frame); }
   }
-  new MutationObserver(apply).observe(root, { attributes: true, attributeFilter: ['data-theme', 'data-coin'] });
+  new MutationObserver(apply).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
   if (calm.addEventListener) calm.addEventListener('change', apply);
   window.addEventListener('resize', function () { if (!running) draw(STILL); });
   apply();

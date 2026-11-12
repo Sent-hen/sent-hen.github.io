@@ -38,9 +38,9 @@
   items:                    # Project Zomboid has no single lead, so it credits the studio; its year is its 2013 early access
     - { title: "BioShock", creator: "Ken Levine", year: 2007, art: bioshock.jpg }
     - { title: "Team Fortress 2", creator: "Robin Walker", year: 2007, art: team-fortress-2.jpg }
-    - { title: "Portal 2", creator: "Joshua Weier", year: 2011, art: portal-2.png }
+    - { title: "Portal 2", creator: "Joshua Weier", year: 2011, art: portal-2.jpg }
     - { title: "Project Zomboid", creator: "The Indie Stone", year: 2013, art: project-zomboid.jpg }
-    - { title: "Dark Souls II", creator: "Tomohiro Shibuya", year: 2014, art: dark-souls-ii.png, also: [{ art: dark-souls-ii-alt.jpg }] }
+    - { title: "Dark Souls II", creator: "Tomohiro Shibuya", year: 2014, art: dark-souls-ii.jpg, also: [{ art: dark-souls-ii-alt.jpg }] }
     - { title: "The Binding of Isaac: Rebirth", creator: "Edmund McMillen", year: 2014, art: the-binding-of-isaac.jpg }
     - { title: "Undertale", creator: "Toby Fox", year: 2015, art: undertale.jpg }
     - { title: "SOMA", creator: "Thomas Grip", year: 2015, art: soma.jpg }

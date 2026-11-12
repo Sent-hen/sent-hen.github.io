@@ -1,19 +1,7 @@
-// The spirals on the About page, between the clocks under Time: two 3D double helixes, each two strands half a turn
-// apart like DNA, stood upright and seen from the side, projected onto the flat tile. The lower one is full width at the
-// bottom (UTC) and narrows to a point in the middle; the upper one is its mirror, full width at the top (CST), narrowing
-// down to the same point, so their tips touch. Each is the size of one square tile. They turn about their upright
-// axis, so the lower coil seems to climb from bottom to top and the upper one to sink from top to bottom, meeting in the
-// middle. The half of each turn that is behind is drawn fainter.
-// The whole figure also tumbles end over end about its horizontal axis, through the point in the middle: once the two
-// ends have swapped places, top for bottom, it slows, stops and turns back the other way, and so on, rocking.
-// Between the two strands of each, base pairs, like the rungs of DNA, shrinking with the coil toward the middle: each
-// half of a rung is labeled with its base, in binary on green (A 00, C 01, G 10, T 11, so GC reads 10 01) and as
-// the letter on red (G C). The pairs are GC, AT, CG and TA, in a fixed order.
-// Like an hourglass: a round plinth capping one end, tumbling with it: on green the base under the lower (UTC) end,
-// on red the top over the upper (CST) end; and sand that always
-// trickles from top to bottom, whichever end is up: grains funnel in from above to the point in the middle and fall
-// from there, faster and faster, to the end below. On red it runs the other way, bottom to top.
-// It keeps moving on green and red alike; only a reduced-motion setting holds one frame.
+// Time: two mirrored double helixes, points touching, base pairs labelled in binary (green) or letters (red), sand
+// trickling down (up on red), capped below on green, above on red. In step with the coin, like a spring: it springs
+// to full height as the coin starts, is pressed down as the ball climbs 0 → 1, and is a line, the coin seen edge on,
+// flashing with it, while the ball rolls back. See README.
 (function () {
   var canvas = document.querySelector('canvas.helix');
   if (!canvas || !canvas.getContext) return;
@@ -21,7 +9,7 @@
   var TURNS = 3;        // turns in each helix, from its wide end to its point
   var RADIUS = 0.42;    // the coil's radius at its wide end, as a share of half the tile's width
   var PERIOD = 6;       // seconds for one full turn about the axis
-  var TUMBLE = 10;      // seconds for the ends to swap places, before it turns back
+  var OPEN = 0.4;       // seconds to grow back to full height as the coin starts again (its FADE)
   var VIEW = 6;         // the eye's distance, in helix lengths: smaller is stronger perspective
   var STEPS = 240;
   var BASE = 1.2;       // the base's radius, as a multiple of the coil's at its wide end
@@ -33,6 +21,11 @@
   var BITS = { A: '00', C: '01', G: '10', T: '11' };
   var root = document.documentElement;
   var FONT = getComputedStyle(root).getPropertyValue('--font-ui').trim() || 'sans-serif';
+  // The coin's cycle and flash (dot-coin.js, which loads first); plain ink and an 11-second cycle without it.
+  var COIN = window.coinCycle || { ramp: 8, cycle: 11 };
+  var stamina = window.zeroToOneStamina || function () { return 0; };
+  var ink = window.zeroToOneInk || function (el) { return { color: getComputedStyle(el).color, alpha: 1 }; };
+  function ease(x) { return x * x * (3 - 2 * x); }
 
   function draw(t) {
     var box = canvas.getBoundingClientRect(), w = box.width, h = box.height, dpr = window.devicePixelRatio || 1;
@@ -42,25 +35,28 @@
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, pw, ph);
     ctx.setTransform(pw / w, 0, 0, ph / h, 0, 0);
-    ctx.strokeStyle = getComputedStyle(canvas).color;
+    var k0 = ink(canvas, stamina(t)), L = k0.alpha;   // the coin's flash: its color, and how faint
+    ctx.strokeStyle = k0.color;
     ctx.lineWidth = 1.2;
     ctx.lineCap = 'round';
 
     var spin = (t / PERIOD) % 1 * 2 * Math.PI;
-    // The tumble: 0 upright, π with the ends swapped; easing in and out, there and back, every 2 × TUMBLE seconds.
-    var tilt = Math.PI / 2 * (1 - Math.cos(Math.PI * t / TUMBLE)), ct = Math.cos(tilt), st = Math.sin(tilt);
+    // Height, from 1 (full) to 0 (a line through the middle): springing up as the coin starts, pressed down steadily
+    // as the ball climbs 0 → 1, flat while it rolls back and the coin flashes.
+    var c = t % COIN.cycle;
+    var ct = c < COIN.ramp ? ease(Math.min(1, c / OPEN)) * (1 - c / COIN.ramp) : 0;
     var R = w / 2 * RADIUS, cx = w / 2, mid = h / 2, span = w * 0.8;   // each helix as tall as it was in a square tile
     var eye = VIEW * span;
     // A point a share s of the way from a helix's wide end to its point, in the middle; dir 1 is the lower helix,
     // -1 its mirror above; the second strand is half a turn round from the first.
     // [x, y on the tile, depth toward us in pixels, nearness of the coil's face from -1 (behind) to 1 (in front)]
-    function put(x, y, z, near) {   // turned about the horizontal axis, then seen in perspective
-      var yy = y * ct - z * st, zz = y * st + z * ct, f = eye / (eye - zz);
+    function put(x, y, z, near) {   // squeezed in height, then seen in perspective
+      var yy = y * ct, zz = z, f = eye / (eye - zz);
       return [cx + x * f, mid + yy * f, zz, near];
     }
     function at(s, off, dir) {
       var a = s * TURNS * 2 * Math.PI - spin + off, k = 1 - s;   // k: narrowing to the point
-      return put(Math.sin(a) * k * R, dir * (1 - s) * span, Math.cos(a) * k * R, Math.cos(a) * ct);
+      return put(Math.sin(a) * k * R, dir * (1 - s) * span, Math.cos(a) * k * R, Math.cos(a));
     }
     // Every short piece of every strand, drawn far to near, so the near ones draw over the far ones.
     var segs = [];
@@ -75,7 +71,7 @@
     // The cap: on green the base under the lower end, on red the top over the upper one; two rims, and the sides
     // where it turns away.
     var rb = R * BASE, M = 64;
-    function rim(y, a) { return put(Math.sin(a) * rb, y, Math.cos(a) * rb, Math.cos(a) * ct - Math.sin(tilt) * 0.5); }
+    function rim(y, a) { return put(Math.sin(a) * rb, y, Math.cos(a) * rb, Math.cos(a)); }
     [root.getAttribute('data-theme') === 'dark' ? -1 : 1].forEach(function (dir) {
       var y0 = dir * span * 1.02, y1 = y0 + dir * span * BASE_H;
       [y0, y1].forEach(function (y) {
@@ -93,7 +89,7 @@
         var s = (j + 0.5) / n, a = s * TURNS * 2 * Math.PI - spin, k = 1 - s, y = dir * (1 - s) * span;
         var pair = PAIRS[(j * 7 + (dir > 0 ? 0 : 3)) % PAIRS.length];
         [0, 1].forEach(function (side) {
-          var b = a + side * Math.PI, sx = Math.sin(b) * k * R, sz = Math.cos(b) * k * R, near = Math.cos(b) * ct;
+          var b = a + side * Math.PI, sx = Math.sin(b) * k * R, sz = Math.cos(b) * k * R, near = Math.cos(b);
           var end = put(sx, y, sz, near), axis = put(0, y, 0, near), half = put(sx / 2, y, sz / 2, near);
           segs.push([axis, end, (axis[2] + end[2]) / 2, near, 0.35]);
           var size = 8 * k * (eye / (eye - half[2]));
@@ -105,7 +101,7 @@
     segs.sort(function (u, v) { return u[2] - v[2]; });
     segs.forEach(function (g) {
       var z = g[3];
-      ctx.globalAlpha = (z >= 0 ? 0.55 + z * 0.45 : 0.18 + (1 + z) * 0.37) * (g[4] || 1);
+      ctx.globalAlpha = (z >= 0 ? 0.55 + z * 0.45 : 0.18 + (1 + z) * 0.37) * (g[4] || 1) * L;
       ctx.beginPath(); ctx.moveTo(g[0][0], g[0][1]); ctx.lineTo(g[1][0], g[1][1]); ctx.stroke();
     });
     labels.sort(function (u, v) { return u.p[2] - v.p[2]; });
@@ -114,23 +110,23 @@
     ctx.textBaseline = 'middle';
     labels.forEach(function (l) {
       // faded as the rung turns end on to us, where its two labels would sit on top of each other
-      ctx.globalAlpha = (l.near >= 0 ? 0.5 + l.near * 0.5 : 0.12 + (1 + l.near) * 0.3) * (0.15 + 0.85 * l.side);
+      ctx.globalAlpha = (l.near >= 0 ? 0.5 + l.near * 0.5 : 0.12 + (1 + l.near) * 0.3) * (0.15 + 0.85 * l.side) * ct * L;
       ctx.font = l.size.toFixed(1) + 'px ' + FONT;
       ctx.fillText(l.text, l.p[0], l.p[1]);
     });
 
     // The sand: always top to bottom on the tile, however the glass is turned. Each grain funnels in from the upper
     // end toward the point in the middle, then falls from it, faster and faster, to the lower end.
-    var reach = Math.max(span * Math.abs(ct), R) * 0.92;   // how far the glass reaches up and down just now
+    var reach = span * ct * 0.92;   // how far the glass reaches up and down just now
     var fall = root.getAttribute('data-theme') === 'dark' ? -1 : 1;   // down on green, up on red
     ctx.fillStyle = ctx.strokeStyle;
     for (var g = 0; g < GRAINS; g++) {
       var seed = Math.sin(g * 12.9898) * 43758.5453, jit = seed - Math.floor(seed);           // 0..1, fixed per grain
       var u = (t / POUR + g / GRAINS) % 1, x, y;
       if (u < 0.5) { var v = u / 0.5, left = 1 - v * v;                                        // funneling in
-        x = cx + (jit * 2 - 1) * R * 0.8 * left; y = mid - fall * reach * left; ctx.globalAlpha = 0.35 + 0.5 * v; }
+        x = cx + (jit * 2 - 1) * R * 0.8 * left; y = mid - fall * reach * left; ctx.globalAlpha = (0.35 + 0.5 * v) * ct * L; }
       else { var d = (u - 0.5) / 0.5;                                                           // falling
-        x = cx + (jit * 2 - 1) * 1.2; y = mid + fall * reach * d * d; ctx.globalAlpha = 0.85; }
+        x = cx + (jit * 2 - 1) * 1.2; y = mid + fall * reach * d * d; ctx.globalAlpha = 0.85 * ct * L; }
       ctx.beginPath(); ctx.arc(x, y, 0.9, 0, 2 * Math.PI); ctx.fill();
     }
     ctx.globalAlpha = 1;
@@ -145,11 +141,11 @@
     requestAnimationFrame(frame);
   }
   function apply() {
-    if (calm.matches) { running = false; draw(0); }
+    if (calm.matches) { running = false; draw(COIN.ramp / 2); }
     else if (!running) { running = true; requestAnimationFrame(frame); }
   }
   if (calm.addEventListener) calm.addEventListener('change', apply);
-  new MutationObserver(function () { if (!running) draw(0); }).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
-  window.addEventListener('resize', function () { if (!running) draw(0); });
+  new MutationObserver(function () { if (!running) draw(COIN.ramp / 2); }).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+  window.addEventListener('resize', function () { if (!running) draw(COIN.ramp / 2); });
   apply();
 })();

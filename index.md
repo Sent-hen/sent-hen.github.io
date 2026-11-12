@@ -14,23 +14,21 @@ description: "About Senthen Velmurugan"
   <div class="intro-side">
   <canvas class="dot-coin" role="img" aria-label="A coin with a dot on one face, spinning faster until the dot seems always there"></canvas>
   <script src="{{ '/assets/js/dot-coin.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+  <time class="clock" data-zone="UTC"></time>
+  <canvas class="helix" role="img" aria-label="Two double helixes seen from the side, one above the other, mirrored, their points touching in the middle, turning"></canvas>
+  <script src="{{ '/assets/js/helix.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+  <time class="clock clock-below" data-zone="UT1"></time>
+  <p class="tile-caption">Time</p>
+  <script src="{{ '/assets/js/clock.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   <figure class="cake">
     {% include cake.html %}
   </figure>
-  <p class="tile-caption tile-serif">Tiramisù</p>
+  <p class="tile-caption tile-serif tira-caption"><span class="tira-word">Tiramisù</span><span class="tira-split">tira = pull/pick<br>mi = me<br>su = up</span></p>
   <script src="{{ '/assets/js/cake.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
-  <model-viewer class="lion" src="{{ '/assets/models/lion-capital.glb' | relative_url }}" alt="The Lion Capital of Ashoka, a 3D scan, turning"
-    camera-orbit="0deg 80deg auto" camera-controls disable-zoom disable-pan interaction-prompt="none" auto-rotate
-    rotation-per-second="20deg" shadow-intensity="0" loading="lazy"></model-viewer>
+  <model-viewer class="lion" src="{{ '/assets/models/lion-capital.glb' | relative_url }}" alt="The Lion Capital of Ashoka, a 3D scan, turning; drag it to spin it any way"
+    camera-orbit="0deg 90deg 115%" interaction-prompt="none" shadow-intensity="0" loading="lazy"></model-viewer>
   <p class="tile-caption tile-serif"><a class="quiet-link" href="https://poly.cam/explore/capture/50D2865D-9569-4280-B91D-70D927985F72/Lion+Capital+of+Ashoka" title="3D scan by uttamg911 on Polycam">Lion Capital</a></p>
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
   <script src="{{ '/assets/js/lion.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
-  <time class="clock" data-zone="America/Chicago"></time>
-  <canvas class="helix" role="img" aria-label="Two double helixes seen from the side, one above the other, mirrored, their points touching in the middle, turning"></canvas>
-  <script src="{{ '/assets/js/helix.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
-  <time class="clock clock-below" data-zone="UTC"></time>
-  <p class="tile-caption">Time</p>
-  <script src="{{ '/assets/js/clock.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   </div>
   <div class="intro-text">
   <p class="infinity-arrow" aria-label="From zero to one"><canvas class="ripples" data-view="top"></canvas></p>
@@ -38,9 +36,9 @@ description: "About Senthen Velmurugan"
   <script src="{{ '/assets/js/ripples.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   {% comment %} Two mottos, each in English then the original: Sanskrit (Mundaka Upanishad 3.1.6), then Latin. {% endcomment %}
   <div class="creed verse">
-    <p>Truth Alone Triumphs <span class="prevails">[Prevails]</span></p>
+    <p>Truth Alone Triumphs [Prevails]</p>
     <p lang="sa">सत्यमेव जयते</p>
-    <p>Truth Conquers <span class="prevails">[Prevails]</span></p>
+    <p>Truth Conquers [Prevails]</p>
     <p lang="la">Veritas vincit</p>
     <p>Love is wise; Hatred is foolish.</p>
   </div>
@@ -72,7 +70,7 @@ description: "About Senthen Velmurugan"
       <p class="iam">I love&hellip;</p>
       <ul class="iam-list">
         <li>good food</li>
-        <li>great dialogue</li>
+        <li>conversations &amp; dialogue</li>
       </ul>
       <p>Someone who uses technology to improve locally and globally the <a href="{{ '/quality-of-life/' | relative_url }}">Quality of Life</a>.</p>
     </section>

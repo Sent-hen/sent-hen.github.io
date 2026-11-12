@@ -6,19 +6,12 @@
   <meta name="theme-color" content="#100F0F">
 
   <script>
-    // Green (light) by default for everyone; the switch in the nav changes to red (dark), and the choice is
-    // remembered. The key is new, so choices saved by older versions of the site don't carry over.
+    // Green (light) unless red was chosen; red, or a reduced-motion setting, adds `still`. footer.html keeps it in step.
     (function () {
-      var t;
+      var root = document.documentElement, t;
       try { t = localStorage.getItem('theme-choice'); } catch (e) {}
-      document.documentElement.setAttribute('data-theme', t === 'dark' ? 'dark' : 'light');
-    })();
-    // Green moves; red is still (the `still` class on the page): every animation holds one frame as line art.
-    // A reduced-motion setting keeps it still on green too. footer.html keeps this in step with the switch.
-    (function () {
-      var root = document.documentElement;
-      var calm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (calm || root.getAttribute('data-theme') === 'dark') root.classList.add('still');
+      root.setAttribute('data-theme', t === 'dark' ? 'dark' : 'light');
+      if (t === 'dark' || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) root.classList.add('still');
     })();
   </script>
 

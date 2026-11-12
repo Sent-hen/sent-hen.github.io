@@ -166,7 +166,7 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 .cake-art .tira-face { fill: var(--cake-bg); stroke: none; }   /* hides the back of the plate behind the slice */
 .cake-rain { display: block; }   /* sized in px by assets/js/cake.js, so it stays sharp */
 
-model-viewer.lion { display: block; width: 160px; height: 160px; background: var(--bg); border: 1px dotted var(--tx-2); --poster-color: transparent; }   /* assets/js/lion.js */
+model-viewer.lion { display: block; width: 160px; height: 160px; background: var(--bg); border: 1px dotted var(--tx-2); --poster-color: transparent; touch-action: none; cursor: grab; }   /* assets/js/lion.js */
 .helix { display: block; width: 160px; height: 288px; background: var(--bg); border: 1px dotted var(--tx-2); color: var(--tx); }   /* drawn by assets/js/helix.js */
 .dot-coin { display: block; width: 160px; height: 160px; background: var(--bg); border: 1px dotted var(--tx-2); color: var(--tx); }   /* drawn by assets/js/dot-coin.js */
 
@@ -175,6 +175,8 @@ model-viewer.lion { display: block; width: 160px; height: 160px; background: var
 
 /* captions: uppercase by default (Time); italic serif for the tiramisu */
 .tile-caption { width: 100%; overflow-wrap: break-word; margin: -8px 0 0; text-align: center; font-size: 0.7em; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tx-2); }
+.tira-split, :root[data-tira="split"] .tira-word { display: none; }   /* red, half the time: the word splits into its meaning (cake.js) */
+:root[data-tira="split"] .tira-split { display: inline; }
 .tile-serif { font-family: var(--font-serif); font-style: italic; font-size: 0.85em; letter-spacing: 0; text-transform: none; }
 
 /* About: the right column */
@@ -214,7 +216,6 @@ model-viewer.lion { display: block; width: 160px; height: 160px; background: var
 }
 .blank-box:empty { height: 1.3em; }
 .blank-box:hover { border-color: var(--tx); }
-.site-note { margin: 0; }
 .open-to { margin: 0.4em 0 0; color: var(--tx-2); }
 .retired { margin: 0.4em 0 0; }
 
@@ -234,8 +235,6 @@ model-viewer.lion { display: block; width: 160px; height: 160px; background: var
 .creed .creed-src { color: var(--tx-2); margin-bottom: 0.9em; }
 .creed .creed-src:last-child { margin-bottom: 0; }
 .verse p { line-height: 1.6; margin-bottom: 0.9em; }
-.quote { margin-left: 0; padding: 0; border: 0; }
-.quote p { margin-bottom: 0.8em; line-height: 1.6; }
 /* Strategy / Operations / Tactics: intent down, feedback back up (dashed); every frame the same */
 .sot-layer { fill: var(--bg-2); stroke: var(--tx-2); stroke-width: 1; }
 /* Tactics: all but invisible on green, in full on red */
@@ -257,7 +256,6 @@ model-viewer.lion { display: block; width: 160px; height: 160px; background: var
 /* Stuff: Data, the heading over all the categories */
 .group-label { font-size: 0.95em; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--tx); margin: 0 0 1.2em; }
 .showcase-label { font-size: 0.75em; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tx-2); margin: 0; }
-.showcase-sub { font-size: 0.7em; letter-spacing: 0.04em; color: var(--tx-3); margin: 0.15em 0 0.7em; }
 .covers { list-style: none; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); column-gap: 10px; margin: 0 0 0.8em; padding: 0; }
 .covers li { display: contents; }
 .covers li:first-child > * { grid-column: 1; }
@@ -319,10 +317,7 @@ model-viewer.lion { display: block; width: 160px; height: 160px; background: var
 .qol-frac-run { white-space: nowrap; overflow: hidden; }   /* once the 3s outgrow the line it starts at the left and the rest runs off the right */
 .qol-frac { margin: 0; text-align: center; color: var(--tx-2); }
 .iam-why { color: var(--tx-2); }
-/* [Prevails] after each motto fades away when the coin says so (assets/js/dot-coin.js) */
-.prevails { transition: opacity 2.5s ease; }
-:root[data-prevails="gone"] .prevails { opacity: 0; }
-/* An unmarked link: the first line and the &, one link to /stuff/, looking like plain text */
+/* An unmarked link, looking like plain text: the & under I… (to /stuff/) and the Lion Capital caption */
 .quiet-link { display: inline-flex; flex-direction: column; align-items: flex-start; color: inherit; text-decoration: none; }
 .iam-gap { display: inline-block; width: 4em; }   /* the empty space inside [ ] */   /* the why in brackets after each */
 /* Whole blocks per theme */

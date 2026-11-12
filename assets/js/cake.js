@@ -4,6 +4,22 @@
 // Red (the `still` class on the page) shows the line drawing instead and stops the loop.
 // The canvas is rebuilt whenever the tile's size or the screen's pixel density changes (browser zoom,
 // moving to another screen), so the digits are always drawn at full resolution.
+
+// The caption: each switch to red tosses 50/50 whether "Tiramisù" splits into its parts and what they mean:
+// tira = pull/pick, mi = me, su = up (data-tira="split" on the page). Green brings the word back.
+(function () {
+  var root = document.documentElement, red = null;
+  function toss() {
+    var now = root.getAttribute('data-theme') === 'dark';
+    if (now === red) return;
+    red = now;
+    if (red && Math.random() < 0.5) root.setAttribute('data-tira', 'split');
+    else root.removeAttribute('data-tira');
+  }
+  new MutationObserver(toss).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+  toss();
+})();
+
 (function () {
   var fig = document.querySelector('.cake');
   var svg = fig && fig.querySelector('.cake-art');

@@ -1,19 +1,6 @@
-// The coin above the tiramisu, after the cover of Rick Rubin's The Creative Act: a thick ring with a dot in the
-// middle on the front, the same ring with nothing in it on the back, spinning
-// about its vertical axis. It starts slow enough to tell the dot face from the blank one, then speeds up until
-// the dot looks like it is always there. Each frame is a short exposure, the way an eye or a camera sees a spinning
-// coin: as the spin speeds up, one frame covers more of a turn, and at full speed a whole turn, so both faces
-// blur together into one steady circle with a dot. Then it starts again, slow (0 → 1).
-// It keeps time with the ball in the 0 → 1 drawings (assets/js/ripples.js): the coin spins up while the ball is
-// pushed up (the uptime), reaches the steady dot as the ball reaches 1, and holds it the whole time the ball rolls back
-// down (the downtime). It starts again, slow, only when the ball is back at 0.
-// A ring around the coin is its speed gauge: it fills as the coin spins up and closes into a full circle at top speed,
-// staying until the ball is back at 0. While the ball rolls back, the coin and the gauge flash with it, like a stamina
-// bar that needs rest (stamina() and ink() below, which ripples.js uses too).
-// It keeps spinning on red, unlike the other drawings. Each switch to red tosses for it twice: 50/50 whether the coin
-// keeps its dot or spins with no dot at all (data-coin="blank" on the page, which also takes the ripples away from the
-// 0 → 1 drawings), and 1 in 3, on its own, whether [Prevails] fades from both mottos (data-prevails="gone"). Green
-// brings back the dot and [Prevails]. Only a reduced-motion setting holds it still, face on.
+// The dot coin above the tiramisu (after The Creative Act's cover): spins up with the 0 → 1 ball, blurs into a steady
+// dot, flashes while the ball rolls back, on green and red alike. Shares its clock, stamina() and ink() with
+// ripples.js and helix.js. See README.
 (function () {
   var canvas = document.querySelector('canvas.dot-coin');
   if (!canvas || !canvas.getContext) return;
@@ -70,6 +57,7 @@
     return swing * Math.min(1, d / LEAVE, (SPENT - d) / SETTLE);
   }
   window.zeroToOneStamina = stamina;
+  window.coinCycle = { ramp: RAMP, cycle: CYCLE };   // helix.js flattens to the coin's edge while it flashes
 
   // What to draw with for a flash value from stamina(), on an element whose color is the ink: toward the theme's
   // --flash color as it goes bright, and toward faint as it goes dim. Returns a color and an opacity.
@@ -113,7 +101,7 @@
     f.ctx.ellipse(x, y, R * squash, R, 0, 0, Math.PI * 2);
     f.ctx.ellipse(x, y, R * RING * squash, R * RING, 0, 0, Math.PI * 2);
     f.ctx.fill('evenodd');
-    if (c > 0 && !blank) {
+    if (c > 0) {
       f.ctx.beginPath();
       f.ctx.ellipse(x, y, R * 0.13 * squash, R * 0.13, 0, 0, Math.PI * 2);
       f.ctx.fill();
@@ -137,19 +125,10 @@
     f.ctx.stroke();
   }
 
-  // The tosses on each switch to red: whether the coin has its dot, and, on its own, whether [Prevails] stays.
-  var blank = false;
-  function mark(name, value, on) { if (on) root.setAttribute(name, value); else root.removeAttribute(name); }
-  function toss() {
-    blank = Math.random() < 1 / 2;
-    mark('data-coin', 'blank', blank);
-    mark('data-prevails', 'gone', Math.random() < 1 / 3);
-  }
-  function settle() { blank = false; mark('data-coin', 'blank', false); mark('data-prevails', 'gone', false); }
   function still() { var f = fit(); f.ctx.globalAlpha = 1; pose(f, 0); }
 
   // The page's clock, not a start time of its own, so the coin and the ball stay in step.
-  var running = false, red = null;   // red is null until the first apply, so a page that opens on red tosses too
+  var running = false;
   var calm = window.matchMedia ? matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
   function frame(now) {
     if (!running) return;
@@ -157,8 +136,6 @@
     requestAnimationFrame(frame);
   }
   function apply() {
-    var now = root.getAttribute('data-theme') === 'dark';
-    if (now !== red) { red = now; if (red) toss(); else settle(); }
     if (calm.matches) { running = false; still(); }
     else if (!running) { running = true; requestAnimationFrame(frame); }
   }
