@@ -37,6 +37,7 @@ description: "About Senthen Velmurugan"
     <p lang="sa">सत्यमेव जयते</p>
     <p>Truth Conquers <span class="prevails">[Prevails]</span></p>
     <p lang="la">Veritas vincit</p>
+    <p>Love is wise; Hatred is foolish.</p>
   </div>
   <div class="duality">
     <section>

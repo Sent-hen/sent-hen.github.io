@@ -247,6 +247,7 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 /* Tactics: all but invisible on green, in full on red */
 .sot-tactics { opacity: 0.08; }
 :root[data-theme="dark"] .sot-tactics { opacity: 1; }
+:root[data-theme="dark"] .sot-operations { opacity: 0.08; }   /* on red Operations is as faint as Tactics is on green */
 .qol .sot-name, .qol .sot-note { text-anchor: middle; dominant-baseline: central; }
 .qol .sot-side { dominant-baseline: central; }
 .qol .sot-name { fill: var(--tx); font-size: 15px; }
