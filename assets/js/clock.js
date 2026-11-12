@@ -1,5 +1,5 @@
-// The clocks above and below the triangle on the About page, as YYYY-MM-DD HH:MM SS ZONE, ticking every second.
-// Each <time> names its zone in data-zone: UTC, the global time, above; Dallas-Fort Worth below (CST or CDT, whichever is in effect).
+// The clocks above and below the helix on the About page, as YYYY-MM-DD HH:MM SS ZONE, ticking every second.
+// Each <time> names its zone in data-zone: Dallas-Fort Worth (CST or CDT, whichever is in effect), my own, above; UTC, the global time, below.
 // They keep ticking on red too.
 (function () {
   var els = document.querySelectorAll('.clock');

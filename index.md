@@ -19,11 +19,10 @@ description: "About Senthen Velmurugan"
   </figure>
   <p class="tile-caption tile-serif">Tiramisù</p>
   <script src="{{ '/assets/js/cake.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
-  <canvas class="compass" role="img" aria-label="A compass star, N E S W and NE SE SW NW, extruded into a drum and spinning"></canvas>
-  <script src="{{ '/assets/js/compass.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
-  <time class="clock" data-zone="UTC"></time>
-  {% include sierpinski.html %}
-  <time class="clock clock-below" data-zone="America/Chicago"></time>
+  <time class="clock" data-zone="America/Chicago"></time>
+  <canvas class="helix" role="img" aria-label="Two double helixes seen from the side, one above the other, mirrored, their points touching in the middle, turning"></canvas>
+  <script src="{{ '/assets/js/helix.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+  <time class="clock clock-below" data-zone="UTC"></time>
   <p class="tile-caption">Time</p>
   <script src="{{ '/assets/js/clock.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   </div>

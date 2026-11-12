@@ -17,7 +17,8 @@
 // points right; going down it flips to point left. The mark the arrow points at is lit, lighting up over BLINK seconds
 // as its phase starts, and each rest belongs to the move before it.
 // reads as three. An illusion, and the cheapest one: one modulo on the clock the ball already keeps.
-// Red (the `still` class on the page) holds one frame.
+// It keeps moving on red. When the coin has lost its dot (data-coin="blank" on the page, from dot-coin.js), there are
+// no ripples, only the ball. Only a reduced-motion setting holds one frame.
 (function () {
   var canvases = document.querySelectorAll('canvas.ripples');
   if (!canvases.length || !canvases[0].getContext) return;
@@ -65,6 +66,7 @@
   // left when the next climb starts.
   function ripples(t, w) {
     var speed = w / TRIP * SPEED, list = [], c = Math.floor(t / CYCLE), s = t - c * CYCLE;
+    if (root.getAttribute('data-coin') === 'blank') return list;   // no dot, no ripples
     var quiet = s < TRIP ? 1 : Math.max(0, 1 - (s - TRIP) / CLEAR);
     if (!quiet) return list;
     for (var j = 0; j < DROPS.length; j++) {
@@ -182,16 +184,18 @@
 
   // The page's clock, not a start time of its own, so the coin and the ball stay in step.
   var running = false;
+  var calm = window.matchMedia ? matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
   function frame(now) {
     if (!running) return;
     draw(now / 1000);
     requestAnimationFrame(frame);
   }
   function apply() {
-    if (root.classList.contains('still')) { running = false; draw(STILL); }
+    if (calm.matches) { running = false; draw(STILL); }
     else if (!running) { running = true; requestAnimationFrame(frame); }
   }
-  new MutationObserver(apply).observe(root, { attributes: true, attributeFilter: ['class', 'data-theme'] });
+  new MutationObserver(apply).observe(root, { attributes: true, attributeFilter: ['data-theme', 'data-coin'] });
+  if (calm.addEventListener) calm.addEventListener('change', apply);
   window.addEventListener('resize', function () { if (!running) draw(STILL); });
   apply();
 })();

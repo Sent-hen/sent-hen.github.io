@@ -166,14 +166,7 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 .cake-art .tira-face { fill: var(--cake-bg); stroke: none; }   /* hides the back of the plate behind the slice */
 .cake-rain { display: block; }   /* sized in px by assets/js/cake.js, so it stays sharp */
 
-.sierpinski { display: block; width: 160px; height: 160px; overflow: hidden; background: var(--bg); border: 1px dotted var(--tx-2); }
-.sierpinski .zoom {
-  transform-box: view-box;
-  transform-origin: 80px 160px;   /* the bottom point */
-  animation: sierpinski-zoom 3s linear infinite;   /* keyframes in _includes/sierpinski.html */
-}
-.sierpinski .sier-fill { fill: var(--tx); }
-.compass { display: block; width: 160px; height: 160px; margin-bottom: 8px; background: var(--bg); border: 1px dotted var(--tx-2); color: var(--tx); }   /* drawn by assets/js/compass.js */
+.helix { display: block; width: 160px; height: 288px; background: var(--bg); border: 1px dotted var(--tx-2); color: var(--tx); }   /* drawn by assets/js/helix.js */
 .dot-coin { display: block; width: 160px; height: 160px; background: var(--bg); border: 1px dotted var(--tx-2); color: var(--tx); }   /* drawn by assets/js/dot-coin.js */
 
 .clock { display: block; width: 100%; white-space: nowrap; margin-bottom: -8px; text-align: center; font-size: 0.72em; color: var(--tx-2); font-variant-numeric: tabular-nums; }
@@ -256,8 +249,6 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 .sot-back { stroke-dasharray: 3 4; }
 .sot-head { fill: none; stroke: var(--tx-2); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 
-/* Lo (the Hi / Lo switch): every drawing shows as a still image */
-.still .sierpinski .zoom { animation: none; }
 
 /* Stuff: each category is two pairs: two posters with a slash between them. Below each, a dot, which becomes
    title · creator · year on hover or tap. The hidden text keeps its space, so nothing moves. */
@@ -378,7 +369,8 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
   .intro { gap: 14px; }
   .intro-side { width: 96px; }
   .intro-text { padding-left: 14px; }
-  .dot-coin, .cake, .sierpinski, .compass { width: 96px; height: 96px; }
+  .dot-coin, .cake { width: 96px; height: 96px; }
+  .helix { width: 96px; height: 173px; }
   .clock { font-size: 0.55em; white-space: normal; }   /* the date, then the time and zone, in the 96px column */
   .tile-caption { font-size: 0.6em; }
   .iam-list { font-size: min(1em, 4vw); padding-left: 0.8em; }   /* each item stays on one line */

@@ -10,9 +10,10 @@
 // A ring around the coin is its speed gauge: it fills as the coin spins up and closes into a full circle at top speed,
 // staying until the ball is back at 0. While the ball rolls back, the coin and the gauge flash with it, like a stamina
 // bar that needs rest (stamina() and ink() below, which ripples.js uses too).
-// Red (the `still` class on the page) lands the coin face on, by chance: dot up 1 time in 3, blank side up otherwise.
-// When it lands dot up, a second toss, 50/50, decides whether [Prevails] fades from both mottos (data-prevails="gone"
-// on the page); so it fades 1 time in 6. Green brings it back.
+// It keeps spinning on red, unlike the other drawings. Each switch to red tosses for it twice: 50/50 whether the coin
+// keeps its dot or spins with no dot at all (data-coin="blank" on the page, which also takes the ripples away from the
+// 0 → 1 drawings), and 1 in 3, on its own, whether [Prevails] fades from both mottos (data-prevails="gone"). Green
+// brings back the dot and [Prevails]. Only a reduced-motion setting holds it still, face on.
 (function () {
   var canvas = document.querySelector('canvas.dot-coin');
   if (!canvas || !canvas.getContext) return;
@@ -112,7 +113,7 @@
     f.ctx.ellipse(x, y, R * squash, R, 0, 0, Math.PI * 2);
     f.ctx.ellipse(x, y, R * RING * squash, R * RING, 0, 0, Math.PI * 2);
     f.ctx.fill('evenodd');
-    if (c > 0) {
+    if (c > 0 && !blank) {
       f.ctx.beginPath();
       f.ctx.ellipse(x, y, R * 0.13 * squash, R * 0.13, 0, 0, Math.PI * 2);
       f.ctx.fill();
@@ -136,28 +137,33 @@
     f.ctx.stroke();
   }
 
-  // Which face it lands on, and whether [Prevails] goes with it.
-  var face = 0;
-  function land() {
-    var heads = Math.random() < 1 / 3;
-    face = heads ? 0 : 0.5;   // turn 0 shows the dot; half a turn shows the blank face
-    if (heads && Math.random() < 0.5) root.setAttribute('data-prevails', 'gone');
-    else root.removeAttribute('data-prevails');
+  // The tosses on each switch to red: whether the coin has its dot, and, on its own, whether [Prevails] stays.
+  var blank = false;
+  function mark(name, value, on) { if (on) root.setAttribute(name, value); else root.removeAttribute(name); }
+  function toss() {
+    blank = Math.random() < 1 / 2;
+    mark('data-coin', 'blank', blank);
+    mark('data-prevails', 'gone', Math.random() < 1 / 3);
   }
-  function still() { var f = fit(); f.ctx.globalAlpha = 1; pose(f, face); }
+  function settle() { blank = false; mark('data-coin', 'blank', false); mark('data-prevails', 'gone', false); }
+  function still() { var f = fit(); f.ctx.globalAlpha = 1; pose(f, 0); }
 
   // The page's clock, not a start time of its own, so the coin and the ball stay in step.
-  var running = null;   // null until the first apply, so a page that opens on red lands too
+  var running = false, red = null;   // red is null until the first apply, so a page that opens on red tosses too
+  var calm = window.matchMedia ? matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
   function frame(now) {
     if (!running) return;
     draw((now / 1000) % CYCLE);
     requestAnimationFrame(frame);
   }
   function apply() {
-    if (root.classList.contains('still')) { if (running !== false) land(); running = false; still(); }
-    else { root.removeAttribute('data-prevails'); if (!running) { running = true; requestAnimationFrame(frame); } }
+    var now = root.getAttribute('data-theme') === 'dark';
+    if (now !== red) { red = now; if (red) toss(); else settle(); }
+    if (calm.matches) { running = false; still(); }
+    else if (!running) { running = true; requestAnimationFrame(frame); }
   }
-  new MutationObserver(apply).observe(root, { attributes: true, attributeFilter: ['class', 'data-theme'] });
+  new MutationObserver(apply).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+  if (calm.addEventListener) calm.addEventListener('change', apply);
   window.addEventListener('resize', function () { if (!running) still(); });
   apply();
 })();
