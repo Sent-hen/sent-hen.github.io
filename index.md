@@ -54,10 +54,11 @@ description: "About Senthen Velmurugan"
     </section>
     <section>
       <p class="label">Who am I</p>
+      <p>Someone who uses technology to improve locally and globally the <a href="{{ '/quality-of-life/' | relative_url }}">Quality of Life</a>.</p>
       <p class="iam">I&hellip;</p>
       {% comment %}
         Green: Create with an empty bracket, then & Trade with an empty bracket. Red: Create with an empty bracket, then & Trade
-        [MONEY + TIME]. Only the & is a link, unmarked, to /stuff/.
+        [MONEY & TIME]. Only the & is a link, unmarked, to /stuff/.
       {% endcomment %}
       <ul class="iam-list only-green">
         <li>Create <span class="iam-why">[<span class="iam-gap"></span>]</span><br><a href="{{ '/stuff/' | relative_url }}" class="quiet-link" title="A few of my favo(u)rite things">&amp;</a></li>
@@ -65,14 +66,14 @@ description: "About Senthen Velmurugan"
       </ul>
       <ul class="iam-list only-red">
         <li>Create <span class="iam-why">[<span class="iam-gap"></span>]</span><br><a href="{{ '/stuff/' | relative_url }}" class="quiet-link" title="A few of my favo(u)rite things">&amp;</a></li>
-        <li>Trade <span class="iam-why">[MONEY + TIME]</span></li>
+        <li>Trade <span class="iam-why">[MONEY &amp; TIME]</span></li>
       </ul>
       <p class="iam">I love&hellip;</p>
       <ul class="iam-list">
         <li>good food</li>
-        <li>conversations &amp; dialogue</li>
+        <li>&amp;</li>
+        <li>great conversations</li>
       </ul>
-      <p>Someone who uses technology to improve locally and globally the <a href="{{ '/quality-of-life/' | relative_url }}">Quality of Life</a>.</p>
     </section>
   </div>
   <p class="small open-to">Open to tech roles · Texas preferred, open to relocation anywhere in the US</p>

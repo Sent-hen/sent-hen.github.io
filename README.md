@@ -78,7 +78,7 @@ The layout is `_layouts/default.html`: `_includes/head.html`, `_includes/nav.htm
 | Verse | Below the Sisyphus drawings, above Who I am and Who am I, in italics, with no attribution: two mottos, each in English then the original: Truth Alone Triumphs [Prevails], सत्यमेव जयते (Sanskrit, Mundaka Upanishad 3.1.6); Truth Conquers [Prevails], Veritas vincit (Latin); then "Love is wise; Hatred is foolish."; both [Prevails] always show, on green and red | `index.md` |
 | Retired | "Retired circa 2000", the last line of the page | `index.md` |
 | Who I am | My name in Tamil, English, and pronunciation | `index.md` |
-| Who am I | What I do (I… on green Create [ ], &, Trade [ ]; on red Create [ ], &, Trade [MONEY + TIME]; only the & is a link, unmarked, to A few of my favo(u)rite things), what I love (good food, conversations & dialogue), and last, "Someone who uses technology to improve locally and globally the Quality of Life." | `index.md` |
+| Who am I | First, under the heading, "Someone who uses technology to improve locally and globally the Quality of Life." (linked); then what I do (I… on green Create [ ], &, Trade [ ]; on red Create [ ], &, Trade [MONEY & TIME]; only the & is a link, unmarked, to A few of my favo(u)rite things), then what I love (good food, &, great conversations) | `index.md` |
 
 To change the rain, edit `CELL` (digit size) and `SPEED` (rows per second) in `cake.js`. The files keep the old "cake" names.
 
