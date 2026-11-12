@@ -26,7 +26,7 @@ description: "About Senthen Velmurugan"
   <p class="tile-caption tile-serif tira-caption"><span class="tira-word">Tiramisù</span><span class="tira-split">tira = pull/pick<br>mi = me<br>su = up</span></p>
   <script src="{{ '/assets/js/cake.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   <model-viewer class="lion" src="{{ '/assets/models/lion-capital.glb' | relative_url }}" alt="The Lion Capital of Ashoka, a 3D scan, turning; drag it to spin it any way"
-    camera-orbit="0deg 90deg 115%" interaction-prompt="none" shadow-intensity="0" loading="lazy"></model-viewer>
+    camera-orbit="0deg 90deg 115%" min-camera-orbit="auto auto 0%" max-camera-orbit="auto auto 400%" interaction-prompt="none" shadow-intensity="0" loading="lazy"></model-viewer>
   <p class="tile-caption tile-serif"><a class="quiet-link" href="https://poly.cam/explore/capture/50D2865D-9569-4280-B91D-70D927985F72/Lion+Capital+of+Ashoka" title="3D scan by uttamg911 on Polycam">Lion Capital</a></p>
   <script src="{{ '/assets/js/lion.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   </div>

@@ -5,7 +5,8 @@
 // The canvas is rebuilt whenever the tile's size or the screen's pixel density changes (browser zoom,
 // moving to another screen), so the digits are always drawn at full resolution.
 
-// The caption: each switch to red tosses 50/50 whether "Tiramisù" splits into its parts and what they mean:
+// The caption: each switch to red first picks the odds, 1 in 2 or 1 in 3 (even chance of either), then tosses with
+// them (5 in 12 overall) whether "Tiramisù" splits into its parts and what they mean:
 // tira = pull/pick, mi = me, su = up (data-tira="split" on the page). Green brings the word back.
 (function () {
   var root = document.documentElement, red = null;
@@ -13,7 +14,8 @@
     var now = root.getAttribute('data-theme') === 'dark';
     if (now === red) return;
     red = now;
-    if (red && Math.random() < 0.5) root.setAttribute('data-tira', 'split');
+    var odds = Math.random() < 0.5 ? 1 / 2 : 1 / 3;
+    if (red && Math.random() < odds) root.setAttribute('data-tira', 'split');
     else root.removeAttribute('data-tira');
   }
   new MutationObserver(toss).observe(root, { attributes: true, attributeFilter: ['data-theme'] });

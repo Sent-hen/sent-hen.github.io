@@ -1,6 +1,6 @@
 // The Lion Capital of Ashoka: a 3D scan (uttamg911, Polycam) in Google's <model-viewer>, which loads only as the tile
 // nears the screen. Drag it any way, about any axis (a virtual trackball: drag across the middle to tip and turn it,
-// round the rim to roll it); let go and it keeps the spin you gave it.
+// round the rim to roll it); let go and it keeps the spin you gave it. Scroll or pinch to zoom.
 // Friction eases that spin back to the base state, a slow turn about the upright axis, and gravity stands it back up:
 // on green the base turn runs right to left, on red left to right.
 (function () {
@@ -47,11 +47,33 @@
     var r = x * x + y * y;
     return r < 1 ? [x, y, Math.sqrt(1 - r)] : [x / Math.sqrt(r), y / Math.sqrt(r), 0];
   }
+  // Zoom: the scroll wheel on a desktop, a pinch on a tablet or phone; the camera's distance, as a share of the
+  // distance that just fits the model.
+  var ZOOM_MIN = 0.5, ZOOM_MAX = 3, zoom = 1.15, pts = {}, pinch = 0;
+  function setZoom(z) {
+    zoom = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, z));
+    mv.setAttribute('camera-orbit', '0deg 90deg ' + (zoom * 100).toFixed(1) + '%');
+  }
+  function spread() { var k = Object.keys(pts); return Math.hypot(pts[k[0]].x - pts[k[1]].x, pts[k[0]].y - pts[k[1]].y); }
+  mv.addEventListener('wheel', function (e) {
+    e.preventDefault();   // zoom the model, not the page, while over it
+    setZoom(zoom * Math.exp(e.deltaY * (e.deltaMode ? 0.05 : 0.0015)));
+  }, { passive: false });
+
   mv.addEventListener('pointerdown', function (e) {
+    pts[e.pointerId] = { x: e.clientX, y: e.clientY };
+    try { mv.setPointerCapture(e.pointerId); } catch (x) {}
+    if (Object.keys(pts).length === 2) { held = null; pinch = spread(); return; }   // two fingers: pinch, not turn
     held = ball(e); last = e.timeStamp; w = [0, 0, 0];
-    mv.setPointerCapture(e.pointerId);
   });
   mv.addEventListener('pointermove', function (e) {
+    if (pts[e.pointerId]) pts[e.pointerId] = { x: e.clientX, y: e.clientY };
+    if (Object.keys(pts).length === 2) {
+      var d = spread();
+      if (pinch > 0 && d > 0) setZoom(zoom * pinch / d);   // fingers apart: closer
+      pinch = d;
+      return;
+    }
     if (!held) return;
     var p = ball(e), dt = Math.max(1e-3, (e.timeStamp - last) / 1000);
     var ax = [held[1] * p[2] - held[2] * p[1], held[2] * p[0] - held[0] * p[2], held[0] * p[1] - held[1] * p[0]];
@@ -65,6 +87,13 @@
     held = p; last = e.timeStamp;
   });
   function release(e) {
+    var was = Object.keys(pts).length;
+    delete pts[e.pointerId];
+    if (was === 2) {   // one finger left after a pinch: carry on turning from it, without a fling
+      var k = Object.keys(pts)[0];
+      held = k ? ball({ clientX: pts[k].x, clientY: pts[k].y }) : null; last = e.timeStamp; w = [0, 0, 0]; pinch = 0;
+      return;
+    }
     if (!held) return;
     if (e.timeStamp - last > 80) w = [0, 0, 0];   // held still before letting go: no fling
     held = null;
