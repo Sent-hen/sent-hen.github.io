@@ -6,6 +6,9 @@
 // middle. The half of each turn that is behind is drawn fainter.
 // The whole figure also tumbles end over end about its horizontal axis, through the point in the middle: once the two
 // ends have swapped places, top for bottom, it slows, stops and turns back the other way, and so on, rocking.
+// Between the two strands of each, base pairs, like the rungs of DNA, shrinking with the coil toward the middle: each
+// half of a rung is labeled with its base, in binary on green (A 00, C 01, G 10, T 11, so GC reads 10 01) and as
+// the letter on red (G C). The pairs are GC, AT, CG and TA, in a fixed order.
 // Like an hourglass: a round plinth capping each end, a base under the lower one and a top over the upper one, tumbling with it, and sand that always
 // trickles from top to bottom, whichever end is up: grains funnel in from above to the point in the middle and fall
 // from there, faster and faster, to the end below. On red it runs the other way, bottom to top.
@@ -24,7 +27,11 @@
   var BASE_H = 0.07;    // the base's thickness, as a share of a helix's length
   var GRAINS = 70;      // grains of sand in the air at once
   var POUR = 2.4;       // seconds for one grain to go from top to bottom
+  var RUNGS = 4;        // base pairs in each turn
+  var PAIRS = ['GC', 'AT', 'CG', 'TA'];
+  var BITS = { A: '00', C: '01', G: '10', T: '11' };
   var root = document.documentElement;
+  var FONT = getComputedStyle(root).getPropertyValue('--font-ui').trim() || 'sans-serif';
 
   function draw(t) {
     var box = canvas.getBoundingClientRect(), w = box.width, h = box.height, dpr = window.devicePixelRatio || 1;
@@ -77,11 +84,37 @@
       });
       [Math.PI / 2, -Math.PI / 2].forEach(function (a) { var p = rim(y0, a), q = rim(y1, a); segs.push([p, q, (p[2] + q[2]) / 2, 0.6]); });
     });
+    // The base pairs: a rung from strand to strand through the axis, faint, and each half's base written on it.
+    var red = root.getAttribute('data-theme') === 'dark', labels = [], n = TURNS * RUNGS;
+    [1, -1].forEach(function (dir) {
+      for (var j = 0; j < n; j++) {
+        var s = (j + 0.5) / n, a = s * TURNS * 2 * Math.PI - spin, k = 1 - s, y = dir * (1 - s) * span;
+        var pair = PAIRS[(j * 7 + (dir > 0 ? 0 : 3)) % PAIRS.length];
+        [0, 1].forEach(function (side) {
+          var b = a + side * Math.PI, sx = Math.sin(b) * k * R, sz = Math.cos(b) * k * R, near = Math.cos(b) * ct;
+          var end = put(sx, y, sz, near), axis = put(0, y, 0, near), half = put(sx / 2, y, sz / 2, near);
+          segs.push([axis, end, (axis[2] + end[2]) / 2, near, 0.35]);
+          var size = 8 * k * (eye / (eye - half[2]));
+          if (size >= 3.5) labels.push({ p: half, size: size, near: near, side: Math.abs(Math.sin(b)), text: red ? pair.charAt(side) : BITS[pair.charAt(side)] });
+        });
+      }
+    });
+
     segs.sort(function (u, v) { return u[2] - v[2]; });
     segs.forEach(function (g) {
       var z = g[3];
-      ctx.globalAlpha = z >= 0 ? 0.55 + z * 0.45 : 0.18 + (1 + z) * 0.37;
+      ctx.globalAlpha = (z >= 0 ? 0.55 + z * 0.45 : 0.18 + (1 + z) * 0.37) * (g[4] || 1);
       ctx.beginPath(); ctx.moveTo(g[0][0], g[0][1]); ctx.lineTo(g[1][0], g[1][1]); ctx.stroke();
+    });
+    labels.sort(function (u, v) { return u.p[2] - v.p[2]; });
+    ctx.fillStyle = ctx.strokeStyle;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    labels.forEach(function (l) {
+      // faded as the rung turns end on to us, where its two labels would sit on top of each other
+      ctx.globalAlpha = (l.near >= 0 ? 0.5 + l.near * 0.5 : 0.12 + (1 + l.near) * 0.3) * (0.15 + 0.85 * l.side);
+      ctx.font = l.size.toFixed(1) + 'px ' + FONT;
+      ctx.fillText(l.text, l.p[0], l.p[1]);
     });
 
     // The sand: always top to bottom on the tile, however the glass is turned. Each grain funnels in from the upper
