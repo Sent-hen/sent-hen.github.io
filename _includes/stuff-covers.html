@@ -1,0 +1,11 @@
+{%- comment -%}
+  Posters in pairs, two to a row with a slash between; below each a dot that becomes title · creator · year on hover.
+  include.items: the items to show; include.square: true for square covers.
+{%- endcomment -%}
+{% for n in (0..40) %}{% assign from = n | times: 2 %}{% assign pair = include.items | slice: from, 2 %}{% if pair.size > 0 %}
+  <ul class="covers{% if include.square %} covers-square{% endif %}">
+    {% for it in pair %}<li{% if it.also %} class="has-alt"{% endif %}><div class="cover-stack" tabindex="0"><img src="{{ '/assets/img/stuff/' | append: it.art | relative_url }}" loading="lazy" alt="{{ it.title | escape }}, {{ it.creator | escape }}">{% for a in it.also %}<img src="{{ '/assets/img/stuff/' | append: a.art | relative_url }}" loading="lazy" alt="{{ a.title | default: it.title | escape }}, {{ a.creator | default: it.creator | escape }}">{% endfor %}</div><p class="cover-note"><span class="cover-dot">·</span><span class="cover-meta on">{{ it.title | escape }} · {{ it.creator | escape }} · {{ it.year }}</span>{% for a in it.also %}<span class="cover-meta">{{ a.title | default: it.title | escape }} · {{ a.creator | default: it.creator | escape }} · {{ a.year | default: it.year }}</span>{% endfor %}</p></li>
+    {% unless forloop.last %}<li class="cover-slash" aria-hidden="true">/</li>
+    {% endunless %}{% endfor %}
+  </ul>
+{% endif %}{% endfor %}

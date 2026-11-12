@@ -1,0 +1,18 @@
+---
+title: More of my favo(u)rite things
+permalink: /stuff/more/
+description: "More of my favo(u)rite things, by Senthen Velmurugan."
+---
+<p class="small"><a href="{{ '/stuff/' | relative_url }}" class="muted">&larr; A few of my favo(u)rite things</a></p>
+<h1>More</h1>
+
+{% comment %} Everything after the first 4 of each picture category on /stuff/ (see _data/stuff.yml). {% endcomment %}
+{% for c in site.data.stuff %}{% unless c.text %}{% if c.items.size > 4 %}
+<section class="showcase" id="{{ c.label | slugify }}">
+  <h3 class="showcase-label">{{ c.label }} = Mind + Matter</h3>
+  {% assign rest = c.items | slice: 4, 999 %}
+  {% include stuff-covers.html items=rest square=c.square %}
+</section>
+{% endif %}{% endunless %}{% endfor %}
+
+<script src="{{ '/assets/js/stuff.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>

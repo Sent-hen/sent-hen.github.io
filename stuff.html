@@ -34,19 +34,23 @@ description: "A few of my favo(u)rite things, by Senthen Velmurugan."
 
 <hr>
 
-{% comment %} Categories and their items live in _data/stuff.yml. Each pair is two posters with a slash between them; below each poster a dot, which becomes its title · creator · year on hover. {% endcomment %}
+{% comment %} Categories and their items live in _data/stuff.yml. A text category is lines of title · creator · year; the rest
+   show their first 4 posters here, then a MORE box to /stuff/more/, which has the rest. {% endcomment %}
 <h2 class="group-label">Data</h2>
 
 {% for c in site.data.stuff %}
-<section class="showcase">
+<section class="showcase" id="{{ c.label | slugify }}">
   <h3 class="showcase-label">{{ c.label }} = Mind + Matter</h3>
-  {% for n in (0..9) %}{% assign from = n | times: 2 %}{% assign pair = c.items | slice: from, 2 %}{% if pair.size > 0 %}
-  <ul class="covers{% if c.square %} covers-square{% endif %}">
-    {% for it in pair %}<li{% if it.also %} class="has-alt"{% endif %}><div class="cover-stack" tabindex="0"><img src="{{ '/assets/img/stuff/' | append: it.art | relative_url }}" loading="lazy" alt="{{ it.title | escape }}, {{ it.creator | escape }}">{% for a in it.also %}<img src="{{ '/assets/img/stuff/' | append: a.art | relative_url }}" loading="lazy" alt="{{ a.title | default: it.title | escape }}, {{ a.creator | default: it.creator | escape }}">{% endfor %}</div><p class="cover-note"><span class="cover-dot">·</span><span class="cover-meta on">{{ it.title | escape }} · {{ it.creator | escape }} · {{ it.year }}</span>{% for a in it.also %}<span class="cover-meta">{{ a.title | default: it.title | escape }} · {{ a.creator | default: it.creator | escape }} · {{ a.year | default: it.year }}</span>{% endfor %}</p></li>
-    {% unless forloop.last %}<li class="cover-slash" aria-hidden="true">/</li>
-    {% endunless %}{% endfor %}
+  {% if c.text %}
+  <ul class="stuff-lines">
+    {% for it in c.items %}<li>{{ it.title | escape }} · {{ it.creator | escape }} · {{ it.year }}</li>
+    {% endfor %}
   </ul>
-  {% endif %}{% endfor %}
+  {% else %}
+  {% assign first = c.items | slice: 0, 4 %}
+  {% include stuff-covers.html items=first square=c.square %}
+  {% if c.items.size > 4 %}<p class="stuff-more"><a class="blank-box" href="{{ '/stuff/more/' | relative_url }}#{{ c.label | slugify }}">More</a></p>{% endif %}
+  {% endif %}
 </section>
 {% endfor %}
 

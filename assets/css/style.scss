@@ -273,6 +273,10 @@ model-viewer.lion { display: block; width: 160px; height: 160px; background: var
 .covers li:focus-within .cover-meta.on { visibility: visible; }
 .covers li:hover .cover-dot,
 .covers li:focus-within .cover-dot { visibility: hidden; }
+.stuff-lines { list-style: none; margin: 0.6em 0 0; padding: 0; color: var(--tx); }   /* a text category: title · creator · year */
+.stuff-lines li { margin: 0 0 0.2em; }
+.stuff-more { margin: 0.2em 0 0; text-align: center; }   /* the MORE box under each category's first 4 */
+.stuff-more .blank-box { padding: 0.15em 1.2em; font-size: 0.75em; letter-spacing: 0.12em; text-transform: uppercase; }
 
 /* Entries: Now, the resume, and the CV */
 .entries { list-style: none; margin: 0 0 1em; padding: 0; }

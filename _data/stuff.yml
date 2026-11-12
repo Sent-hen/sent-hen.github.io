@@ -3,7 +3,15 @@
 # also:   more posters this one fades through in turn; each can have its own title, creator, and year
 # label:  the category's name; its heading reads label = Mind + Matter, the same in both themes
 # square: true for a category with square covers (the rest are 2:3 posters)
+# text:   true for a category with no pictures, only title · creator · year, one to a line
+# The first 4 of each picture category show on /stuff/; a MORE box under them opens /stuff/more/, which has the rest.
 # creator: the lead: director, artist, author, or band. Hover shows title · creator · year under the poster.
+
+- label: Piano Pieces
+  text: true                # no pictures: each piece is a line, title · creator · year
+  items:
+    - { title: "River Flows in You", creator: "Yiruma", year: 2001 }
+    - { title: "Kiss the Rain", creator: "Yiruma", year: 2003 }
 
 - label: Cinema
   items:
@@ -21,17 +29,29 @@
 
 - label: Music
   square: true
-  items:                    # albums; Blue Monday was a single, so it keeps its own name and sleeve
+  items:                    # albums, and songs with the sleeve of the album they first came out on (Mr. Blue Sky, Vienna, Dreams, ...); the year is the first release
+    - { title: "Paint It, Black", creator: "The Rolling Stones", year: 1966, art: paint-it-black.jpg }
+    - { title: "The Beatles (White Album) [Super Deluxe]", creator: "The Beatles", year: 1968, art: white-album.jpg }
+    - { title: "Abbey Road (Super Deluxe Edition)", creator: "The Beatles", year: 1969, art: abbey-road.jpg }
     - { title: "In the Court of the Crimson King", creator: "King Crimson", year: 1969, art: in-the-court-of-the-crimson-king.jpg }
     - { title: "American Pie", creator: "Don McLean", year: 1971, art: american-pie.jpg }
     - { title: "Led Zeppelin IV", creator: "Led Zeppelin", year: 1971, art: led-zeppelin-iv.jpg }
     - { title: "Wish You Were Here", creator: "Pink Floyd", year: 1975, art: wish-you-were-here.jpg }
     - { title: "Agents of Fortune", creator: "Blue Öyster Cult", year: 1976, art: agents-of-fortune.jpg }
+    - { title: "Dreams (Deluxe Edition)", creator: "Fleetwood Mac", year: 1977, art: dreams.jpg }
+    - { title: "Vienna", creator: "Billy Joel", year: 1977, art: vienna.jpg }
+    - { title: "Mr. Blue Sky", creator: "Electric Light Orchestra", year: 1977, art: mr-blue-sky.jpg }
+    - { title: "Sultans of Swing", creator: "Dire Straits", year: 1978, art: sultans-of-swing.jpg }
     - { title: "Blue Monday", creator: "New Order", year: 1983, art: blue-monday.jpg }
+    - { title: "Every Breath You Take", creator: "The Police", year: 1983, art: every-breath-you-take.jpg }
+    - { title: "Summer of '69", creator: "Bryan Adams", year: 1984, art: summer-of-69.jpg }
+    - { title: "Brothers in Arms", creator: "Dire Straits", year: 1985, art: brothers-in-arms.jpg }
     - { title: "OK Computer", creator: "Radiohead", year: 1997, art: ok-computer.jpg }
     - { title: "Is This It", creator: "The Strokes", year: 2001, art: is-this-it.jpg }
     - { title: "In Rainbows", creator: "Radiohead", year: 2007, art: in-rainbows.jpg }
     - { title: "Random Access Memories", creator: "Daft Punk", year: 2013, art: random-access-memories.jpg }
+    - { title: "What Once Was", creator: "Her's", year: 2016, art: what-once-was.jpg }
+    - { title: "Harvey", creator: "Her's", year: 2017, art: harvey.jpg }
     - { title: "The New Abnormal", creator: "The Strokes", year: 2020, art: the-new-abnormal.jpg }
 
 - label: Games

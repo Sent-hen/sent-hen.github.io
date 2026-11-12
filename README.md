@@ -39,7 +39,7 @@ The rules for the site, then what each page is and where it lives. A static Jeky
 
 ### A few of my favo(u)rite things
 
-- Every category is rows of paired posters: `item 1 / item 2`, then `item 3 / item 4`, and so on, with a dot below each poster and `title · lead · year` on hover. Each category runs oldest to newest, by release date.
+- Every picture category shows its first 4 on `/stuff/` (two rows of paired posters, `item 1 / item 2`, then `item 3 / item 4`), then a centered dotted MORE box that opens `/stuff/more/` at that category, where the rest follow in the same pairs, with a dot below each poster and `title · lead · year` on hover. Each category runs oldest to newest, by release date.
 
 ### Keeping it small
 
@@ -88,7 +88,7 @@ To change the rain, edit `CELL` (digit size) and `SPEED` (rows per second) in `c
 
 ## A few of my favo(u)rite things
 
-`stuff.html`, `_data/stuff.yml`, at `/stuff/`. The title, A few of my favo(u)rite things, then a photo captioned "Can you hear the music?", a rule, then the heading Action (styled like Data) with Mind + Matter under it in both themes, and my favorite actions written in the page in four groups: Listening to the symphony of, followed by an empty dotted box that takes you to a random poster on the page (scrolled to the middle and focused, so its title shows); Illusions & Tea; Walking & Thinking, Writing & Thinking, Typing & Thinking; and Cooking & Eating. Then a rule. Then the heading Data, and below it each category as rows of paired posters, with a `/` between the two in a pair. There are no titles on the page: below each poster is a `·`, and hovering or tapping turns it into `title · lead · year`, centered. The lead is the director, artist, author, or band. Every category is headed by its name = Mind + Matter (Cinema = Mind + Matter, Music = Mind + Matter, and so on), the same in both themes. Music shows albums; Blue Monday was a single, so it keeps its own name and floppy-disk sleeve.
+`stuff.html`, `_data/stuff.yml`, at `/stuff/`. The title, A few of my favo(u)rite things, then a photo captioned "Can you hear the music?", a rule, then the heading Action (styled like Data) with Mind + Matter under it in both themes, and my favorite actions written in the page in four groups: Listening to the symphony of, followed by an empty dotted box that takes you to a random poster on the page (scrolled to the middle and focused, so its title shows); Illusions & Tea; Walking & Thinking, Writing & Thinking, Typing & Thinking; and Cooking & Eating. Then a rule. Then the heading Data, and below it Piano Pieces as plain lines, `title · creator · year` (River Flows in You and Kiss the Rain, Yiruma), then each other category as rows of paired posters, the first 4 here and the rest on `stuff-more.html` (`/stuff/more/`, the posters in `_includes/stuff-covers.html`), with a `/` between the two in a pair. There are no titles on the page: below each poster is a `·`, and hovering or tapping turns it into `title · lead · year`, centered. The lead is the director, artist, author, or band. Every category is headed by its name = Mind + Matter (Cinema = Mind + Matter, Music = Mind + Matter, and so on), the same in both themes. Music shows albums; Blue Monday was a single, so it keeps its own name and floppy-disk sleeve.
 
 Only Dark Souls II shifts between two covers. A poster with `also:` fades through its images, one every 6 seconds (`assets/js/stuff.js`), pausing while hovered or tapped; red holds the first.
 
