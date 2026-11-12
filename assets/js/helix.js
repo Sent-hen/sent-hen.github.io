@@ -9,7 +9,8 @@
 // Between the two strands of each, base pairs, like the rungs of DNA, shrinking with the coil toward the middle: each
 // half of a rung is labeled with its base, in binary on green (A 00, C 01, G 10, T 11, so GC reads 10 01) and as
 // the letter on red (G C). The pairs are GC, AT, CG and TA, in a fixed order.
-// Like an hourglass: a round plinth capping each end, a base under the lower one and a top over the upper one, tumbling with it, and sand that always
+// Like an hourglass: a round plinth capping one end, tumbling with it: on green the base under the lower (UTC) end,
+// on red the top over the upper (CST) end; and sand that always
 // trickles from top to bottom, whichever end is up: grains funnel in from above to the point in the middle and fall
 // from there, faster and faster, to the end below. On red it runs the other way, bottom to top.
 // It keeps moving on green and red alike; only a reduced-motion setting holds one frame.
@@ -71,10 +72,11 @@
         p = q;
       }
     }); });
-    // The base under the lower end and the top over the upper one: two rims each, and their sides where they turn away.
+    // The cap: on green the base under the lower end, on red the top over the upper one; two rims, and the sides
+    // where it turns away.
     var rb = R * BASE, M = 64;
     function rim(y, a) { return put(Math.sin(a) * rb, y, Math.cos(a) * rb, Math.cos(a) * ct - Math.sin(tilt) * 0.5); }
-    [1, -1].forEach(function (dir) {
+    [root.getAttribute('data-theme') === 'dark' ? -1 : 1].forEach(function (dir) {
       var y0 = dir * span * 1.02, y1 = y0 + dir * span * BASE_H;
       [y0, y1].forEach(function (y) {
         for (var j = 0; j < M; j++) {

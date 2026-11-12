@@ -19,6 +19,12 @@ description: "About Senthen Velmurugan"
   </figure>
   <p class="tile-caption tile-serif">Tiramisù</p>
   <script src="{{ '/assets/js/cake.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+  <model-viewer class="lion" src="{{ '/assets/models/lion-capital.glb' | relative_url }}" alt="The Lion Capital of Ashoka, a 3D scan, turning"
+    camera-orbit="0deg 80deg auto" camera-controls disable-zoom disable-pan interaction-prompt="none" auto-rotate
+    rotation-per-second="20deg" shadow-intensity="0" loading="lazy"></model-viewer>
+  <p class="tile-caption tile-serif"><a class="quiet-link" href="https://poly.cam/explore/capture/50D2865D-9569-4280-B91D-70D927985F72/Lion+Capital+of+Ashoka" title="3D scan by uttamg911 on Polycam">Lion Capital</a></p>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+  <script src="{{ '/assets/js/lion.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   <time class="clock" data-zone="America/Chicago"></time>
   <canvas class="helix" role="img" aria-label="Two double helixes seen from the side, one above the other, mirrored, their points touching in the middle, turning"></canvas>
   <script src="{{ '/assets/js/helix.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
@@ -52,15 +58,15 @@ description: "About Senthen Velmurugan"
       <p class="label">Who am I</p>
       <p class="iam">I&hellip;</p>
       {% comment %}
-        Green: an empty bracket, then & Trade with an empty bracket. Red: Create with an empty bracket, then & Trade
-        [MONEY + TIME]. From the first line through the & is one unmarked link to /stuff/.
+        Green: Create with an empty bracket, then & Trade with an empty bracket. Red: Create with an empty bracket, then & Trade
+        [MONEY + TIME]. Only the & is a link, unmarked, to /stuff/.
       {% endcomment %}
       <ul class="iam-list only-green">
-        <li><a href="{{ '/stuff/' | relative_url }}" class="quiet-link" title="A few of my favo(u)rite things"><span class="iam-why">[<span class="iam-gap"></span>]</span><span>&amp;</span></a></li>
+        <li>Create <span class="iam-why">[<span class="iam-gap"></span>]</span><br><a href="{{ '/stuff/' | relative_url }}" class="quiet-link" title="A few of my favo(u)rite things">&amp;</a></li>
         <li>Trade <span class="iam-why">[<span class="iam-gap"></span>]</span></li>
       </ul>
       <ul class="iam-list only-red">
-        <li><a href="{{ '/stuff/' | relative_url }}" class="quiet-link" title="A few of my favo(u)rite things"><span>Create <span class="iam-why">[<span class="iam-gap"></span>]</span></span><span>&amp;</span></a></li>
+        <li>Create <span class="iam-why">[<span class="iam-gap"></span>]</span><br><a href="{{ '/stuff/' | relative_url }}" class="quiet-link" title="A few of my favo(u)rite things">&amp;</a></li>
         <li>Trade <span class="iam-why">[MONEY + TIME]</span></li>
       </ul>
       <p class="iam">I love&hellip;</p>

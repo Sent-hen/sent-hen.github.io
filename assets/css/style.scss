@@ -166,6 +166,7 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 .cake-art .tira-face { fill: var(--cake-bg); stroke: none; }   /* hides the back of the plate behind the slice */
 .cake-rain { display: block; }   /* sized in px by assets/js/cake.js, so it stays sharp */
 
+model-viewer.lion { display: block; width: 160px; height: 160px; background: var(--bg); border: 1px dotted var(--tx-2); --poster-color: transparent; }   /* assets/js/lion.js */
 .helix { display: block; width: 160px; height: 288px; background: var(--bg); border: 1px dotted var(--tx-2); color: var(--tx); }   /* drawn by assets/js/helix.js */
 .dot-coin { display: block; width: 160px; height: 160px; background: var(--bg); border: 1px dotted var(--tx-2); color: var(--tx); }   /* drawn by assets/js/dot-coin.js */
 
@@ -369,7 +370,7 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
   .intro { gap: 14px; }
   .intro-side { width: 96px; }
   .intro-text { padding-left: 14px; }
-  .dot-coin, .cake { width: 96px; height: 96px; }
+  .dot-coin, .cake, model-viewer.lion { width: 96px; height: 96px; }
   .helix { width: 96px; height: 173px; }
   .clock { font-size: 0.55em; white-space: normal; }   /* the date, then the time and zone, in the 96px column */
   .tile-caption { font-size: 0.6em; }
