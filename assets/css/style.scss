@@ -167,7 +167,10 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 .cake-rain { display: block; }   /* sized in px by assets/js/cake.js, so it stays sharp */
 
 model-viewer.lion { display: block; width: 160px; height: 160px; background: var(--bg); border: 1px dotted var(--tx-2); --poster-color: transparent; touch-action: none; cursor: grab; }   /* assets/js/lion.js */
-.helix { display: block; width: 160px; height: 288px; background: var(--bg); border: 1px dotted var(--tx-2); color: var(--tx); }   /* drawn by assets/js/helix.js */
+.helix {   /* drawn by assets/js/helix.js: two tiles tall, split by a dotted line across the middle where the points touch */
+  display: block; width: 160px; height: 320px; border: 1px dotted var(--tx-2); color: var(--tx);
+  background: repeating-linear-gradient(to right, var(--tx-2) 0 1px, transparent 1px 2px) 0 50% / 100% 1px no-repeat, var(--bg);
+}
 .dot-coin { display: block; width: 160px; height: 160px; background: var(--bg); border: 1px dotted var(--tx-2); color: var(--tx); }   /* drawn by assets/js/dot-coin.js */
 
 .clock { display: block; width: 100%; white-space: nowrap; margin-bottom: -8px; text-align: center; font-size: 0.72em; color: var(--tx-2); font-variant-numeric: tabular-nums; }
@@ -370,7 +373,7 @@ model-viewer.lion { display: block; width: 160px; height: 160px; background: var
   .intro-side { width: 96px; }
   .intro-text { padding-left: 14px; }
   .dot-coin, .cake, model-viewer.lion { width: 96px; height: 96px; }
-  .helix { width: 96px; height: 173px; }
+  .helix { width: 96px; height: 192px; }
   .clock { font-size: 0.55em; white-space: normal; }   /* the date, then the time and zone, in the 96px column */
   .tile-caption { font-size: 0.6em; }
   .iam-list { font-size: min(1em, 4vw); padding-left: 0.8em; }   /* each item stays on one line */

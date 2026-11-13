@@ -1,5 +1,5 @@
 // Time: two mirrored double helixes, points touching, base pairs labelled in binary (green) or letters (red), sand
-// trickling down (up on red), capped below on green, above on red. In step with the coin, like a spring: it springs
+// trickling down (up on red). In step with the coin, like a spring: it springs
 // to full height as the coin starts, is pressed down as the ball climbs 0 → 1, and is a line, the coin seen edge on,
 // flashing with it, while the ball rolls back. See README.
 (function () {
@@ -12,8 +12,6 @@
   var OPEN = 0.4;       // seconds to grow back to full height as the coin starts again (its FADE)
   var VIEW = 6;         // the eye's distance, in helix lengths: smaller is stronger perspective
   var STEPS = 240;
-  var BASE = 1.2;       // the base's radius, as a multiple of the coil's at its wide end
-  var BASE_H = 0.07;    // the base's thickness, as a share of a helix's length
   var GRAINS = 70;      // grains of sand in the air at once
   var POUR = 2.4;       // seconds for one grain to go from top to bottom
   var RUNGS = 4;        // base pairs in each turn
@@ -68,20 +66,6 @@
         p = q;
       }
     }); });
-    // The cap: on green the base under the lower end, on red the top over the upper one; two rims, and the sides
-    // where it turns away.
-    var rb = R * BASE, M = 64;
-    function rim(y, a) { return put(Math.sin(a) * rb, y, Math.cos(a) * rb, Math.cos(a)); }
-    [root.getAttribute('data-theme') === 'dark' ? -1 : 1].forEach(function (dir) {
-      var y0 = dir * span * 1.02, y1 = y0 + dir * span * BASE_H;
-      [y0, y1].forEach(function (y) {
-        for (var j = 0; j < M; j++) {
-          var p = rim(y, j / M * 2 * Math.PI), q = rim(y, (j + 1) / M * 2 * Math.PI);
-          segs.push([p, q, (p[2] + q[2]) / 2, (p[3] + q[3]) / 2]);
-        }
-      });
-      [Math.PI / 2, -Math.PI / 2].forEach(function (a) { var p = rim(y0, a), q = rim(y1, a); segs.push([p, q, (p[2] + q[2]) / 2, 0.6]); });
-    });
     // The base pairs: a rung from strand to strand through the axis, faint, and each half's base written on it.
     var red = root.getAttribute('data-theme') === 'dark', labels = [], n = TURNS * RUNGS;
     [1, -1].forEach(function (dir) {

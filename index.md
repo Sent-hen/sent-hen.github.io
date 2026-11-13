@@ -36,9 +36,9 @@ description: "About Senthen Velmurugan"
   <script src="{{ '/assets/js/ripples.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   {% comment %} Two mottos, each in English then the original: Sanskrit (Mundaka Upanishad 3.1.6), then Latin. {% endcomment %}
   <div class="creed verse">
-    <p>Truth Alone Triumphs [Prevails]</p>
+    <p>Truth Alone Triumphs<span class="for-red"> [Prevails]</span></p>
     <p lang="sa">सत्यमेव जयते</p>
-    <p>Truth Conquers [Prevails]</p>
+    <p>Truth Conquers<span class="for-red"> [Prevails]</span></p>
     <p lang="la">Veritas vincit</p>
     <p>Love is wise; Hatred is foolish.</p>
   </div>
@@ -55,6 +55,10 @@ description: "About Senthen Velmurugan"
     <section>
       <p class="label">Who am I</p>
       <p>Someone who uses technology to improve locally and globally the <a href="{{ '/quality-of-life/' | relative_url }}">Quality of Life</a>.</p>
+      <p class="iam">Mastering&hellip;</p>
+      <ul class="iam-list">
+        <li>Systems Engineering</li>
+      </ul>
       <p class="iam">I&hellip;</p>
       {% comment %}
         Green: Create with an empty bracket, then & Trade with an empty bracket. Red: Create with an empty bracket, then & Trade
