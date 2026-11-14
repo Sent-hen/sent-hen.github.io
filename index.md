@@ -34,12 +34,11 @@ description: "About Senthen Velmurugan"
   <p class="infinity-arrow" aria-label="From zero to one"><canvas class="ripples" data-view="top"></canvas></p>
   <p class="infinity-arrow" aria-hidden="true"><canvas class="ripples" data-view="side"></canvas></p>
   <script src="{{ '/assets/js/ripples.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
-  {% comment %} Two mottos, each in English then the original: Sanskrit (Mundaka Upanishad 3.1.6), then Latin. {% endcomment %}
+  {% comment %} Two mottos, each like the name: the original, then English. Sanskrit (Mundaka
+     Upanishad 3.1.6), then Latin. {% endcomment %}
   <div class="creed verse">
-    <p>Truth Alone Triumphs<span class="for-red"> [Prevails]</span></p>
-    <p lang="sa">सत्यमेव जयते</p>
-    <p>Truth Conquers<span class="for-red"> [Prevails]</span></p>
-    <p lang="la">Veritas vincit</p>
+    <p class="motto"><span lang="sa">सत्यमेव जयते</span><span>Truth Alone Triumphs<span class="for-red"> [Prevails]</span></span></p>
+    <p class="motto"><span lang="la">Veritas vincit</span><span>Truth Conquers<span class="for-red"> [Prevails]</span></span></p>
     <p>Love is wise; Hatred is foolish.</p>
   </div>
   <div class="duality">
@@ -49,12 +48,11 @@ description: "About Senthen Velmurugan"
       <p class="name-rows">
         <span lang="ta">சேந்தன்</span>
         <span>Senthen</span>
-        <span class="t-ph">SAYN-dhun</span>
       </p>
     </section>
     <section>
       <p class="label">Who am I</p>
-      <p>Someone who uses technology to improve locally and globally the <a href="{{ '/quality-of-life/' | relative_url }}">Quality of Life</a>.</p>
+      <p>Someone who uses technology to improve locally <s>and globally</s> the <a href="{{ '/quality-of-life/' | relative_url }}">Quality of Life</a>.</p>
       <p class="iam">Mastering&hellip;</p>
       <ul class="iam-list">
         <li>Systems Engineering</li>

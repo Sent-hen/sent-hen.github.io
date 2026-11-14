@@ -1,5 +1,5 @@
-// Time: two mirrored double helixes, points touching, base pairs labelled in binary (green) or letters (red), sand
-// trickling down (up on red). In step with the coin, like a spring: it springs
+// Time: two mirrored double helixes, points touching, and sand trickling from the top of the tile to the bottom, the
+// same on both themes and whatever the spring is doing. In step with the coin, like a spring: it springs
 // to full height as the coin starts, is pressed down as the ball climbs 0 → 1, and is a line, the coin seen edge on,
 // flashing with it, while the ball rolls back. See README.
 (function () {
@@ -14,11 +14,7 @@
   var STEPS = 240;
   var GRAINS = 70;      // grains of sand in the air at once
   var POUR = 2.4;       // seconds for one grain to go from top to bottom
-  var RUNGS = 4;        // base pairs in each turn
-  var PAIRS = ['GC', 'AT', 'CG', 'TA'];
-  var BITS = { A: '00', C: '01', G: '10', T: '11' };
   var root = document.documentElement;
-  var FONT = getComputedStyle(root).getPropertyValue('--font-ui').trim() || 'sans-serif';
   // The coin's cycle and flash (dot-coin.js, which loads first); plain ink and an 11-second cycle without it.
   var COIN = window.coinCycle || { ramp: 8, cycle: 11 };
   var stamina = window.zeroToOneStamina || function () { return 0; };
@@ -66,51 +62,23 @@
         p = q;
       }
     }); });
-    // The base pairs: a rung from strand to strand through the axis, faint, and each half's base written on it.
-    var red = root.getAttribute('data-theme') === 'dark', labels = [], n = TURNS * RUNGS;
-    [1, -1].forEach(function (dir) {
-      for (var j = 0; j < n; j++) {
-        var s = (j + 0.5) / n, a = s * TURNS * 2 * Math.PI - spin, k = 1 - s, y = dir * (1 - s) * span;
-        var pair = PAIRS[(j * 7 + (dir > 0 ? 0 : 3)) % PAIRS.length];
-        [0, 1].forEach(function (side) {
-          var b = a + side * Math.PI, sx = Math.sin(b) * k * R, sz = Math.cos(b) * k * R, near = Math.cos(b);
-          var end = put(sx, y, sz, near), axis = put(0, y, 0, near), half = put(sx / 2, y, sz / 2, near);
-          segs.push([axis, end, (axis[2] + end[2]) / 2, near, 0.35]);
-          var size = 8 * k * (eye / (eye - half[2]));
-          if (size >= 3.5) labels.push({ p: half, size: size, near: near, side: Math.abs(Math.sin(b)), text: red ? pair.charAt(side) : BITS[pair.charAt(side)] });
-        });
-      }
-    });
-
     segs.sort(function (u, v) { return u[2] - v[2]; });
     segs.forEach(function (g) {
       var z = g[3];
       ctx.globalAlpha = (z >= 0 ? 0.55 + z * 0.45 : 0.18 + (1 + z) * 0.37) * (g[4] || 1) * L;
       ctx.beginPath(); ctx.moveTo(g[0][0], g[0][1]); ctx.lineTo(g[1][0], g[1][1]); ctx.stroke();
     });
-    labels.sort(function (u, v) { return u.p[2] - v.p[2]; });
-    ctx.fillStyle = ctx.strokeStyle;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    labels.forEach(function (l) {
-      // faded as the rung turns end on to us, where its two labels would sit on top of each other
-      ctx.globalAlpha = (l.near >= 0 ? 0.5 + l.near * 0.5 : 0.12 + (1 + l.near) * 0.3) * (0.15 + 0.85 * l.side) * ct * L;
-      ctx.font = l.size.toFixed(1) + 'px ' + FONT;
-      ctx.fillText(l.text, l.p[0], l.p[1]);
-    });
-
-    // The sand: always top to bottom on the tile, however the glass is turned. Each grain funnels in from the upper
-    // end toward the point in the middle, then falls from it, faster and faster, to the lower end.
-    var reach = span * ct * 0.92;   // how far the glass reaches up and down just now
-    var fall = root.getAttribute('data-theme') === 'dark' ? -1 : 1;   // down on green, up on red
+    // The sand: always top to bottom on the tile, at full height, untouched by the spring or the flash. Each grain
+    // funnels in from the top toward the middle, then falls from it, faster and faster, to the bottom.
+    var reach = span * 0.92, fall = 1;
     ctx.fillStyle = ctx.strokeStyle;
     for (var g = 0; g < GRAINS; g++) {
       var seed = Math.sin(g * 12.9898) * 43758.5453, jit = seed - Math.floor(seed);           // 0..1, fixed per grain
       var u = (t / POUR + g / GRAINS) % 1, x, y;
       if (u < 0.5) { var v = u / 0.5, left = 1 - v * v;                                        // funneling in
-        x = cx + (jit * 2 - 1) * R * 0.8 * left; y = mid - fall * reach * left; ctx.globalAlpha = (0.35 + 0.5 * v) * ct * L; }
+        x = cx + (jit * 2 - 1) * R * 0.8 * left; y = mid - fall * reach * left; ctx.globalAlpha = 0.35 + 0.5 * v; }
       else { var d = (u - 0.5) / 0.5;                                                           // falling
-        x = cx + (jit * 2 - 1) * 1.2; y = mid + fall * reach * d * d; ctx.globalAlpha = 0.85 * ct * L; }
+        x = cx + (jit * 2 - 1) * 1.2; y = mid + fall * reach * d * d; ctx.globalAlpha = 0.85; }
       ctx.beginPath(); ctx.arc(x, y, 0.9, 0, 2 * Math.PI); ctx.fill();
     }
     ctx.globalAlpha = 1;
