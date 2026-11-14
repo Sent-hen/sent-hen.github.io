@@ -17,7 +17,7 @@ description: "About Senthen Velmurugan"
   <time class="clock" data-zone="UTC"></time>
   <canvas class="helix" role="img" aria-label="Two double helixes seen from the side, one above the other, mirrored, their points touching in the middle, turning"></canvas>
   <script src="{{ '/assets/js/helix.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
-  <time class="clock clock-below" data-zone="UT1"></time>
+  <time class="clock clock-below" data-zone="TAI"></time>
   <p class="tile-caption">Time</p>
   <script src="{{ '/assets/js/clock.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   <figure class="cake">

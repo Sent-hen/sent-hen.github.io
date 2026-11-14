@@ -5,8 +5,8 @@
   var canvases = document.querySelectorAll('canvas.ripples');
   if (!canvases.length || !canvases[0].getContext) return;
 
-  var TRIP = 8;           // seconds for the ball to go from 0 to 1: slow enough to follow. Same as in dot-coin.js
-  var DOWN = 3;           // seconds for the ball to roll back from 1 to 0. Same as in dot-coin.js
+  var TRIP = 12;          // seconds for the ball to go from 0 to 1: slow enough to follow. Same as in dot-coin.js
+  var DOWN = 3.658;       // seconds for the ball to roll back from 1 to 0 under real gravity (see roll). Same as in dot-coin.js
   var TOP = 0;            // seconds the ball rests at the summit before it rolls back: none. Same as in dot-coin.js
   var BOTTOM = 0;         // seconds the ball rests at the foot before it is pushed up again: none. Same as in dot-coin.js
   var CLEAR = 0.6;        // seconds for the ripples to clear once the ball starts rolling back
@@ -32,15 +32,29 @@
   // How loud the crescendo is at a point on the way from 0 (0) to 1 (1).
   function loudness(along) { return QUIET + (1 - QUIET) * along; }
 
+  // The roll back, under real gravity: the mountain as 12 m across and 2 m high (its 1 in 6), the stone a solid ball
+  // rolling without slipping (so 5/7 of g along the slope), let go at rest from the summit. Where it is, 0 to 1 across,
+  // every hundredth of a second, worked out once; it reaches the foot after DOWN seconds.
+  var roll = (function () {
+    var W = 12, H = 2, g = 9.81, dt = 1e-4, u = 1, v = 0, t = 0, out = [1], next = 0.01;
+    while (u > 0 && t < 30) {
+      var m = 2 * H * u / W, c = Math.sqrt(1 + m * m);
+      v += 5 / 7 * g * (m / c) * dt;
+      u -= v * dt / c / W; t += dt;
+      if (t >= next) { out.push(Math.max(0, u)); next += 0.01; }
+    }
+    return out;
+  })();
+
   // Where the ball is at time t, from 0 to 1: pushed up steadily for TRIP seconds, a moment's rest at the summit, then
-  // rolling back down for DOWN seconds, slow at the top and faster and faster, as things fall, and a moment's rest at
-  // the foot before the next push.
+  // let go, rolling back down under gravity for DOWN seconds, and a moment's rest at the foot before the next push.
   function at(t) {
     var s = t % CYCLE;
     if (s < TRIP) return s / TRIP;
     if (s < TRIP + TOP) return 1;
-    var u = (s - TRIP - TOP) / DOWN;
-    return u < 1 ? 1 - u * u : 0;
+    var k = (s - TRIP - TOP) * 100, i = Math.floor(k);
+    if (i + 1 >= roll.length) return 0;
+    return roll[i] + (roll[i + 1] - roll[i]) * (k - i);
   }
 
   // Each ripple still alive at time t: where it started, how far it has spread, how strong it still is.

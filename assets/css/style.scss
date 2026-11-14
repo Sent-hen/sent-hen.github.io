@@ -167,7 +167,7 @@ body::after { top: 18px; right: 18px; width: 45px; height: 13px; -webkit-mask: u
 .cake-rain { display: block; }   /* sized in px by assets/js/cake.js, so it stays sharp */
 
 model-viewer.lion { display: block; width: 160px; height: 160px; background: var(--bg); border: 1px dotted var(--tx-2); --poster-color: transparent; touch-action: none; cursor: grab; }   /* assets/js/lion.js */
-.helix {   /* drawn by assets/js/helix.js: two tiles tall, split by a dotted line across the middle where the points touch */
+.helix {   /* drawn by assets/js/helix.js: two tiles tall, split by a dotted line across the middle */
   display: block; width: 160px; height: 320px; border: 1px dotted var(--tx-2); color: var(--tx);
   background: repeating-linear-gradient(to right, var(--tx-2) 0 1px, transparent 1px 2px) 0 50% / 100% 1px no-repeat, var(--bg);
 }
