@@ -1,25 +1,21 @@
-// Time: two coil springs and the sands of time, in step with Sisyphus (ripples.js). Heights are shares of the tile, 0 at
-// the bottom, 1 at the top, with a dotted line across the middle at 1/2. Both are fixed at the middle line, one
-// reaching down, the other up, its mirror. As Sisyphus pushes the stone up the hill they stretch out from the middle,
-// coming as close to the bottom and the top as they can just as he reaches the summit; then, while the coin is at full
-// speed, blinking, and the stone rolls back, they let go of the ends, flash with the coin, and spring back, faster
-// and faster, into the middle, pressed into a flat circle on the line. Sand pours from the top to the bottom,
-// steady: on green it comes in wide like a Y, narrowing to the middle line, and falls from there as one thin line; on
-// red it falls as one thin line to the middle line and spreads out from there like an upside-down Y. Wherever the
-// springs reach, the sand has to pass through them, as through a tube, held inside the coils. See README.
+// Time: two mirrored double helixes, cylinders from the top and the bottom of the tile to 1/4 and 3/4 of the way down,
+// then coiling into points that touch on the dotted line across the middle of the tile, in step with Sisyphus (ripples.js) but not tied to him, like the plunger on a pinball table. As he pushes the
+// stone up the hill they are drawn back, pressed in toward the middle line, flat on it just as he reaches the summit.
+// They stay held there, charged, blinking with the coin, while the stone rolls back down; the moment it reaches the
+// foot they are let go, shoot back out toward the top and the bottom, overshoot and wobble, and that kick starts the
+// cycle anew. See README.
 (function () {
   var canvas = document.querySelector('canvas.helix');
   if (!canvas || !canvas.getContext) return;
 
-  var TURNS = 4;        // turns in each spring
-  var RADIUS = 0.42;    // the coil's radius, as a share of half the tile's width
+  var TURNS = 4;        // turns in each helix, from its wide end to its point
+  var RADIUS = 0.42;    // the coil's radius at its wide end, as a share of half the tile's width
   var PERIOD = 4;       // seconds for one full turn about the axis
-  var NEAR = 0.97;      // as close to the bottom and the top as the springs reach, at the summit
-  var VIEW = 6;         // the eye's distance, in tile widths: smaller is stronger perspective
-  var STEPS = 360;
-  var PAD = 6;          // px kept clear at the top and bottom
-  var GRAINS = 70;      // grains of sand in the air at once
-  var POUR = 2.4;       // seconds for one grain to go from top to bottom
+  var REACH = 0.92;     // how far each helix reaches from the middle line, as a share of half the tile's height
+  var KICK = 7;         // how fast they shoot out when let go (per second)
+  var WOBBLE = 13;      // how fast they wobble about full length once out (radians per second)
+  var VIEW = 6;         // the eye's distance, in helix lengths: smaller is stronger perspective
+  var STEPS = 240;
   var root = document.documentElement;
   // The coin's cycle and flash (dot-coin.js, which loads first); plain ink and an 8 + 3.658 second cycle without it.
   var COIN = window.coinCycle || { ramp: 8, cycle: 11.658 };
@@ -27,13 +23,14 @@
   var stamina = window.zeroToOneStamina || function () { return 0; };
   var ink = window.zeroToOneInk || function (el) { return { color: getComputedStyle(el).color, alpha: 1 }; };
 
-  // Each spring's length at t seconds, as a share of half the tile: out with Sisyphus, 0 → NEAR; then, through the
-  // blink, pressed back onto 0.
+  // How far out the helixes are at t seconds, 1 (full) to 0 (flat on the middle line). Let go as the cycle starts,
+  // they shoot out, overshooting and wobbling, while being drawn back in step with the climb, so that they are flat at
+  // the summit; they are held there, charged, until the stone is back at the foot.
   function height(t) {
     var s = (t % CYCLE + CYCLE) % CYCLE;
-    if (s < TRIP) return NEAR * s / TRIP;
-    var u = (s - TRIP) / (CYCLE - TRIP);
-    return NEAR * (1 - u * u);
+    if (s >= TRIP) return 0;
+    var out = 1 - Math.exp(-KICK * s) * Math.cos(WOBBLE * s);   // let go: out, past, and back
+    return Math.max(0, Math.min(1.08, (1 - s / TRIP) * out));
   }
 
   function draw(t) {
@@ -49,53 +46,39 @@
     ctx.lineWidth = 1.2;
     ctx.lineCap = 'round';
 
-    var spin = (t / PERIOD) % 1 * 2 * Math.PI;
-    var R = w / 2 * RADIUS, cx = w / 2, foot = h - PAD, inner = h - 2 * PAD, eye = VIEW * w;
-    // Every short piece of both strands of a spring tall px long, as [from, to, depth, nearness of the coil's face
-    // from -1 (behind) to 1 (in front)]; the second strand is half a turn round from the first. base is where it is
-    // fixed, dir which way it reaches: 1 down, -1 up.
-    function spring(tall, base, dir) {
-      function at(s, off) {
-        var a = s * TURNS * 2 * Math.PI - spin + off, z = Math.cos(a) * R, f = eye / (eye - z);
-        return [cx + Math.sin(a) * R * f, base + dir * s * tall, z, Math.cos(a)];
-      }
-      var segs = [];
-      [0, Math.PI].forEach(function (off) {
-        var p = at(0, off);
-        for (var i = 1; i <= STEPS; i++) {
-          var q = at(i / STEPS, off);
-          segs.push([p, q, (p[2] + q[2]) / 2, (p[3] + q[3]) / 2]);
-          p = q;
-        }
-      });
-      return segs.sort(function (u, v) { return u[2] - v[2]; });
+    var spin = (t / PERIOD) % 1 * 2 * Math.PI, ct = height(t);
+    var R = w / 2 * RADIUS, cx = w / 2, mid = h / 2, span = h / 2 * REACH, eye = VIEW * span;
+    // A point a share s of the way from a helix's wide end to its point, on the middle line; dir 1 is the lower helix,
+    // -1 its mirror above; the second strand is half a turn round from the first.
+    // [x, y on the tile, depth toward us in pixels, nearness of the coil's face from -1 (behind) to 1 (in front)]
+    function put(x, y, z, near) {   // squeezed in height, then seen in perspective
+      var f = eye / (eye - z);
+      return [cx + x * f, mid + y * ct * f, z, near];
     }
-    // Both springs, far to near, the far side fainter, flashing with the coin while it is at full speed.
-    var tall = inner / 2 * height(t), mid = PAD + inner / 2;
-    spring(tall, mid, 1).concat(spring(tall, mid, -1)).sort(function (u, v) { return u[2] - v[2]; }).forEach(function (g) {
+    function at(s, off, dir) {
+      var a = s * TURNS * 2 * Math.PI - spin + off, k = Math.min(1, 2 * (1 - s));   // k: a cylinder, then narrowing to the point
+      return put(Math.sin(a) * k * R, dir * (1 - s) * span, Math.cos(a) * k * R, Math.cos(a));
+    }
+    // Every short piece of every strand, drawn far to near, so the near ones draw over the far ones.
+    var segs = [];
+    [1, -1].forEach(function (dir) { [0, Math.PI].forEach(function (off) {
+      var p = at(0, off, dir);
+      for (var i = 1; i <= STEPS; i++) {
+        var q = at(i / STEPS, off, dir);
+        segs.push([p, q, (p[2] + q[2]) / 2, (p[3] + q[3]) / 2]);
+        p = q;
+      }
+    }); });
+    segs.sort(function (u, v) { return u[2] - v[2]; });
+    segs.forEach(function (g) {
       var z = g[3];
       ctx.globalAlpha = (z >= 0 ? 0.55 + z * 0.45 : 0.18 + (1 + z) * 0.37) * L;
       ctx.beginPath(); ctx.moveTo(g[0][0], g[0][1]); ctx.lineTo(g[1][0], g[1][1]); ctx.stroke();
     });
-    // The sand, falling faster and faster from the top to the bottom, steady, untouched by the springs or the flash.
-    // Green: wide at the top like a Y, narrowing to the middle line, then one thin line. Red: one thin line to the
-    // middle line, then spreading out like an upside-down Y.
-    var red = root.getAttribute('data-theme') === 'dark';
-    ctx.fillStyle = ctx.strokeStyle;
-    for (var g = 0; g < GRAINS; g++) {
-      var seed = Math.sin(g * 12.9898) * 43758.5453, jit = seed - Math.floor(seed);   // 0..1, fixed per grain
-      var u = (t / POUR + g / GRAINS) % 1, d = u * u;                                     // falling, faster and faster
-      var spread = red ? Math.max(0, 2 * d - 1) : Math.max(0, 1 - 2 * d);                 // 0 on the thin line
-      var y = PAD + inner * d, half = (w / 2 - PAD) * spread + 1.2;
-      if (Math.abs(y - mid) <= tall) half = Math.min(half, R * 0.8);   // inside the springs: through them, as a tube
-      var x = cx + (jit * 2 - 1) * half;
-      ctx.globalAlpha = 0.85 * Math.min(1, (1 - u) * 8);                                  // gone as it lands
-      ctx.beginPath(); ctx.arc(x, y, 0.9, 0, 2 * Math.PI); ctx.fill();
-    }
     ctx.globalAlpha = 1;
   }
 
-  // The page's clock, so it keeps time with the coin and the Sisyphus ball.
+  // The page's clock, so it keeps time with the coin and Sisyphus.
   var running = false;
   var calm = window.matchMedia ? matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
   function frame(now) {
