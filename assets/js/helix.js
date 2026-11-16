@@ -3,7 +3,8 @@
 // stone up the hill they are drawn back, pressed in toward the middle line, flat on it just as he reaches the summit.
 // They stay held there, charged, blinking with the coin, while the stone rolls back down; the moment it reaches the
 // foot they are let go, shoot back out toward the top and the bottom, overshoot and wobble, and that kick starts the
-// cycle anew. While held it turns half a turn, clockwise on green, counter-clockwise on red. The sands of time pour down the tile as one straight line, top to bottom, through the points. As the
+// cycle anew. All the while it keeps turning about the middle at one steady speed, clockwise on green, counter-clockwise
+// on red, half a turn each cycle. The sands of time pour down the tile as one straight line, top to bottom, through the points. As the
 // springs are pressed in they become a magnet, a bar magnet standing upright, north above the middle, south below: the grains are drawn off the line onto its field lines, arcs looping out from the north pole and round into
 // the south, like iron filings about a magnet, and flow along them; when the springs are let go the grains fall back
 // into line. The straight line is itself a field line: the one along the magnet's axis. See README.
@@ -93,14 +94,9 @@
     // Pressed in, a spring can only go as flat as its coils stacked wire on wire: its solid height, TURNS turns of
     // both strands, each as thick as the line. So in the magnet stage each helix keeps that much height.
     var solid = 2 * TURNS * ctx.lineWidth, ct = Math.max(height(t), solid / span);
-    // While it blinks the whole magnet, springs and sand, turns half a turn about the middle of the tile, easing in and
-    // out: clockwise on green, counter-clockwise on red. Upside down it is the same shape, its poles swapped, so it is
-    // let go from there.
-    var c = (t % CYCLE + CYCLE) % CYCLE, turn = 0;
-    if (c >= TRIP) {
-      var v = (c - TRIP) / (CYCLE - TRIP);
-      turn = Math.PI * v * v * (3 - 2 * v) * (root.getAttribute('data-theme') === 'dark' ? -1 : 1);
-    }
+    // The whole thing, springs and sand, keeps turning about the middle of the tile at one steady speed, never pausing,
+    // clockwise on green, counter-clockwise on red: half a turn each cycle, whether it is pressed in, held or let go.
+    var turn = Math.PI * t / CYCLE * (root.getAttribute('data-theme') === 'dark' ? -1 : 1);
     ctx.translate(cx, mid); ctx.rotate(turn); ctx.translate(-cx, -mid);
     // A point a share s of the way from a helix's wide end to its point, on the middle line; dir 1 is the lower helix,
     // -1 its mirror above; the second strand is half a turn round from the first.
