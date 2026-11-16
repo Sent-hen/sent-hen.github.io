@@ -3,7 +3,7 @@
 // stone up the hill they are drawn back, pressed in toward the middle line, flat on it just as he reaches the summit.
 // They stay held there, charged, blinking with the coin, while the stone rolls back down; the moment it reaches the
 // foot they are let go, shoot back out toward the top and the bottom, overshoot and wobble, and that kick starts the
-// cycle anew. The sands of time pour down the tile as one straight line, top to bottom, through the points. As the
+// cycle anew. While held it turns half a turn, clockwise on green, counter-clockwise on red. The sands of time pour down the tile as one straight line, top to bottom, through the points. As the
 // springs are pressed in they become a magnet, a bar magnet standing upright, north above the middle, south below: the grains are drawn off the line onto its field lines, arcs looping out from the north pole and round into
 // the south, like iron filings about a magnet, and flow along them; when the springs are let go the grains fall back
 // into line. The straight line is itself a field line: the one along the magnet's axis. See README.
@@ -19,7 +19,7 @@
   var WOBBLE = 13;      // how fast they wobble about full length once out (radians per second)
   var VIEW = 6;         // the eye's distance, in helix lengths: smaller is stronger perspective
   var STEPS = 240;
-  var GRAINS = 420;     // grains of sand at once
+  var GRAINS = 560;     // grains of sand at once
   var POUR = 3;         // seconds for a grain to fall from the top to the bottom, or to flow once along its field line
   var POLES = 0.37;     // the magnet's poles: north this share of the way down the tile, south as far up from the bottom
   var ANGLES = [160, 140, 120, 100, 80, 60, 40, 22];   // where its field lines leave the north pole, degrees from
@@ -44,12 +44,14 @@
 
   // A bar magnet's field lines, traced once for each size of the tile: from the north pole, at each of the ANGLES on
   // either side, following the field of the two poles (each pulling as 1 / distance squared) until the line reaches
-  // the south pole or leaves the tile. Each is a list of points spaced evenly along it, and its rank, from 0 for the
+  // the south pole or goes out past every corner of the tile, however it is turned. Each is a list of points spaced evenly along it, and its rank, from 0 for the
   // line nearest the magnet to 1 for the farthest.
   var traced = null;
   function field(w, h) {
     if (traced && traced.w === w && traced.h === h) return traced.lines;
-    var cx = w / 2, ny = h * POLES, sy = h * (1 - POLES), lines = [];
+    // Traced out to a circle round the middle that holds the whole tile at any turn, so that as the magnet turns its
+    // lines are whole wherever they show.
+    var cx = w / 2, ny = h * POLES, sy = h * (1 - POLES), lines = [], reach = Math.hypot(w, h) / 2 + 2;
     ANGLES.forEach(function (deg, i) {
       [-1, 1].forEach(function (side) {
         var a = deg * Math.PI / 180, x = cx + side * Math.sin(a) * 2, y = ny - Math.cos(a) * 2, pts = [[x, y]];
@@ -59,12 +61,12 @@
           var bx = dx1 / d1 - dx2 / d2, by = dy1 / d1 - dy2 / d2, b = Math.hypot(bx, by), home = false;
           x += bx / b; y += by / b;                                     // one pixel along the field
           var home = Math.hypot(x - cx, y - sy) < 2;
-          if (home || x < 1 || x > w - 1 || y < 1 || y > h - 1) break;
+          if (home || Math.hypot(x - cx, y - h / 2) > reach) break;
           pts.push([x, y]);
         }
         var rank = i / (ANGLES.length - 1);
         lines.push({ pts: pts, rank: rank });
-        // A line that leaves the tile before it comes round has a twin coming in from outside to the south pole: the
+        // A line that goes out before it comes round has a twin coming in from outside to the south pole: the
         // same line, upside down, run backwards.
         if (!home) lines.push({ pts: pts.map(function (p) { return [p[0], h - p[1]]; }).reverse(), rank: rank });
       });
@@ -91,6 +93,15 @@
     // Pressed in, a spring can only go as flat as its coils stacked wire on wire: its solid height, TURNS turns of
     // both strands, each as thick as the line. So in the magnet stage each helix keeps that much height.
     var solid = 2 * TURNS * ctx.lineWidth, ct = Math.max(height(t), solid / span);
+    // While it blinks the whole magnet, springs and sand, turns half a turn about the middle of the tile, easing in and
+    // out: clockwise on green, counter-clockwise on red. Upside down it is the same shape, its poles swapped, so it is
+    // let go from there.
+    var c = (t % CYCLE + CYCLE) % CYCLE, turn = 0;
+    if (c >= TRIP) {
+      var v = (c - TRIP) / (CYCLE - TRIP);
+      turn = Math.PI * v * v * (3 - 2 * v) * (root.getAttribute('data-theme') === 'dark' ? -1 : 1);
+    }
+    ctx.translate(cx, mid); ctx.rotate(turn); ctx.translate(-cx, -mid);
     // A point a share s of the way from a helix's wide end to its point, on the middle line; dir 1 is the lower helix,
     // -1 its mirror above; the second strand is half a turn round from the first.
     // [x, y on the tile, depth toward us in pixels, nearness of the coil's face from -1 (behind) to 1 (in front)]

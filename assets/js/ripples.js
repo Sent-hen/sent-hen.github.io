@@ -46,11 +46,18 @@
     return out;
   })();
 
-  // Where the ball is at time t, from 0 to 1: pushed up steadily for TRIP seconds, a moment's rest at the summit, then
-  // let go, rolling back down under gravity for DOWN seconds, and a moment's rest at the foot before the next push.
+  // The climb. The stone comes down fast and, at the foot, bounces off the springs as they are let go (helix.js): it
+  // leaves at most of the speed it came in with, and that kick dies away, over KICK seconds or so, to Sisyphus's own
+  // steady push, so that it still reaches the summit at TRIP. No standing start.
+  var KICK = 0.5, BOUNCE = 2;   // how long the kick lasts; how much ground it gains, in seconds of steady pushing
+  var CLIMB = TRIP + BOUNCE * (1 - Math.exp(-TRIP / KICK));
+  function climb(s) { return (s + BOUNCE * (1 - Math.exp(-s / KICK))) / CLIMB; }
+
+  // Where the ball is at time t, from 0 to 1: kicked off the foot and pushed up for TRIP seconds, a moment's rest at the
+  // summit, then let go, rolling back down under gravity for DOWN seconds, and a moment's rest at the foot.
   function at(t) {
     var s = t % CYCLE;
-    if (s < TRIP) return s / TRIP;
+    if (s < TRIP) return climb(s);
     if (s < TRIP + TOP) return 1;
     var k = (s - TRIP - TOP) * 100, i = Math.floor(k);
     if (i + 1 >= roll.length) return 0;
@@ -67,7 +74,7 @@
     for (var j = 0; j < DROPS.length; j++) {
       var age = s - DROPS[j];
       if (age < 0 || age >= LIFE) continue;
-      var left = 1 - age / LIFE, along = DROPS[j] / TRIP;
+      var left = 1 - age / LIFE, along = climb(DROPS[j]);
       var x = along * w, r = speed * age;
       var back = x > 0 ? Math.max(0, 1 - r / x) : 0;   // 1 as it starts, 0 once it has spread back to 0
       list.push({ x: x, r: r, strength: left * left * loudness(along) * back * quiet });

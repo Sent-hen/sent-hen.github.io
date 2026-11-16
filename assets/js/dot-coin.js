@@ -1,5 +1,5 @@
 // The dot coin above the tiramisu (after The Creative Act's cover): spins up with the 0 → 1 ball, blurs into a steady
-// dot, flashes while the ball rolls back, on green and red alike. Shares its clock, stamina() and ink() with
+// dot, flashes and winds back down while the ball rolls back, on green and red alike. Shares its clock, stamina() and ink() with
 // ripples.js and helix.js. See README.
 (function () {
   var canvas = document.querySelector('canvas.dot-coin');
@@ -13,7 +13,6 @@
   var BOTTOM = 0;       // seconds the ball rests at the foot: BOTTOM in ripples.js
   var HOLD = TOP + ROLL + BOTTOM; // seconds at full speed: from the summit until the next push
   var SPENT = TOP + ROLL;         // seconds of flashing: resting at the summit and rolling back; calm at the foot
-  var FADE = 0.4;       // seconds to fade back in as each cycle starts
   var CYCLE = RAMP + HOLD;
   var EXPOSURE = 1 / FAST; // one frame's exposure: a whole turn at full speed, a sliver of one when slow
   var SAMPLES = 160;    // poses blended into one frame at full speed; enough that the blur is smooth, not banded
@@ -29,12 +28,16 @@
   var root = document.documentElement;
   var GROWTH = Math.log(FAST / SLOW);
 
-  // Turns per second, and turns made so far, at time t into the cycle: speeding up exponentially, then steady.
-  function speed(t) { return t < RAMP ? SLOW * Math.exp(GROWTH * t / RAMP) : FAST; }
+  // Turns per second, and turns made so far, at time t into the cycle: speeding up exponentially while the ball climbs,
+  // then, while it rolls back, winding down the same way, so that it is back at SLOW just as the next climb starts. No
+  // jump in speed, and no jump in where it is, from one cycle to the next: turnsAt() counts on from every cycle before.
+  var UP = SLOW * RAMP / GROWTH * (FAST / SLOW - 1), DOWNTURNS = FAST * HOLD / GROWTH * (1 - SLOW / FAST);
+  function speed(t) { return t < RAMP ? SLOW * Math.exp(GROWTH * t / RAMP) : FAST * Math.exp(-GROWTH * (t - RAMP) / HOLD); }
   function turns(t) {
     if (t < RAMP) return SLOW * RAMP / GROWTH * (Math.exp(GROWTH * t / RAMP) - 1);
-    return SLOW * RAMP / GROWTH * (FAST / SLOW - 1) + FAST * (t - RAMP);
+    return UP + FAST * HOLD / GROWTH * (1 - Math.exp(-GROWTH * (t - RAMP) / HOLD));
   }
+  function turnsAt(T) { var c = Math.floor(T / CYCLE); return c * ((UP + DOWNTURNS) % 1) + turns(T - c * CYCLE); }
 
   // When the coin finishes each whole turn while speeding up, in seconds into the cycle. The ball in ripples.js drops
   // a ripple at each one, so the ripples come as the coin turns: far apart at first, closer as it speeds up.
@@ -108,17 +111,18 @@
     }
   }
 
-  function draw(t) {
-    var f = fit();
+  function draw(T) {   // T: seconds on the page's clock
+    var f = fit(), t = T % CYCLE;
     var n = Math.max(1, Math.ceil(SAMPLES * speed(t) / FAST));
-    var fade = Math.min(1, t / FADE), k = ink(canvas, stamina(t)), light = k.alpha;
+    var k = ink(canvas, stamina(t)), light = k.alpha;
     f.ctx.strokeStyle = f.ctx.fillStyle = k.color;
     // n poses spread across the exposure, each faint enough that what every pose shares builds to full ink
-    f.ctx.globalAlpha = Math.max(0, fade) * light * (n === 1 ? 1 : Math.min(1, 2.5 / n));
-    for (var i = 0; i < n; i++) pose(f, turns(Math.max(0, t - EXPOSURE * i / n)));
-    // The speed gauge: an arc from the top, clockwise, as far round as the coin is toward top speed; a full circle at it.
-    var R = Math.min(f.w, f.h) * 0.34, share = Math.min(1, t / RAMP);
-    f.ctx.globalAlpha = Math.max(0, fade) * light;
+    f.ctx.globalAlpha = light * (n === 1 ? 1 : Math.min(1, 2.5 / n));
+    for (var i = 0; i < n; i++) pose(f, turnsAt(Math.max(0, T - EXPOSURE * i / n)));
+    // The speed gauge: an arc from the top, clockwise, as far round as the coin is toward top speed; a full circle at
+    // it. It fills as the coin speeds up and empties as it winds down.
+    var R = Math.min(f.w, f.h) * 0.34, share = Math.log(speed(t) / SLOW) / GROWTH;
+    f.ctx.globalAlpha = light;
     f.ctx.lineWidth = 1.5;
     f.ctx.beginPath();
     f.ctx.arc(f.w / 2, f.h / 2, R * GAUGE, -Math.PI / 2, -Math.PI / 2 + share * 2 * Math.PI);
@@ -132,7 +136,7 @@
   var calm = window.matchMedia ? matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
   function frame(now) {
     if (!running) return;
-    draw((now / 1000) % CYCLE);
+    draw(now / 1000);
     requestAnimationFrame(frame);
   }
   function apply() {
