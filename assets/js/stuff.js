@@ -26,18 +26,3 @@
   });
 })();
 
-// The empty box after "Listening to the symphony of" takes you somewhere on this page at random: a poster, scrolled
-// to the middle of the screen and focused, so its title shows. Red jumps instead of gliding.
-(function () {
-  var box = document.querySelector('.stuff-random');
-  if (!box) return;
-  box.addEventListener('click', function (e) {
-    e.preventDefault();
-    var all = document.querySelectorAll('.covers .cover-stack');
-    if (!all.length) return;
-    var pick = all[Math.floor(Math.random() * all.length)];
-    var still = document.documentElement.classList.contains('still');
-    pick.scrollIntoView({ behavior: still ? 'auto' : 'smooth', block: 'center' });
-    pick.focus({ preventScroll: true });
-  });
-})();

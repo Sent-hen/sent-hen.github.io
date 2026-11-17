@@ -217,7 +217,6 @@ model-viewer.lion { display: block; width: 160px; height: 160px; background: var
 .blank-box:empty { height: 1.3em; }
 .blank-box:hover { border-color: var(--tx); }
 .open-to { margin: 0.4em 0 0; color: var(--tx-2); }
-.retired { margin: 0.4em 0 0; }
 
 /* Quality of life: line art in a dotted frame, in the theme's colors */
 .qol-fig { margin: 1.8em 0; max-width: 480px; }
@@ -230,17 +229,8 @@ model-viewer.lion { display: block; width: 160px; height: 160px; background: var
 .qol-flow .qol-main { fill: var(--tx); }
 /* The loop keeps its top and bottom margin inside the drawing, so Illusion's side lines can run to the dotted frame */
 .qol-flow { padding-top: 0; padding-bottom: 0; }
-/* The italic notes: on About above Who I am / Who am I, and atop Quality of Life */
-.creed { margin: 0 0 1.8em; color: var(--tx); font-family: var(--font-serif); font-style: italic; }
-.creed p { margin: 0 0 0.3em; }
-.verse p { line-height: 1.6; margin-bottom: 0.9em; }
-.motto > span { display: block; }   /* the original, then English, like the name */
 /* Strategy / Operations / Tactics: intent down, feedback back up (dashed); every frame the same */
 .sot-layer { fill: var(--bg-2); stroke: var(--tx-2); stroke-width: 1; }
-/* Tactics: all but invisible on green, in full on red */
-.sot-tactics { opacity: 0.08; }
-:root[data-theme="dark"] .sot-tactics { opacity: 1; }
-:root[data-theme="dark"] .sot-operations { opacity: 0.08; }   /* on red Operations is as faint as Tactics is on green */
 .qol .sot-name, .qol .sot-note { text-anchor: middle; dominant-baseline: central; }
 .qol .sot-side { dominant-baseline: central; }
 .qol .sot-name { fill: var(--tx); font-size: 15px; }
@@ -316,14 +306,8 @@ model-viewer.lion { display: block; width: 160px; height: 160px; background: var
 }
 .now-links { display: flex; flex-direction: column; align-items: flex-start; gap: 0.1em; margin: 0 0 1.2em; }
 .now-slash { color: var(--tx-3); }
-/* The fractions line at the foot of Quality of Life */
-.qol-fracs { margin: 0 0 1.8em; max-width: 480px; }
-.qol-frac-run { white-space: nowrap; overflow: hidden; }   /* once the 3s outgrow the line it starts at the left and the rest runs off the right */
-.qol-frac { margin: 0; text-align: center; color: var(--tx-2); }
-.iam-why { color: var(--tx-2); }
-/* An unmarked link, looking like plain text: the & under I… (to /stuff/) and the Lion Capital caption */
+/* An unmarked link, looking like plain text: the & under I love… (to /stuff/) and the Lion Capital caption */
 .quiet-link { display: inline-flex; flex-direction: column; align-items: flex-start; color: inherit; text-decoration: none; }
-.iam-gap { display: inline-block; width: 4em; }   /* the empty space inside [ ] */   /* the why in brackets after each */
 /* Whole blocks per theme */
 .only-red, :root[data-theme="dark"] .only-green { display: none; }
 :root[data-theme="dark"] .only-red { display: block; }

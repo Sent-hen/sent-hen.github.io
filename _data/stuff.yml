@@ -1,7 +1,8 @@
-# Stuff (/stuff/). Every category is rows of pairs: 1 / 2, then 3 / 4, and so on, each oldest to newest, by release date. Categories are in alphabetical order.
+# Stuff (/stuff/). Every category is rows of pairs: 1 / 2, then 3 / 4, and so on. In Cinema, Games, Graphic Novels and Music
+# the first 4 are picked, in the order given, to show on /stuff/; the rest, and every other category, go oldest to newest, by release date. Categories are in alphabetical order.
 # art:    the poster or cover, in assets/img/stuff/
 # also:   more posters this one fades through in turn; each can have its own title, creator, and year
-# label:  the category's name; its heading reads label = Mind + Matter, the same in both themes
+# label:  the category's name; its heading, the same in both themes
 # square: true for a category with square covers (the rest are 2:3 posters)
 # text:   true for a category with no pictures, only title · creator · year, one to a line
 # The first 4 of each picture category show on /stuff/; a MORE box under them opens /stuff/more/, which has the rest.
@@ -9,15 +10,15 @@
 
 - label: Cinema
   items:
-    - { title: "Lawrence of Arabia", creator: "David Lean", year: 1962, art: lawrence-of-arabia.jpg }
-    - { title: "The Good, the Bad and the Ugly", creator: "Sergio Leone", year: 1966, art: the-good-the-bad-and-the-ugly.jpg }
     - { title: "The Truman Show", creator: "Peter Weir", year: 1998, art: the-truman-show.jpg }
     - { title: "City of God", creator: "Fernando Meirelles", year: 2002, art: city-of-god.jpg }
     - { title: "Anbe Sivam", creator: "Sundar C", year: 2003, art: anbe-sivam.jpg }
+    - { title: "The Fall", creator: "Tarsem Singh", year: 2006, art: the-fall-ornate.jpg }
+    - { title: "Lawrence of Arabia", creator: "David Lean", year: 1962, art: lawrence-of-arabia.jpg }
+    - { title: "The Good, the Bad and the Ugly", creator: "Sergio Leone", year: 1966, art: the-good-the-bad-and-the-ugly.jpg }
     - { title: "V for Vendetta", creator: "James McTeigue", year: 2005, art: v-for-vendetta-film.jpg }
     - { title: "Pan's Labyrinth", creator: "Guillermo del Toro", year: 2006, art: pans-labyrinth.jpg }
     - { title: "Children of Men", creator: "Alfonso Cuarón", year: 2006, art: children-of-men.jpg }
-    - { title: "The Fall", creator: "Tarsem Singh", year: 2006, art: the-fall-ornate.jpg }
     - { title: "Ratatouille", creator: "Brad Bird", year: 2007, art: ratatouille.jpg }
     - { title: "WALL-E", creator: "Andrew Stanton", year: 2008, art: wall-e.jpg }
     - { title: "Megamind", creator: "Tom McGrath", year: 2010, art: megamind.jpg }
@@ -25,12 +26,12 @@
 
 - label: Games
   items:                    # Project Zomboid has no single lead, so it credits the studio; its year is its 2013 early access
+    - { title: "Dark Souls II", creator: "Tomohiro Shibuya", year: 2014, art: dark-souls-ii.jpg, also: [{ art: dark-souls-ii-alt.jpg }] }
+    - { title: "The Binding of Isaac: Rebirth", creator: "Edmund McMillen", year: 2014, art: the-binding-of-isaac.jpg }
     - { title: "BioShock", creator: "Ken Levine", year: 2007, art: bioshock.jpg }
     - { title: "Team Fortress 2", creator: "Robin Walker", year: 2007, art: team-fortress-2.jpg }
     - { title: "Portal 2", creator: "Joshua Weier", year: 2011, art: portal-2.jpg }
     - { title: "Project Zomboid", creator: "The Indie Stone", year: 2013, art: project-zomboid.jpg }
-    - { title: "Dark Souls II", creator: "Tomohiro Shibuya", year: 2014, art: dark-souls-ii.jpg, also: [{ art: dark-souls-ii-alt.jpg }] }
-    - { title: "The Binding of Isaac: Rebirth", creator: "Edmund McMillen", year: 2014, art: the-binding-of-isaac.jpg }
     - { title: "Undertale", creator: "Toby Fox", year: 2015, art: undertale.jpg }
     - { title: "SOMA", creator: "Thomas Grip", year: 2015, art: soma.jpg }
     - { title: "Firewatch", creator: "Olly Moss", year: 2016, art: firewatch.jpg }
@@ -42,11 +43,11 @@
 - label: Graphic Novels
   items:                    # creator is the artist; the year is when it began
     - { title: "V for Vendetta", creator: "David Lloyd", year: 1982, art: v-for-vendetta.jpg }
-    - { title: "Watchmen", creator: "Dave Gibbons", year: 1986, art: watchmen.jpg }
-    - { title: "Parasyte", creator: "Hitoshi Iwaaki", year: 1988, art: parasyte.jpg }
     - { title: "Berserk", creator: "Kentaro Miura", year: 1989, art: berserk.jpg }
     - { title: "Vagabond", creator: "Takehiko Inoue", year: 1998, art: vagabond.jpg }
     - { title: "Vinland Saga", creator: "Makoto Yukimura", year: 2005, art: vinland-saga.jpg }
+    - { title: "Watchmen", creator: "Dave Gibbons", year: 1986, art: watchmen.jpg }
+    - { title: "Parasyte", creator: "Hitoshi Iwaaki", year: 1988, art: parasyte.jpg }
 
 - label: Literature
   items:                    # Lord of the Rings, Hitchhiker's, and Stormlight stand for their whole series; the year is the first book, and Stormlight's cover is The Way of Kings
@@ -60,19 +61,20 @@
 - label: Music
   square: true
   items:                    # albums, and songs with the sleeve of the album they first came out on (Mr. Blue Sky, Vienna, Dreams, ...); the year is the first release
+    - { title: "Blue Monday", creator: "New Order", year: 1983, art: blue-monday.jpg }
+    - { title: "Agents of Fortune", creator: "Blue Öyster Cult", year: 1976, art: agents-of-fortune.jpg }
+    - { title: "In the Court of the Crimson King", creator: "King Crimson", year: 1969, art: in-the-court-of-the-crimson-king.jpg }
+    - { title: "The New Abnormal", creator: "The Strokes", year: 2020, art: the-new-abnormal.jpg }
     - { title: "Paint It, Black", creator: "The Rolling Stones", year: 1966, art: paint-it-black.jpg }
     - { title: "The Beatles (White Album) [Super Deluxe]", creator: "The Beatles", year: 1968, art: white-album.jpg }
     - { title: "Abbey Road (Super Deluxe Edition)", creator: "The Beatles", year: 1969, art: abbey-road.jpg }
-    - { title: "In the Court of the Crimson King", creator: "King Crimson", year: 1969, art: in-the-court-of-the-crimson-king.jpg }
     - { title: "American Pie", creator: "Don McLean", year: 1971, art: american-pie.jpg }
     - { title: "Led Zeppelin IV", creator: "Led Zeppelin", year: 1971, art: led-zeppelin-iv.jpg }
     - { title: "Wish You Were Here", creator: "Pink Floyd", year: 1975, art: wish-you-were-here.jpg }
-    - { title: "Agents of Fortune", creator: "Blue Öyster Cult", year: 1976, art: agents-of-fortune.jpg }
     - { title: "Dreams (Deluxe Edition)", creator: "Fleetwood Mac", year: 1977, art: dreams.jpg }
     - { title: "Vienna", creator: "Billy Joel", year: 1977, art: vienna.jpg }
     - { title: "Mr. Blue Sky", creator: "Electric Light Orchestra", year: 1977, art: mr-blue-sky.jpg }
     - { title: "Sultans of Swing", creator: "Dire Straits", year: 1978, art: sultans-of-swing.jpg }
-    - { title: "Blue Monday", creator: "New Order", year: 1983, art: blue-monday.jpg }
     - { title: "Every Breath You Take", creator: "The Police", year: 1983, art: every-breath-you-take.jpg }
     - { title: "Summer of '69", creator: "Bryan Adams", year: 1984, art: summer-of-69.jpg }
     - { title: "Brothers in Arms", creator: "Dire Straits", year: 1985, art: brothers-in-arms.jpg }
@@ -82,7 +84,6 @@
     - { title: "Random Access Memories", creator: "Daft Punk", year: 2013, art: random-access-memories.jpg }
     - { title: "What Once Was", creator: "Her's", year: 2016, art: what-once-was.jpg }
     - { title: "Harvey", creator: "Her's", year: 2017, art: harvey.jpg }
-    - { title: "The New Abnormal", creator: "The Strokes", year: 2020, art: the-new-abnormal.jpg }
 
 - label: Piano Pieces
   text: true                # no pictures: each piece is a line, title · creator · year

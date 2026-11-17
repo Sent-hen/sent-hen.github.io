@@ -34,13 +34,6 @@ description: "About Senthen Velmurugan"
   <p class="infinity-arrow" aria-label="From zero to one"><canvas class="ripples" data-view="top"></canvas></p>
   <p class="infinity-arrow" aria-hidden="true"><canvas class="ripples" data-view="side"></canvas></p>
   <script src="{{ '/assets/js/ripples.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
-  {% comment %} Two mottos, each like the name: the original, then English. Sanskrit (Mundaka
-     Upanishad 3.1.6), then Latin. {% endcomment %}
-  <div class="creed verse">
-    <p class="motto"><span lang="sa">सत्यमेव जयते</span><span>Truth Alone Triumphs<span class="for-red"> [Prevails]</span></span></p>
-    <p class="motto"><span lang="la">Veritas vincit</span><span>Truth Conquers<span class="for-red"> [Prevails]</span></span></p>
-    <p>Love is wise; Hatred is foolish.</p>
-  </div>
   <div class="duality">
     <section>
       <p class="label">Who I am</p>
@@ -57,28 +50,14 @@ description: "About Senthen Velmurugan"
       <ul class="iam-list">
         <li>Systems Engineering</li>
       </ul>
-      <p class="iam">I&hellip;</p>
-      {% comment %}
-        Green: Create with an empty bracket, then & Trade with an empty bracket. Red: Create with an empty bracket, then & Trade
-        [MONEY & TIME]. Only the & is a link, unmarked, to /stuff/.
-      {% endcomment %}
-      <ul class="iam-list only-green">
-        <li>Create <span class="iam-why">[<span class="iam-gap"></span>]</span><br><a href="{{ '/stuff/' | relative_url }}" class="quiet-link" title="A few of my favo(u)rite things">&amp;</a></li>
-        <li>Trade <span class="iam-why">[<span class="iam-gap"></span>]</span></li>
-      </ul>
-      <ul class="iam-list only-red">
-        <li>Create <span class="iam-why">[<span class="iam-gap"></span>]</span><br><a href="{{ '/stuff/' | relative_url }}" class="quiet-link" title="A few of my favo(u)rite things">&amp;</a></li>
-        <li>Trade <span class="iam-why">[MONEY &amp; TIME]</span></li>
-      </ul>
       <p class="iam">I love&hellip;</p>
       <ul class="iam-list">
         <li>good food</li>
-        <li>&amp;</li>
+        <li><a href="{{ '/stuff/' | relative_url }}" class="quiet-link" title="A few of my favo(u)rite things">&amp;</a></li>
         <li>great conversations</li>
       </ul>
     </section>
   </div>
   <p class="small open-to">Open to tech roles · Texas preferred, open to relocation anywhere in the US</p>
-  <p class="muted small retired">Retired circa 2000</p>
   </div>
 </div>
