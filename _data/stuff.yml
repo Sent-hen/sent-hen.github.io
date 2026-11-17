@@ -1,5 +1,5 @@
 # Stuff (/stuff/). Every category is rows of pairs: 1 / 2, then 3 / 4, and so on. In Cinema, Games, Graphic Novels and Music
-# the first 4 are picked, in the order given, to show on /stuff/; the rest, and every other category, go oldest to newest, by release date. Categories are in alphabetical order.
+# the first 4 are picked to show on /stuff/, oldest to newest; the rest, and every other category, go oldest to newest, by release date. Categories are in alphabetical order.
 # art:    the poster or cover, in assets/img/stuff/
 # also:   more posters this one fades through in turn; each can have its own title, creator, and year
 # label:  the category's name; its heading, the same in both themes
@@ -26,10 +26,10 @@
 
 - label: Games
   items:                    # Project Zomboid has no single lead, so it credits the studio; its year is its 2013 early access
-    - { title: "Dark Souls II", creator: "Tomohiro Shibuya", year: 2014, art: dark-souls-ii.jpg, also: [{ art: dark-souls-ii-alt.jpg }] }
-    - { title: "The Binding of Isaac: Rebirth", creator: "Edmund McMillen", year: 2014, art: the-binding-of-isaac.jpg }
     - { title: "BioShock", creator: "Ken Levine", year: 2007, art: bioshock.jpg }
     - { title: "Team Fortress 2", creator: "Robin Walker", year: 2007, art: team-fortress-2.jpg }
+    - { title: "Dark Souls II", creator: "Tomohiro Shibuya", year: 2014, art: dark-souls-ii.jpg, also: [{ art: dark-souls-ii-alt.jpg }] }
+    - { title: "The Binding of Isaac: Rebirth", creator: "Edmund McMillen", year: 2014, art: the-binding-of-isaac.jpg }
     - { title: "Portal 2", creator: "Joshua Weier", year: 2011, art: portal-2.jpg }
     - { title: "Project Zomboid", creator: "The Indie Stone", year: 2013, art: project-zomboid.jpg }
     - { title: "Undertale", creator: "Toby Fox", year: 2015, art: undertale.jpg }
@@ -61,9 +61,9 @@
 - label: Music
   square: true
   items:                    # albums, and songs with the sleeve of the album they first came out on (Mr. Blue Sky, Vienna, Dreams, ...); the year is the first release
-    - { title: "Blue Monday", creator: "New Order", year: 1983, art: blue-monday.jpg }
-    - { title: "Agents of Fortune", creator: "Blue Öyster Cult", year: 1976, art: agents-of-fortune.jpg }
     - { title: "In the Court of the Crimson King", creator: "King Crimson", year: 1969, art: in-the-court-of-the-crimson-king.jpg }
+    - { title: "Agents of Fortune", creator: "Blue Öyster Cult", year: 1976, art: agents-of-fortune.jpg }
+    - { title: "Blue Monday", creator: "New Order", year: 1983, art: blue-monday.jpg }
     - { title: "The New Abnormal", creator: "The Strokes", year: 2020, art: the-new-abnormal.jpg }
     - { title: "Paint It, Black", creator: "The Rolling Stones", year: 1966, art: paint-it-black.jpg }
     - { title: "The Beatles (White Album) [Super Deluxe]", creator: "The Beatles", year: 1968, art: white-album.jpg }
