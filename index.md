@@ -49,12 +49,15 @@ description: "About Senthen Velmurugan"
       <p class="iam">Mastering&hellip;</p>
       <ul class="iam-list">
         <li>Systems Engineering</li>
+        <li>Linguistics</li>
+        <li><span class="blank-box" tabindex="0" aria-label="A blank"></span></li>   {% comment %} lights up, leads nowhere {% endcomment %}
       </ul>
       <p class="iam">I love&hellip;</p>
       <ul class="iam-list">
         <li>good food</li>
-        <li><a href="{{ '/stuff/' | relative_url }}" class="quiet-link" title="A few of my favo(u)rite things">&amp;</a></li>
         <li>great conversations</li>
+        <li><a href="{{ '/stuff/' | relative_url }}" class="quiet-link" title="A few of my favo(u)rite things">&amp;</a></li>
+        <li>well crafted products and services</li>
       </ul>
     </section>
   </div>
