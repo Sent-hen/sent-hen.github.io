@@ -48,7 +48,7 @@ description: "About Senthen Velmurugan"
       <p>Someone who uses technology to improve locally <s>and globally</s> the <a href="{{ '/quality-of-life/' | relative_url }}">Quality of Life</a>.</p>
       <p class="iam">Mastering&hellip;</p>
       <ul class="iam-list">
-        <li>Systems Engineering</li>
+        <li>Systems Engineering &amp; Cybernetics</li>
         <li>Linguistics</li>
         <li><span class="blank-box" tabindex="0" aria-label="A blank"></span></li>   {% comment %} lights up, leads nowhere {% endcomment %}
       </ul>
@@ -62,5 +62,6 @@ description: "About Senthen Velmurugan"
     </section>
   </div>
   <p class="small open-to">Open to tech roles · Texas preferred, open to relocation anywhere in the US</p>
+  <p class="muted small retired">Retired circa 2000</p>
   </div>
 </div>

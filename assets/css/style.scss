@@ -217,6 +217,7 @@ model-viewer.lion { display: block; width: 160px; height: 160px; background: var
 .blank-box:empty { height: 1.3em; }
 .blank-box:hover, .blank-box:focus { border-color: var(--tx); outline: none; }
 .open-to { margin: 0.4em 0 0; color: var(--tx-2); }
+.retired { margin: 0.4em 0 0; }
 
 /* Quality of life: line art in a dotted frame, in the theme's colors */
 .qol-fig { margin: 1.8em 0; max-width: 480px; }

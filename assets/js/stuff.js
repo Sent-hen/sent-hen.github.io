@@ -1,12 +1,20 @@
 // Stuff: a poster with more than one image fades to the next every few seconds, each starting at its own moment.
-// It waits while someone is hovering or has tapped it, so the text under it doesn't change while being read.
-// Red holds the first image.
+// It waits while someone is hovering or has just tapped it, so the text under it doesn't change while being read; but
+// only for a while after a tap or focus, and not for the hover a touch screen leaves behind after a tap, so it never
+// gets stuck until the page is reloaded. Red holds the first image.
 (function () {
   var root = document.documentElement;
+  var READ = 12000;   // ms a tap or focus holds it
+  var mouse = window.matchMedia ? matchMedia('(hover: hover) and (pointer: fine)') : { matches: true };
   [].forEach.call(document.querySelectorAll('.covers li.has-alt'), function (li, n) {
     var imgs = li.querySelectorAll('.cover-stack img');
     var notes = li.querySelectorAll('.cover-meta');
-    var at = 0;
+    var at = 0, seen = 0;
+    li.addEventListener('focusin', function () { seen = Date.now(); });
+    li.addEventListener('pointerdown', function () { seen = Date.now(); });
+    function reading() {
+      return (mouse.matches && li.matches(':hover')) || (li.matches(':focus-within') && Date.now() - seen < READ);
+    }
     function show(next) {
       var old = imgs[at];
       notes[at].classList.remove('on');
@@ -20,7 +28,7 @@
     setTimeout(function () {
       setInterval(function () {
         if (root.classList.contains('still')) { if (at) show(0); }
-        else if (!li.matches(':hover, :focus-within')) show((at + 1) % imgs.length);
+        else if (!reading()) show((at + 1) % imgs.length);
       }, 6000);
     }, n * 1100);
   });
